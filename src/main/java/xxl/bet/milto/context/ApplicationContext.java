@@ -2,17 +2,15 @@ package xxl.bet.milto.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xxl.bet.milto.utils.DBConnectionUtil;
+import xxl.bet.milto.utils.connection.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Contains info about error.
+ * ApplicationContext.
  *
  * @author alexm2000
  */
@@ -23,37 +21,23 @@ public class ApplicationContext implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         LOG.debug("Initializing ApplicationContext...");
-        Connection connection;
 
-        try {
-            connection = DBConnectionUtil.getConnection();
-            servletContextEvent.getServletContext().setAttribute("dbconnection", connection);
-        } catch (IOException | SQLException | ClassNotFoundException e) {
-            LOG.error("Can't complete app initialization! Exiting...", e);
-            System.exit(1);
-        }
-
-        LOG.debug("ApplicationContext initialized successfully!");
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent servletContextEvent) {
         LOG.debug("Destroying ApplicationContext...");
+        LOG.debug("Closing connections...");
 
-        Object property = servletContextEvent.getServletContext().getAttribute("dbconnection");
+        ConnectionPool pool = ConnectionPool.getInstance();
 
-        if (property instanceof Connection) {
-            Connection connection = (Connection) property;
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                LOG.error("Could not close connection!", e);
-            }
-        } else {
-            LOG.error("No attribute of connection is present inside servletContext! Expected Connection, but found {}",
-                    property != null ? property.getClass() : null);
+        try {
+            pool.closeAllConnections();
+        } catch (SQLException e) {
+            LOG.error("Could not close connections!", e);
         }
 
+        LOG.debug("Connections are closed successfully!");
         LOG.debug("ApplicationContext destroyed successfully!");
     }
 }

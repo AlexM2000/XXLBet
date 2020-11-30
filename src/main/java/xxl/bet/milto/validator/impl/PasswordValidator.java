@@ -1,11 +1,11 @@
 package xxl.bet.milto.validator.impl;
 
 import xxl.bet.milto.domain.Errors;
-import xxl.bet.milto.domain.ProjectProperties;
+import xxl.bet.milto.utils.ProjectProperties;
 import xxl.bet.milto.validator.Validator;
 
 public class PasswordValidator implements Validator {
-    private String pattern = ProjectProperties.getInstance().getProperty("xxl.bet.milto.password.regexp")
+    private String pattern = ProjectProperties.getInstance().getStringProperty("xxl.bet.milto.password.regexp")
             .orElse("^((?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\W_\\\\d])).{7,20}$");
 
     @Override

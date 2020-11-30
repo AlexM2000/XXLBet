@@ -1,11 +1,11 @@
 package xxl.bet.milto.validator.impl;
 
 import xxl.bet.milto.domain.Errors;
-import xxl.bet.milto.domain.ProjectProperties;
+import xxl.bet.milto.utils.ProjectProperties;
 import xxl.bet.milto.validator.Validator;
 
 public class EmailValidator implements Validator {
-    private static final String EMAIL_PATTERN = ProjectProperties.getInstance().getProperty("xxl.bet.milto.email.regexp")
+    private static final String EMAIL_PATTERN = ProjectProperties.getInstance().getStringProperty("xxl.bet.milto.email.regexp")
             .orElse("^\\\\s*?(.+)@(.+?)\\\\s*$");
 
     @Override

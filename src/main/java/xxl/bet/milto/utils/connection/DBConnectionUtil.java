@@ -1,9 +1,9 @@
-package xxl.bet.milto.utils;
+package xxl.bet.milto.utils.connection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xxl.bet.milto.domain.ProjectProperties;
 import xxl.bet.milto.exceptions.PropertyNotFoundException;
+import xxl.bet.milto.utils.ProjectProperties;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -59,6 +59,7 @@ public final class DBConnectionUtil {
         if (connection != null) {
             LOG.debug("Connection was successful!");
         }
+
         return connection;
     }
 }
