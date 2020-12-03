@@ -2,7 +2,7 @@ package xxl.bet.milto.utils.connection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xxl.bet.milto.utils.ProjectProperties;
+import xxl.bet.milto.utils.PropertyLoader;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -23,7 +23,7 @@ public final class ConnectionPool {
     private static volatile ConnectionPool instance;
     private static final Lock LOCK = new ReentrantLock();
 
-    private ProjectProperties properties;
+    private PropertyLoader properties;
     private BlockingQueue<Connection> availableConnections;
     private BlockingQueue<Connection> usedConnections;
     private Semaphore semaphore;
@@ -31,12 +31,13 @@ public final class ConnectionPool {
     private int timeout;
 
     private ConnectionPool() {
-        properties = ProjectProperties.getInstance();
+        properties = PropertyLoader.getInstance();
         poolSize = properties.getDatabaseConnectionPool()
                 .orElseGet(() -> {
-                    LOG.debug(format("Connection pool size is not specified! Defaulting to %d", DEFAULT_CONNECTION_POOL));
+                    LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
                     return DEFAULT_CONNECTION_POOL;
                 });
+
         availableConnections = new ArrayBlockingQueue<>(poolSize);
         usedConnections = new ArrayBlockingQueue<>(poolSize);
         for (int i = 0; i < poolSize; i++) {
@@ -48,10 +49,12 @@ public final class ConnectionPool {
                 System.exit(1);
             }
         }
+
         semaphore = new Semaphore(poolSize, true);
+
         timeout = properties.getDatabaseConnectionTimeout()
                 .orElseGet(() -> {
-                    LOG.debug(format("Available connection timeout is not specified! Defaulting to %d", DEFAULT_CONNECTION_TIMEOUT));
+                    LOG.debug(format("Available connection timeout is not specified! Defaulting to %d seconds.", DEFAULT_CONNECTION_TIMEOUT));
                     return DEFAULT_CONNECTION_TIMEOUT;
                 });
     }

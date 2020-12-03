@@ -3,7 +3,7 @@ package xxl.bet.milto.utils.connection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xxl.bet.milto.exceptions.PropertyNotFoundException;
-import xxl.bet.milto.utils.ProjectProperties;
+import xxl.bet.milto.utils.PropertyLoader;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,6 +26,7 @@ public final class DBConnectionUtil {
 
     /**
      * Establishes connection with database.
+     * Gets properties for connection from project.properties file
      *
      * @return Established connection.
      * @throws SQLException if cannot establish connection with database.
@@ -35,12 +36,11 @@ public final class DBConnectionUtil {
      */
     public static Connection getConnection() throws SQLException, IOException, ClassNotFoundException {
         Connection connection;
-        ProjectProperties properties = ProjectProperties.getInstance();
+        PropertyLoader properties = PropertyLoader.getInstance();
 
         try {
             properties.init();
-            String driverName = properties.getDatabaseDriverName()
-                    .orElseThrow(() -> new PropertyNotFoundException("Can't find database driver name"));
+
             String url = properties.getDatabaseUrl()
                     .orElseThrow(() -> new PropertyNotFoundException("Can't find database url"));
             String userName = properties.getDatabaseUsername()
@@ -48,11 +48,8 @@ public final class DBConnectionUtil {
             String password = properties.getDatabasePassword()
                     .orElseThrow(() -> new PropertyNotFoundException("Can't find database password"));
 
-            Class.forName(driverName);
-            LOG.debug("Successfully registered driver!");
-
             connection = DriverManager.getConnection(url, userName, password);
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (IOException | SQLException e) {
             throw e;
         }
 
