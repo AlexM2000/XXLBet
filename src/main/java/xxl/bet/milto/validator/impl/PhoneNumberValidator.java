@@ -1,6 +1,6 @@
 package xxl.bet.milto.validator.impl;
 
-import xxl.bet.milto.domain.Errors;
+import xxl.bet.milto.utils.Errors;
 import xxl.bet.milto.utils.PropertyLoader;
 import xxl.bet.milto.validator.Validator;
 

@@ -7,6 +7,8 @@ import xxl.bet.milto.utils.PropertyLoader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Semaphore;
@@ -24,8 +26,8 @@ public final class ConnectionPool {
     private static final Lock LOCK = new ReentrantLock();
 
     private PropertyLoader properties;
+    private List<Connection> allConnections;
     private BlockingQueue<Connection> availableConnections;
-    private BlockingQueue<Connection> usedConnections;
     private Semaphore semaphore;
     private int poolSize;
     private int timeout;
@@ -38,11 +40,13 @@ public final class ConnectionPool {
                     return DEFAULT_CONNECTION_POOL;
                 });
 
+        allConnections = new ArrayList<>(poolSize);
         availableConnections = new ArrayBlockingQueue<>(poolSize);
-        usedConnections = new ArrayBlockingQueue<>(poolSize);
+
         for (int i = 0; i < poolSize; i++) {
             try {
-                Connection connection = DBConnectionUtil.getConnection();
+                Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
+                allConnections.add(connection);
                 availableConnections.add(connection);
             } catch (IOException | SQLException | ClassNotFoundException e) {
                 LOG.error("Can't create connection to database! Exiting...", e);
@@ -73,15 +77,8 @@ public final class ConnectionPool {
     }
 
     public void closeAllConnections() throws SQLException {
-        for (Connection used : usedConnections) {
-            used.commit();
+        for (Connection used : allConnections) {
             used.close();
-            usedConnections.poll();
-        }
-
-        for (Connection available : availableConnections) {
-            available.close();
-            availableConnections.poll();
         }
     }
 
@@ -101,7 +98,7 @@ public final class ConnectionPool {
     }
 
     public void releaseConnection(final Connection connection) {
-        if (!availableConnections.contains(connection)) {
+        if (!allConnections.contains(connection)) {
             throw new RuntimeException("Unknown connection");
         }
         availableConnections.add(connection);
