@@ -1,31 +1,16 @@
 package xxl.bet.milto.dao.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xxl.bet.milto.dao.UserDao;
 import xxl.bet.milto.domain.User;
 import xxl.bet.milto.requestbody.RegistrationRequest;
-import xxl.bet.milto.utils.PropertyLoader;
-import xxl.bet.milto.utils.connection.ConnectionPool;
-
-import java.io.IOException;
 
 import static xxl.bet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS;
 
-public class UserDaoImpl implements UserDao {
-    private static final Logger LOG = LoggerFactory.getLogger(UserDaoImpl.class);
+public class UserDaoImpl extends AbstractDao implements UserDao {
     private static UserDaoImpl instance;
-    private ConnectionPool connectionPool;
 
     private UserDaoImpl() {
-        try {
-            PropertyLoader.getInstance().init(FILE_WITH_QUERIES_FOR_TABLE_USERS);
-        } catch (IOException e) {
-            LOG.error("Could not load queries for database! Exiting...");
-            System.exit(1);
-        }
-
-        connectionPool = ConnectionPool.getInstance();
+        super(FILE_WITH_QUERIES_FOR_TABLE_USERS);
     }
 
     public static UserDaoImpl getInstance() {

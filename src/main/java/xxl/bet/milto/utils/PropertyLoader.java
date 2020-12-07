@@ -61,16 +61,13 @@ public final class PropertyLoader {
                 .collect(toList());
 
         for (String propertyFile : propertyFiles) {
-            properties.load(PropertyLoader.class.getResourceAsStream(propertyFile));
-            Map<String, String> propertiesFromFile = new HashMap<>();
-            properties.forEach((key, value) -> propertiesFromFile.put((String) key, (String) value));
-            properties.forEach((key, value) -> this.properties.put(propertyFile, propertiesFromFile));
+            init(propertyFile);
         }
 
     }
 
     /**
-     *  Initializes .properties file with given path from classpath.
+     *  Initializes properties map with .properties file located on given path.
      */
     public void init(final String path) throws IOException {
         Properties properties = new Properties();
@@ -79,7 +76,12 @@ public final class PropertyLoader {
 
         Map<String, String> propertiesFromFile = new HashMap<>();
         properties.forEach((key, value) -> propertiesFromFile.put((String) key, (String) value));
-        properties.forEach((key, value) -> this.properties.put(path, propertiesFromFile));
+
+        if (this.properties.containsKey(path)) {
+            properties.replace(path, propertiesFromFile);
+        } else {
+            this.properties.put(path, propertiesFromFile);
+        }
     }
 
 

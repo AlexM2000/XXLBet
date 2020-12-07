@@ -90,8 +90,6 @@ public final class ConnectionPool {
             } else {
                 throw new RuntimeException("Connection waiting timed out");
             }
-        } catch (InterruptedException e) {
-            throw e;
         } finally {
             LOCK.unlock();
         }
