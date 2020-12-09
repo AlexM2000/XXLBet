@@ -24,11 +24,11 @@ import java.util.concurrent.Executor;
  *
  * @author alexm2000
  */
-public class ProxyConnection implements Connection {
+class ProxyConnection implements Connection {
 
     private Connection connection;
 
-    public ProxyConnection(Connection connection) {
+    ProxyConnection(Connection connection) {
         this.connection = connection;
     }
 

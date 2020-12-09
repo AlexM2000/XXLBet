@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static xxl.bet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_BETS;
-import static xxl.bet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_BETS_BY_USER;
+import static xxl.bet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_BETS_BY_USER_ID;
 
 /**
  * BetsDaoImpl.
@@ -47,10 +47,9 @@ public class BetsDaoImpl extends AbstractDao implements BetsDao {
     public List<Bet> getAllIncompleteBetsByUser(final String email, final String phoneNumber) {
         List<Bet> bets = new ArrayList<>();
 
-        try {
-            Connection connection = getConnectionPool().getConnection();
+        try(final Connection connection = getConnectionPool().getConnection();) {
 
-            PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_BETS, SELECT_INCOMPLETE_BETS_BY_USER));
+            final PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_BETS, SELECT_INCOMPLETE_BETS_BY_USER_ID));
 
             statement.setString(1, email);
             statement.setString(2, phoneNumber);
@@ -68,8 +67,10 @@ public class BetsDaoImpl extends AbstractDao implements BetsDao {
                 bet.setUserId(resultSet.getLong(RESULT_ID));
                 bets.add(bet);
             }
+
+            statement.close();
         } catch (InterruptedException | SQLException e) {
-            getLogger().error("Something wrong happened while executing getAllIncompleteBetsByUser...", e);
+            getLogger().error(getErrorMsgBegin() + " getAllIncompleteBetsByUser...", e);
         }
 
         return bets;

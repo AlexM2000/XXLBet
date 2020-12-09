@@ -8,7 +8,8 @@ import xxl.bet.milto.utils.connection.ConnectionPool;
 
 import java.io.IOException;
 
-public abstract class AbstractDao {
+abstract class AbstractDao {
+    private static final String ERROR_MSG_BEGIN = "Something wrong happened while executing";
     private static final Logger LOG = LoggerFactory.getLogger(AbstractDao.class);
     private PropertyLoader loader;
     private ConnectionPool connectionPool;
@@ -34,6 +35,10 @@ public abstract class AbstractDao {
 
     protected ConnectionPool getConnectionPool() {
         return connectionPool;
+    }
+
+    protected String getErrorMsgBegin() {
+        return ERROR_MSG_BEGIN;
     }
 
     protected String getSql(final String filename, String id) {
