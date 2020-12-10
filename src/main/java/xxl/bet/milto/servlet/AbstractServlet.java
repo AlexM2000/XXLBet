@@ -3,10 +3,11 @@ package xxl.bet.milto.servlet;
 import xxl.bet.milto.utils.Errors;
 import xxl.bet.milto.validator.Validator;
 
+import javax.servlet.http.HttpServlet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractServlet {
+public class AbstractServlet extends HttpServlet {
     private static final int DEFAULT_PAGE_SIZE = 20;
     private Map<String, String> errorIdByErrorMsg = new HashMap<>();
 

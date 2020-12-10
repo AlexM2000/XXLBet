@@ -21,7 +21,7 @@ public class ApplicationContext implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         LOG.debug("Initializing ApplicationContext...");
-
+        ConnectionPool.getInstance();
     }
 
     @Override

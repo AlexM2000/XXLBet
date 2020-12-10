@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>my-tags</short-name>
+    <uri>/WEB-INF/</uri>
+
+    <tag>
+        <name>locale_tag</name>
+        <tag-class>xxl.bet.milto.i18n.LocaleLanguageTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

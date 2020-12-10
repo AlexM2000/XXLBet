@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xxl.bet.milto.utils.PropertyLoader;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,21 +33,25 @@ public final class ConnectionPool {
 
     private ConnectionPool() {
         properties = PropertyLoader.getInstance();
+
         poolSize = properties.getDatabaseConnectionPool()
                 .orElseGet(() -> {
                     LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
                     return DEFAULT_CONNECTION_POOL;
                 });
+        LOG.debug("Initialized connection pool size...");
 
         allConnections = new ArrayList<>(poolSize);
         availableConnections = new ArrayBlockingQueue<>(poolSize);
+        LOG.debug("Initialized collections...");
 
         for (int i = 0; i < poolSize; i++) {
             try {
                 Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
                 allConnections.add(connection);
                 availableConnections.add(connection);
-            } catch (IOException | SQLException | ClassNotFoundException e) {
+                LOG.debug("Initialized connection {}...", i + 1);
+            } catch (final SQLException | ClassNotFoundException e) {
                 LOG.error("Can't create connection to database! Exiting...", e);
                 System.exit(1);
             }

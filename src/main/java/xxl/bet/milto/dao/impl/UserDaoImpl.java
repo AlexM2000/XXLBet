@@ -2,19 +2,21 @@ package xxl.bet.milto.dao.impl;
 
 import xxl.bet.milto.dao.UserDao;
 import xxl.bet.milto.domain.User;
-import xxl.bet.milto.requestbody.RegistrationRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static xxl.bet.milto.utils.XxlBetConstants.DELETE_FROM_USER_PROPERTY_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS;
+import static xxl.bet.milto.utils.XxlBetConstants.INSERT_INTO_USER_PROPERTY_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_AND_PASSWORD_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_PROPERTY_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.SELECT_BY_ID_PROPERTY_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID;
 import static xxl.bet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_ID;
+import static xxl.bet.milto.utils.XxlBetConstants.UPDATE_USER_PROPERTY_ID;
 
 public class UserDaoImpl extends AbstractDao implements UserDao {
     private static UserDaoImpl instance;
@@ -168,17 +170,55 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     @Override
-    public User createUser(RegistrationRequest body) {
-        return null;
+    public User createUser(final User user) {
+        User newUser = null;
+
+        try(final Connection connection = getConnectionPool().getConnection()){
+            final PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_USERS, INSERT_INTO_USER_PROPERTY_ID));
+
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPhoneNumber());
+            statement.setString(3, user.getPassword());
+
+            statement.execute();
+            statement.close();
+
+            newUser = getUserByEmail(user.getEmail());
+        } catch (final InterruptedException | SQLException e) {
+            getLogger().error(getErrorMsgBegin() + " createUser...", e);
+        }
+
+        return newUser;
     }
 
     @Override
-    public User deleteUser(String email, String phoneNumber) {
-        return null;
+    public void deleteUser(final String email, final String phoneNumber) {
+        try(final Connection connection = getConnectionPool().getConnection()){
+            final PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_USERS, DELETE_FROM_USER_PROPERTY_ID));
+
+            statement.setString(1, email);
+            statement.setString(2, phoneNumber);;
+
+            statement.execute();
+            statement.close();
+        } catch (final InterruptedException | SQLException e) {
+            getLogger().error(getErrorMsgBegin() + " deleteUser...", e);
+        }
     }
 
     @Override
     public User updateUser(User user) {
-        return null;
+        try(final Connection connection = getConnectionPool().getConnection()){
+            final PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_USERS, UPDATE_USER_PROPERTY_ID));
+
+            statement.setLong(1, user.getId());
+
+            statement.executeUpdate();
+            statement.close();
+        } catch (final InterruptedException | SQLException e) {
+            getLogger().error(getErrorMsgBegin() + " deleteUser...", e);
+        }
+
+        return getUserById(user.getId());
     }
 }

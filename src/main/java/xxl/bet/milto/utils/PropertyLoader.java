@@ -4,15 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-import static java.util.stream.Collectors.toList;
 import static xxl.bet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 
 /**
@@ -32,8 +29,15 @@ public final class PropertyLoader {
     private static final
     String DATABASE_WAIT_AVAILABLE_CONNECTION_TIMEOUT_PROPERTY_ID = "xxl.bet.milto.jdbc.connection.wait-available.timeout";
 
-
     private Map<String, Map<String, String>> properties = new HashMap<>();
+
+    private PropertyLoader() {
+        try {
+            init();
+        } catch (final IOException | URISyntaxException e) {
+            LOG.error("Could not initialize .properties files in PropertyLoader() constructor", e);
+        }
+    }
 
     public static PropertyLoader getInstance() {
         PropertyLoader localInstance = instance;
@@ -42,6 +46,7 @@ public final class PropertyLoader {
                 localInstance = instance;
                 if (localInstance == null) {
                     instance = localInstance = new PropertyLoader();
+
                 }
             }
         }
@@ -51,19 +56,10 @@ public final class PropertyLoader {
     /**
      *  Initializes properties map with all .properties files from classpath.
      */
-    public void init() throws IOException {
-        Properties properties = new Properties();
+    public void init() throws IOException, URISyntaxException {
+        LOG.debug("Initializing project.properties...");
 
-        List<String> propertyFiles = Files.walk(Paths.get("/../../resources"))
-                .filter(Files::isRegularFile)
-                .filter(file -> file.endsWith(".properties"))
-                .map(file -> file.toFile().getName())
-                .collect(toList());
-
-        for (String propertyFile : propertyFiles) {
-            init(propertyFile);
-        }
-
+        init("project.properties");
     }
 
     /**
@@ -82,6 +78,8 @@ public final class PropertyLoader {
         } else {
             this.properties.put(path, propertiesFromFile);
         }
+
+        LOG.debug(this.properties.entrySet().toString());
     }
 
 
@@ -110,6 +108,8 @@ public final class PropertyLoader {
     }
 
     public Optional<String> getStringProperty(final String filename, final String id) {
+        LOG.debug("Property in {} file with {} id is {}", filename, id, properties.get(filename).get(id));
+
         return properties.containsKey(filename) && properties.get(filename).containsKey(id)
                 ? Optional.of(properties.get(filename).get(id))
                 : Optional.empty();
