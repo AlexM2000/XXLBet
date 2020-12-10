@@ -16,7 +16,8 @@ abstract class AbstractDao {
 
     protected AbstractDao(final String propertiesFileName) {
         try {
-            PropertyLoader.getInstance().init(propertiesFileName);
+            loader = PropertyLoader.getInstance();
+            loader.init(propertiesFileName);
         } catch (final IOException e) {
             LOG.error("Could not load queries for database! Exiting...");
             System.exit(1);

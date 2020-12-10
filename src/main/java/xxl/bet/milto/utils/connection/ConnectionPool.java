@@ -64,6 +64,7 @@ public final class ConnectionPool {
                     LOG.debug(format("Available connection timeout is not specified! Defaulting to %d seconds.", DEFAULT_CONNECTION_TIMEOUT));
                     return DEFAULT_CONNECTION_TIMEOUT;
                 });
+        LOG.debug("Initialized connection timeout...");
     }
 
     public static ConnectionPool getInstance() {

@@ -1,5 +1,6 @@
 package xxl.bet.milto.servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import xxl.bet.milto.utils.Errors;
 import xxl.bet.milto.validator.Validator;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public class AbstractServlet extends HttpServlet {
     private static final int DEFAULT_PAGE_SIZE = 20;
     private Map<String, String> errorIdByErrorMsg = new HashMap<>();
+    private ObjectMapper mapper = new ObjectMapper();
 
     protected Map<String, String> validate(final Object object, final String locale, final Validator validator)
     {
@@ -25,5 +27,17 @@ public class AbstractServlet extends HttpServlet {
         }
 
         return errorIdByErrorMsg;
+    }
+
+    protected static int getDefaultPageSize() {
+        return DEFAULT_PAGE_SIZE;
+    }
+
+    protected Map<String, String> getErrorIdByErrorMsg() {
+        return errorIdByErrorMsg;
+    }
+
+    protected ObjectMapper getMapper() {
+        return mapper;
     }
 }
