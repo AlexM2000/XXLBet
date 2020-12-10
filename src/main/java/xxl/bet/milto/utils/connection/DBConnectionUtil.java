@@ -32,7 +32,7 @@ public final class DBConnectionUtil {
      * @throws PropertyNotFoundException if can't find property inside properties file that needs database.
      * @throws ClassNotFoundException if can't find driver for database.
      */
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    static Connection getConnection() throws SQLException, ClassNotFoundException {
         LOG.debug("Getting connection...");
         Connection connection;
         PropertyLoader properties = PropertyLoader.getInstance();
