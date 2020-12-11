@@ -1,21 +1,20 @@
 package xxl.bet.milto.servlet;
 
-import xxl.bet.milto.service.UserService;
-import xxl.bet.milto.service.impl.XxlUserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user")
-public class UserServlet extends AbstractServlet {
-    private UserService userService = XxlUserServiceImpl.getInstance();
-
+@WebServlet("/registration")
+public class RegistrationServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
+    }
 
-        getMapper().writeValue(resp.getWriter(), userService.createUser("alexeymilto@gmail.com", "+375292159909", "1234567"));
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }

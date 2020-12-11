@@ -10,6 +10,8 @@ public final class XxlBetConstants {
 
     public static final String PROJECT_PROPERTIES = "project.properties";
     public static final String SECRET_KEY = "xxl.bet.milto.security.secret-key";
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCHES = "queries_matches.properties";
+    public static final String SELECT_INCOMPLETE_MATCHES_PROPERTY_ID = "select.all.incomplete.matches";
     public static final String FILE_WITH_QUERIES_FOR_TABLE_BETS = "queries_bets.properties";
     public static final String SELECT_INCOMPLETE_BETS_BY_USER_ID = "select.incomplete.bets.by.user";
     public static final String FILE_WITH_QUERIES_FOR_TABLE_USERS = "queries_users.properties";

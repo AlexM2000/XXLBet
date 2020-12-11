@@ -1,21 +1,19 @@
 package xxl.bet.milto.servlet;
 
-import xxl.bet.milto.service.UserService;
-import xxl.bet.milto.service.impl.XxlUserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user")
-public class UserServlet extends AbstractServlet {
-    private UserService userService = XxlUserServiceImpl.getInstance();
-
+@WebServlet("/lang")
+public class LanguageServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        getMapper().writeValue(resp.getWriter(), userService.createUser("alexeymilto@gmail.com", "+375292159909", "1234567"));
+        String locale = req.getParameter("lang") != null ? req.getParameter("lang") : "en";
+        resp.addCookie(new Cookie("language", locale));
+        resp.getWriter().print("ok");
+        resp.getWriter().flush();
     }
 }

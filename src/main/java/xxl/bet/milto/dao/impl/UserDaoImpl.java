@@ -62,7 +62,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserByEmail(final String email) {
-        User user = new User();
+        User user = null;
 
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSql(FILE_WITH_QUERIES_FOR_TABLE_USERS, SELECT_BY_EMAIL_PROPERTY_ID));
@@ -72,6 +72,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             ResultSet set = statement.executeQuery();
 
             while (set.next()) {
+                user = new User();
                 user.setId(set.getLong("id"));
                 user.setEmail(set.getString("email"));
                 user.setPassword(set.getString("password"));

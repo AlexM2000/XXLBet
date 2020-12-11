@@ -11,4 +11,5 @@ public interface MatchesDao {
     List<Bet> getMatchesAfter(LocalDateTime time);
     Match createMatch(Match match);
     void deleteMatch(long id);
+    List<Match> getIncompleteMatches();
 }

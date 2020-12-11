@@ -43,7 +43,7 @@ public class Errors {
      */
     private static class Error {
         private static final Logger LOG = LoggerFactory.getLogger(Error.class);
-        private static final String MESSAGES_FILE_NAME = "/messages_";
+        private static final String MESSAGES_FILE_NAME = "messages_";
         private static final String ERROR_MSG = "Could not load error message from properties file!";
 
         private String code;

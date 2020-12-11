@@ -2,7 +2,7 @@
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee" version="2.0">
     <tlib-version>1.0</tlib-version>
     <short-name>my-tags</short-name>
-    <uri>/WEB-INF/</uri>
+    <uri>/WEB-INF/mytags</uri>
 
     <tag>
         <name>locale_tag</name>

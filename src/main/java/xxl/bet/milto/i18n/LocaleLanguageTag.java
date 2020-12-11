@@ -33,16 +33,16 @@ public class LocaleLanguageTag extends TagSupport {
             }
 
             String message = PropertyLoader.getInstance().getStringProperty("messages_" + language + ".properties", key)
-                    .orElseThrow(() -> new PropertyNotFoundException(String.format("No message for %s locale found! key - %s", language, key)));
+                    .orElseThrow(() -> new PropertyNotFoundException("No message for  locale found! key - " + key));
 
             try {
                 out.print(message);
             } catch (IOException e) {
                 LOG.error("Could not print message! locale {} message {}", language, message, e);
             }
-
-            return EVAL_PAGE;
         }
+
+        return EVAL_PAGE;
     }
 
 
