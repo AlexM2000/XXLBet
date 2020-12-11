@@ -7,12 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-
+<%@taglib prefix="mytags" uri="/WEB-INF/mytags" %>
 
 <html>
 <head>
-    <title>Header</title>
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/AJAXScripts.js"></script>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.css">
 
-</head>

@@ -14,6 +14,7 @@ public class HomeServlet extends AbstractServlet {
     private MatchesService matchesService = XxlMatchesServiceImpl.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getMapper().writeValue(resp.getWriter(), matchesService.getIncompleteMatches());
+        req.setAttribute("matches", matchesService.getIncompleteMatches());
+        req.getRequestDispatcher("/views/index.jsp").forward(req, resp);
     }
 }

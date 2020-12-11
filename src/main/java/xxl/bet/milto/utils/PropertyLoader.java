@@ -60,6 +60,11 @@ public final class PropertyLoader {
         LOG.debug("Initializing project.properties...");
 
         init("project.properties");
+
+        //locales
+        init("messages_en.properties");
+        init("messages_be.properties");
+        init("messages_ru.properties");
     }
 
     /**

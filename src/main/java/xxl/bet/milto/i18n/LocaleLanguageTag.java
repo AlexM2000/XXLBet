@@ -32,8 +32,13 @@ public class LocaleLanguageTag extends TagSupport {
                 }
             }
 
+            LOG.debug("Chosen {} language, key {}", language, key);
+
             String message = PropertyLoader.getInstance().getStringProperty("messages_" + language + ".properties", key)
-                    .orElseThrow(() -> new PropertyNotFoundException("No message for  locale found! key - " + key));
+                    .orElseThrow(() -> {
+                        LOG.error("No message for locale found! key - {}", key);
+                        throw new PropertyNotFoundException("No message for  locale found! key - " + key);
+                    });
 
             try {
                 out.print(message);
