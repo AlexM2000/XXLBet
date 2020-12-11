@@ -14,4 +14,5 @@
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/AJAXScripts.js"></script>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/css/indexCss.css">
 
