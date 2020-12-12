@@ -5,7 +5,7 @@
 <title><mytags:locale_tag key="home.title"/></title>
 </head>
 
-<img src="/images/logo.jpeg" class="w-100" height="470" id="image1" class="img-fluid"/>
+<img src="${pageContext.request.contextPath}/images/logo.jpeg" class="w-100" height="470" id="image1" class="img-fluid"/>
 
 <div class="container text-justify">
     <table class="table table-striped">
