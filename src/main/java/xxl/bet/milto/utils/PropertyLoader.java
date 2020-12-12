@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static xxl.bet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 
 /**
@@ -73,7 +75,7 @@ public final class PropertyLoader {
     public void init(final String path) throws IOException {
         Properties properties = new Properties();
 
-        properties.load(PropertyLoader.class.getResourceAsStream("/" + path));
+        properties.load(new InputStreamReader(PropertyLoader.class.getResourceAsStream("/" + path), UTF_8));
 
         Map<String, String> propertiesFromFile = new HashMap<>();
         properties.forEach((key, value) -> propertiesFromFile.put((String) key, (String) value));
