@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-@WebServlet("/")
+@WebServlet(urlPatterns = {"/home", "/"})
 public class HomeServlet extends AbstractServlet {
     private MatchesService matchesService = XxlMatchesServiceImpl.getInstance();
     @Override
