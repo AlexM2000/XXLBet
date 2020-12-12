@@ -10,7 +10,7 @@ import java.io.IOException;
 public class RegistrationServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        req.getRequestDispatcher("/views/registration.jsp").forward(req, resp);
     }
 
     @Override

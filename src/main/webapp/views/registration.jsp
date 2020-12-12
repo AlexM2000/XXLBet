@@ -8,32 +8,40 @@
     <form id="registration">
         <div class="form-group">
             <label for="InputEmail"><ut:locale_tag key="registration.email"/></label>
-            <input type="text" name="email" class="form-control" id="InputEmail" placeholder=<ut:locale_tag key="registration.enter-email"/> />
+            <input type="text" name="email" class="form-control" id="InputEmail" placeholder=<ut:locale_tag key="registration.email"/> />
             <small class="text-danger" id="emailErrorInformer"></small>
         </div>
         <div class="form-group">
-            <label for="InputLogin"><ut:locale_tag key="registration.phone-number"/></label>
-            <input type="text" name="login" class="form-control" id="InputLogin" placeholder=<ut:locale_tag key="registration.enter-phonenumber"/> />
+            <label for="InputLogin"><ut:locale_tag key="registration.phonenumber"/></label>
+            <input type="text" name="phoneNumber" class="form-control" id="InputLogin" placeholder=<ut:locale_tag key="registration.phonenumber"/> />
             <small class="text-danger" id="phoneErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputSurName"><ut:locale_tag key="registration.surname"/></label>
-            <input type="text" name="realName" id="InputSurName" placeholder=<ut:locale_tag key="registration.enter-surname"/> />
+            <input type="text" name="surname" id="InputSurName" placeholder=<ut:locale_tag key="registration.surname"/> />
+        </div>
+        <div class="form-group">
+            <label for="InputName"><ut:locale_tag key="registration.name"/></label>
+            <input type="text" name="name" id="InputName" placeholder=<ut:locale_tag key="registration.name"/> />
+        </div>
+        <div class="form-group">
+            <label for="InputSecondName"><ut:locale_tag key="registration.secondname"/></label>
+            <input type="text" name="secondName" id="InputSecondName" placeholder=<ut:locale_tag key="registration.secondname"/> />
         </div>
         <div class="form-group">
             <label for="InputPassword"><ut:locale_tag key="registration.password"/></label>
-            <input type="password" name="password" class="form-control" id="InputPassword" placeholder="Enter Password">
+            <input type="password" name="password" class="form-control" id="InputPassword" placeholder=<ut:locale_tag key="registration.password"/> />
             <small class="text-info" id="passwordFormatInformer"><ut:locale_tag key="registration.password.format"/></small>
             <small class="text-danger password_field"></small>
         </div>
         <div class="form-group">
             <label for="InputRPassword"><ut:locale_tag key="registration.repeatpassword"/></label>
-            <input type="password" name="rPassword" class="form-control" id="InputRPassword" placeholder="Repeat Password">
+            <input type="password" name="repeatPassword" class="form-control" id="InputRPassword" placeholder=<ut:locale_tag key="registration.repeatpassword"/> />
             <small class="text-danger password_field"></small>
         </div>
         <div class="form-group">
-            <label for="InputRacketSetup"><ut:locale_tag key="registration.racketsetup"/></label>
-            <input type="text" name="racketSetup" id="InputRacketSetup" placeholder="Enter your racket setup" />
+            <label for="InputBirthDate"><ut:locale_tag key="registration.birthdate"/></label>
+            <input type="date" name="birthDate" id="InputBirthDate"/>
         </div>
     </form>
     <button type="button" class="btn btn-primary" onclick="registration()"><ut:locale_tag key="registration.submit"/></button>
