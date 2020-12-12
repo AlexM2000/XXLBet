@@ -21,12 +21,20 @@
                 <td> ${match.getTournamentName()} </td>
                 <td>
                 <jstl:forEach var="opponent" items="${match.getOpponents()}">
-                    ${opponent.getName()} - ${opponent.getCoefficient()}
+                    ${opponent.getName()} -
+                    <mytags:locale_tag key="home.coefficient"/> ${opponent.getCoefficient()}
                 </jstl:forEach>
                 </td>
-                <td> ${match.getDateStarted()} </td>
+                <jstl:choose>
+                    <jstl:when test="${today.isBefore(match.getDateStarted())}">
+                        <td> ${mytags:formatLocalDateTime(match.getDateStarted(), 'dd.MM.yyyy HH:mm:ss')} </td>
+                    </jstl:when>
+                    <jstl:otherwise>
+                        <td><mytags:locale_tag key="home.live-now"/></td>
+                    </jstl:otherwise>
+                </jstl:choose>
                 <td> ${match.getDrawCoefficient()} </td>
-                <td><a href="/bet"><ut:locale_tag key="home.create.bet"/></a></td>
+                <td><a href="/bet"><mytags:locale_tag key="home.create.bet"/></a></td>
             </tr>
         </jstl:forEach>
         </tbody>
