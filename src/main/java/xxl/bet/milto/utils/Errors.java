@@ -2,12 +2,11 @@ package xxl.bet.milto.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xxl.bet.milto.exceptions.PropertyNotFoundException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -57,17 +56,9 @@ public class Errors {
         }
 
         String getFormattedMsg() {
-            Properties properties = new Properties();
-            String msg = "";
-            try {
-                properties.load(Error.class.getResourceAsStream(MESSAGES_FILE_NAME + locale + ".properties"));
-                msg = String.format(properties.getProperty(code), args);
-            } catch (final IOException e) {
-                LOG.error(ERROR_MSG);
-                msg = "Internal error occured. Please contact administrator.";
-            }
-
-            return msg;
+            LOG.debug("File {}", MESSAGES_FILE_NAME + locale + ".properties");
+            return String.format(PropertyLoader.getInstance().getStringProperty(MESSAGES_FILE_NAME + locale + ".properties", code)
+                    .orElseThrow(() -> new PropertyNotFoundException(ERROR_MSG + " " + code + " " + locale)), args);
         }
 
         String getCode() {

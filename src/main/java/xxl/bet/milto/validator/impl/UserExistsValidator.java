@@ -10,8 +10,19 @@ import xxl.bet.milto.validator.Validator;
  *
  * @author alexm2000
  */
-public class UserExistsValidator implements Validator {
+public final class UserExistsValidator implements Validator {
+    private static UserExistsValidator instance;
     private UserService service = XxlUserServiceImpl.getInstance();
+
+    private UserExistsValidator() { }
+
+    public static UserExistsValidator getInstance() {
+        if (instance == null) {
+            instance = new UserExistsValidator();
+        }
+
+        return instance;
+    }
 
     @Override
     public void validate(final Object target, final Errors errors, final String locale) {

@@ -11,10 +11,21 @@ import static xxl.bet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
  *
  * @author alexm2000
  */
-public class PasswordValidator implements Validator {
+public final class PasswordValidator implements Validator {
     private static final String PASSWORD_PATTERN_ID = "xxl.bet.milto.password.regexp";
     private static final String PATTERN = PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, PASSWORD_PATTERN_ID)
             .orElse("^((?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\W_\\\\d])).{7,20}$");
+    private static PasswordValidator instance;
+
+    private PasswordValidator() { }
+
+    public static PasswordValidator getInstance() {
+        if (instance == null) {
+            instance = new PasswordValidator();
+        }
+
+        return instance;
+    }
 
     @Override
     public void validate(final Object target, final Errors errors, final String locale) {

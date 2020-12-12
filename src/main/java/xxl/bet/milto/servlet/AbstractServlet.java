@@ -15,24 +15,25 @@ import java.util.Map;
 
 public class AbstractServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractServlet.class);
+    private static final String STATUS = "status";
+    private static final String FAILED = "failed";
+    private static final String VERIFIED = "verified";
     private static final int DEFAULT_PAGE_SIZE = 20;
-    private Map<String, String> errorIdByErrorMsg = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
     private ObjectMapper mapper = new ObjectMapper();
 
-    protected Map<String, String> validate(final Object object, final String locale, final Validator validator)
+    protected void validate(final Object object, final String locale, final Validator validator)
     {
         final Errors errors = new Errors();
 
         validator.validate(object, errors, locale);
+
         if (errors.hasErrors()) {
-            errorIdByErrorMsg.putAll(errors.getErrors());
-            errorIdByErrorMsg.put("status", "failed");
-
-        } else {
-            errorIdByErrorMsg.put("status", "verified");
+            this.errors.putAll(errors.getErrors());
+            this.errors.put(STATUS, FAILED);
+        } else if (!this.errors.containsKey(STATUS) || (this.errors.containsKey(STATUS) && !this.errors.get(STATUS).equals(FAILED))) {
+            this.errors.put(STATUS, VERIFIED);
         }
-
-        return errorIdByErrorMsg;
     }
 
     protected <T> T getRequestBody(final HttpServletRequest request, final Class<T> clazz) {
@@ -41,7 +42,7 @@ public class AbstractServlet extends HttpServlet {
         try {
             entity = mapper.readValue(request.getInputStream(), clazz);
         } catch (final IOException e) {
-            LOG.error("Something went wrong while reading {} request body...", clazz);
+            LOG.error("Something went wrong while reading {} request body...", clazz, e);
         }
 
         return entity;
@@ -66,8 +67,8 @@ public class AbstractServlet extends HttpServlet {
         return DEFAULT_PAGE_SIZE;
     }
 
-    protected Map<String, String> getErrorIdByErrorMsg() {
-        return errorIdByErrorMsg;
+    protected Map<String, String> getErrors() {
+        return errors;
     }
 
     protected ObjectMapper getMapper() {
