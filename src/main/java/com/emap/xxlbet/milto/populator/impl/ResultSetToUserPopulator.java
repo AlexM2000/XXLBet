@@ -11,6 +11,8 @@ public class ResultSetToUserPopulator implements ResultSetPopulator<ResultSet, U
     private static final String EMAIL_COLUMN_NAME = "email";
     private static final String PASSWORD_COLUMN_NAME = "password";
     private static final String PHONE_NUMBER_COLUMN_NAME = "phone_number";
+    private static final String ENABLED_COLUMN_NAME = "enabled";
+
     private static ResultSetToUserPopulator instance;
 
     private ResultSetToUserPopulator() { }
@@ -19,7 +21,7 @@ public class ResultSetToUserPopulator implements ResultSetPopulator<ResultSet, U
         if (instance == null) {
             instance = new ResultSetToUserPopulator();
         }
-        
+
         return instance;
     }
 
@@ -30,6 +32,7 @@ public class ResultSetToUserPopulator implements ResultSetPopulator<ResultSet, U
         user.setEmail(resultSet.getString(EMAIL_COLUMN_NAME));
         user.setPassword(resultSet.getString(PASSWORD_COLUMN_NAME));
         user.setPhoneNumber(resultSet.getString(PHONE_NUMBER_COLUMN_NAME));
+        user.setEnabled(resultSet.getBoolean(ENABLED_COLUMN_NAME));
         return user;
     }
 }

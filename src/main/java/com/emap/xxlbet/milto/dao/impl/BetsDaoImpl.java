@@ -2,6 +2,7 @@ package com.emap.xxlbet.milto.dao.impl;
 
 import com.emap.xxlbet.milto.dao.BetsDao;
 import com.emap.xxlbet.milto.populator.ResultSetPopulator;
+import com.emap.xxlbet.milto.populator.impl.ResultSetToBetPopulator;
 import com.emap.xxlbet.milto.utils.XxlBetConstants;
 import com.emap.xxlbet.milto.domain.Bet;
 
@@ -25,7 +26,7 @@ public class BetsDaoImpl extends AbstractDao implements BetsDao {
 
     private BetsDaoImpl() {
         super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_BETS);
-        populator =
+        populator = ResultSetToBetPopulator.getInstance();
     }
 
     public static BetsDaoImpl getInstance() {
@@ -50,7 +51,7 @@ public class BetsDaoImpl extends AbstractDao implements BetsDao {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Bet bet = new B
+                Bet bet = populator.populate(resultSet);
                 bets.add(bet);
             }
 

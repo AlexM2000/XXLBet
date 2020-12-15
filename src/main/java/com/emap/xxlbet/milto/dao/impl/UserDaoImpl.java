@@ -1,5 +1,7 @@
 package com.emap.xxlbet.milto.dao.impl;
 
+import com.emap.xxlbet.milto.populator.ResultSetPopulator;
+import com.emap.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
 import com.emap.xxlbet.milto.utils.XxlBetConstants;
 import com.emap.xxlbet.milto.dao.UserDao;
 import com.emap.xxlbet.milto.domain.User;
@@ -11,9 +13,11 @@ import java.sql.SQLException;
 
 public class UserDaoImpl extends AbstractDao implements UserDao {
     private static UserDaoImpl instance;
+    private ResultSetPopulator<ResultSet, User> populator;
 
     private UserDaoImpl() {
         super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS);
+        populator = ResultSetToUserPopulator.getInstance();
     }
 
     public static UserDaoImpl getInstance() {
@@ -26,7 +30,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserById(final long id) {
-        User user = new User();
+        User user = null;
 
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_ID_PROPERTY_ID));
@@ -37,10 +41,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 
             while (set.next()) {
-                user.setId(set.getLong("id"));
-                user.setEmail(set.getString("email"));
-                user.setPassword(set.getString("password"));
-                user.setPhoneNumber(set.getString("phone_number"));
+                user = populator.populate(set);
             }
 
             statement.close();
@@ -63,12 +64,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             ResultSet set = statement.executeQuery();
 
             while (set.next()) {
-                user = new User();
-                user.setId(set.getLong("id"));
-                user.setEmail(set.getString("email"));
-                user.setPassword(set.getString("password"));
-                user.setPhoneNumber(set.getString("phone_number"));
-                user.setEnabled(set.getBoolean("enabled"));
+                user = populator.populate(set);
             }
 
             statement.close();
@@ -81,7 +77,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserByPhoneNumber(final String phoneNumber) {
-        User user = new User();
+        User user = null;
 
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_PHONENUMBER_ID));
@@ -92,11 +88,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 
             while (set.next()) {
-                user.setId(set.getLong("id"));
-                user.setEmail(set.getString("email"));
-                user.setPassword(set.getString("password"));
-                user.setPhoneNumber(set.getString("phone_number"));
-                user.setEnabled(set.getBoolean("enabled"));
+                populator.populate(set);
             }
 
             statement.close();
@@ -109,7 +101,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserByEmailAndPassword(final String email, final String password) {
-        User user = new User();
+        User user = null;
 
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_EMAIL_AND_PASSWORD_ID));
@@ -121,11 +113,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 
             while (set.next()) {
-                user.setId(set.getLong("id"));
-                user.setEmail(set.getString("email"));
-                user.setPassword(set.getString("password"));
-                user.setPhoneNumber(set.getString("phone_number"));
-                user.setEnabled(set.getBoolean("enabled"));
+                user = populator.populate(set);
             }
 
             statement.close();
@@ -150,11 +138,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 
             while (set.next()) {
-                user.setId(set.getLong("id"));
-                user.setEmail(set.getString("email"));
-                user.setPassword(set.getString("password"));
-                user.setPhoneNumber(set.getString("phone_number"));
-                user.setEnabled(set.getBoolean("enabled"));
+                user = populator.populate(set);
             }
 
             statement.close();
