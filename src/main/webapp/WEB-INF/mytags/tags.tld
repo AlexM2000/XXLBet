@@ -6,7 +6,7 @@
 
     <tag>
         <name>locale_tag</name>
-        <tag-class>xxl.bet.milto.i18n.LocaleLanguageTag</tag-class>
+        <tag-class>com.emap.xxlbet.milto.i18n.LocaleLanguageTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>key</name>
@@ -17,7 +17,7 @@
 
     <function>
         <name>formatLocalDateTime</name>
-        <function-class>xxl.bet.milto.utils.FormatUtils</function-class>
+        <function-class>com.emap.xxlbet.milto.utils.FormatUtils</function-class>
         <function-signature>java.lang.String formatLocalDateTime(java.time.LocalDateTime, java.lang.String)</function-signature>
     </function>
 

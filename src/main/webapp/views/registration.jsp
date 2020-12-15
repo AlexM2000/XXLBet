@@ -12,8 +12,8 @@
             <small class="text-danger" id="emailErrorInformer"></small>
         </div>
         <div class="form-group">
-            <label for="InputLogin"><ut:locale_tag key="registration.phonenumber"/></label>
-            <input type="text" name="phoneNumber" class="form-control" id="InputLogin" placeholder=<ut:locale_tag key="registration.phonenumber"/> />
+            <label for="InputPhoneNumber"><ut:locale_tag key="registration.phonenumber"/></label>
+            <input type="text" name="phoneNumber" class="form-control" id="InputPhoneNumber" placeholder=<ut:locale_tag key="registration.phonenumber"/> />
             <small class="text-danger" id="phoneErrorInformer"></small>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
             <label for="InputPassword"><ut:locale_tag key="registration.password"/></label>
             <input type="password" name="password" class="form-control" id="InputPassword" placeholder=<ut:locale_tag key="registration.password"/> />
             <small class="text-info" id="passwordFormatInformer"><ut:locale_tag key="registration.password.format"/></small>
-            <small class="text-danger password_field"></small>
+            <small class="text-danger password_field" id="passwordErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputRPassword"><ut:locale_tag key="registration.repeatpassword"/></label>
