@@ -11,6 +11,18 @@ function registration() {
         $('#passwordErrorInformer').text("Password should contain at least one small letter, one big letter, one number, one special character, minimum 7 maximum 20 symbols");
         errorCount++;
     }
+    if (document.getElementById("InputSurName").value.length === 0) {
+        $('#surnameInformer').text("This field must not be empty");
+        errorCount++;
+    }
+    if (document.getElementById("InputName").value.length === 0) {
+        $('#nameInformer').text("This field must not be empty");
+        errorCount++;
+    }
+    if (document.getElementById("InputSecondName").value.length === 0) {
+        $('#secondNameInformer').text("This field must not be empty");
+        errorCount++;
+    }
 
     if (errorCount === 0) {
         var data = {
@@ -24,14 +36,26 @@ function registration() {
             "birthDate": document.getElementById("InputBirthDate").value
         };
 
-        console.log(data);
         $.ajax({
-            url: '/registration',
+            url: '/xxlbet?command=registration',
             type: 'POST',
-            data: data,
+            dataType: "json",
+            data: {
+                command: "registration",
+                body: {
+                    "email": email,
+                    "phoneNumber": phoneNumber,
+                    "surname": document.getElementById("InputSurName").value,
+                    "name": document.getElementById("InputName").value,
+                    "secondName": document.getElementById("InputSecondName").value,
+                    "password": document.getElementById("InputPassword").value,
+                    "repeatPassword": document.getElementById("InputRPassword").value,
+                    "birthDate": document.getElementById("InputBirthDate").value
+                },
+            },
             success: function (dataFromServer) {
                 if(dataFromServer.status === 'verified'){
-                    window.location.href = '/confirm';
+                    window.location.href = '/xxlbet?command=confirm_page';
                 } else if (dataFromServer.status === 'failed') {
                     $('#registration').find('small').text('');
 
@@ -47,6 +71,10 @@ function registration() {
 
                     $('#phoneErrorInformer').text(dataFromServer['phonenumber.not.matches.regexp']);
                     $('#passwordErrorInformer').text(dataFromServer['password.not.matches.regexp']);
+
+                    $('#surnameInformer').text(dataFromServer['field.is.empty'])
+                    $('#nameInformer').text(dataFromServer['field.is.empty'])
+                    $('#surnameInformer').text(dataFromServer['field.is.empty'])
                 } else{
                     alert(dataFromServer);
                 }
@@ -60,8 +88,11 @@ function registration() {
 
 function languageSelector(language){
     $.ajax({
-        url: '/lang',
-        data: ({lang : language}),
+        url: '/xxlbet',
+        data: ({
+            command: "lang",
+            lang : language
+        }),
         success: function (data) {
             document.location.reload();
         },

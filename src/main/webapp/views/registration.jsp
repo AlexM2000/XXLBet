@@ -19,14 +19,17 @@
         <div class="form-group">
             <label for="InputSurName"><ut:locale_tag key="registration.surname"/></label>
             <input type="text" name="surname" id="InputSurName" placeholder=<ut:locale_tag key="registration.surname"/> />
+            <small class="text-danger" id="surnameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputName"><ut:locale_tag key="registration.name"/></label>
             <input type="text" name="name" id="InputName" placeholder=<ut:locale_tag key="registration.name"/> />
+            <small class="text-danger" id="nameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputSecondName"><ut:locale_tag key="registration.secondname"/></label>
             <input type="text" name="secondName" id="InputSecondName" placeholder=<ut:locale_tag key="registration.secondname"/> />
+            <small class="text-danger" id="secondNameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputPassword"><ut:locale_tag key="registration.password"/></label>
@@ -42,6 +45,7 @@
         <div class="form-group">
             <label for="InputBirthDate"><ut:locale_tag key="registration.birthdate"/></label>
             <input type="date" name="birthDate" id="InputBirthDate"/>
+            <small class="text-danger" id="birthDateInformer"></small>
         </div>
     </form>
     <button type="button" class="btn btn-primary" onclick="registration()"><ut:locale_tag key="registration.submit"/></button>

@@ -43,7 +43,7 @@
                             <a class="nav-link" href="/login"><ut:locale_tag key="header.login"/></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/registration"><ut:locale_tag key="header.register"/></a>
+                            <a class="nav-link" href="/xxlbet?command=registration_page"><ut:locale_tag key="header.register"/></a>
                         </li>
                     </jstl:otherwise>
                 </jstl:choose>
