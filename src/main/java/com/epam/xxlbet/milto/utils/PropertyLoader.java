@@ -11,6 +11,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.MAIL_PROPERTIES;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_BE_PROPERTIES;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_RU_PROPERTIES;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 
@@ -61,12 +65,15 @@ public final class PropertyLoader {
     public void init() throws IOException, URISyntaxException {
         LOG.debug("Initializing project.properties...");
 
-        init("project.properties");
+        init(PROJECT_PROPERTIES);
 
         //locales
-        init("messages_en.properties");
-        init("messages_be.properties");
-        init("messages_ru.properties");
+        init(MESSAGES_EN_PROPERTIES);
+        init(MESSAGES_RU_PROPERTIES);
+        init(MESSAGES_BE_PROPERTIES);
+
+        //email sending
+        init(MAIL_PROPERTIES);
     }
 
     /**

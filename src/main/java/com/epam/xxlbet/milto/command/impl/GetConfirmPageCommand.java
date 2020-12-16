@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetConfirmPageCommand extends AbstractCommand{
-    private static final String CONFIRM_PAGE = "/views/registration.jsp";
+    private static final String CONFIRM_PAGE = "/views/confirm.jsp";
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
