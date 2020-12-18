@@ -32,12 +32,6 @@ public class PostRegistrationCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        request.getParameterMap().forEach(
-                (key, value) -> getLogger().debug("{} {}", key, value)
-        );
-        getLogger().debug(request.getParameter("body"));
-        getLogger().debug(request.getParameter("body[password]"));
-        getLogger().debug(request.getParameter("password"));
         RegistrationRequest body = getRequestBody(request, RegistrationRequest.class);
         validate(body.getPassword(), getCurrentLocale(request), passwordValidator);
         validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);

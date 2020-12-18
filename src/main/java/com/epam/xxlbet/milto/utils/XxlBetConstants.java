@@ -9,6 +9,7 @@ public final class XxlBetConstants {
     private XxlBetConstants() { }
 
     public static final String PROJECT_PROPERTIES = "project.properties";
+    public static final String MAIL_PROPERTIES = "mail.properties";
 
     public static final String MESSAGES_EN_PROPERTIES = "messages_en.properties";
     public static final String MESSAGES_RU_PROPERTIES = "messages_ru.properties";
@@ -29,7 +30,7 @@ public final class XxlBetConstants {
     public static final String INSERT_INTO_USER_PROPERTY_ID = "insert.into.user";
     public static final String DELETE_FROM_USER_PROPERTY_ID = "delete.from.users";
     public static final String UPDATE_USER_PROPERTY_ID = "update.users";
-    public static final String SELECT_BY_ID_PROPERTY_ID = "select.user.by.email";
+    public static final String SELECT_BY_ID_PROPERTY_ID = "select.user.by.id";
     public static final String SELECT_BY_EMAIL_PROPERTY_ID = "select.user.by.email";
     public static final String SELECT_BY_EMAIL_AND_PASSWORD_ID = "select.user.by.email.and.password";
     public static final String SELECT_BY_PHONENUMBER_ID = "select.user.by.phonenumber";
@@ -39,6 +40,5 @@ public final class XxlBetConstants {
     public static final String SELECT_TOKEN_BY_TOKEN_PROPERTY_ID = "select.token.by.token";
     public static final String INSERT_TOKEN_PROPERTY_ID = "insert.into.verification-token";
     public static final String DELETE_EXPIRED_TOKENS_PROPERTY_ID = "delete.all.outdated";
-
-    public static final String MAIL_PROPERTIES = "mail.properties";
+    public static final String DELETE_USER_TOKEN_PROPERTY_ID = "delete.user.token";
 }
