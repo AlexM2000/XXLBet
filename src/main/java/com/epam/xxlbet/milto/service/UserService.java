@@ -7,6 +7,8 @@ import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 public interface UserService {
     User createNewUser(RegistrationRequest registrationRequest);
     boolean checkIfUserExists(String email);
+    boolean checkIfUserExistsByPhoneNumber(String phoneNumber);
     User getUserByEmail(String email);
+    User getUserByEmailAndPassword(String email, String password);
     ConfirmationResult confirmRegistration(String token);
 }

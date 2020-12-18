@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.Command;
+import com.epam.xxlbet.milto.requestbody.LoginRequest;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
@@ -41,6 +42,13 @@ public abstract class AbstractCommand implements Command {
                 LOG.error("Error parsing date at getRequestBody...", e);
             }
             return (T) registrationRequest;
+        }
+
+        if (LoginRequest.class.equals(clazz)) {
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setLogin(request.getParameter("body[login]"));
+            loginRequest.setPassword(request.getParameter("body[password]"));
+            return (T) loginRequest;
         }
 
         return entity;

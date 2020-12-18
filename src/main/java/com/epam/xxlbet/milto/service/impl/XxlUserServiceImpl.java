@@ -97,13 +97,26 @@ public class XxlUserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean checkIfUserExistsByPhoneNumber(String phoneNumber) {
+        return userDao.getUserByPhoneNumber(phoneNumber) != null;
+    }
+
+    @Override
     public User getUserByEmail(final String email) {
         return userDao.getUserByEmail(email);
     }
 
     @Override
+    public User getUserByEmailAndPassword(String email, String password) {
+        String encryptedPassword = CryptoUtils.encrypt(password, PropertyLoader.getInstance().getStringProperty(XxlBetConstants.PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
+                .orElseThrow(() -> new PropertyNotFoundException("Can't find secret key property!")));
+
+        return userDao.getUserByEmailAndPassword(email, encryptedPassword);
+    }
+
+    @Override
     public ConfirmationResult confirmRegistration(String token) {
-        ConfirmationResult result = null;
+        ConfirmationResult result;
         VerificationToken verificationToken = verificationTokenService.getToken(token);
 
         if (verificationToken != null) {

@@ -15,6 +15,9 @@ public class RegistrationRequest {
     @JsonFormat(pattern = "dd.mm.YYYY")
     private Date birthDate;
 
+    public RegistrationRequest() {
+    }
+
     public String getEmail() {
         return email;
     }

@@ -37,7 +37,7 @@ function registration() {
         };
 
         $.ajax({
-            url: '/xxlbet?command=registration',
+            url: '/xxlbet',
             type: 'POST',
             dataType: "json",
             data: {
@@ -51,7 +51,7 @@ function registration() {
                     "password": document.getElementById("InputPassword").value,
                     "repeatPassword": document.getElementById("InputRPassword").value,
                     "birthDate": document.getElementById("InputBirthDate").value
-                },
+                }
             },
             success: function (dataFromServer) {
                 if(dataFromServer.status === 'verified'){
@@ -84,6 +84,46 @@ function registration() {
             }
         });
     }
+}
+
+function login() {
+    var data = {
+        "login" : document.getElementById("InputLogin").value,
+        "password": document.getElementById("InputPassword").value
+    };
+
+    $.ajax({
+        url: '/xxlbet',
+        type: 'POST',
+        data: {
+            command: "login",
+            body: data
+        },
+        dateType: "json",
+        success: function (dataFromServer) {
+            dataFromServer = JSON.parse(dataFromServer);
+
+            if (dataFromServer.status === 'verified'){
+                window.location.href = 'profile';
+            } else if (dataFromServer.status === 'failed') {
+                if (dataFromServer['user.email.not.exists'] !== null) {
+                    $('#loginError').text(dataFromServer['user.email.not.exists']);
+                }
+                if (dataFromServer['user.please.confirm.registration'] !== null) {
+                    $('#loginError').text(dataFromServer['user.please.confirm.registration']);
+                }
+
+                if (dataFromServer['wrong.password'] !== null) {
+                    $('#passError').text(dataFromServer['wrong.password']);
+                }
+            } else {
+                alert('Stop doing this!!!');
+            }
+        },
+        error: function (e) {
+            alert(e);
+        }
+    });
 }
 
 function languageSelector(language){

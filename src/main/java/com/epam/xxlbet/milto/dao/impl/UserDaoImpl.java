@@ -126,7 +126,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserByPhoneNumberAndPassword(final String phoneNumber, final String password) {
-        User user = new User();
+        User user = null;
 
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID));

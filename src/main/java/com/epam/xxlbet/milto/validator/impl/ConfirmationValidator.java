@@ -28,7 +28,7 @@ public class ConfirmationValidator implements Validator {
 
         User user = service.getUserByEmail(email);
 
-        if (!user.getEnabled()) {
+        if (user != null && !user.getEnabled()) {
             errors.reject("user.please.confirm.registration", locale);
         }
     }

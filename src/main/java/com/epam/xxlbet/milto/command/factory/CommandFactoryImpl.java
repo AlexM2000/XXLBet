@@ -7,6 +7,7 @@ import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
 import com.epam.xxlbet.milto.command.impl.GetLoginPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
+import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.service.impl.XxlMatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.XxlUserServiceImpl;
@@ -19,6 +20,7 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String GET_CONFIRM_PAGE = "confirm_page";
     private static final String POST_CONFIRM_COMMAND = "confirm";
     private static final String GET_LOGIN_PAGE = "login_page";
+    private static final String POST_LOGIN = "login";
 
 
     private static CommandFactoryImpl instance;
@@ -42,6 +44,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_LOGIN_PAGE:
                 command = new GetLoginPageCommand();
+                break;
+            case POST_LOGIN:
+                command = new PostLoginCommand(XxlUserServiceImpl.getInstance());
                 break;
             case LANGUAGE_COMMAND:
                 command = new GetLanguageCommand();
