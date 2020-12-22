@@ -7,17 +7,17 @@ import com.epam.xxlbet.milto.service.MatchesService;
 
 import java.util.List;
 
-public class XxlMatchesServiceImpl implements MatchesService {
-    private static XxlMatchesServiceImpl instance;
+public class MatchesServiceImpl implements MatchesService {
+    private static MatchesServiceImpl instance;
     private MatchesDao matchesDao;
 
-    private XxlMatchesServiceImpl() {
+    private MatchesServiceImpl() {
         matchesDao = MatchesDaoImpl.getInstance();
     }
 
-    public static XxlMatchesServiceImpl getInstance() {
+    public static MatchesServiceImpl getInstance() {
         if (instance == null) {
-            instance = new XxlMatchesServiceImpl();
+            instance = new MatchesServiceImpl();
         }
 
         return instance;

@@ -7,4 +7,5 @@ public interface RequestContext {
     String getParameter(String param);
     void setSessionAttribute(String key, Object value);
     Cookie[] getCookies();
+    Object getSessionAttribute(String key);
 }

@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.validator.impl;
 
 import com.epam.xxlbet.milto.service.UserService;
-import com.epam.xxlbet.milto.service.impl.XxlUserServiceImpl;
+import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
@@ -15,7 +15,7 @@ public final class UserExistsValidator implements Validator {
     private UserService service;
 
     private UserExistsValidator() {
-        service = XxlUserServiceImpl.getInstance();
+        service = UserServiceImpl.getInstance();
     }
 
     public static UserExistsValidator getInstance() {

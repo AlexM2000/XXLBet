@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.validator.impl;
 
 import com.epam.xxlbet.milto.service.UserService;
-import com.epam.xxlbet.milto.service.impl.XxlUserServiceImpl;
+import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
@@ -10,7 +10,7 @@ public class PhoneNumberExistsValidator implements Validator {
     private UserService userService;
 
     private PhoneNumberExistsValidator() {
-        userService = XxlUserServiceImpl.getInstance();
+        userService = UserServiceImpl.getInstance();
     }
 
     public static PhoneNumberExistsValidator getInstance() {

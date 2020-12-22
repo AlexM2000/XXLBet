@@ -31,4 +31,9 @@ class HttpServletRequestContext implements RequestContext {
     public Cookie[] getCookies() {
         return request.getCookies();
     }
+
+    @Override
+    public Object getSessionAttribute(String key) {
+        return request.getSession().getAttribute(key);
+    }
 }

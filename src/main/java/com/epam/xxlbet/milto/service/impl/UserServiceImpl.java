@@ -31,9 +31,9 @@ import static com.epam.xxlbet.milto.domain.ConfirmationResult.INVALID;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.SUCCESS;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-public class XxlUserServiceImpl implements UserService {
-    private static final Logger LOG = LoggerFactory.getLogger(XxlUserServiceImpl.class);
-    private static XxlUserServiceImpl instance;
+public class UserServiceImpl implements UserService {
+    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static UserServiceImpl instance;
     private VerificationTokenService verificationTokenService;
     private UserDao userDao;
     private UserInfoDao userInfoDao;
@@ -42,7 +42,7 @@ public class XxlUserServiceImpl implements UserService {
     private Populator<RegistrationRequest, User> registrationToUserPopulator;
     private Populator<RegistrationRequest, UserInfo> registrationToUserInfoPopulator;
 
-    private XxlUserServiceImpl() {
+    private UserServiceImpl() {
         userDao = UserDaoImpl.getInstance();
         userInfoDao = UserInfoDaoImpl.getInstance();
         verificationTokenService = VerificationTokenServiceImpl.getInstance();
@@ -51,9 +51,9 @@ public class XxlUserServiceImpl implements UserService {
         emailSender = EmailSenderImpl.getInstance();
     }
 
-    public static XxlUserServiceImpl getInstance() {
+    public static UserServiceImpl getInstance() {
         if (instance == null) {
-            instance = new XxlUserServiceImpl();
+            instance = new UserServiceImpl();
         }
 
         return instance;
@@ -138,5 +138,8 @@ public class XxlUserServiceImpl implements UserService {
         return result;
     }
 
-
+    @Override
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
+    }
 }

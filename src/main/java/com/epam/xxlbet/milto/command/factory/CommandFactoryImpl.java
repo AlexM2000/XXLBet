@@ -5,12 +5,14 @@ import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
 import com.epam.xxlbet.milto.command.impl.GetLoginPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
 import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
-import com.epam.xxlbet.milto.service.impl.XxlMatchesServiceImpl;
-import com.epam.xxlbet.milto.service.impl.XxlUserServiceImpl;
+import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
+import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
+import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 
 public class CommandFactoryImpl implements CommandFactory {
     private static final String GET_HOME_COMMAND = "home";
@@ -21,7 +23,7 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String POST_CONFIRM_COMMAND = "confirm";
     private static final String GET_LOGIN_PAGE = "login_page";
     private static final String POST_LOGIN = "login";
-
+    private static final String GET_PROFILE_PAGE = "profile";
 
     private static CommandFactoryImpl instance;
 
@@ -40,13 +42,13 @@ public class CommandFactoryImpl implements CommandFactory {
         Command command;
         switch (commandName) {
             case GET_HOME_COMMAND:
-                command = new GetHomeCommand(XxlMatchesServiceImpl.getInstance());
+                command = new GetHomeCommand(MatchesServiceImpl.getInstance());
                 break;
             case GET_LOGIN_PAGE:
                 command = new GetLoginPageCommand();
                 break;
             case POST_LOGIN:
-                command = new PostLoginCommand(XxlUserServiceImpl.getInstance());
+                command = new PostLoginCommand(UserServiceImpl.getInstance());
                 break;
             case LANGUAGE_COMMAND:
                 command = new GetLanguageCommand();
@@ -58,10 +60,13 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new GetConfirmPageCommand();
                 break;
             case POST_REGISTRATION_COMMAND:
-                command = new PostRegistrationCommand(XxlUserServiceImpl.getInstance());
+                command = new PostRegistrationCommand(UserServiceImpl.getInstance());
                 break;
             case POST_CONFIRM_COMMAND:
-                command = new PostConfirmRegistrationCommand(XxlUserServiceImpl.getInstance());
+                command = new PostConfirmRegistrationCommand(UserServiceImpl.getInstance());
+                break;
+            case GET_PROFILE_PAGE:
+                command = new GetProfileCommand(UserServiceImpl.getInstance(), BetsServiceImpl.getInstance());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command " + commandName);

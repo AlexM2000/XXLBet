@@ -2,7 +2,7 @@ package com.epam.xxlbet.milto.validator.impl;
 
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.domain.User;
-import com.epam.xxlbet.milto.service.impl.XxlUserServiceImpl;
+import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
@@ -11,7 +11,7 @@ public class ConfirmationValidator implements Validator {
     private UserService service;
 
     private ConfirmationValidator() {
-        this.service = XxlUserServiceImpl.getInstance();
+        this.service = UserServiceImpl.getInstance();
     }
 
     public static ConfirmationValidator getInstance() {
