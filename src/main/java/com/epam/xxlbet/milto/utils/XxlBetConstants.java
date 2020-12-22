@@ -19,6 +19,7 @@ public final class XxlBetConstants {
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_USER_INFO = "queries_user_info.properties";
     public static final String INSERT_INTO_USER_INFO = "insert.into.user-info";
+    public static final String SELECT_USER_INFO_BY_EMAIL = "select.from.user.info.by.email";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCHES = "queries_matches.properties";
     public static final String SELECT_INCOMPLETE_MATCHES_PROPERTY_ID = "select.all.incomplete.matches";
