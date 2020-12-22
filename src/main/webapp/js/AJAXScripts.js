@@ -23,6 +23,10 @@ function registration() {
         $('#secondNameInformer').text("This field must not be empty");
         errorCount++;
     }
+    if (document.getElementById("InputBirthDate").value === "" || new Date(document.getElementById("InputBirthDate").value).getTime() > new Date().getTime()) {
+        $('#birthDateInformer').text("Wrong date");
+        errorCount++;
+    }
 
     if (errorCount === 0) {
         var data = {

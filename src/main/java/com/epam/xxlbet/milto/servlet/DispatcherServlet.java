@@ -2,6 +2,8 @@ package com.epam.xxlbet.milto.servlet;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
+import com.epam.xxlbet.milto.command.context.RequestContext;
+import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.command.factory.CommandFactory;
 import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
@@ -33,13 +35,15 @@ public class DispatcherServlet extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
+            RequestContext requestContext = new HttpServletRequestContext(request);
+            ResponseContext responseContext = new HttpServletResponseContext(response);
             CommandFactory commandFactory = CommandFactoryImpl.getInstance();
             String commandName = request.getParameter(COMMAND_PARAMETER);
             Command command = commandFactory.createCommand(commandName);
-            CommandResult commandResult = command.execute(request, response);
+            CommandResult commandResult = command.execute(requestContext, responseContext);
             dispatch(request, response, commandResult);
         } catch (final ServiceException | IOException e) {
-            LOG.error("Something wwent wrong during processing request...", e);
+            LOG.error("Something went wrong during processing request...", e);
         }
     }
 

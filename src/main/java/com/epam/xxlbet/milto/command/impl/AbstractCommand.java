@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.Command;
+import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.requestbody.LoginRequest;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 import com.epam.xxlbet.milto.utils.Errors;
@@ -10,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public abstract class AbstractCommand implements Command {
     private ObjectMapper mapper = new ObjectMapper();
     private Map<String, String> errors = new HashMap<>();
 
-    protected <T> T getRequestBody(final HttpServletRequest request, final Class<T> clazz) {
+    protected <T> T getRequestBody(final RequestContext request, final Class<T> clazz) {
         T entity = null;
 
         if (RegistrationRequest.class.equals(clazz)) {
@@ -68,7 +68,7 @@ public abstract class AbstractCommand implements Command {
         }
     }
 
-    protected String getCurrentLocale(final HttpServletRequest request) {
+    protected String getCurrentLocale(final RequestContext request) {
         String locale = "en";
         Cookie[] cookies = request.getCookies();
 

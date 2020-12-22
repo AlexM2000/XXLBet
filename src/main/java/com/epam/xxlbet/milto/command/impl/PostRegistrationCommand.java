@@ -1,6 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.CommandResult;
+import com.epam.xxlbet.milto.command.context.RequestContext;
+import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 import com.epam.xxlbet.milto.service.UserService;
@@ -11,8 +13,6 @@ import com.epam.xxlbet.milto.validator.impl.PhoneNumberExistsValidator;
 import com.epam.xxlbet.milto.validator.impl.PhoneNumberValidator;
 import com.epam.xxlbet.milto.validator.impl.UserExistsValidator;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class PostRegistrationCommand extends AbstractCommand {
@@ -34,20 +34,19 @@ public class PostRegistrationCommand extends AbstractCommand {
 
 
     @Override
-    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         RegistrationRequest body = getRequestBody(request, RegistrationRequest.class);
         validate(body.getEmail(), getCurrentLocale(request), emailValidator);
         validate(body.getPassword(), getCurrentLocale(request), passwordValidator);
         validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);
         validate(body.getEmail(), getCurrentLocale(request), userExistsValidater);
-        validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberExistsValidator);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
             userService.createNewUser(body);
         }
 
         try {
-            getMapper().writeValue(response.getWriter(), getErrors());
+            response.writeJSONValue(getErrors());
             getErrors().clear();
         } catch (final IOException e) {
             getLogger().error("Something went wrong during writing response...", e);

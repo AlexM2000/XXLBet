@@ -2,11 +2,10 @@ package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
+import com.epam.xxlbet.milto.command.context.RequestContext;
+import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.UserService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class PostConfirmRegistrationCommand implements Command {
     private UserService userService;
@@ -16,7 +15,7 @@ public class PostConfirmRegistrationCommand implements Command {
     }
 
     @Override
-    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         String token = request.getParameter("token");
         CommandResult commandResult = null;
 
