@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.listener;
 
+import com.epam.xxlbet.milto.scheduled.DeleteOutdatedVerificationTokensJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.epam.xxlbet.milto.utils.connection.ConnectionPool;
@@ -8,6 +9,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.sql.SQLException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+import static java.util.concurrent.TimeUnit.HOURS;
 
 /**
  * ApplicationContext.
@@ -17,11 +22,16 @@ import java.sql.SQLException;
 @WebListener
 public class ApplicationListener implements ServletContextListener {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationListener.class);
+    private ScheduledExecutorService executorService;
 
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         LOG.debug("Initializing ApplicationContext...");
         ConnectionPool.getInstance();
+        LOG.debug("Creating scheduled jobs...");
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(DeleteOutdatedVerificationTokensJob.getInstance(), 0, 12, HOURS);
+        LOG.debug("Created DeleteOutdatedVerificationTokensJob");
     }
 
     @Override

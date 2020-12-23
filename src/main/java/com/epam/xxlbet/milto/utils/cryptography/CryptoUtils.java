@@ -12,6 +12,11 @@ import java.util.Base64;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * CryptoUtils.
+ *
+ * @author alexm2000
+ */
 public class CryptoUtils {
     private static final Logger LOG = LoggerFactory.getLogger(CryptoUtils.class);
 
@@ -20,7 +25,7 @@ public class CryptoUtils {
 
     private static void setKey(String myKey)
     {
-        MessageDigest sha = null;
+        MessageDigest sha;
         try {
             key = myKey.getBytes(UTF_8);
             sha = MessageDigest.getInstance("SHA-1");

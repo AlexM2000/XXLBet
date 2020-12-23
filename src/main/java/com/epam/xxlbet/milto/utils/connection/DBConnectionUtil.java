@@ -29,7 +29,7 @@ public final class DBConnectionUtil {
      *
      * @return Established connection.
      * @throws SQLException if cannot establish connection with database.
-     * @throws PropertyNotFoundException if can't find property inside properties file that needs database.
+     * @throws PropertyNotFoundException if can't find property that needs database inside properties file.
      * @throws ClassNotFoundException if can't find driver for database.
      */
     static Connection getConnection() throws SQLException, ClassNotFoundException {
