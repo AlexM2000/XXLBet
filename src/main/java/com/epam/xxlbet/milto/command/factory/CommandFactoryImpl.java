@@ -12,6 +12,7 @@ import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
+import com.epam.xxlbet.milto.service.impl.UserInfoServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 
 public class CommandFactoryImpl implements CommandFactory {
@@ -66,7 +67,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new PostConfirmRegistrationCommand(UserServiceImpl.getInstance());
                 break;
             case GET_PROFILE_PAGE:
-                command = new GetProfileCommand(UserServiceImpl.getInstance(), BetsServiceImpl.getInstance());
+                command = new GetProfileCommand(UserInfoServiceImpl.getInstance(), BetsServiceImpl.getInstance());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command " + commandName);
