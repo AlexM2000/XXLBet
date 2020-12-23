@@ -11,6 +11,11 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 
+/**
+ * GetLanguageCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetLanguageCommand implements Command {
     private static final Logger LOG = LoggerFactory.getLogger(GetLanguageCommand.class);
 

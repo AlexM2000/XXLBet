@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.UserService;
 
+/**
+ * PostConfirmRegistrationCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostConfirmRegistrationCommand implements Command {
     private UserService userService;
 

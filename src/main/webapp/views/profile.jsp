@@ -15,14 +15,14 @@
         <div class="col-3 bg-light">
             <jstl:choose>
             <jstl:when test="${not empty userInfo.getProfileImgPath()}">
-                <img src="data:${user.getImage().getImageType()};base64,${user.getImage().getImageData()}" class="w-50 float-left m-2">
-                <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image(${user.getImage().getId()})"><ut:locale_tag key="profile.delete.image"/></button>
+                <img src="${userInfo.getProfileImgPath()}" class="w-50 float-left m-2">
+                <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image()"><ut:locale_tag key="profile.delete.image"/></button>
             </jstl:when>
             <c:otherwise>
-                <img id="profImg" src="images/img_311846.png" class="w-50 float-left m-2">
+                <img id="profImg" src="/images/img_311846.png" class="w-50 float-left m-2">
             </c:otherwise>
             </jstl:choose>
-            <p id="ProfileImageDiv" class="float-right mt-5">${user.getUserInfo().getRealName()}</p>
+            <p id="ProfileImageDiv" class="float-right mt-5">${userInfo.getSurname()} ${userInfo.getName()} ${userInfo.getSecondName()}</p>
             <form id="ProfileImageForm" action="/profileimage" style="display: none" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" id="file" class="btn-sm btn-info" value="Choose image"/>
                 <button type="submit" id="UploadProfileImage" style="display: none" class="btn-sm btn-info">Upload</button>
@@ -71,6 +71,5 @@
     <button id="show_insert_image" onclick="show_button__img_into_textarea()" type="button" class="btn-sm btn-info">Insert image</button>
     <button type="button" onclick="insert_article()" class="my-3 btn btn-primary w-25 align-items-lg-center">Post</button>
 </div>
-<%@include file="/views/include/Footer.jsp"%>
 </body>
 </html>

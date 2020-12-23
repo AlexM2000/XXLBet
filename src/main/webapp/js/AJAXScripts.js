@@ -108,7 +108,7 @@ function login() {
             dataFromServer = JSON.parse(dataFromServer);
 
             if (dataFromServer.status === 'verified'){
-                window.location.href = 'profile';
+                window.location.href = '/xxlbet?command=profile';
             } else if (dataFromServer.status === 'failed') {
                 if (dataFromServer['user.email.not.exists'] !== null) {
                     $('#loginError').text(dataFromServer['user.email.not.exists']);

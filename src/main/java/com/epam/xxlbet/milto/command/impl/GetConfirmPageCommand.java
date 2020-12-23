@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 
+/**
+ * GetConfirmPageCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetConfirmPageCommand extends AbstractCommand{
     private static final String CONFIRM_PAGE = "/views/confirm.jsp";
 

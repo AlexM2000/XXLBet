@@ -13,6 +13,11 @@ import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 
 import java.io.IOException;
 
+/**
+ * PostLoginCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostLoginCommand extends AbstractCommand {
     private UserService userService;
     private Validator userNotExistsValidator;

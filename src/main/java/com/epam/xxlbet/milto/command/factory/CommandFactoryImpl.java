@@ -15,6 +15,11 @@ import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserInfoServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 
+/**
+ * CommandFactoryImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class CommandFactoryImpl implements CommandFactory {
     private static final String GET_HOME_COMMAND = "home";
     private static final String LANGUAGE_COMMAND = "lang";

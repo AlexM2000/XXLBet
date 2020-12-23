@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 
+/**
+ * GetLoginPageCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetLoginPageCommand extends AbstractCommand {
     private static final String LOGIN_PAGE = "/views/login.jsp";
 

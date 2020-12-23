@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 
+/**
+ * GetRegistrationPageCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetRegistrationPageCommand extends AbstractCommand {
     private static final String REGISTRATION_PAGE = "/views/registration.jsp";
 

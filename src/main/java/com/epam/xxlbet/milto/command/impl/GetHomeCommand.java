@@ -8,6 +8,11 @@ import com.epam.xxlbet.milto.service.MatchesService;
 
 import java.time.LocalDateTime;
 
+/**
+ * GetHomeCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetHomeCommand extends AbstractCommand {
     private static final String HOME_PAGE = "/views/index.jsp";
     private MatchesService matchesService;

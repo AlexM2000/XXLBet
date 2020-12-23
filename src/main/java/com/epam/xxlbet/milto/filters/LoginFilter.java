@@ -17,7 +17,7 @@ import java.io.IOException;
  *
  * @author Aliaksei Milto
  */
-@WebFilter(urlPatterns = "/xxlbet?command=profile")
+@WebFilter(urlPatterns = "/xxlbet")
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,8 +31,11 @@ public class LoginFilter implements Filter {
 
         HttpSession session = httpRequest.getSession();
 
-        if (session.getAttribute("login") == null || session.getAttribute("user_id") == null) {
-            request.getRequestDispatcher("/xxlbet?command=login_page").forward(httpRequest, httpResponse);
+        if ("profile".equals(httpRequest.getParameter("command"))) {
+            if (session.getAttribute("login") == null || session.getAttribute("user_id") == null) {
+                httpResponse.sendRedirect("/xxlbet?command=login_page");
+                return;
+            }
         }
 
         chain.doFilter(httpRequest, response);

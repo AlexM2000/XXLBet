@@ -16,6 +16,11 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * AbstractCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public abstract class AbstractCommand implements Command {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractCommand.class);
     protected static final String STATUS = "status";

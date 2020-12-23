@@ -28,6 +28,11 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_RU_PROPERTIES;
 import static java.lang.String.format;
 
+/**
+ * PostRegistrationCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostRegistrationCommand extends AbstractCommand {
     private Validator userExistsValidater;
     private Validator phoneNumberExistsValidator;

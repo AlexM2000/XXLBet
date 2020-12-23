@@ -9,6 +9,11 @@ import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.UserInfoService;
 
+/**
+ * GetProfileCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetProfileCommand implements Command {
     private static final String PROFILE_PAGE = "/views/profile.jsp";
     private UserInfoService userInfoService;
