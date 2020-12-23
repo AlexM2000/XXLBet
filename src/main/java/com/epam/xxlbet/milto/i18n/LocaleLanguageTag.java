@@ -12,6 +12,11 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+/**
+ * CommandResult.
+ *
+ * @author Aliaksei Milto
+ */
 public class LocaleLanguageTag extends TagSupport {
 
     private String key;

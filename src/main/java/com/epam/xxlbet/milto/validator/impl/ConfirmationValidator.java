@@ -6,6 +6,11 @@ import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
+/**
+ * ConfirmationValidator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ConfirmationValidator implements Validator {
     private static ConfirmationValidator instance;
     private UserService service;

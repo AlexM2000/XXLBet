@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
+/**
+ * Java representation of request body for PostRegistrationCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class RegistrationRequest {
     private String email;
     private String phoneNumber;

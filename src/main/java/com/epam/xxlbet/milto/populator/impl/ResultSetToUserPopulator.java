@@ -6,6 +6,11 @@ import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * ResultSetToUserPopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ResultSetToUserPopulator implements ResultSetPopulator<ResultSet, User> {
     private static final String ID_COLUMN_NAME = "id";
     private static final String EMAIL_COLUMN_NAME = "email";

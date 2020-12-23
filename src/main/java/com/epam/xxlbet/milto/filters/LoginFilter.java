@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * LoginFilter.
+ *
+ * @author Aliaksei Milto
+ */
 @WebFilter(urlPatterns = "/xxlbet?command=profile")
 public class LoginFilter implements Filter {
     @Override

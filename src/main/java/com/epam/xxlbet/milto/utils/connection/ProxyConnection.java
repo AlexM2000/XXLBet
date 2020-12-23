@@ -22,7 +22,7 @@ import java.util.concurrent.Executor;
 /**
  * ProxyConnection.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 class ProxyConnection implements Connection {
 

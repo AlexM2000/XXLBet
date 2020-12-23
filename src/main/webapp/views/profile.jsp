@@ -1,25 +1,22 @@
-<%@ page import="com.milto.dao.impl.UserHibernateDao" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ut" uri="/WEB-INF/tags" %>
+<%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Personal Profile</title>
+    <title><ut:locale_tag key="profile.title"/></title>
 </head>
 <body>
-<%@include file="/views/include/Header.jsp"%>
+<%@include file="/views/header.jsp"%>
 <div class="container">
     <div class="row m-5">
         <div class="col-3 bg-light">
             <jstl:choose>
-            <jstl:when test="${not empty user.getImage()}">
-                <a id="ProfileImage" data-lightbox="${user.getId()}" data-title="${user.getUserInfo().getRealName()}" href="data:${user.getImage().getImageType()};base64,${user.getImage().getImageData()}">
-                    <img src="data:${user.getImage().getImageType()};base64,${user.getImage().getImageData()}" class="w-50 float-left m-2">
-                </a>
-                <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image(${user.getImage().getId()})">Delete Image</button>
+            <jstl:when test="${not empty userInfo.getProfileImgPath()}">
+                <img src="data:${user.getImage().getImageType()};base64,${user.getImage().getImageData()}" class="w-50 float-left m-2">
+                <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image(${user.getImage().getId()})"><ut:locale_tag key="profile.delete.image"/></button>
             </jstl:when>
             <c:otherwise>
                 <img id="profImg" src="images/img_311846.png" class="w-50 float-left m-2">

@@ -21,7 +21,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 /**
  * Loads and keeps properties from .properties files
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class PropertyLoader {
     private static final Logger LOG = LoggerFactory.getLogger(PropertyLoader.class);

@@ -5,6 +5,11 @@ import static com.epam.xxlbet.milto.command.CommandType.REDIRECT;
 import static com.epam.xxlbet.milto.command.CommandType.WRITE_DIRECT_TO_RESPONSE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+/**
+ * CommandResult.
+ *
+ * @author Aliaksei Milto
+ */
 public class CommandResult {
 
     private final String page;

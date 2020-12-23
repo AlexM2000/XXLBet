@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.service.MatchesService;
 
 import java.util.List;
 
+/**
+ * MatchesServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class MatchesServiceImpl implements MatchesService {
     private static MatchesServiceImpl instance;
     private MatchesDao matchesDao;

@@ -27,7 +27,7 @@
                 <jstl:choose>
                     <jstl:when test="${auth}">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/profile">><ut:locale_tag key="header.profile"/></a>
+                            <a class="nav-link" href="/xxlbet?command=profile"><ut:locale_tag key="header.profile"/></a>
                         </li>
                         <jstl:if test="${admin}">
                             <li class="nav-item active">

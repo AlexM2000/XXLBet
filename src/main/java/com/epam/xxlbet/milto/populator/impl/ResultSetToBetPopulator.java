@@ -6,6 +6,11 @@ import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * ResultSetToBetPopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ResultSetToBetPopulator implements ResultSetPopulator<ResultSet, Bet> {
     private static final String ID = "id";
     private static final String MATCH_ID = "match_id";

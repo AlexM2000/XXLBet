@@ -17,6 +17,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static java.lang.String.format;
 
+/**
+ * ConnectionPool.
+ *
+ * @author Aliaksei Milto
+ */
 public final class ConnectionPool {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionPool.class);
     private static final int DEFAULT_CONNECTION_POOL = 5;

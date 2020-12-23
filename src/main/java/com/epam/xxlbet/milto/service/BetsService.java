@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.domain.Bet;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * BetsService.
+ *
+ * @author Aliaksei Milto
+ */
 public interface BetsService {
     List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
     List<Bet> getBetsHistoryByUser(String email, String phoneNumber);

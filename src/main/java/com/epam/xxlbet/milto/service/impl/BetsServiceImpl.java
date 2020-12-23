@@ -8,6 +8,11 @@ import com.epam.xxlbet.milto.service.BetsService;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * BetsServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class BetsServiceImpl implements BetsService {
     private static BetsServiceImpl instance;
     private BetsDao betsDao;

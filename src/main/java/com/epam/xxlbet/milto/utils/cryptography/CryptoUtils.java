@@ -15,7 +15,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * CryptoUtils.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public class CryptoUtils {
     private static final Logger LOG = LoggerFactory.getLogger(CryptoUtils.class);
@@ -23,6 +23,9 @@ public class CryptoUtils {
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
+    /**
+     * Sets secretKey for encryption and decryption.
+     */
     private static void setKey(String myKey)
     {
         MessageDigest sha;

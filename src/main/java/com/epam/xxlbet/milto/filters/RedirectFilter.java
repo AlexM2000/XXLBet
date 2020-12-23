@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * RedirectFilter.
+ *
+ * @author Aliaksei Milto
+ */
 @WebFilter(urlPatterns = "/*")
 public class RedirectFilter implements Filter {
     @Override

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * DBConnectionUtil.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class DBConnectionUtil {
 

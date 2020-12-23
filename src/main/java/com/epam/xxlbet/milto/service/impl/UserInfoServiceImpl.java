@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.dao.impl.UserInfoDaoImpl;
 import com.epam.xxlbet.milto.domain.UserInfo;
 import com.epam.xxlbet.milto.service.UserInfoService;
 
+/**
+ * UserInfoServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class UserInfoServiceImpl implements UserInfoService {
     private static UserInfoServiceImpl instance;
     private UserInfoDao userInfoDao;

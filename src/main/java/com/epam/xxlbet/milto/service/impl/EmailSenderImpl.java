@@ -20,6 +20,11 @@ import java.util.Properties;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MAIL_PROPERTIES;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * EmailSenderImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class EmailSenderImpl implements EmailSender {
     private static final Logger LOG = LoggerFactory.getLogger(EmailSenderImpl.class);
     private static EmailSenderImpl instance;
@@ -48,12 +53,12 @@ public class EmailSenderImpl implements EmailSender {
     @Override
     public void sendEmail(String emailTo, String htmlMessage, String subject) throws MessagingException {
         Properties props = new Properties();
-        props.put("mail.smtp.host", loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.host").get()); //SMTP Host
-        props.put("mail.smtp.port", loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.port").get()); //TLS Port
-        props.put("mail.smtp.auth", loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.auth").get()); //enable authentication
-        props.put("mail.smtp.starttls.enable", loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.starttls.enable").get()); //enable STARTTLS
+        props.put("mail.smtp.host", host); //SMTP Host
+        props.put("mail.smtp.port", port); //TLS Port
+        props.put("mail.smtp.auth", auth); //enable authentication
+        props.put("mail.smtp.starttls.enable", startTlsEnable); //enable STARTTLS
         props.put("mail.smtp.ssl.trust", loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.ssl.trust").get());
-        LOG.debug(loader.getStringProperty(MAIL_PROPERTIES, "password").get());
+
         Authenticator auth = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(

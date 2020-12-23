@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
+/**
+ * UserNotExistsValidator.
+ *
+ * @author Aliaksei Milto
+ */
 public class UserNotExistsValidator implements Validator {
     private static UserNotExistsValidator instance;
     private UserService service;

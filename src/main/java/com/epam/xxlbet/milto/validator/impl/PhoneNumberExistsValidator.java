@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 
+/**
+ * PhoneNumberExistsValidator.
+ *
+ * @author Aliaksei Milto
+ */
 public class PhoneNumberExistsValidator implements Validator {
     private static PhoneNumberExistsValidator instance;
     private UserService userService;

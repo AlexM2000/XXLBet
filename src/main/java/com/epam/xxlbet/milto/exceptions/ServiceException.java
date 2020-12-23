@@ -1,8 +1,11 @@
 package com.epam.xxlbet.milto.exceptions;
 
+/**
+ * ServiceException.
+ *
+ * @author alexm2000
+ */
 public class ServiceException extends Exception {
-    public ServiceException() { }
-
     public ServiceException(String message) {
         super(message);
     }

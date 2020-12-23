@@ -1,5 +1,10 @@
 package com.epam.xxlbet.milto.requestbody;
 
+/**
+ * Java representation of request body for PostLoginCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class LoginRequest {
     private String login;
     private String password;

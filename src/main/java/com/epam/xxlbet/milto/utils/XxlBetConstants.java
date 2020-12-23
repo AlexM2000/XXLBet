@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.utils;
 /**
  * All constants kept in one place for convenience.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class XxlBetConstants {
     private XxlBetConstants() { }

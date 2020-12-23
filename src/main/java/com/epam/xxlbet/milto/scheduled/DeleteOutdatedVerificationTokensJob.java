@@ -3,6 +3,11 @@ package com.epam.xxlbet.milto.scheduled;
 import com.epam.xxlbet.milto.service.VerificationTokenService;
 import com.epam.xxlbet.milto.service.impl.VerificationTokenServiceImpl;
 
+/**
+ * Deletes outdated VerificationTokens.
+ *
+ * @author Aliaksei Milto
+ */
 public class DeleteOutdatedVerificationTokensJob implements Runnable {
     private static DeleteOutdatedVerificationTokensJob instance;
     private VerificationTokenService service;

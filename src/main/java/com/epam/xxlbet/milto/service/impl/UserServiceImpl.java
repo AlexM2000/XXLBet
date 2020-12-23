@@ -13,7 +13,6 @@ import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserInfoPopulator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserPopulator;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
-import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.VerificationTokenService;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
@@ -22,23 +21,26 @@ import com.epam.xxlbet.milto.utils.cryptography.CryptoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.mail.MessagingException;
 import java.math.BigDecimal;
 import java.util.Date;
 
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.EXPIRED;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.INVALID;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.SUCCESS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
+/**
+ * UserServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class UserServiceImpl implements UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     private static UserServiceImpl instance;
     private VerificationTokenService verificationTokenService;
     private UserDao userDao;
     private UserInfoDao userInfoDao;
-
-    private EmailSender emailSender;
     private Populator<RegistrationRequest, User> registrationToUserPopulator;
     private Populator<RegistrationRequest, UserInfo> registrationToUserInfoPopulator;
 
@@ -48,7 +50,6 @@ public class UserServiceImpl implements UserService {
         verificationTokenService = VerificationTokenServiceImpl.getInstance();
         registrationToUserPopulator = RegistrationRequestToUserPopulator.getInstance();
         registrationToUserInfoPopulator = RegistrationRequestToUserInfoPopulator.getInstance();
-        emailSender = EmailSenderImpl.getInstance();
     }
 
     public static UserServiceImpl getInstance() {
@@ -61,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createNewUser(final RegistrationRequest body) {
-        String encryptedPassword = CryptoUtils.encrypt(body.getPassword(), PropertyLoader.getInstance().getStringProperty(XxlBetConstants.PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
+        String encryptedPassword = CryptoUtils.encrypt(body.getPassword(), PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
                 .orElseThrow(() -> new PropertyNotFoundException("Can't find secret key property!")));
 
         User user = new User();
@@ -74,17 +75,6 @@ public class UserServiceImpl implements UserService {
         registrationToUserInfoPopulator.populate(body, userInfo);
         userInfo.setBalance(new BigDecimal(0));
         userInfoDao.createNewUserInfo(userInfo);
-
-        VerificationToken token = verificationTokenService.createToken(getUserByEmail(body.getEmail()).getId());
-
-
-        try {
-            emailSender.sendEmail(body.getEmail(), "<h3>Thank you for register!</h3>\n" +
-                    "Please follow provided link to confirm registration\n" +
-                    "<a href=\"localhost:8080/xxltoken?command=confirm&token=" + token.getToken() + "\">localhost:8080/xxltoken?command=confirm&token=" + token.getToken() + "</a>", "Confirm registration on XXLBet");
-        } catch (MessagingException e) {
-            LOG.error("Something went wrong during sending email...", e);
-        }
 
         return userDao.getUserByEmail(body.getEmail());
     }
@@ -108,7 +98,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmailAndPassword(String email, String password) {
-        String encryptedPassword = CryptoUtils.encrypt(password, PropertyLoader.getInstance().getStringProperty(XxlBetConstants.PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
+        String encryptedPassword = CryptoUtils.encrypt(password, PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
                 .orElseThrow(() -> new PropertyNotFoundException("Can't find secret key property!")));
 
         return userDao.getUserByEmailAndPassword(email, encryptedPassword);

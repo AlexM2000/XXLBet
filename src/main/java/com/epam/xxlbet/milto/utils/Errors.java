@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toMap;
 /**
  * Contains info about encountered errors.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public class Errors {
     private List<Error> errors;

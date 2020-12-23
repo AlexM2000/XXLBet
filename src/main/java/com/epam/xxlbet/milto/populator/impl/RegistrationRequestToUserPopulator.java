@@ -4,6 +4,11 @@ import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 
+/**
+ * RegistrationRequestToUserPopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class RegistrationRequestToUserPopulator implements Populator<RegistrationRequest, User> {
     private static RegistrationRequestToUserPopulator instance;
 

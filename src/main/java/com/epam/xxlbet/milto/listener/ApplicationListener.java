@@ -15,9 +15,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import static java.util.concurrent.TimeUnit.HOURS;
 
 /**
- * ApplicationContext.
+ * ApplicationListener.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 @WebListener
 public class ApplicationListener implements ServletContextListener {

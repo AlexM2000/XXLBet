@@ -10,6 +10,11 @@ import java.util.UUID;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/**
+ * VerificationTokenServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class VerificationTokenServiceImpl implements VerificationTokenService {
     private static VerificationTokenServiceImpl instance;
     private VerificationTokenDao verificationTokenDao;
