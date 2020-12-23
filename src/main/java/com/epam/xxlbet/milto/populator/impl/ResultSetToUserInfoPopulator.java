@@ -29,6 +29,10 @@ public class ResultSetToUserInfoPopulator implements ResultSetPopulator<ResultSe
     private ResultSetToUserInfoPopulator() { }
 
     public static ResultSetToUserInfoPopulator getInstance() {
+        if (instance == null) {
+            instance = new ResultSetToUserInfoPopulator();
+        }
+
         return instance;
     }
 

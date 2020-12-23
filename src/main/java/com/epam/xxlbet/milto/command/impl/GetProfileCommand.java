@@ -29,7 +29,7 @@ public class GetProfileCommand implements Command {
         UserInfo userInfo = userInfoService.getUserInfoByEmail((String) request.getSessionAttribute("login"));
 
         request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail(), userInfo.getPhoneNumber()));
-        request.setAttribute("user", userInfo);
+        request.setAttribute("userInfo", userInfo);
 
         return CommandResult.createForwardCommandResult(PROFILE_PAGE);
     }

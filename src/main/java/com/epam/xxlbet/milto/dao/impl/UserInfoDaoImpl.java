@@ -17,11 +17,11 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_INFO_BY_EM
 
 public class UserInfoDaoImpl extends AbstractDao implements UserInfoDao {
     private static UserInfoDaoImpl instance;
-    private ResultSetPopulator<ResultSet, UserInfo> populator;
+    private final ResultSetPopulator<ResultSet, UserInfo> populator;
 
     private UserInfoDaoImpl() {
         super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USER_INFO);
-        populator = ResultSetToUserInfoPopulator.getInstance();
+        this.populator = ResultSetToUserInfoPopulator.getInstance();
     }
 
     public static UserInfoDaoImpl getInstance() {
@@ -67,6 +67,8 @@ public class UserInfoDaoImpl extends AbstractDao implements UserInfoDao {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                getLogger().debug(String.valueOf(resultSet));
+                getLogger().debug(String.valueOf(populator));
                 userInfo = populator.populate(resultSet);
             }
         } catch (final InterruptedException | SQLException e) {
