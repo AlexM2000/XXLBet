@@ -4,6 +4,11 @@ import com.epam.xxlbet.milto.domain.Opponent;
 
 import java.util.List;
 
+/**
+ * OpponentsDao.
+ *
+ * @author Aliaksei Milto
+ */
 public interface OpponentsDao {
     List<Opponent> getOpponentsByMatch(long matchId);
     Opponent createOpponent(long id, String name);

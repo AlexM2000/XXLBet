@@ -17,11 +17,16 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MatchesDaoImpl extends AbstractDao implements MatchesDao {
+/**
+ * MatchesDaoImpl.
+ *
+ * @author Aliaksei Milto
+ */
+public class MatchesDaoImpl extends AbstractDao<Match> implements MatchesDao {
     private static MatchesDaoImpl instance;
 
     private MatchesDaoImpl() {
-        super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_MATCHES);
+        super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_MATCHES, null);
     }
 
     public static MatchesDaoImpl getInstance() {

@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.domain.Bet;
 
 import java.util.List;
 
+
 public interface BetsDao {
     List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
     List<Bet> getBetsHistoryByUser(String email, String phoneNumber);

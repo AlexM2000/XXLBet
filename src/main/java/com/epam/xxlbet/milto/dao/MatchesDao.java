@@ -6,6 +6,11 @@ import com.epam.xxlbet.milto.domain.Match;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * MatchesDao.
+ *
+ * @author Aliaksei Milto
+ */
 public interface MatchesDao {
     List<Match> getMatchesByTournament(long tournamentId);
     List<Bet> getMatchesAfter(LocalDateTime time);

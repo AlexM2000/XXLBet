@@ -16,11 +16,16 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_TOKEN_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOKEN_BY_TOKEN_PROPERTY_ID;
 
+/**
+ * VerificationTokenDaoImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class VerificationTokenDaoImpl extends AbstractDao implements VerificationTokenDao {
     private static VerificationTokenDaoImpl instance;
 
     private VerificationTokenDaoImpl() {
-        super(FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS);
+        super(FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS, null);
     }
 
     public static VerificationTokenDaoImpl getInstance() {

@@ -2,6 +2,11 @@ package com.epam.xxlbet.milto.dao;
 
 import com.epam.xxlbet.milto.domain.User;
 
+/**
+ * UserDao.
+ *
+ * @author Aliaksei Milto
+ */
 public interface UserDao {
     User getUserById(long id);
     User getUserByEmail(String email);

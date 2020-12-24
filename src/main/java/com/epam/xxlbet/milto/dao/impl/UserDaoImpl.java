@@ -1,23 +1,29 @@
 package com.epam.xxlbet.milto.dao.impl;
 
-import com.epam.xxlbet.milto.populator.ResultSetPopulator;
-import com.epam.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
-import com.epam.xxlbet.milto.utils.XxlBetConstants;
 import com.epam.xxlbet.milto.dao.UserDao;
 import com.epam.xxlbet.milto.domain.User;
+import com.epam.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_FROM_USER_PROPERTY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_USER_PROPERTY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_AND_PASSWORD_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_PROPERTY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_ID_PROPERTY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_PROPERTY_ID;
 
-public class UserDaoImpl extends AbstractDao implements UserDao {
+/**
+ * UserDaoImpl.
+ *
+ * @author alexm2000
+ */
+public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static UserDaoImpl instance;
-    private ResultSetPopulator<ResultSet, User> populator;
 
     private UserDaoImpl() {
-        super(XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS);
-        populator = ResultSetToUserPopulator.getInstance();
+        super(FILE_WITH_QUERIES_FOR_TABLE_USERS, ResultSetToUserPopulator.getInstance());
     }
 
     public static UserDaoImpl getInstance() {
@@ -30,180 +36,43 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User getUserById(final long id) {
-        User user = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_ID_PROPERTY_ID));
-
-            statement.setLong(1, id);
-
-            ResultSet set = statement.executeQuery();
-
-
-            while (set.next()) {
-                user = populator.populate(set);
-            }
-
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " getUserById...", e);
-        }
-
-        return user;
+        return executeForSingleResult(SELECT_BY_ID_PROPERTY_ID, id);
     }
 
     @Override
     public User getUserByEmail(final String email) {
-        User user = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_EMAIL_PROPERTY_ID));
-
-            statement.setString(1, email);
-
-            ResultSet set = statement.executeQuery();
-
-            while (set.next()) {
-                user = populator.populate(set);
-            }
-
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " getUserByEmail...", e);
-        }
-
-        return user;
+        return executeForSingleResult(SELECT_BY_EMAIL_PROPERTY_ID, email);
     }
 
     @Override
     public User getUserByPhoneNumber(final String phoneNumber) {
-        User user = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_PHONENUMBER_ID));
-
-            statement.setString(1, phoneNumber);
-
-            ResultSet set = statement.executeQuery();
-
-
-            while (set.next()) {
-                populator.populate(set);
-            }
-
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " getUserById...", e);
-        }
-
-        return user;
+        return executeForSingleResult(SELECT_BY_PHONENUMBER_ID, phoneNumber);
     }
 
     @Override
     public User getUserByEmailAndPassword(final String email, final String password) {
-        User user = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_EMAIL_AND_PASSWORD_ID));
-
-            statement.setString(1, email);
-            statement.setString(2, password);
-
-            ResultSet set = statement.executeQuery();
-
-
-            while (set.next()) {
-                user = populator.populate(set);
-            }
-
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " getUserByEmailAndPassword...", e);
-        }
-
-        return user;
+        return executeForSingleResult(SELECT_BY_EMAIL_AND_PASSWORD_ID, email, password);
     }
 
     @Override
     public User getUserByPhoneNumberAndPassword(final String phoneNumber, final String password) {
-        User user = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID));
-
-            statement.setString(1, phoneNumber);
-            statement.setString(2, password);
-
-            ResultSet set = statement.executeQuery();
-
-
-            while (set.next()) {
-                user = populator.populate(set);
-            }
-
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " getUserByPhoneNumberAndPassword...", e);
-        }
-
-        return user;
+        return executeForSingleResult(SELECT_BY_PHONENUMBER_AND_PASSWORD_ID, phoneNumber, password);
     }
 
     @Override
     public User createUser(final User user) {
-        User newUser = null;
-
-        try(final Connection connection = getConnectionPool().getConnection()){
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.INSERT_INTO_USER_PROPERTY_ID));
-
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPhoneNumber());
-            statement.setString(3, user.getPassword());
-            statement.setBoolean(4, user.getEnabled());
-
-            statement.execute();
-            statement.close();
-
-            newUser = getUserByEmail(user.getEmail());
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " createUser...", e);
-        }
-
-        return newUser;
+        execute(INSERT_INTO_USER_PROPERTY_ID, user.getEmail(), user.getPhoneNumber(), user.getPassword(), user.getEnabled());
+        return getUserByEmail(user.getEmail());
     }
 
     @Override
     public void deleteUser(final String email, final String phoneNumber) {
-        try(final Connection connection = getConnectionPool().getConnection()){
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.DELETE_FROM_USER_PROPERTY_ID));
-
-            statement.setString(1, email);
-            statement.setString(2, phoneNumber);;
-
-            statement.execute();
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " deleteUser...", e);
-        }
+        executeUpdate(DELETE_FROM_USER_PROPERTY_ID, email, phoneNumber);
     }
 
     @Override
     public User updateUser(User user) {
-        try(final Connection connection = getConnectionPool().getConnection()){
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.UPDATE_USER_PROPERTY_ID));
-
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPhoneNumber());
-            statement.setString(3, user.getPassword());
-            statement.setBoolean(4, user.getEnabled());
-            statement.setLong(5, user.getId());
-
-            statement.executeUpdate();
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " updateUser...", e);
-        }
-
+        executeUpdate(UPDATE_USER_PROPERTY_ID, user.getEmail(), user.getPhoneNumber(), user.getPassword(), user.getEnabled(), user.getId());
         return getUserById(user.getId());
     }
 }

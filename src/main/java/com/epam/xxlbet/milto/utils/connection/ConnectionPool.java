@@ -26,10 +26,10 @@ public final class ConnectionPool {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionPool.class);
     private static final int DEFAULT_CONNECTION_POOL = 5;
     private static final int DEFAULT_CONNECTION_TIMEOUT = 5;
-    private static volatile ConnectionPool instance;
+    private static ConnectionPool instance;
     private static final Lock LOCK = new ReentrantLock();
 
-    private PropertyLoader properties;
+    private PropertyLoader propertyLoader;
     private List<Connection> allConnections;
     private BlockingQueue<Connection> availableConnections;
     private Semaphore semaphore;
@@ -37,9 +37,9 @@ public final class ConnectionPool {
     private int timeout;
 
     private ConnectionPool() {
-        properties = PropertyLoader.getInstance();
+        propertyLoader = PropertyLoader.getInstance();
 
-        poolSize = properties.getDatabaseConnectionPool()
+        poolSize = propertyLoader.getDatabaseConnectionPool()
                 .orElseGet(() -> {
                     LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
                     return DEFAULT_CONNECTION_POOL;
@@ -64,7 +64,7 @@ public final class ConnectionPool {
 
         semaphore = new Semaphore(poolSize, true);
 
-        timeout = properties.getDatabaseConnectionTimeout()
+        timeout = propertyLoader.getDatabaseConnectionTimeout()
                 .orElseGet(() -> {
                     LOG.debug(format("Available connection timeout is not specified! Defaulting to %d seconds.", DEFAULT_CONNECTION_TIMEOUT));
                     return DEFAULT_CONNECTION_TIMEOUT;
@@ -73,16 +73,10 @@ public final class ConnectionPool {
     }
 
     public static ConnectionPool getInstance() {
-        ConnectionPool localInstance = instance;
-        if (localInstance == null) {
-            synchronized (ConnectionPool.class) {
-                localInstance = instance;
-                if (localInstance == null) {
-                    instance = localInstance = new ConnectionPool();
-                }
-            }
+        if (instance == null) {
+            instance = new ConnectionPool();
         }
-        return localInstance;
+        return instance;
     }
 
     public void closeAllConnections() throws SQLException {
