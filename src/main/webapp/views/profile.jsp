@@ -5,11 +5,12 @@
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <!DOCTYPE html>
 <html lang="en">
+<%@include file="/views/header.jsp"%>
 <head>
     <title><ut:locale_tag key="profile.title"/></title>
+    <script src="${pageContext.request.contextPath}/js/profile.js"></script>
 </head>
 <body>
-<%@include file="/views/header.jsp"%>
 <div class="container">
     <div class="row m-5">
         <div class="col-3 bg-light">
@@ -30,28 +31,22 @@
             <button id="CancelUploadProfileImage" style="display: none" onclick="cancel_display_upload_image()" class="btn-sm btn-info">Cancel</button>
             <button id="DisplayUploadImage" class="btn-sm btn-info" onclick="display_upload_image()">Change Image</button>
         </div>
+        <select id="betSelector" class="form-control form-control-lg" title=<ut:locale_tag key="profile.bets.title"/>>
+            <option value="win_user_bets"><ut:locale_tag key="profile.bets.win"/></option>
+            <option value="defeat_user_bets"><ut:locale_tag key="profile.bets.defeat"/></option>
+            <option value="all_user_bets"><ut:locale_tag key="profile.bets.all"/></option>
+        </select>
         <div class="col-9">
-            <table class="table table-striped">
+            <table id="betsTable" class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Topic</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Date issued</th>
+                    <th scope="col"><ut:locale_tag key="profile.match"/></th>
+                    <th scope="col"><ut:locale_tag key="profile.sum"/></th>
+                    <th scope="col"><ut:locale_tag key="profile.coefficient"/></th>
+                    <th scope="col"><ut:locale_tag key="profile.winning.sum"/></th>
                 </tr>
                 </thead>
-                <tbody>
-                <jstl:forEach var="article" items="${articles}">
-                <form id="articleInfo-${article.getId()}">
-                    <tr id="tr-${article.getId()}">
-                        <input type="hidden" name="id" value="${article.getId()}"/>
-                        <td name="topic"> <a href="articles/${article.getId()}"> ${article.getTopic()} </a></td>
-                        <td name="content"> ${article.getContent()} </td>
-                        <td> ${article.getDateIssued()} </td>
-                        <td><button type="button" class="btn btn-dark"
-                                    onclick="delete_article(${article.getId()})">Delete</button></td>
-                    </tr>
-                </form>
-                </jstl:forEach>
+                <tbody id="betsBody">
                 </tbody>
             </table>
         </div>

@@ -8,6 +8,8 @@ import com.epam.xxlbet.milto.service.MatchesService;
 
 import java.time.LocalDateTime;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
+
 /**
  * GetHomeCommand.
  *
@@ -26,6 +28,6 @@ public class GetHomeCommand extends AbstractCommand {
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {
         request.setAttribute("matches", matchesService.getIncompleteMatches());
         request.setAttribute("today", LocalDateTime.now());
-        return CommandResult.createForwardCommandResult(HOME_PAGE);
+        return createForwardCommandResult(HOME_PAGE);
     }
 }

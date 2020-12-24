@@ -5,6 +5,8 @@ import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
+
 /**
  * GetLoginPageCommand.
  *
@@ -15,6 +17,6 @@ public class GetLoginPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
-        return CommandResult.createForwardCommandResult(LOGIN_PAGE);
+        return createForwardCommandResult(LOGIN_PAGE);
     }
 }

@@ -27,6 +27,10 @@ public final class XxlBetConstants {
     public static final String FILE_WITH_QUERIES_FOR_TABLE_BETS = "queries_bets.properties";
     public static final String SELECT_INCOMPLETE_BETS_BY_USER_ID = "select.incomplete.bets.by.user";
     public static final String SELECT_BETS_BY_USER_ID = "select.bets.by.user";
+    public static final String SELECT_WINNING_BETS_ID = "select.winning.bets.by.user";
+    public static final String SELECT_DEFEAT_BETS_ID = "select.defeat.bets.by.user";
+    public static final String INSERT_INTO_BETS = "insert.into.bets";
+    public static final String SELECT_BET_BY_USER_ID = "select.bet.by.user_id";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_USERS = "queries_users.properties";
     public static final String INSERT_INTO_USER_PROPERTY_ID = "insert.into.user";
@@ -43,4 +47,8 @@ public final class XxlBetConstants {
     public static final String INSERT_TOKEN_PROPERTY_ID = "insert.into.verification-token";
     public static final String DELETE_EXPIRED_TOKENS_PROPERTY_ID = "delete.all.outdated";
     public static final String DELETE_USER_TOKEN_PROPERTY_ID = "delete.user.token";
+
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_OPPONENTS = "queries_opponents.properties";
+    public static final String SELECT_OPPONENTS_BY_ID = "select.opponent.by.id";
+    public static final String SELECT_OPPONENTS_FROM_MATCH = "select.opponents.from.match";
 }

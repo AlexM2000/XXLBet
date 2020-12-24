@@ -10,7 +10,8 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface OpponentsDao {
-    List<Opponent> getOpponentsByMatch(long matchId);
+    Opponent getOpponentById(long id);
+    List<Opponent> getOpponentsByMatchId(long matchId);
     Opponent createOpponent(long id, String name);
     Opponent adjustOpponentToMatch(long matchId, long coefficient);
     void delete(long id);

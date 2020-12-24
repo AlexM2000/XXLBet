@@ -13,6 +13,8 @@ import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 
 import java.io.IOException;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
+
 /**
  * PostLoginCommand.
  *
@@ -54,6 +56,6 @@ public class PostLoginCommand extends AbstractCommand {
             getLogger().error("Something went wrong during writing response...", e);
         }
 
-        return CommandResult.createWriteDirectlyToResponseCommandResult();
+        return createWriteDirectlyToResponseCommandResult();
     }
 }

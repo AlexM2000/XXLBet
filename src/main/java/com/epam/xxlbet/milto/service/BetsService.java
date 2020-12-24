@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.Bet;
+import com.epam.xxlbet.milto.requestbody.BetResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,4 +18,5 @@ public interface BetsService {
     List<Bet> getWinningBets(String email, String phoneNumber);
     List<Bet> getDefeatBets(String email, String phoneNumber);
     Bet createBet(long matchId, BigDecimal sum, long expectedWinnerId);
+    List<BetResponse> getBetsHistoryByUser(String email);
 }

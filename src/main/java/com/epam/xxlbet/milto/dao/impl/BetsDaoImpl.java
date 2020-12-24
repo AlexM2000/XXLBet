@@ -7,8 +7,11 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToBetPopulator;
 import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_BETS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_BETS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BETS_BY_USER_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_DEFEAT_BETS_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_BETS_BY_USER_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_WINNING_BETS_ID;
 
 /**
  * BetsDaoImpl.
@@ -41,22 +44,23 @@ public class BetsDaoImpl extends AbstractDao<Bet> implements BetsDao {
     }
 
     @Override
-    public List<Bet> getIncompleteBets(String email, String phoneNumber) {
-        return null;
-    }
-
-    @Override
-    public List<Bet> getWinningBets(String email, String phoneNumber) {
-        return null;
+    public List<Bet> getWinningBetsByUser(String email, String phoneNumber) {
+        return executeQuery(SELECT_WINNING_BETS_ID, email);
     }
 
     @Override
     public List<Bet> getDefeatBets(String email, String phoneNumber) {
-        return null;
+        return executeQuery(SELECT_DEFEAT_BETS_ID, email);
     }
 
     @Override
     public Bet createBet(Bet bet) {
-        return null;
+        execute(INSERT_INTO_BETS, bet.getMatchId(), bet.getSum(), bet.getResultId(), bet.getUserId());
+        return getBetByUserId(bet.getUserId());
+    }
+
+    @Override
+    public Bet getBetByUserId(Long userId) {
+        return executeForSingleResult(SELECT_BETS_BY_USER_ID, userId);
     }
 }

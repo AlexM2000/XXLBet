@@ -1,8 +1,8 @@
 package com.epam.xxlbet.milto.command;
 
-import static com.epam.xxlbet.milto.command.CommandType.FORWARD;
-import static com.epam.xxlbet.milto.command.CommandType.REDIRECT;
-import static com.epam.xxlbet.milto.command.CommandType.WRITE_DIRECT_TO_RESPONSE;
+import static com.epam.xxlbet.milto.command.CommandResultType.FORWARD;
+import static com.epam.xxlbet.milto.command.CommandResultType.REDIRECT;
+import static com.epam.xxlbet.milto.command.CommandResultType.WRITE_DIRECT_TO_RESPONSE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 /**
@@ -13,11 +13,11 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 public class CommandResult {
 
     private final String page;
-    private final CommandType commandType;
+    private final CommandResultType commandResultType;
 
-    private CommandResult(final String page, final CommandType commandType) {
+    private CommandResult(final String page, final CommandResultType commandResultType) {
         this.page = page;
-        this.commandType = commandType;
+        this.commandResultType = commandResultType;
     }
 
     public static CommandResult createRedirectCommandResult(String page) {
@@ -36,7 +36,7 @@ public class CommandResult {
         return page;
     }
 
-    public CommandType getCommandType() {
-        return commandType;
+    public CommandResultType getCommandResultType() {
+        return commandResultType;
     }
 }

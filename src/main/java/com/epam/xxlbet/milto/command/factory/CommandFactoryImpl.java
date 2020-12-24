@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.command.factory;
 
 import com.epam.xxlbet.milto.command.Command;
+import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
@@ -30,6 +31,7 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String GET_LOGIN_PAGE = "login_page";
     private static final String POST_LOGIN = "login";
     private static final String GET_PROFILE_PAGE = "profile";
+    private static final String GET_ALL_USER_BETS = "all_user_bets";
 
     private static CommandFactoryImpl instance;
 
@@ -73,6 +75,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_PROFILE_PAGE:
                 command = new GetProfileCommand(UserInfoServiceImpl.getInstance(), BetsServiceImpl.getInstance());
+                break;
+            case GET_ALL_USER_BETS:
+                command = new GetAllUserBetsCommand(BetsServiceImpl.getInstance());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command " + commandName);

@@ -9,6 +9,8 @@ import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.UserInfoService;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
+
 /**
  * GetProfileCommand.
  *
@@ -31,6 +33,6 @@ public class GetProfileCommand implements Command {
         request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail(), userInfo.getPhoneNumber()));
         request.setAttribute("userInfo", userInfo);
 
-        return CommandResult.createForwardCommandResult(PROFILE_PAGE);
+        return createForwardCommandResult(PROFILE_PAGE);
     }
 }

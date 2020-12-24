@@ -69,7 +69,7 @@ public class PostRegistrationCommand extends AbstractCommand {
 
             VerificationToken token = verificationTokenService.createToken(userService.getUserByEmail(body.getEmail()).getId());
 
-            String msgFile = MESSAGES_EN_PROPERTIES;
+            String msgFile;
             switch (getCurrentLocale(request)) {
                 default:
                 case "en":

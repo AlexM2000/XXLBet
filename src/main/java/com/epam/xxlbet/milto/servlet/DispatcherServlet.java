@@ -50,7 +50,7 @@ public class DispatcherServlet extends HttpServlet {
     private void dispatch(HttpServletRequest request, HttpServletResponse response, CommandResult commandResult)
             throws ServletException, IOException {
         String page = commandResult.getPage();
-        switch (commandResult.getCommandType()) {
+        switch (commandResult.getCommandResultType()) {
             case REDIRECT:
                 String contextPath = getServletContext().getContextPath();
                 response.sendRedirect(contextPath + page);
@@ -63,7 +63,7 @@ public class DispatcherServlet extends HttpServlet {
                 // do nothing, as in command answer already was written to response
                 break;
             default:
-                throw new IllegalArgumentException("Unknown command: " + commandResult.getCommandType());
+                throw new IllegalArgumentException("Unknown command: " + commandResult.getCommandResultType());
         }
     }
 }

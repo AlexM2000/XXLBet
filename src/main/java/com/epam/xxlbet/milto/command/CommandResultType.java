@@ -7,6 +7,6 @@ package com.epam.xxlbet.milto.command;
  *
  * @author Aliaksei Milto
  */
-public enum CommandType {
+public enum CommandResultType {
     REDIRECT, FORWARD, WRITE_DIRECT_TO_RESPONSE;
 }

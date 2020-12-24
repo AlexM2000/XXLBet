@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Opponent {
+    private Long id;
+    private Long matchId;
     private String name;
     private BigDecimal coefficient;
 
@@ -38,5 +40,21 @@ public class Opponent {
 
     public void setCoefficient(BigDecimal coefficient) {
         this.coefficient = coefficient;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(Long matchId) {
+        this.matchId = matchId;
     }
 }

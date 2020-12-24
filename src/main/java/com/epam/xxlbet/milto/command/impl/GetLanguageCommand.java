@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
+
 /**
  * GetLanguageCommand.
  *
@@ -29,6 +31,6 @@ public class GetLanguageCommand implements Command {
             LOG.error("Something went wrong during changing language", e);
         }
 
-        return CommandResult.createWriteDirectlyToResponseCommandResult();
+        return createWriteDirectlyToResponseCommandResult();
     }
 }

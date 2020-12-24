@@ -7,6 +7,8 @@ import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.UserService;
 
+import static com.epam.xxlbet.milto.command.CommandResult.createRedirectCommandResult;
+
 /**
  * PostConfirmRegistrationCommand.
  *
@@ -26,13 +28,13 @@ public class PostConfirmRegistrationCommand implements Command {
 
         switch (userService.confirmRegistration(token)) {
             case INVALID:
-                commandResult = CommandResult.createRedirectCommandResult("views/invalid.jsp");
+                commandResult = createRedirectCommandResult("views/invalid.jsp");
                 break;
             case EXPIRED:
-                commandResult = CommandResult.createRedirectCommandResult("views/expired.jsp");
+                commandResult = createRedirectCommandResult("views/expired.jsp");
                 break;
             case SUCCESS:
-                commandResult = CommandResult.createRedirectCommandResult("views/success.jsp");
+                commandResult = createRedirectCommandResult("views/success.jsp");
                 break;
             default:
                 throw new ServiceException("Something went wrong during registration confirmation...");
