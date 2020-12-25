@@ -1,12 +1,14 @@
 package com.epam.xxlbet.milto.requestbody;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class BetResponse {
     private String match;
     private BigDecimal sum;
     private BigDecimal coefficient;
     private BigDecimal winningSum;
+    private Date dateCreated;
 
     public BetResponse() {
     }
@@ -41,5 +43,13 @@ public class BetResponse {
 
     public void setCoefficient(BigDecimal coefficient) {
         this.coefficient = coefficient;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }

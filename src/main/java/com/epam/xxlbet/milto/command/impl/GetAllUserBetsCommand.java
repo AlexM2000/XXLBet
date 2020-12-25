@@ -11,6 +11,11 @@ import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
+/**
+ *  GetAllUserBetsCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetAllUserBetsCommand implements Command {
     private static final String PROFILE_PAGE = "/views/profile.jsp";
     private BetsService betsService;

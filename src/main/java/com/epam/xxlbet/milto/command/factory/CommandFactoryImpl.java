@@ -3,11 +3,13 @@ package com.epam.xxlbet.milto.command.factory;
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
 import com.epam.xxlbet.milto.command.impl.GetLoginPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
 import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
@@ -32,6 +34,8 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String POST_LOGIN = "login";
     private static final String GET_PROFILE_PAGE = "profile";
     private static final String GET_ALL_USER_BETS = "all_user_bets";
+    private static final String GET_WIN_USER_BETS = "win_user_bets";
+    private static final String GET_DEFEAT_USER_BETS = "defeat_user_bets";
 
     private static CommandFactoryImpl instance;
 
@@ -78,6 +82,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_ALL_USER_BETS:
                 command = new GetAllUserBetsCommand(BetsServiceImpl.getInstance());
+                break;
+            case GET_WIN_USER_BETS:
+                command = new GetWinUserBetsCommand(BetsServiceImpl.getInstance());
+                break;
+            case GET_DEFEAT_USER_BETS:
+                command = new GetDefeatUserBetsCommand(BetsServiceImpl.getInstance());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown command " + commandName);

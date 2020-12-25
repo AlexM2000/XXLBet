@@ -52,13 +52,17 @@ public class BetsServiceImpl implements BetsService {
     }
 
     @Override
-    public List<Bet> getWinningBets(String email, String phoneNumber) {
-        return null;
+    public List<BetResponse> getWinningBetsByUser(String email, String phoneNumber) {
+        List<BetResponse> betResponses = new ArrayList<>();
+        populateBetResponses(betsDao.getWinningBetsByUser(email, phoneNumber), betResponses);
+        return betResponses;
     }
 
     @Override
-    public List<Bet> getDefeatBets(String email, String phoneNumber) {
-        return null;
+    public List<BetResponse> getDefeatBetsByUser(String email, String phoneNumber) {
+        List<BetResponse> betResponses = new ArrayList<>();
+        populateBetResponses(betsDao.getDefeatBetsByUser(email, phoneNumber), betResponses);
+        return betResponses;
     }
 
     @Override
@@ -69,8 +73,11 @@ public class BetsServiceImpl implements BetsService {
     @Override
     public List<BetResponse> getBetsHistoryByUser(String email) {
         List<BetResponse> betResponses = new ArrayList<>();
-        List<Bet> bets = betsDao.getBetsHistoryByUser(email, null);
+        populateBetResponses(betsDao.getBetsHistoryByUser(email, null), betResponses);
+        return betResponses;
+    }
 
+    private void populateBetResponses(List<Bet> bets, List<BetResponse> betResponses) {
         for (Bet bet : bets) {
             BetResponse betResponse = new BetResponse();
             List<Opponent> opponents = opponentsService.getOpponentsByMatchId(bet.getMatchId());
@@ -79,9 +86,8 @@ public class BetsServiceImpl implements BetsService {
             betResponse.setCoefficient(coefficient);
             betResponse.setSum(bet.getSum());
             betResponse.setWinningSum(coefficient.multiply(bet.getSum()));
+            betResponse.setDateCreated(bet.getDateCreated());
             betResponses.add(betResponse);
         }
-
-        return betResponses;
     }
 }

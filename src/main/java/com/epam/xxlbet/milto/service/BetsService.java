@@ -15,8 +15,8 @@ public interface BetsService {
     List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
     List<Bet> getBetsHistoryByUser(String email, String phoneNumber);
     List<Bet> getIncompleteBets(String email, String phoneNumber);
-    List<Bet> getWinningBets(String email, String phoneNumber);
-    List<Bet> getDefeatBets(String email, String phoneNumber);
+    List<BetResponse> getWinningBetsByUser(String email, String phoneNumber);
+    List<BetResponse> getDefeatBetsByUser(String email, String phoneNumber);
     Bet createBet(long matchId, BigDecimal sum, long expectedWinnerId);
     List<BetResponse> getBetsHistoryByUser(String email);
 }

@@ -49,7 +49,7 @@ public class BetsDaoImpl extends AbstractDao<Bet> implements BetsDao {
     }
 
     @Override
-    public List<Bet> getDefeatBets(String email, String phoneNumber) {
+    public List<Bet> getDefeatBetsByUser(String email, String phoneNumber) {
         return executeQuery(SELECT_DEFEAT_BETS_ID, email);
     }
 
