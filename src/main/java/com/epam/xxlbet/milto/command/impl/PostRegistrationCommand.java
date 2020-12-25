@@ -86,9 +86,9 @@ public class PostRegistrationCommand extends AbstractCommand {
             try {
                 emailSender.sendEmail(
                         body.getEmail(),
-                        format(PropertyLoader.getInstance().getStringProperty(msgFile, "email.body")
+                        format(PropertyLoader.getInstance().getStringProperty(msgFile, "email.confirmregistration.body")
                                 .orElseThrow(() -> new PropertyNotFoundException(format("Can't find email body for %s locale", getCurrentLocale(request)))), token.getToken(), token.getToken()),
-                        PropertyLoader.getInstance().getStringProperty(msgFile, "email.subject")
+                        PropertyLoader.getInstance().getStringProperty(msgFile, "email.confirmregistration.subject")
                                 .orElseThrow(() -> new PropertyNotFoundException(format("Can't find email subject for %s locale", getCurrentLocale(request))))
                 );
             } catch (MessagingException e) {

@@ -42,6 +42,7 @@ public final class XxlBetConstants {
     public static final String SELECT_BY_EMAIL_AND_PASSWORD_ID = "select.user.by.email.and.password";
     public static final String SELECT_BY_PHONENUMBER_ID = "select.user.by.phonenumber";
     public static final String SELECT_BY_PHONENUMBER_AND_PASSWORD_ID = "select.user.by.phonenumber.and.password";
+    public static final String SELECT_UNCONFIRMED_USERS = "select.unconfirmed.users";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS = "queries_verification_tokens.properties";
     public static final String SELECT_TOKEN_BY_TOKEN_PROPERTY_ID = "select.token.by.token";

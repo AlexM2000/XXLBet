@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.EXPIRED;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.INVALID;
@@ -110,22 +111,26 @@ public class UserServiceImpl implements UserService {
         VerificationToken verificationToken = verificationTokenService.getToken(token);
 
         if (verificationToken != null) {
-            if (verificationToken.getExpiresAt().after(new Date())) {
-                User user = userDao.getUserById(verificationToken.getUserId());
+            User user = userDao.getUserById(verificationToken.getUserId());
+            if (new Date().before(verificationToken.getExpiresAt())) {
                 user.setEnabled(true);
                 userDao.updateUser(user);
-
+                verificationTokenService.deleteUserToken(verificationToken.getUserId());
                 result = SUCCESS;
             } else {
+                userDao.deleteUser(user.getEmail(), user.getPhoneNumber());
                 result = EXPIRED;
             }
-
-            verificationTokenService.deleteUserToken(verificationToken.getUserId());
         } else {
             result = INVALID;
         }
 
         return result;
+    }
+
+    @Override
+    public List<User> getAllUnconfirmedUsers() {
+        return userDao.getAllUnconfirmedUsers();
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.epam.xxlbet.milto.dao.UserDao;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
 
+import java.util.List;
+
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_UNCONFIRMED_USERS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_FROM_USER_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS;
@@ -13,6 +15,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_PROPER
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_ID_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_UNCONFIRMED_USERS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_PROPERTY_ID;
 
 /**
@@ -80,5 +83,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public void deleteAllUnconfirmedUsers() {
         executeUpdate(DELETE_ALL_UNCONFIRMED_USERS);
+    }
+
+    @Override
+    public List<User> getAllUnconfirmedUsers() {
+        return executeQuery(SELECT_UNCONFIRMED_USERS);
     }
 }

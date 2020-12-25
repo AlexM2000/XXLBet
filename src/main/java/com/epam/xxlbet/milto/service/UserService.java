@@ -4,6 +4,8 @@ import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 
+import java.util.List;
+
 /**
  * UserService.
  *
@@ -17,5 +19,6 @@ public interface UserService {
     User getUserByEmail(String email);
     User getUserByEmailAndPassword(String email, String password);
     ConfirmationResult confirmRegistration(String token);
+    List<User> getAllUnconfirmedUsers();
     void deleteAllUnconfirmedUsers();
 }

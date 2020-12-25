@@ -2,6 +2,8 @@ package com.epam.xxlbet.milto.dao;
 
 import com.epam.xxlbet.milto.domain.User;
 
+import java.util.List;
+
 /**
  * UserDao.
  *
@@ -17,4 +19,5 @@ public interface UserDao {
     void deleteUser(String email, String phoneNumber);
     User updateUser(User user);
     void deleteAllUnconfirmedUsers();
+    List<User> getAllUnconfirmedUsers();
 }
