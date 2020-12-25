@@ -17,4 +17,5 @@ public interface UserService {
     User getUserByEmail(String email);
     User getUserByEmailAndPassword(String email, String password);
     ConfirmationResult confirmRegistration(String token);
+    void deleteAllUnconfirmedUsers();
 }

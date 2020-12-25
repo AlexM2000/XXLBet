@@ -1,6 +1,6 @@
 package com.epam.xxlbet.milto.listener;
 
-import com.epam.xxlbet.milto.scheduled.DeleteOutdatedVerificationTokensJob;
+import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.epam.xxlbet.milto.utils.connection.ConnectionPool;
@@ -30,7 +30,8 @@ public class ApplicationListener implements ServletContextListener {
         ConnectionPool.getInstance();
         LOG.debug("Creating scheduled jobs...");
         executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(DeleteOutdatedVerificationTokensJob.getInstance(), 0, 12, HOURS);
+        // Delete users that did not confirm registration every 12 hours
+        executorService.scheduleAtFixedRate(DeleteUnconfirmedUsersJob.getInstance(), 0, 12, HOURS);
         LOG.debug("Created DeleteOutdatedVerificationTokensJob");
     }
 

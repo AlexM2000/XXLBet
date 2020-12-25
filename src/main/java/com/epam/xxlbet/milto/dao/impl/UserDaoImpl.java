@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.dao.UserDao;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
 
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_UNCONFIRMED_USERS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_FROM_USER_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_USERS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_USER_PROPERTY_ID;
@@ -74,5 +75,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public User updateUser(User user) {
         executeUpdate(UPDATE_USER_PROPERTY_ID, user.getEmail(), user.getPhoneNumber(), user.getPassword(), user.getEnabled(), user.getId());
         return getUserById(user.getId());
+    }
+
+    @Override
+    public void deleteAllUnconfirmedUsers() {
+        executeUpdate(DELETE_ALL_UNCONFIRMED_USERS);
     }
 }

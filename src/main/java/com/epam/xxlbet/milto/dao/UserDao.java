@@ -16,4 +16,5 @@ public interface UserDao {
     User createUser(User user);
     void deleteUser(String email, String phoneNumber);
     User updateUser(User user);
+    void deleteAllUnconfirmedUsers();
 }

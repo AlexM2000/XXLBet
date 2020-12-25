@@ -129,6 +129,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteAllUnconfirmedUsers() {
+        userDao.deleteAllUnconfirmedUsers();
+    }
+
+    @Override
     public User getUserById(Long id) {
         return userDao.getUserById(id);
     }
