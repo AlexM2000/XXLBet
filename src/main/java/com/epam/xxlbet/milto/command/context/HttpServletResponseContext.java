@@ -1,17 +1,16 @@
-package com.epam.xxlbet.milto.servlet;
+package com.epam.xxlbet.milto.command.context;
 
-import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-class HttpServletResponseContext implements ResponseContext {
+public class HttpServletResponseContext implements ResponseContext {
     private final HttpServletResponse response;
     private final ObjectMapper mapper;
 
-    HttpServletResponseContext(final HttpServletResponse response) {
+    public HttpServletResponseContext(final HttpServletResponse response) {
         this.response = response;
         this.mapper = new ObjectMapper();
     }

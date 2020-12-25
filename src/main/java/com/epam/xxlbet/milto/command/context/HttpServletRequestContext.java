@@ -1,14 +1,12 @@
-package com.epam.xxlbet.milto.servlet;
-
-import com.epam.xxlbet.milto.command.context.RequestContext;
+package com.epam.xxlbet.milto.command.context;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-class HttpServletRequestContext implements RequestContext {
+public class HttpServletRequestContext implements RequestContext {
     private final HttpServletRequest request;
 
-    HttpServletRequestContext(final HttpServletRequest request) {
+    public HttpServletRequestContext(final HttpServletRequest request) {
         this.request = request;
     }
 
