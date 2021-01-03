@@ -28,7 +28,7 @@ public class Errors {
 
     public Map<String, String> getErrors() {
         return errors.stream()
-                .collect(toMap(Error::getCode, Error::getFormattedMsg));
+                .collect(toMap(Error::getCode, Error::getFormattedAndLocalizedMsg));
     }
 
     public boolean hasErrors() {
@@ -55,7 +55,7 @@ public class Errors {
             this.args = args;
         }
 
-        String getFormattedMsg() {
+        String getFormattedAndLocalizedMsg() {
             LOG.debug("File {}", MESSAGES_FILE_NAME + locale + ".properties");
             return String.format(PropertyLoader.getInstance().getStringProperty(MESSAGES_FILE_NAME + locale + ".properties", code)
                     .orElseThrow(() -> new PropertyNotFoundException(ERROR_MSG + " " + code + " " + locale)), args);

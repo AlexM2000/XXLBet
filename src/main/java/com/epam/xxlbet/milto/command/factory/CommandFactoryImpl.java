@@ -60,7 +60,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new GetLoginPageCommand();
                 break;
             case POST_LOGIN:
-                command = new PostLoginCommand(UserServiceImpl.getInstance());
+                command = new PostLoginCommand(UserServiceImpl.getInstance(), UserInfoServiceImpl.getInstance());
                 break;
             case LANGUAGE_COMMAND:
                 command = new GetLanguageCommand();

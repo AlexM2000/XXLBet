@@ -17,6 +17,13 @@ public final class XxlBetConstants {
 
     public static final String SECRET_KEY = "xxl.bet.milto.security.secret-key";
 
+    public static final String ADMIN_ROLE = "admin";
+    public static final String CLIENT_ROLE = "client";
+    public static final String BOOKMAKER_ROLE = "bookmaker";
+
+    public static final String ACTIVE_STATUS = "active";
+    public static final String BANNED_STATUS = "banned";
+
     public static final String FILE_WITH_QUERIES_FOR_TABLE_USER_INFO = "queries_user_info.properties";
     public static final String INSERT_INTO_USER_INFO = "insert.into.user-info";
     public static final String SELECT_USER_INFO_BY_EMAIL = "select.from.user.info.by.email";
@@ -43,6 +50,12 @@ public final class XxlBetConstants {
     public static final String SELECT_BY_PHONENUMBER_ID = "select.user.by.phonenumber";
     public static final String SELECT_BY_PHONENUMBER_AND_PASSWORD_ID = "select.user.by.phonenumber.and.password";
     public static final String SELECT_UNCONFIRMED_USERS = "select.unconfirmed.users";
+
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_ROLES = "queries_roles.properties";
+    public static final String SELECT_USER_ROLE_BY_EMAIL = "select.role.from.user-info.by.email";
+
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_STATUSES = "queries_statuses.properties";
+    public static final String SELECT_USER_STATUS_BY_EMAIL = "select.status.from.user-info.by.email";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS = "queries_verification_tokens.properties";
     public static final String SELECT_TOKEN_BY_TOKEN_PROPERTY_ID = "select.token.by.token";

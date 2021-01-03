@@ -4,8 +4,12 @@ import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.User;
+import com.epam.xxlbet.milto.domain.UserInfo;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.requestbody.LoginRequest;
+import com.epam.xxlbet.milto.service.RoleService;
+import com.epam.xxlbet.milto.service.StatusService;
+import com.epam.xxlbet.milto.service.UserInfoService;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.ConfirmationValidator;
@@ -22,11 +26,20 @@ import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToR
  */
 public class PostLoginCommand extends AbstractCommand {
     private UserService userService;
+    private UserInfoService userInfoService;
+    private RoleService roleService;
+    private StatusService statusService;
     private Validator userNotExistsValidator;
     private Validator confirmationValidator;
 
-    public PostLoginCommand(UserService userService) {
+    public PostLoginCommand(
+            final UserService userService, final UserInfoService userInfoService,
+            final StatusService statusService, final RoleService roleService
+    ) {
         this.userService = userService;
+        this.userInfoService = userInfoService;
+        this.statusService = statusService;
+        this.roleService = roleService;
         this.userNotExistsValidator = UserNotExistsValidator.getInstance();
         this.confirmationValidator = ConfirmationValidator.getInstance();
     }
@@ -39,9 +52,12 @@ public class PostLoginCommand extends AbstractCommand {
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
             User user = userService.getUserByEmailAndPassword(loginRequest.getLogin(), loginRequest.getPassword());
+            UserInfo userInfo = userInfoService.getUserInfoByEmail(loginRequest.getLogin());
             if (user != null) {
                 request.setSessionAttribute("login", user.getEmail());
                 request.setSessionAttribute("user_id", user.getId());
+                request.setSessionAttribute("role", roleService.getUserRoleByEmail(user.getEmail()));
+                request.setSessionAttribute("status", statusService.getUserStatusByEmail(user.getEmail()));
             } else {
                 getErrors().remove(STATUS);
                 getErrors().put(STATUS, FAILED);

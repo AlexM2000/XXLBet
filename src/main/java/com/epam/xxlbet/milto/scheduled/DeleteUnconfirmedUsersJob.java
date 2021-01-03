@@ -39,7 +39,6 @@ public class DeleteUnconfirmedUsersJob implements Runnable {
         return instance;
     }
 
-    // Should have stored language inside user for i18n, but i'm lazy.
     @Override
     public void run() {
         List<User> unconfirmedUsers = userService.getAllUnconfirmedUsers();
