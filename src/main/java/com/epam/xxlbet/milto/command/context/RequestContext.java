@@ -8,4 +8,5 @@ public interface RequestContext {
     void setSessionAttribute(String key, Object value);
     Cookie[] getCookies();
     Object getSessionAttribute(String key);
+    void invalidateSession();
 }

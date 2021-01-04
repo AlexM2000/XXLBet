@@ -46,17 +46,11 @@ public final class PropertyLoader {
     }
 
     public static PropertyLoader getInstance() {
-        PropertyLoader localInstance = instance;
-        if (localInstance == null) {
-            synchronized (PropertyLoader.class) {
-                localInstance = instance;
-                if (localInstance == null) {
-                    instance = localInstance = new PropertyLoader();
-
-                }
-            }
+        if (instance == null) {
+            instance = new PropertyLoader();
         }
-        return localInstance;
+
+        return instance;
     }
 
     /**

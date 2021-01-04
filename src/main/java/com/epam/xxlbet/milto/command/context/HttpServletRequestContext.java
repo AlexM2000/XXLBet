@@ -34,4 +34,9 @@ public class HttpServletRequestContext implements RequestContext {
     public Object getSessionAttribute(String key) {
         return request.getSession().getAttribute(key);
     }
+
+    @Override
+    public void invalidateSession() {
+        request.getSession().invalidate();
+    }
 }

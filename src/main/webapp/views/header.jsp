@@ -25,13 +25,18 @@
                     <a class="nav-link" href="/articles/"></a>
                 </li>
                 <jstl:choose>
-                    <jstl:when test="${auth}">
+                    <jstl:when test="${sessionScope.login ne null}">
                         <li class="nav-item active">
                             <a class="nav-link" href="/xxlbet?command=profile"><ut:locale_tag key="header.profile"/></a>
                         </li>
-                        <jstl:if test="${admin}">
+                        <jstl:if test="${sessionScope.role.getName() eq \"admin\"}}">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/admin"><ut:locale_tag key="header.admin"/></a>
+                                <a class="nav-link" href="/xxlbet?command=admin_page"><ut:locale_tag key="header.admin"/></a>
+                            </li>
+                        </jstl:if>
+                        <jstl:if test="${sessionScope.role.getName() eq \"bookmaker\"}}">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/xxlbet?command=bookmaker_page"><ut:locale_tag key="header.bookmaker"/></a>
                             </li>
                         </jstl:if>
                         <li class="nav-item active">

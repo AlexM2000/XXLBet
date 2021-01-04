@@ -12,9 +12,12 @@ import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
+import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
+import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
+import com.epam.xxlbet.milto.service.impl.StatusServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserInfoServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 
@@ -36,6 +39,7 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String GET_ALL_USER_BETS = "all_user_bets";
     private static final String GET_WIN_USER_BETS = "win_user_bets";
     private static final String GET_DEFEAT_USER_BETS = "defeat_user_bets";
+    private static final String POST_LOGOUT = "logout";
 
     private static CommandFactoryImpl instance;
 
@@ -60,7 +64,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new GetLoginPageCommand();
                 break;
             case POST_LOGIN:
-                command = new PostLoginCommand(UserServiceImpl.getInstance(), UserInfoServiceImpl.getInstance());
+                command = new PostLoginCommand(UserServiceImpl.getInstance(), StatusServiceImpl.getInstance(), RoleServiceImpl.getInstance());
+                break;
+            case POST_LOGOUT:
+                command = new PostLogoutCommand();
                 break;
             case LANGUAGE_COMMAND:
                 command = new GetLanguageCommand();
