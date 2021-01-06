@@ -41,13 +41,11 @@ function registration() {
         };
 
         $.ajax({
-            url: '/xxlbet',
+            url: '/xxlbet?command=registration',
             type: 'POST',
+            contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: {
-                command: "registration",
-                body: data
-            },
+            data: JSON.stringify(data),
             success: function (dataFromServer) {
                 if(dataFromServer.status === 'verified'){
                     window.location.href = '/xxlbet?command=confirm_page';
@@ -88,13 +86,11 @@ function login() {
     };
 
     $.ajax({
-        url: '/xxlbet',
+        url: '/xxlbet?command=login',
         type: 'POST',
-        data: {
-            command: "login",
-            body: data
-        },
-        dateType: "json",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
         success: function (dataFromServer) {
             dataFromServer = JSON.parse(dataFromServer);
 

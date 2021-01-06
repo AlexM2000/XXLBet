@@ -2,7 +2,7 @@ package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.User;
-import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
+import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
 
 import java.util.List;
 

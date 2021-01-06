@@ -12,7 +12,7 @@ import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserInfoPopulator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserPopulator;
-import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
+import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.VerificationTokenService;
 import com.epam.xxlbet.milto.utils.PropertyLoader;

@@ -2,6 +2,8 @@ package com.epam.xxlbet.milto.command.context;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class HttpServletRequestContext implements RequestContext {
     private final HttpServletRequest request;
@@ -38,5 +40,11 @@ public class HttpServletRequestContext implements RequestContext {
     @Override
     public void invalidateSession() {
         request.getSession().invalidate();
+    }
+
+    @Override
+    public BufferedReader getReader() throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        return request.getReader();
     }
 }

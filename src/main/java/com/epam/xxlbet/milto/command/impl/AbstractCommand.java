@@ -2,8 +2,6 @@ package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.requestbody.LoginRequest;
-import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * AbstractCommand.
@@ -32,28 +30,11 @@ public abstract class AbstractCommand implements Command {
     protected <T> T getRequestBody(final RequestContext request, final Class<T> clazz) {
         T entity = null;
 
-        if (RegistrationRequest.class.equals(clazz)) {
-            RegistrationRequest registrationRequest = new RegistrationRequest();
-            registrationRequest.setEmail(request.getParameter("body[email]"));
-            registrationRequest.setPhoneNumber(request.getParameter("body[phoneNumber]"));
-            registrationRequest.setSurname(request.getParameter("body[surname]"));
-            registrationRequest.setName(request.getParameter("body[name]"));
-            registrationRequest.setSecondName(request.getParameter("body[secondName]"));
-            registrationRequest.setPassword(request.getParameter("body[password]"));
-            registrationRequest.setRepeatPassword(request.getParameter("body[repeatPassword]"));
-            try {
-                registrationRequest.setBirthDate(new SimpleDateFormat("YYYY-mm-dd").parse(request.getParameter("body[birthDate]")));
-            } catch (ParseException e) {
-                LOG.error("Error parsing date at getRequestBody...", e);
-            }
-            return (T) registrationRequest;
-        }
-
-        if (LoginRequest.class.equals(clazz)) {
-            LoginRequest loginRequest = new LoginRequest();
-            loginRequest.setLogin(request.getParameter("body[login]"));
-            loginRequest.setPassword(request.getParameter("body[password]"));
-            return (T) loginRequest;
+        try {
+            String body = request.getReader().lines().collect(Collectors.joining());
+            entity = getMapper().readValue(body, clazz);
+        } catch (IOException e) {
+            LOG.error("Something went wrong during reading " + clazz, e);
         }
 
         return entity;

@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
 
@@ -30,6 +31,9 @@ public class AuthorityFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        servletRequest.getParameterMap().forEach(
+                (key, value) -> LOG.debug(key + ", " + Arrays.toString(value))
+        );
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 

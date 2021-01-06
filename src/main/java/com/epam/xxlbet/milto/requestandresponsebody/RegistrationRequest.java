@@ -1,6 +1,7 @@
-package com.epam.xxlbet.milto.requestbody;
+package com.epam.xxlbet.milto.requestandresponsebody;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
@@ -10,14 +11,22 @@ import java.util.Date;
  * @author Aliaksei Milto
  */
 public class RegistrationRequest {
+    @JsonProperty("email")
     private String email;
+    @JsonProperty("phoneNumber")
     private String phoneNumber;
+    @JsonProperty("surname")
     private String surname;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("secondName")
     private String secondName;
+    @JsonProperty("password")
     private String password;
+    @JsonProperty("repeatPassword")
     private String repeatPassword;
-    @JsonFormat(pattern = "dd.mm.YYYY")
+    @JsonProperty("birthDate")
+    @JsonFormat(pattern = "YYYY-mm-dd")
     private Date birthDate;
 
     public RegistrationRequest() {

@@ -1,6 +1,8 @@
 package com.epam.xxlbet.milto.command.context;
 
 import javax.servlet.http.Cookie;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public interface RequestContext {
     void setAttribute(String key, Object value);
@@ -8,5 +10,6 @@ public interface RequestContext {
     void setSessionAttribute(String key, Object value);
     Cookie[] getCookies();
     Object getSessionAttribute(String key);
+    public BufferedReader getReader() throws IOException;
     void invalidateSession();
 }

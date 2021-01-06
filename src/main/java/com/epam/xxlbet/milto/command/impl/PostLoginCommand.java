@@ -5,7 +5,7 @@ import com.epam.xxlbet.milto.command.context.RequestContext;
 import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
-import com.epam.xxlbet.milto.requestbody.LoginRequest;
+import com.epam.xxlbet.milto.requestandresponsebody.LoginRequest;
 import com.epam.xxlbet.milto.service.RoleService;
 import com.epam.xxlbet.milto.service.StatusService;
 import com.epam.xxlbet.milto.service.UserService;

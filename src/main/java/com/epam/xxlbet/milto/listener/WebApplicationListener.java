@@ -34,7 +34,7 @@ public class WebApplicationListener implements ServletContextListener {
 
         // Delete users that did not confirm registration every 12 hours
         executorService.scheduleAtFixedRate(DeleteUnconfirmedUsersJob.getInstance(), 0, 12, HOURS);
-        
+
         LOG.debug("Created DeleteOutdatedVerificationTokensJob");
     }
 

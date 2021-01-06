@@ -6,7 +6,7 @@ import com.epam.xxlbet.milto.command.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.VerificationToken;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
-import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
+import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.VerificationTokenService;

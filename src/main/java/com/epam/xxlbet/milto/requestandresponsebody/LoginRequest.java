@@ -1,4 +1,6 @@
-package com.epam.xxlbet.milto.requestbody;
+package com.epam.xxlbet.milto.requestandresponsebody;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java representation of request body for PostLoginCommand.
@@ -6,7 +8,9 @@ package com.epam.xxlbet.milto.requestbody;
  * @author Aliaksei Milto
  */
 public class LoginRequest {
+    @JsonProperty("login")
     private String login;
+    @JsonProperty("password")
     private String password;
 
     public LoginRequest() {

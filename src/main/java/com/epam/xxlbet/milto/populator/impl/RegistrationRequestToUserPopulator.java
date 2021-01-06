@@ -2,7 +2,7 @@ package com.epam.xxlbet.milto.populator.impl;
 
 import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.domain.User;
-import com.epam.xxlbet.milto.requestbody.RegistrationRequest;
+import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
 
 /**
  * RegistrationRequestToUserPopulator.

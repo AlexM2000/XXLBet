@@ -22,6 +22,7 @@ public class HttpServletResponseContext implements ResponseContext {
 
     @Override
     public void writeJSONValue(Object value) throws IOException {
+        response.setContentType("application/json; charset=utf-8");
         mapper.writeValue(response.getWriter(), value);
     }
 
