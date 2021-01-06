@@ -4,7 +4,7 @@ import com.epam.xxlbet.milto.dao.BetsDao;
 import com.epam.xxlbet.milto.dao.impl.BetsDaoImpl;
 import com.epam.xxlbet.milto.domain.Bet;
 import com.epam.xxlbet.milto.domain.Opponent;
-import com.epam.xxlbet.milto.requestbody.BetResponse;
+import com.epam.xxlbet.milto.requestandresponsebody.BetResponse;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.OpponentsService;
 

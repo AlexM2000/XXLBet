@@ -49,22 +49,11 @@
                 <tbody id="betsBody">
                 </tbody>
             </table>
+            <div id="pagesNums">
+
+            </div>
         </div>
     </div>
-    <form div class="m-5" id="newArticleForm" enctype="multipart/form-data" action="#" method="post">
-        <p><b>Topic</b></p>
-        <input type="text" class="form-control mb-3 mr-5 pr-5" id="topic" name="topic" placeholder="Enter the topic...">
-        <small class="text-danger" id="TopicErrorInformer"></small>
-        <p><b>New Post:</b></p>
-        <p id="articleP"><textarea class="form-text" rows="8" cols="140" id="article" name="article" placeholder="Write your text here..."></textarea></p>
-        <small class="text-danger" id="textAreaErrorInformer"></small>
-        <input style="display: none" type="file" multiple="multiple" name="file" id="file_into_textarea" class="btn-sm btn-info" value="Choose image"/>
-        <small class="text-danger" id="fileErrorInformer"></small>
-    </form>
-    <button style="display: none" id="insert_image_button" type="button" class="btn-sm btn-info" onclick="insert_image_into_textarea()">Upload</button>
-    <button style="display: none" id="cancel_insert_image_button" type="button" class="btn-sm btn-info" onclick="cancel_show_button__img_into_textarea()">Cancel</button>
-    <button id="show_insert_image" onclick="show_button__img_into_textarea()" type="button" class="btn-sm btn-info">Insert image</button>
-    <button type="button" onclick="insert_article()" class="my-3 btn btn-primary w-25 align-items-lg-center">Post</button>
 </div>
 </body>
 </html>

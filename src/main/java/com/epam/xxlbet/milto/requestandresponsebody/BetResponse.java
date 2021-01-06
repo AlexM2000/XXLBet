@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.requestbody;
+package com.epam.xxlbet.milto.requestandresponsebody;
 
 import java.math.BigDecimal;
 import java.util.Date;

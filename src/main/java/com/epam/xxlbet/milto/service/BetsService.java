@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.Bet;
-import com.epam.xxlbet.milto.requestbody.BetResponse;
+import com.epam.xxlbet.milto.requestandresponsebody.BetResponse;
 
 import java.math.BigDecimal;
 import java.util.List;

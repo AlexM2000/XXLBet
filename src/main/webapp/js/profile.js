@@ -1,9 +1,10 @@
-function getBets(command) {
+function getBets(command, page) {
     $.ajax({
         url: "/xxlbet",
         type: "GET",
         data: {
-            command: command
+            command: command,
+            page: page
         },
         success: function (dataFromServer) {
             dataFromServer = JSON.parse(dataFromServer);
@@ -25,9 +26,11 @@ function getBets(command) {
 $(document).ready(function() {
 
     document.getElementById("betSelector").addEventListener('change', function (ev) {
-            getBets(ev.target.value)
+            getBets(ev.target.value, 1)
         }
     );
 
-    getBets("all_user_bets");
+
+
+    getBets("all_user_bets", 1);
 });
