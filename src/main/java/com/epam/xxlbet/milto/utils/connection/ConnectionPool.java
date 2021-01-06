@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.utils.connection;
 
+import com.epam.xxlbet.milto.exceptions.ConnectionPoolException;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,7 +92,7 @@ public final class ConnectionPool {
                 LOCK.lock();
                 return availableConnections.poll();
             } else {
-                throw new RuntimeException("Connection waiting timed out");
+                throw new ConnectionPoolException("Connection waiting timed out");
             }
         } finally {
             LOCK.unlock();
@@ -100,7 +101,7 @@ public final class ConnectionPool {
 
     public void releaseConnection(final Connection connection) {
         if (!allConnections.contains(connection)) {
-            throw new RuntimeException("Unknown connection");
+            throw new ConnectionPoolException("Unknown connection");
         }
         availableConnections.add(connection);
         semaphore.release();

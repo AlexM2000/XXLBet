@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -75,6 +76,11 @@ public final class PropertyLoader {
      */
     public void init(final String path) throws IOException {
         Properties properties = new Properties();
+
+        InputStream in = PropertyLoader.class.getResourceAsStream("/" + path);
+        if (in == null) {
+            throw new IOException("Can't find file /" + path);
+        }
 
         properties.load(new InputStreamReader(PropertyLoader.class.getResourceAsStream("/" + path), UTF_8));
 

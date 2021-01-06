@@ -38,7 +38,7 @@ public class Errors {
     /**
      * Contains info about error.
      *
-     * @author alexm2000
+     * @author Aliaksei Milto
      */
     private static class Error {
         private static final Logger LOG = LoggerFactory.getLogger(Error.class);

@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.validator;
+package com.milto.validator;
 
 
 import com.epam.xxlbet.milto.domain.User;
@@ -36,6 +36,8 @@ public class ConfirmationValidatorTest {
         user = new User();
         user.setEmail(TEST_MAIL);
         errors = new Errors();
+
+        // when
         when(service.getUserByEmail(TEST_MAIL)).thenReturn(user);
     }
 
@@ -45,6 +47,7 @@ public class ConfirmationValidatorTest {
 
         confirmationValidator.validate(user.getEmail(), errors, "ru");
 
+        // then
         assertTrue(errors.hasErrors());
         assertEquals("Пожалуйста, подтвердите регистрацию по ссылке в электронном письме", errors.getErrors().get("user.please.confirm.registration"));
     }
@@ -55,6 +58,7 @@ public class ConfirmationValidatorTest {
 
         confirmationValidator.validate(user.getEmail(), errors, "ru");
 
+        // then
         assertFalse(errors.hasErrors());
         assertNull(errors.getErrors().get("user.please.confirm.registration"));
     }
