@@ -27,20 +27,6 @@ import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
  * @author Aliaksei Milto
  */
 public class CommandFactoryImpl implements CommandFactory {
-    private static final String GET_HOME_COMMAND = "home";
-    private static final String LANGUAGE_COMMAND = "lang";
-    private static final String GET_REGISTRATION_PAGE = "registration_page";
-    private static final String POST_REGISTRATION_COMMAND = "registration";
-    private static final String GET_CONFIRM_PAGE = "confirm_page";
-    private static final String POST_CONFIRM_COMMAND = "confirm";
-    private static final String GET_LOGIN_PAGE = "login_page";
-    private static final String POST_LOGIN = "login";
-    private static final String GET_PROFILE_PAGE = "profile";
-    private static final String GET_ALL_USER_BETS = "all_user_bets";
-    private static final String GET_WIN_USER_BETS = "win_user_bets";
-    private static final String GET_DEFEAT_USER_BETS = "defeat_user_bets";
-    private static final String POST_LOGOUT = "logout";
-
     private static CommandFactoryImpl instance;
 
     private CommandFactoryImpl() { }

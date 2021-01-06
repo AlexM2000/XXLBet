@@ -2,7 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <%@include file="/views/header.jsp"%>
-</head>
 <body>
 <div class="container my-5">
     <form id="registration">

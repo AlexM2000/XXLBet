@@ -37,11 +37,6 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
     }
 
     @Override
-    public void deleteAllExpiredTokens() {
-        verificationTokenDao.deleteAllExpiredTokens();
-    }
-
-    @Override
     public VerificationToken createToken(final Long userId) {
         VerificationToken token = new VerificationToken();
         token.setToken(UUID.randomUUID().toString());

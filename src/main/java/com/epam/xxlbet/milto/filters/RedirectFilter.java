@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author Aliaksei Milto
  */
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/")
 public class RedirectFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

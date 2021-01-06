@@ -46,16 +46,7 @@ function registration() {
             dataType: "json",
             data: {
                 command: "registration",
-                body: {
-                    "email": email,
-                    "phoneNumber": phoneNumber,
-                    "surname": document.getElementById("InputSurName").value,
-                    "name": document.getElementById("InputName").value,
-                    "secondName": document.getElementById("InputSecondName").value,
-                    "password": document.getElementById("InputPassword").value,
-                    "repeatPassword": document.getElementById("InputRPassword").value,
-                    "birthDate": document.getElementById("InputBirthDate").value
-                }
+                body: data
             },
             success: function (dataFromServer) {
                 if(dataFromServer.status === 'verified'){

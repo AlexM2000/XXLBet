@@ -107,7 +107,7 @@ abstract class AbstractDao<T> {
         return LOG;
     }
 
-    protected PropertyLoader getPropertyLoader() {
+    private PropertyLoader getPropertyLoader() {
         return loader;
     }
 
@@ -124,7 +124,7 @@ abstract class AbstractDao<T> {
                 .orElseThrow(() -> new PropertyNotFoundException("Could not find query in properties!"));
     }
 
-    protected String getPropertiesFileWithQueriesName() {
+    private String getPropertiesFileWithQueriesName() {
         return propertiesFileWithQueriesName;
     }
 }

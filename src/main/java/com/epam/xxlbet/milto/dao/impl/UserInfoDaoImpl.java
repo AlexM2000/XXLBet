@@ -30,14 +30,14 @@ public class UserInfoDaoImpl extends AbstractDao<UserInfo> implements UserInfoDa
 
     @Override
     public UserInfo createNewUserInfo(UserInfo userInfo) {
-        execute(
+        executeUpdate(
                 INSERT_INTO_USER_INFO,
                 userInfo.getEmail(),
                 userInfo.getPhoneNumber(),
-                userInfo.getPhoneNumber(),
                 userInfo.getSurname(),
                 userInfo.getName(),
-                userInfo.getSecondName()
+                userInfo.getSecondName(),
+                userInfo.getBirthDate()
         );
 
         return getUserInfoByEmail(userInfo.getEmail());

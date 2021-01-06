@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_EXPIRED_TOKENS_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_USER_TOKEN_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_TOKEN_PROPERTY_ID;
@@ -83,18 +82,6 @@ public class VerificationTokenDaoImpl extends AbstractDao implements Verificatio
         }
 
         return neededToken;
-    }
-
-    @Override
-    public void deleteAllExpiredTokens() {
-        try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(DELETE_EXPIRED_TOKENS_PROPERTY_ID));
-
-            statement.execute();
-            statement.close();
-        } catch (final InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " deleteAllExpiredTokens...", e);
-        }
     }
 
     @Override

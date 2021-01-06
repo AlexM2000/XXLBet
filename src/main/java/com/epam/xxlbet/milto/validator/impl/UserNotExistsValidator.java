@@ -30,7 +30,7 @@ public class UserNotExistsValidator implements Validator {
     public void validate(Object target, Errors errors, String locale) {
         String email = (String) target;
 
-        if (!service.checkIfUserExists(email)) {
+        if (service.getUserByEmail(email) == null) {
             errors.reject("user.email.not.exists", locale, email);
         }
     }

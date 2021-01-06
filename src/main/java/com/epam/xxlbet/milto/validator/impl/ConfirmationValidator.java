@@ -33,7 +33,7 @@ public class ConfirmationValidator implements Validator {
 
         User user = service.getUserByEmail(email);
 
-        if (user != null && !user.getEnabled()) {
+        if (user != null && !user.isEnabled()) {
             errors.reject("user.please.confirm.registration", locale);
         }
     }

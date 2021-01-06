@@ -20,7 +20,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES
  *
  * @author Aliaksei Milto
  */
-public class DeleteUnconfirmedUsersJob implements Runnable {
+public final class DeleteUnconfirmedUsersJob implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(DeleteUnconfirmedUsersJob.class);
     private static DeleteUnconfirmedUsersJob instance;
     private UserService userService;

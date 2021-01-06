@@ -1,5 +1,10 @@
 package com.epam.xxlbet.milto.filters;
 
+import com.epam.xxlbet.milto.filters.authenticator.Authenticator;
+import com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,14 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LOGIN_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 
-@WebFilter(urlPatterns = "/xxlbet", filterName = "LoginFilter")
-public class LoginFilter implements Filter {
+@WebFilter(urlPatterns = "/xxlbet", filterName = "AuthorityFilter")
+public class AuthorityFilter implements Filter {
+    private static final Logger LOG = LoggerFactory.getLogger(AuthorityFilter.class);
+    private Authenticator authenticator;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        this.authenticator = AuthenticatorImpl.getInstance();
     }
 
     @Override
@@ -27,14 +33,12 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (GET_PROFILE_PAGE.equals(servletRequest.getParameter(COMMAND))) {
-            if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
-                response.sendRedirect("/xxlbet?command="+GET_LOGIN_PAGE);
-                return;
-            }
+        if (authenticator.hasAuthority(request.getSession(), request.getParameter(COMMAND))) {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } else {
+            LOG.debug("User has no permission to execute command " + request.getParameter(COMMAND));
+            response.sendRedirect("/views/no-authority.jsp");
         }
-
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

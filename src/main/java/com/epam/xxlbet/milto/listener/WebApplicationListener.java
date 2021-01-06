@@ -15,13 +15,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import static java.util.concurrent.TimeUnit.HOURS;
 
 /**
- * ApplicationListener.
+ * WebApplicationListener.
  *
  * @author Aliaksei Milto
  */
 @WebListener
-public class ApplicationListener implements ServletContextListener {
-    private static final Logger LOG = LoggerFactory.getLogger(ApplicationListener.class);
+public class WebApplicationListener implements ServletContextListener {
+    private static final Logger LOG = LoggerFactory.getLogger(WebApplicationListener.class);
     private ScheduledExecutorService executorService;
 
     @Override

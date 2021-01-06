@@ -1,9 +1,9 @@
 package com.epam.xxlbet.milto.domain;
 
 /**
- * Result of email registration confirmation: success, expired token or invalid token
+ * Result of email registration confirmation: success, expired token or invalid token.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public enum ConfirmationResult {
     SUCCESS, EXPIRED, INVALID

@@ -14,4 +14,13 @@
     <location>/views/error404.jsp</location>
   </error-page>
 
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>AuthorityFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
+
 </web-app>

@@ -29,7 +29,6 @@ import static com.epam.xxlbet.milto.domain.ConfirmationResult.EXPIRED;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.INVALID;
 import static com.epam.xxlbet.milto.domain.ConfirmationResult.SUCCESS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
-import static org.apache.commons.lang3.StringUtils.isBlank;
 
 /**
  * UserServiceImpl.
@@ -78,13 +77,6 @@ public class UserServiceImpl implements UserService {
         userInfoDao.createNewUserInfo(userInfo);
 
         return userDao.getUserByEmail(body.getEmail());
-    }
-
-    @Override
-    public boolean checkIfUserExists(String email) {
-        User user = userDao.getUserByEmail(email);
-
-        return user != null && !isBlank(user.getEmail());
     }
 
     @Override
