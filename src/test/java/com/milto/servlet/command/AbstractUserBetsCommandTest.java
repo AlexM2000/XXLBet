@@ -1,4 +1,4 @@
-package servlet.command;
+package com.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.context.HttpServletRequestContext;
 import com.epam.xxlbet.milto.command.context.HttpServletResponseContext;

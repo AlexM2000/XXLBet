@@ -1,4 +1,4 @@
-package servlet.command;
+package com.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
