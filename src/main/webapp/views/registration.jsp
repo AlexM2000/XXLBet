@@ -13,6 +13,7 @@
         <div class="form-group">
             <label for="InputPhoneNumber"><ut:locale_tag key="registration.phonenumber"/></label>
             <input type="text" name="phoneNumber" class="form-control" id="InputPhoneNumber" placeholder=<ut:locale_tag key="registration.phonenumber"/> />
+            <small class="text-info"><ut:locale_tag key="registration.phonenumber.format"/></small>
             <small class="text-danger" id="phoneErrorInformer"></small>
         </div>
         <div class="form-group">

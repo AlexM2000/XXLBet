@@ -17,7 +17,7 @@
 
     <function>
         <name>formatLocalDateTime</name>
-        <function-class>com.epam.xxlbet.milto.utils.FormatUtils</function-class>
+        <function-class>com.epam.xxlbet.milto.utils.DateUtils</function-class>
         <function-signature>java.lang.String formatLocalDateTime(java.time.LocalDateTime, java.lang.String)</function-signature>
     </function>
 

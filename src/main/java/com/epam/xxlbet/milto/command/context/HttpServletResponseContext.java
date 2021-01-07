@@ -17,6 +17,7 @@ public class HttpServletResponseContext implements ResponseContext {
 
     @Override
     public void writeValue(Object value) throws IOException {
+        response.setContentType("text/plain");
         response.getWriter().print(value);
     }
 

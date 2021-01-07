@@ -1,4 +1,4 @@
-package com.milto.filter.authentificator;
+package com.milto.filter.authenticator;
 
 import com.epam.xxlbet.milto.filters.authenticator.Authenticator;
 import com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl;

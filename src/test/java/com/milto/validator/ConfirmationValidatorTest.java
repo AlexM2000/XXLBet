@@ -5,6 +5,7 @@ import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.impl.ConfirmationValidator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +14,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -41,6 +45,11 @@ public class ConfirmationValidatorTest {
         when(service.getUserByEmail(TEST_MAIL)).thenReturn(user);
     }
 
+    @After
+    public void verifyCalls() {
+        verify(service, times(1)).getUserByEmail(TEST_MAIL);
+    }
+
     @Test
     public void shouldNotValidate_UserNotEnabled() {
         user.setEnabled(false);
@@ -49,6 +58,7 @@ public class ConfirmationValidatorTest {
 
         // then
         assertTrue(errors.hasErrors());
+        assertNotNull(errors.getErrors().get("user.please.confirm.registration"));
         assertEquals("Пожалуйста, подтвердите регистрацию по ссылке в электронном письме", errors.getErrors().get("user.please.confirm.registration"));
     }
 

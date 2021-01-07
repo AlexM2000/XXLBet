@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserService {
     User getUserById(Long id);
     User createNewUser(RegistrationRequest registrationRequest);
-    boolean checkIfUserExistsByPhoneNumber(String phoneNumber);
+    boolean isPhoneNumberExists(String phoneNumber);
     User getUserByEmail(String email);
     User getUserByEmailAndPassword(String email, String password);
     ConfirmationResult confirmRegistration(String token);

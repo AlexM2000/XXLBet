@@ -26,7 +26,7 @@ public class PhoneNumberExistsValidator implements Validator {
     public void validate(Object target, Errors errors, String locale) {
         String phoneNumber = (String) target;
 
-        if (userService.checkIfUserExistsByPhoneNumber(phoneNumber)) {
+        if (userService.isPhoneNumberExists(phoneNumber)) {
             errors.reject("user.with.phonenumber.exists", locale, phoneNumber);
         }
     }

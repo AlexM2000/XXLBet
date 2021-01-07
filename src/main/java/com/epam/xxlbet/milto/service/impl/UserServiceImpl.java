@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkIfUserExistsByPhoneNumber(String phoneNumber) {
+    public boolean isPhoneNumberExists(String phoneNumber) {
         return userDao.getUserByPhoneNumber(phoneNumber) != null;
     }
 
