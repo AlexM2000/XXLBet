@@ -19,6 +19,10 @@ public class PhoneNumberExistsValidator implements Validator {
     }
 
     public static PhoneNumberExistsValidator getInstance() {
+        if (instance == null) {
+            instance = new PhoneNumberExistsValidator();
+        }
+
         return instance;
     }
 

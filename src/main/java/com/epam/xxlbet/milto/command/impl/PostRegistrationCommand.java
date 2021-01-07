@@ -62,6 +62,7 @@ public class PostRegistrationCommand extends AbstractCommand {
         validate(body.getEmail(), getCurrentLocale(request), emailValidator);
         validate(body.getPassword(), getCurrentLocale(request), passwordValidator);
         validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);
+        validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberExistsValidator);
         validate(body.getEmail(), getCurrentLocale(request), userExistsValidater);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {

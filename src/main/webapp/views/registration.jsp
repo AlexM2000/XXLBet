@@ -4,7 +4,7 @@
 <%@include file="/views/header.jsp"%>
 <body>
 <div class="container my-5">
-    <form id="registration">
+    <div class="form-group">
         <div class="form-group">
             <label for="InputEmail"><ut:locale_tag key="registration.email"/></label>
             <input type="text" name="email" class="form-control" id="InputEmail" placeholder=<ut:locale_tag key="registration.email"/> />
@@ -47,7 +47,7 @@
             <input type="date" name="birthDate" id="InputBirthDate"/>
             <small class="text-danger" id="birthDateInformer"></small>
         </div>
-    </form>
+    </div>
     <button type="button" class="btn btn-primary" onclick="registration()"><ut:locale_tag key="registration.submit"/></button>
 </div>
 </body>

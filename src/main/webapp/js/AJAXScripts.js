@@ -61,9 +61,15 @@ function registration() {
                     if (dataFromServer['email.not.matches.regexp'] != null) {
                         $('#emailErrorInformer').text(dataFromServer['email.not.matches.regexp']);
                     }
-
-                    $('#phoneErrorInformer').text(dataFromServer['phonenumber.not.matches.regexp']);
-                    $('#passwordErrorInformer').text(dataFromServer['password.not.matches.regexp']);
+                    if (dataFromServer['phonenumber.not.matches.regexp'] != null) {
+                        $('#phoneErrorInformer').text();
+                    }
+                    if (dataFromServer['user.with.phonenumber.exists'] != null) {
+                        $('#phoneErrorInformer').text(dataFromServer['user.with.phonenumber.exists']);
+                    }
+                    if (dataFromServer['password.not.matches.regexp'] != null) {
+                        $('#passwordErrorInformer').text(dataFromServer['password.not.matches.regexp']);
+                    }
 
                     $('#surnameInformer').text(dataFromServer['field.is.empty'])
                     $('#nameInformer').text(dataFromServer['field.is.empty'])

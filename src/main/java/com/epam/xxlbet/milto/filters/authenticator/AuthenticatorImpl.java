@@ -21,6 +21,11 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
 import static java.util.Arrays.asList;
 
+/**
+ * AuthenticatorImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public final class AuthenticatorImpl implements Authenticator {
     private static AuthenticatorImpl instance;
 
