@@ -39,7 +39,7 @@ public class UserServiceImplTest {
     private Populator<RegistrationRequest, User> registrationToUserPopulator;
 
     @Mock
-    private cd .Populator<RegistrationRequest, UserInfo> registrationToUserInfoPopulator;
+    private Populator<RegistrationRequest, UserInfo> registrationToUserInfoPopulator;
 
     private User user;
     private UserInfo userInfo;
