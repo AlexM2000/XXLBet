@@ -1,4 +1,4 @@
-package com.milto.utils;
+package com.epam.xxlbet.milto.utils;
 
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import org.junit.Test;

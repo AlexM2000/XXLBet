@@ -1,4 +1,4 @@
-package com.milto.validator;
+package com.epam.xxlbet.milto.validator;
 
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.utils.Errors;

@@ -1,8 +1,8 @@
-package com.milto.servlet.command;
+package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
+import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,19 +19,19 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
- * GetDefeatUserBetsCommandTest.
+ * GetWinUserBetsCommandTest.
  *
  * @author Aliaksei Milto
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
+public class GetWinUserBetsCommandTest extends AbstractUserBetsCommandTest {
     @InjectMocks
-    private Command command = new GetDefeatUserBetsCommand(getMockBetsService());
+    private Command command = new GetWinUserBetsCommand(getMockBetsService());
 
     @Before
     public void setUp() {
         // when
-        when(getMockBetsService().getDefeatBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
+        when(getMockBetsService().getWinningBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
     }
 
     @Test

@@ -1,8 +1,8 @@
-package com.milto.servlet.command;
+package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
+import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,19 +19,19 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
- * GetWinUserBetsCommandTest.
+ * GetAllUserBetsCommandTest.
  *
  * @author Aliaksei Milto
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GetWinUserBetsCommandTest extends AbstractUserBetsCommandTest {
+public class GetAllUserBetsCommandTest extends AbstractUserBetsCommandTest {
     @InjectMocks
-    private Command command = new GetWinUserBetsCommand(getMockBetsService());
+    private Command command = new GetAllUserBetsCommand(getMockBetsService());
 
     @Before
     public void setUp() {
         // when
-        when(getMockBetsService().getWinningBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
+        when(getMockBetsService().getBetsHistoryByUser(SOME_LOGIN)).thenReturn(betResponses);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class GetWinUserBetsCommandTest extends AbstractUserBetsCommandTest {
         CommandResult commandResult = command.execute(requestContext, responseContext);
 
         // then
-        assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
+        assertEquals(commandResult.getCommandResultType(), WRITE_DIRECT_TO_RESPONSE);
         assertEquals("[{\"match\":\"team1 - team2\",\"sum\":300,\"coefficient\":1,\"winningSum\":300,\"dateCreated\":1607720400000}]", stringWriter.toString());
     }
 
@@ -55,7 +55,7 @@ public class GetWinUserBetsCommandTest extends AbstractUserBetsCommandTest {
         CommandResult commandResult = command.execute(requestContext, responseContext);
 
         // then
-        assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
+        assertEquals(commandResult.getCommandResultType(), WRITE_DIRECT_TO_RESPONSE);
         assertEquals("[]", stringWriter.toString());
     }
 }

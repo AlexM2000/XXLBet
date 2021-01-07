@@ -1,4 +1,4 @@
-package com.milto.validator;
+package com.epam.xxlbet.milto.validator;
 
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.impl.PasswordValidator;
