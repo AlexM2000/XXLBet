@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.utils.connection;
+package com.epam.xxlbet.milto.connection;
 
 import com.epam.xxlbet.milto.exceptions.ConnectionPoolException;
 import com.epam.xxlbet.milto.utils.PropertyLoader;

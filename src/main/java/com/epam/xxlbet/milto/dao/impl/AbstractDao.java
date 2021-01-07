@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.dao.impl;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
-import com.epam.xxlbet.milto.utils.connection.ConnectionPool;
+import com.epam.xxlbet.milto.connection.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

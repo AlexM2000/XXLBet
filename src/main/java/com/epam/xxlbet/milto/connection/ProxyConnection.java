@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.utils.connection;
+package com.epam.xxlbet.milto.connection;
 
 import java.sql.Array;
 import java.sql.Blob;

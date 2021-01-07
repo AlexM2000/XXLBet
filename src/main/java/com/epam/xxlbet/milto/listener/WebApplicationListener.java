@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.listener;
 import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.epam.xxlbet.milto.utils.connection.ConnectionPool;
+import com.epam.xxlbet.milto.connection.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
