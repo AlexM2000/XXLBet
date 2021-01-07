@@ -75,6 +75,9 @@ public class AuthenticatorTest {
         assertTrue(authenticator.hasAuthority(httpSession, GET_ALL_USER_BETS));
         assertTrue(authenticator.hasAuthority(httpSession, GET_WIN_USER_BETS));
         assertTrue(authenticator.hasAuthority(httpSession, GET_DEFEAT_USER_BETS));
+
+        assertFalse(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));
+        assertFalse(authenticator.hasAuthority(httpSession, GET_BOOKMAKER_PAGE));
     }
 
     @Test
@@ -84,6 +87,7 @@ public class AuthenticatorTest {
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));
+        assertFalse(authenticator.hasAuthority(httpSession, GET_BOOKMAKER_PAGE));
     }
 
     @Test
@@ -92,6 +96,7 @@ public class AuthenticatorTest {
         when(httpSession.getAttribute("role")).thenReturn("bookmaker");
 
         // then
+        assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));
         assertTrue(authenticator.hasAuthority(httpSession, GET_BOOKMAKER_PAGE));
     }
 }

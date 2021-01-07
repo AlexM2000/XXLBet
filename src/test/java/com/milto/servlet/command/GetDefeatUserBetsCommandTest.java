@@ -30,6 +30,7 @@ public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
 
     @Before
     public void setUp() {
+        // when
         when(getMockBetsService().getDefeatBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
     }
 
@@ -44,6 +45,7 @@ public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
 
         CommandResult commandResult = command.execute(requestContext, responseContext);
 
+        // then
         assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
         assertEquals("[{\"match\":\"team1 - team2\",\"sum\":300,\"coefficient\":1,\"winningSum\":300,\"dateCreated\":1607720400000}]", stringWriter.toString());
     }
@@ -52,6 +54,7 @@ public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
     public void shouldReturnEmptyResponse() throws ServiceException {
         CommandResult commandResult = command.execute(requestContext, responseContext);
 
+        // then
         assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
         assertEquals("[]", stringWriter.toString());
     }
