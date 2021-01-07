@@ -9,4 +9,5 @@ import com.epam.xxlbet.milto.domain.UserInfo;
  */
 public interface UserInfoService {
     UserInfo getUserInfoByEmail(String email);
+    UserInfo createNewUserInfo(UserInfo userInfo);
 }

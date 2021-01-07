@@ -30,4 +30,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo getUserInfoByEmail(String email) {
         return userInfoDao.getUserInfoByEmail(email);
     }
+
+    @Override
+    public UserInfo createNewUserInfo(UserInfo userInfo) {
+        return userInfoDao.createNewUserInfo(userInfo);
+    }
 }

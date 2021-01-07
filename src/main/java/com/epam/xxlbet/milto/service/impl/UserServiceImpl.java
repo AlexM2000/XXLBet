@@ -1,9 +1,7 @@
 package com.epam.xxlbet.milto.service.impl;
 
 import com.epam.xxlbet.milto.dao.UserDao;
-import com.epam.xxlbet.milto.dao.UserInfoDao;
 import com.epam.xxlbet.milto.dao.impl.UserDaoImpl;
-import com.epam.xxlbet.milto.dao.impl.UserInfoDaoImpl;
 import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.domain.UserInfo;
@@ -13,6 +11,7 @@ import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserInfoPopulator;
 import com.epam.xxlbet.milto.populator.impl.RegistrationRequestToUserPopulator;
 import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
+import com.epam.xxlbet.milto.service.UserInfoService;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.VerificationTokenService;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
@@ -40,13 +39,13 @@ public class UserServiceImpl implements UserService {
     private static UserServiceImpl instance;
     private VerificationTokenService verificationTokenService;
     private UserDao userDao;
-    private UserInfoDao userInfoDao;
+    private UserInfoService userInfoService;
     private Populator<RegistrationRequest, User> registrationToUserPopulator;
     private Populator<RegistrationRequest, UserInfo> registrationToUserInfoPopulator;
 
     private UserServiceImpl() {
         userDao = UserDaoImpl.getInstance();
-        userInfoDao = UserInfoDaoImpl.getInstance();
+        userInfoService = UserInfoServiceImpl.getInstance();
         verificationTokenService = VerificationTokenServiceImpl.getInstance();
         registrationToUserPopulator = RegistrationRequestToUserPopulator.getInstance();
         registrationToUserInfoPopulator = RegistrationRequestToUserInfoPopulator.getInstance();
@@ -74,7 +73,7 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = new UserInfo();
         registrationToUserInfoPopulator.populate(body, userInfo);
         userInfo.setBalance(new BigDecimal(0));
-        userInfoDao.createNewUserInfo(userInfo);
+        userInfoService.createNewUserInfo(userInfo);
 
         return userDao.getUserByEmail(body.getEmail());
     }
