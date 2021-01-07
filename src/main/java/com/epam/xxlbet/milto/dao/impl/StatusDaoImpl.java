@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToStatusPopulator;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_STATUSES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_STATUS_BY_EMAIL;
 
+/**
+ * StatusDaoImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class StatusDaoImpl extends AbstractDao<Status> implements StatusDao {
     private static StatusDaoImpl instance;
 

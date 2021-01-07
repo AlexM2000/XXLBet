@@ -5,6 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * HttpServletRequestContext.
+ *
+ * @author Aliaksei Milto
+ */
 public class HttpServletRequestContext implements RequestContext {
     private final HttpServletRequest request;
 

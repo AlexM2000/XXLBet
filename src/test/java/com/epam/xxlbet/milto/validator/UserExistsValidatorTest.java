@@ -18,6 +18,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * UserExistsValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserExistsValidatorTest {
     private static final String SOME_MAIL = "somemail";

@@ -10,6 +10,11 @@ import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * PhoneNumberValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 public class PhoneNumberValidatorTest {
     private static final String VALID_PHONE_1 = "375292159909";
     private static final String VALID_PHONE_2 = "80337130497";

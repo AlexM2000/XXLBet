@@ -21,7 +21,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_PROPERTY_I
 /**
  * UserDaoImpl.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static UserDaoImpl instance;

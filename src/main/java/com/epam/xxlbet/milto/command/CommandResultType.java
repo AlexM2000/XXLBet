@@ -1,8 +1,13 @@
 package com.epam.xxlbet.milto.command;
 
 /**
- * CommandType.
- * WRITE_DIRECT_TO_RESPONSE means, that json is written using print() or jackson
+ * CommandResultType.
+ *
+ * REDIRECT means that client will be redirected.
+ *
+ * FORWARD means that client will be forwarded.
+ *
+ * WRITE_DIRECT_TO_RESPONSE means, that anwser (json mostly) is written to response (not request.setAttribute...)
  * and is processed by ajax in frontend.
  *
  * @author Aliaksei Milto

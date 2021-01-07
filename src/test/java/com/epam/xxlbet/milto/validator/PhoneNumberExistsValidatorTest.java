@@ -19,6 +19,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * PhoneNumberValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class PhoneNumberExistsValidatorTest {
     private static final String TEST_PHONE_NUMBER = "SomePhoneNumber";

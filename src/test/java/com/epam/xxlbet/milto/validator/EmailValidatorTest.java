@@ -10,6 +10,11 @@ import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+/**
+ * EmailValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 public class EmailValidatorTest {
     private static final String VALID_MAIL_1 = "alexeymilto@gmail.com";
     private static final String VALID_MAIL_2 = "vlad1234@yandex.by";

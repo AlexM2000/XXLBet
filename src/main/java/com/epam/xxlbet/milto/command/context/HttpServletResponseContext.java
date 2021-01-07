@@ -6,6 +6,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * HttpServletResponseContext.
+ *
+ * @author Aliaksei Milto
+ */
+
 public class HttpServletResponseContext implements ResponseContext {
     private final HttpServletResponse response;
     private final ObjectMapper mapper;

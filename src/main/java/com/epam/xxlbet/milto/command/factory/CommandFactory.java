@@ -8,6 +8,7 @@ import com.epam.xxlbet.milto.command.Command;
  * @author Aliaksei Milto
  */
 public interface CommandFactory {
+    // Commands
     String COMMAND = "command";
     String GET_HOME_COMMAND = "home";
     String LANGUAGE_COMMAND = "lang";

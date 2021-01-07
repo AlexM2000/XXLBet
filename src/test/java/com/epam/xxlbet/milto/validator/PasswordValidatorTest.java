@@ -9,6 +9,11 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * PasswordValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 public class PasswordValidatorTest {
     private static final String VALID_PASSWORD_1 = "1234_Ya";
     private static final String VALID_PASSWORD_2 = "IWannaMore__2";

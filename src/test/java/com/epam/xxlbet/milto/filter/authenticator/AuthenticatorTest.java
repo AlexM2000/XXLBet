@@ -29,6 +29,11 @@ import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * AuthenticatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AuthenticatorTest {
     private Authenticator authenticator = AuthenticatorImpl.getInstance();

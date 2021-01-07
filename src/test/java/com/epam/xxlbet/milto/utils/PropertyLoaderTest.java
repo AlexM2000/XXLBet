@@ -1,6 +1,5 @@
 package com.epam.xxlbet.milto.utils;
 
-import com.epam.xxlbet.milto.utils.PropertyLoader;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -9,6 +8,11 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * PropertyLoaderValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 public class PropertyLoaderTest {
     private PropertyLoader propertyLoader = PropertyLoader.getInstance();
 

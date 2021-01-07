@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToRolePopulator;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_ROLES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_ROLE_BY_EMAIL;
 
+/**
+ * RoleDaoImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     private static RoleDaoImpl instance;
 

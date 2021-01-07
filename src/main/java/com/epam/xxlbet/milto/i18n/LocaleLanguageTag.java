@@ -13,7 +13,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 /**
- * CommandResult.
+ * LocaleLanguageTag.
  *
  * @author Aliaksei Milto
  */

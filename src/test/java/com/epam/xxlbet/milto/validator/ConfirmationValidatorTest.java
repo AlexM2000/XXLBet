@@ -22,6 +22,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * ConfirmationValidatorTest.
+ *
+ * @author Aliaksei Milto
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ConfirmationValidatorTest {
     private static final String TEST_MAIL = "somemail";
