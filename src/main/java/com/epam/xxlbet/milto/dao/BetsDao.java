@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface BetsDao {
     List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
-    List<Bet> getBetsHistoryByUser(String email, String phoneNumber);
-    List<Bet> getWinningBetsByUser(String email, String phoneNumber);
-    List<Bet> getDefeatBetsByUser(String email, String phoneNumber);
+    List<Bet> getBetsHistoryByUser(String email);
+    List<Bet> getWinningBetsByUser(String email);
+    List<Bet> getDefeatBetsByUser(String email);
     Bet createBet(Bet bet);
     Bet getBetByUserId(Long userId);
 }

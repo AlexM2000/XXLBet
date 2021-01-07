@@ -30,7 +30,7 @@ public class GetProfileCommand implements Command {
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         UserInfo userInfo = userInfoService.getUserInfoByEmail((String) request.getSessionAttribute("login"));
 
-        request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail(), userInfo.getPhoneNumber()));
+        request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail()));
         request.setAttribute("userInfo", userInfo);
 
         return createForwardCommandResult(PROFILE_PAGE);

@@ -42,26 +42,21 @@ public class BetsServiceImpl implements BetsService {
     }
 
     @Override
-    public List<Bet> getBetsHistoryByUser(String email, String phoneNumber) {
-        return betsDao.getBetsHistoryByUser(email, phoneNumber);
-    }
-
-    @Override
     public List<Bet> getIncompleteBets(String email, String phoneNumber) {
         return null;
     }
 
     @Override
-    public List<BetResponse> getWinningBetsByUser(String email, String phoneNumber) {
+    public List<BetResponse> getWinningBetsByUser(String email) {
         List<BetResponse> betResponses = new ArrayList<>();
-        populateBetResponses(betsDao.getWinningBetsByUser(email, phoneNumber), betResponses);
+        populateBetResponses(betsDao.getWinningBetsByUser(email), betResponses);
         return betResponses;
     }
 
     @Override
-    public List<BetResponse> getDefeatBetsByUser(String email, String phoneNumber) {
+    public List<BetResponse> getDefeatBetsByUser(String email) {
         List<BetResponse> betResponses = new ArrayList<>();
-        populateBetResponses(betsDao.getDefeatBetsByUser(email, phoneNumber), betResponses);
+        populateBetResponses(betsDao.getDefeatBetsByUser(email), betResponses);
         return betResponses;
     }
 
@@ -73,7 +68,7 @@ public class BetsServiceImpl implements BetsService {
     @Override
     public List<BetResponse> getBetsHistoryByUser(String email) {
         List<BetResponse> betResponses = new ArrayList<>();
-        populateBetResponses(betsDao.getBetsHistoryByUser(email, null), betResponses);
+        populateBetResponses(betsDao.getBetsHistoryByUser(email), betResponses);
         return betResponses;
     }
 

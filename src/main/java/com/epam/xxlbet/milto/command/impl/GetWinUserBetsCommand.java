@@ -12,7 +12,6 @@ import java.io.IOException;
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
 public class GetWinUserBetsCommand implements Command {
-    private static final String PROFILE_PAGE = "/views/profile.jsp";
     private BetsService betsService;
 
     public GetWinUserBetsCommand(final BetsService betsService) {
@@ -22,7 +21,7 @@ public class GetWinUserBetsCommand implements Command {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         try {
-            response.writeJSONValue(betsService.getWinningBetsByUser((String) request.getSessionAttribute("login"), null));
+            response.writeJSONValue(betsService.getWinningBetsByUser((String) request.getSessionAttribute("login")));
         } catch (IOException e) {
             throw new ServiceException(e);
         }

@@ -13,10 +13,9 @@ import java.util.List;
  */
 public interface BetsService {
     List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
-    List<Bet> getBetsHistoryByUser(String email, String phoneNumber);
     List<Bet> getIncompleteBets(String email, String phoneNumber);
-    List<BetResponse> getWinningBetsByUser(String email, String phoneNumber);
-    List<BetResponse> getDefeatBetsByUser(String email, String phoneNumber);
+    List<BetResponse> getWinningBetsByUser(String email);
+    List<BetResponse> getDefeatBetsByUser(String email);
     Bet createBet(long matchId, BigDecimal sum, long expectedWinnerId);
     List<BetResponse> getBetsHistoryByUser(String email);
 }
