@@ -1,9 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
-import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.BetsService;
 
@@ -16,7 +15,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToR
  *
  * @author Aliaksei Milto
  */
-public class GetAllUserBetsCommand implements Command {
+public class GetAllUserBetsCommand extends AbstractCommand {
     private static final String PROFILE_PAGE = "/views/profile.jsp";
     private BetsService betsService;
 

@@ -13,9 +13,9 @@ public class UserInfo {
     private Date birthDate;
     private LocalDateTime registrationDate;
     private BigDecimal balance;
-    private Long statusId;
+    private Integer statusId;
     private String profileImgPath;
-    private Long roleId;
+    private Integer roleId;
 
     public UserInfo() {
     }
@@ -84,11 +84,11 @@ public class UserInfo {
         this.balance = balance;
     }
 
-    public Long getStatusId() {
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(Long statusId) {
+    public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
 
@@ -100,11 +100,11 @@ public class UserInfo {
         this.profileImgPath = profileImgPath;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 }

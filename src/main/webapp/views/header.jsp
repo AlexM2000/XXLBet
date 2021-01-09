@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alex
-  Date: 11.12.2020
-  Time: 18:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@taglib prefix="ut" uri="/WEB-INF/mytags" %>
@@ -29,14 +22,14 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/xxlbet?command=profile"><ut:locale_tag key="header.profile"/></a>
                         </li>
-                        <jstl:if test="${sessionScope.role.getName() eq \"admin\"}}">
+                        <jstl:if test="${sessionScope.role.getName() == 'admin'}">
                             <li class="nav-item active">
                                 <a class="nav-link" href="/xxlbet?command=admin_page"><ut:locale_tag key="header.admin"/></a>
                             </li>
                         </jstl:if>
-                        <jstl:if test="${sessionScope.role.getName() eq \"bookmaker\"}}">
+                        <jstl:if test="${sessionScope.role.getName() == 'bookmaker'}">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/xxlbet?command=bookmaker_page"><ut:locale_tag key="header.bookmaker"/></a>
+                                <a class="nav-link" href="/xxlbet?command=bookmaker_page"><ut:locale_tag key="bookmaker-page.title"/></a>
                             </li>
                         </jstl:if>
                         <li class="nav-item active">
@@ -52,6 +45,9 @@
                         </li>
                     </jstl:otherwise>
                 </jstl:choose>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/xxlbet?command=home"><ut:locale_tag key="header.home"/></a>
+                </li>
             </ul>
         </div>
         <form id="search" action="" onsubmit="">

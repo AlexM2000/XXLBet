@@ -1,9 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
-import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToR
  *
  * @author Aliaksei Milto
  */
-public class GetLanguageCommand implements Command {
+public class GetLanguageCommand extends AbstractCommand {
     private static final Logger LOG = LoggerFactory.getLogger(GetLanguageCommand.class);
 
     @Override

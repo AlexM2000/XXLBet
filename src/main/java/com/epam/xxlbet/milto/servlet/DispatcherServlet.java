@@ -2,10 +2,10 @@ package com.epam.xxlbet.milto.servlet;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.HttpServletRequestContext;
-import com.epam.xxlbet.milto.command.context.HttpServletResponseContext;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.HttpServletRequestContext;
+import com.epam.xxlbet.milto.context.HttpServletResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.command.factory.CommandFactory;
 import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
@@ -32,6 +32,11 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        process(req, resp);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         process(req, resp);
     }
 

@@ -48,8 +48,8 @@ public class ResultSetToUserInfoPopulator implements ResultSetPopulator<ResultSe
         userInfo.setRegistrationDate(resultSet.getTimestamp(REGISTRATION_DATE_COLUMN_NAME).toLocalDateTime());
         userInfo.setBalance(resultSet.getBigDecimal(BALANCE_COLUMN_NAME));
         userInfo.setProfileImgPath(resultSet.getString(PROFILE_IMG_PATH_COLUMN_NAME));
-        userInfo.setStatusId(resultSet.getLong(STATUS_ID_COLUMN_NAME));
-        userInfo.setRoleId(resultSet.getLong(ROLE_ID_COLUMN_NAME));
+        userInfo.setStatusId((int) resultSet.getLong(STATUS_ID_COLUMN_NAME));
+        userInfo.setRoleId((int) resultSet.getLong(ROLE_ID_COLUMN_NAME));
         return userInfo;
     }
 }

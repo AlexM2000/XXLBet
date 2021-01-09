@@ -1,5 +1,7 @@
 package com.epam.xxlbet.milto.filters.authenticator;
 
+import com.epam.xxlbet.milto.domain.Role;
+
 import javax.servlet.http.HttpSession;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
@@ -17,7 +19,9 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.PUT_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
 import static java.util.Arrays.asList;
 
@@ -60,13 +64,16 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_ALL_USER_BETS:
             case GET_WIN_USER_BETS:
             case GET_DEFEAT_USER_BETS:
-                return httpSession.getAttribute("login") != null && httpSession.getAttribute("role") != null;
+                return httpSession.getAttribute("login") != null
+                        && httpSession.getAttribute("role") != null
+                        && !BANNED_STATUS.equals(httpSession.getAttribute("status"));
 
             case GET_ADMIN_PAGE:
-                return asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(httpSession.getAttribute("role"));
+                return asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 
             case GET_BOOKMAKER_PAGE:
-                return BOOKMAKER_ROLE.equals(httpSession.getAttribute("role"));
+            case PUT_CHANGE_USER_ROLE_AND_STATUS:
+                return BOOKMAKER_ROLE.equals(((Role) httpSession.getAttribute("role")).getName());
         }
     }
 }

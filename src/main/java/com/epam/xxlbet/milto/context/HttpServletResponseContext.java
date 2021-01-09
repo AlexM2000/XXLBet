@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.command.context;
+package com.epam.xxlbet.milto.context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

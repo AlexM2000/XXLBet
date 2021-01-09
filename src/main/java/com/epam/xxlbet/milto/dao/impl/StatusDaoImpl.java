@@ -6,6 +6,8 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToStatusPopulator;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_STATUSES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_STATUS_BY_EMAIL;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_STATUS_BY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_STATUS_BY_NAME;
 
 /**
  * StatusDaoImpl.
@@ -30,5 +32,15 @@ public class StatusDaoImpl extends AbstractDao<Status> implements StatusDao {
     @Override
     public Status getUserStatusByEmail(String email) {
         return executeForSingleResult(SELECT_USER_STATUS_BY_EMAIL, email);
+    }
+
+    @Override
+    public Status getUserStatusById(Long statusId) {
+        return executeForSingleResult(SELECT_USER_STATUS_BY_ID, statusId);
+    }
+
+    @Override
+    public Status getUserStatusByName(String name) {
+        return executeForSingleResult(SELECT_USER_STATUS_BY_NAME, name);
     }
 }

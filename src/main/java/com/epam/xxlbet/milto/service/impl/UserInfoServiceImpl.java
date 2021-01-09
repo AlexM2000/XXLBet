@@ -3,7 +3,13 @@ package com.epam.xxlbet.milto.service.impl;
 import com.epam.xxlbet.milto.dao.UserInfoDao;
 import com.epam.xxlbet.milto.dao.impl.UserInfoDaoImpl;
 import com.epam.xxlbet.milto.domain.UserInfo;
+import com.epam.xxlbet.milto.requestandresponsebody.AdminPageUserResponse;
+import com.epam.xxlbet.milto.service.RoleService;
+import com.epam.xxlbet.milto.service.StatusService;
 import com.epam.xxlbet.milto.service.UserInfoService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UserInfoServiceImpl.
@@ -12,10 +18,14 @@ import com.epam.xxlbet.milto.service.UserInfoService;
  */
 public class UserInfoServiceImpl implements UserInfoService {
     private static UserInfoServiceImpl instance;
+    private RoleService roleService;
+    private StatusService statusService;
     private UserInfoDao userInfoDao;
 
     private UserInfoServiceImpl() {
         userInfoDao = UserInfoDaoImpl.getInstance();
+        statusService = StatusServiceImpl.getInstance();
+        roleService = RoleServiceImpl.getInstance();
     }
 
     public static UserInfoServiceImpl getInstance() {
@@ -34,5 +44,27 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo createNewUserInfo(UserInfo userInfo) {
         return userInfoDao.createNewUserInfo(userInfo);
+    }
+
+    @Override
+    public UserInfo updateUserInfo(UserInfo userInfo) {
+        return userInfoDao.updateUserInfo(userInfo);
+    }
+
+    @Override
+    public List<AdminPageUserResponse> getAllUserInfoForAdminPage() {
+        List<UserInfo> userInfoList = userInfoDao.getAllUsers();
+        List<AdminPageUserResponse> userResponses = new ArrayList<>();
+
+        for (UserInfo userInfo : userInfoList) {
+            AdminPageUserResponse userResponse = new AdminPageUserResponse();
+            userResponse.setEmail(userInfo.getEmail());
+            userResponse.setPhoneNumber(userInfo.getPhoneNumber());
+            userResponse.setRole(roleService.getRoleById((long) userInfo.getRoleId()).getName());
+            userResponse.setStatus(statusService.getStatusById((long) userInfo.getStatusId()).getName());
+            userResponses.add(userResponse);
+        }
+
+        return userResponses;
     }
 }

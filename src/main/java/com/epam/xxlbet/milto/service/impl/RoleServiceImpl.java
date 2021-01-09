@@ -22,7 +22,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role getRoleById(Long roleId) {
+        return roleDao.getUserRoleById(roleId);
+    }
+
+    @Override
     public Role getUserRoleByEmail(String email) {
         return roleDao.getUserRoleByEmail(email);
+    }
+
+    @Override
+    public Role getRoleByName(String name) {
+        return roleDao.getRoleByName(name);
     }
 }

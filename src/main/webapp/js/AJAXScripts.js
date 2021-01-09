@@ -98,8 +98,6 @@ function login() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (dataFromServer) {
-            dataFromServer = JSON.parse(dataFromServer);
-
             if (dataFromServer.status === 'verified'){
                 window.location.href = '/xxlbet?command=profile';
             } else if (dataFromServer.status === 'failed') {
@@ -137,4 +135,14 @@ function languageSelector(language){
             alert('ERROR_ERROR!!!');
         }
     });
+}
+
+function out() {
+    $.ajax({
+        url: '/xxlbet?command=logout',
+        type: 'POST',
+        success: function() {
+            window.location.href = '/xxlbet?command=home';
+        }
+    })
 }

@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.Command;
-import com.epam.xxlbet.milto.command.context.RequestContext;
+import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.fasterxml.jackson.databind.ObjectMapper;

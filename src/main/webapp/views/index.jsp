@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@taglib prefix="mytags" uri="/WEB-INF/mytags" %>
-<%@include file="header.jsp"%>
+<%@include file="/views/header.jsp"%>
 <title><mytags:locale_tag key="home.title"/></title>
 </head>
 

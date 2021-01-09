@@ -1,9 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
-import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.BetsService;
 
@@ -11,7 +10,7 @@ import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
-public class GetWinUserBetsCommand implements Command {
+public class GetWinUserBetsCommand extends AbstractCommand {
     private BetsService betsService;
 
     public GetWinUserBetsCommand(final BetsService betsService) {

@@ -20,4 +20,5 @@ public interface UserService {
     ConfirmationResult confirmRegistration(String token);
     List<User> getAllUnconfirmedUsers();
     void deleteAllUnconfirmedUsers();
+
 }

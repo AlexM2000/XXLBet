@@ -25,6 +25,7 @@ public interface CommandFactory {
     String POST_LOGOUT = "logout";
     String GET_ADMIN_PAGE = "admin_page";
     String GET_BOOKMAKER_PAGE = "bookmaker_page";
+    String PUT_CHANGE_USER_ROLE_AND_STATUS = "change";
 
     Command createCommand(String commandName);
 

@@ -1,9 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
-import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.UserService;
 
@@ -14,7 +13,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createRedirectCommandR
  *
  * @author Aliaksei Milto
  */
-public class PostConfirmRegistrationCommand implements Command {
+public class PostConfirmRegistrationCommand extends AbstractCommand {
     private UserService userService;
 
     public PostConfirmRegistrationCommand(final UserService userService) {

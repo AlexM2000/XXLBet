@@ -1,8 +1,8 @@
 package com.epam.xxlbet.milto.command.impl;
 
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.command.context.RequestContext;
-import com.epam.xxlbet.milto.command.context.ResponseContext;
+import com.epam.xxlbet.milto.context.RequestContext;
+import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.VerificationToken;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
@@ -44,7 +44,7 @@ public class PostRegistrationCommand extends AbstractCommand {
     private EmailSender emailSender;
 
 
-    public PostRegistrationCommand(UserService userService) {
+    public PostRegistrationCommand(final UserService userService) {
         this.userService = userService;
         this.emailValidator = EmailValidator.getInstance();
         this.passwordValidator = PasswordValidator.getInstance();
