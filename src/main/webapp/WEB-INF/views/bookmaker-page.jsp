@@ -6,29 +6,29 @@
 <head>
     <title><ut:locale_tag key="bookmaker-page.title"/></title>
     <script src="${pageContext.request.contextPath}/js/bookmaker_page.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-style.css"/>
 </head>
 <body>
-        <table id="betsTable" class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col"><ut:locale_tag key="bookmaker-page.email"/></th>
-            <th scope="col"><ut:locale_tag key="bookmaker-page.phoneNumber"/></th>
-            <th scope="col"><ut:locale_tag key="bookmaker-page.role"/></th>
-            <th scope="col"><ut:locale_tag key="bookmaker-page.status"/></th>
-        </tr>
-        </thead>
-        <tbody id="betsBody">
+        <div id="userTable" class="div-table table table-striped">
+        <div class="div-table-row">
+            <div class="div-table-col"><ut:locale_tag key="bookmaker-page.email"/></div>
+            <div class="div-table-col"><ut:locale_tag key="bookmaker-page.phoneNumber"/></div>
+            <div class="div-table-col"><ut:locale_tag key="bookmaker-page.role"/></div>
+            <div class="div-table-col"><ut:locale_tag key="bookmaker-page.status"/></div>
+        </div>
+        <div>
             <jstl:forEach var="user" items="${users}">
-                <tr>
-                    <td>${user.getEmail()}</td>
-                    <td>${user.getPhoneNumber()}</td>
-                    <td>${user.getRole()}</td>
-                    <td>${user.getStatus()}</td>
-                </tr>
+                <div class="div-table-row">
+                    <div class="div-table-col">${user.getEmail()}</div>
+                    <div class="div-table-col">${user.getPhoneNumber()}</div>
+                    <div class="div-table-col">${user.getRole()}</div>
+                    <div class="div-table-col">${user.getStatus()}</div>
+                </div>
                 <div class="form-group">
                     <select id="InputRole" title=<ut:locale_tag key="bookmaker-page.role"/>>
                         <option selected value="client"><ut:locale_tag key="bookmaker-page.role.client"/></option>
                         <option value="admin"><ut:locale_tag key="bookmaker-page.role.admin"/></option>
+                        <option value="bookmaker"><ut:locale_tag key="bookmaker-page.role.bookmaker"/></option>
                     </select>
                     <select id="InputStatus" title=<ut:locale_tag key="bookmaker-page.status"/>>
                         <option selected value="active"><ut:locale_tag key="bookmaker-page.status.active"/></option>
@@ -37,7 +37,7 @@
                     <button id="changeDataButton" onclick=changeUserRoleAndStatus("${user.getEmail()}")><ut:locale_tag key="bookmaker-page.rolestatusbuttion"/></button>
                 </div>
             </jstl:forEach>
-        </tbody>
-        </table>
+        </div>
+        </div>
 </body>
 </html>

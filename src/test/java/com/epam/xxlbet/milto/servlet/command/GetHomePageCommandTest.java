@@ -2,13 +2,14 @@ package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
+import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.context.HttpServletRequestContext;
 import com.epam.xxlbet.milto.context.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
-import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.MatchesService;
+import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +17,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 import static com.epam.xxlbet.milto.command.CommandResultType.FORWARD;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * GetHomePageCommandTest.
@@ -30,9 +29,9 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class GetHomePageCommandTest {
-    private static final String EXPECTED_PAGE = "/views/index.jsp";
+    private static final String EXPECTED_PAGE = "/home";
 
-    private MatchesService matchesService = mock(MatchesService.class);
+    private MatchesService matchesService = MatchesServiceImpl.getInstance();
 
     private HttpServletRequest request = mock(HttpServletRequest.class);
 
@@ -47,9 +46,6 @@ public class GetHomePageCommandTest {
     public void setup() {
         requestContext = new HttpServletRequestContext(request);
         responseContext = new HttpServletResponseContext(response);
-
-        // when
-        when(matchesService.getIncompleteMatches()).thenReturn(new ArrayList<>());
     }
 
     @Test
