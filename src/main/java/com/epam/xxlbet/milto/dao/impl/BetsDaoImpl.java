@@ -18,7 +18,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_WINNING_BETS_ID
  *
  * @author Aliaksei Milto
  */
-public class BetsDaoImpl extends AbstractDao<Bet> implements BetsDao {
+public class BetsDaoImpl extends AbstractDaoImpl<Bet> implements BetsDao {
     private static BetsDaoImpl instance;
 
     private BetsDaoImpl() {

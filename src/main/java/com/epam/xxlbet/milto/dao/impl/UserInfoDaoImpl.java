@@ -17,7 +17,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_INFO;
  *
  * @author Aliaksei Milto
  */
-public class UserInfoDaoImpl extends AbstractDao<UserInfo> implements UserInfoDao {
+public class UserInfoDaoImpl extends AbstractDaoImpl<UserInfo> implements UserInfoDao {
     private static UserInfoDaoImpl instance;
 
     private UserInfoDaoImpl() {

@@ -63,6 +63,11 @@ public final class XxlBetConstants {
     public static final String SELECT_USER_STATUS_BY_ID = "select.status.by.id";
     public static final String SELECT_USER_STATUS_BY_NAME = "select.status.by.name";
 
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_SPORTS = "queries_sports.properties";
+    public static final String SELECT_ALL_SPORTS = "select.all.sports";
+    public static final String SELECT_SPORT_BY_NAME = "select.sport.by.name";
+    public static final String INSERT_INTO_SPORTS = "insert.into.sports";
+
     public static final String FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS = "queries_verification_tokens.properties";
     public static final String SELECT_TOKEN_BY_TOKEN_PROPERTY_ID = "select.token.by.token";
     public static final String INSERT_TOKEN_PROPERTY_ID = "insert.into.verification-token";

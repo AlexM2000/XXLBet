@@ -10,7 +10,7 @@
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <html>
 <head>
-    <title></title>
+    <title><ut:locale_tag key="admin-page.title"/></title>
 </head>
 <body>
 

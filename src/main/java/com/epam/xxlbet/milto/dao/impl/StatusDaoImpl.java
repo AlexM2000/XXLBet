@@ -14,7 +14,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_STATUS_BY_
  *
  * @author Aliaksei Milto
  */
-public class StatusDaoImpl extends AbstractDao<Status> implements StatusDao {
+public class StatusDaoImpl extends AbstractDaoImpl<Status> implements StatusDao {
     private static StatusDaoImpl instance;
 
     private StatusDaoImpl() {

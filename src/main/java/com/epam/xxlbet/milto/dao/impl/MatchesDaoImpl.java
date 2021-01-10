@@ -22,7 +22,7 @@ import java.util.Set;
  *
  * @author Aliaksei Milto
  */
-public class MatchesDaoImpl extends AbstractDao<Match> implements MatchesDao {
+public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao {
     private static MatchesDaoImpl instance;
 
     private MatchesDaoImpl() {

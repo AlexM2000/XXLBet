@@ -10,6 +10,10 @@
   <display-name>XXLBet</display-name>
   
   <servlet>
+    <servlet-name>admin</servlet-name>
+    <jsp-file>/WEB-INF/views/admin-page.jsp</jsp-file>
+  </servlet>
+  <servlet>
     <servlet-name>bookmaker</servlet-name>
     <jsp-file>/WEB-INF/views/bookmaker-page.jsp</jsp-file>
   </servlet>
@@ -50,6 +54,10 @@
     <jsp-file>/WEB-INF/views/success.jsp</jsp-file>
   </servlet>
   
+  <servlet-mapping>
+    <servlet-name>admin</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>bookmaker</servlet-name>
     <url-pattern>/bookmaker</url-pattern>

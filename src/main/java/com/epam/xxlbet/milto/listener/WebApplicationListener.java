@@ -32,7 +32,7 @@ public class WebApplicationListener implements ServletContextListener {
         LOG.debug("Creating scheduled jobs...");
         executorService = Executors.newSingleThreadScheduledExecutor();
 
-        // Delete users that did not confirm registration every 12 hours
+        // Every 12 hours delete users that did not confirm registration
         executorService.scheduleAtFixedRate(DeleteUnconfirmedUsersJob.getInstance(), 0, 12, HOURS);
 
         LOG.debug("Created DeleteOutdatedVerificationTokensJob");

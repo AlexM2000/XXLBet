@@ -15,7 +15,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_FROM_
  *
  * @author Aliaksei Milto
  */
-public class OpponentsDaoImpl extends AbstractDao<Opponent> implements OpponentsDao {
+public class OpponentsDaoImpl extends AbstractDaoImpl<Opponent> implements OpponentsDao {
     private static OpponentsDaoImpl instance;
 
     private OpponentsDaoImpl() {

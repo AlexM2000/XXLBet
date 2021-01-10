@@ -14,7 +14,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_ROLE_BY_NA
  *
  * @author Aliaksei Milto
  */
-public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
+public class RoleDaoImpl extends AbstractDaoImpl<Role> implements RoleDao {
     private static RoleDaoImpl instance;
 
     private RoleDaoImpl() {

@@ -20,7 +20,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOKEN_BY_TOKEN_
  *
  * @author Aliaksei Milto
  */
-public class VerificationTokenDaoImpl extends AbstractDao implements VerificationTokenDao {
+public class VerificationTokenDaoImpl extends AbstractDaoImpl implements VerificationTokenDao {
     private static VerificationTokenDaoImpl instance;
 
     private VerificationTokenDaoImpl() {

@@ -21,15 +21,15 @@ import java.util.List;
  *
  * @author Aliaksei Milto
  */
-abstract class AbstractDao<T> {
+abstract class AbstractDaoImpl<T> {
     private static final String ERROR_MSG_BEGIN = "Something wrong happened while executing";
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractDaoImpl.class);
     private PropertyLoader loader;
     private ConnectionPool connectionPool;
     private String propertiesFileWithQueriesName;
     private ResultSetPopulator<ResultSet, T> populator;
 
-    protected AbstractDao(final String propertiesFileName, final ResultSetPopulator<ResultSet, T> populator) {
+    protected AbstractDaoImpl(final String propertiesFileName, final ResultSetPopulator<ResultSet, T> populator) {
         try {
             loader = PropertyLoader.getInstance();
             loader.init(propertiesFileName);
