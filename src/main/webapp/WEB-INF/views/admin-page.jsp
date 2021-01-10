@@ -4,6 +4,7 @@
 <html>
 <head>
     <title><ut:locale_tag key="admin-page.title"/></title>
+    <script src="${pageContext.request.contextPath}/js/admin_page.js"></script>
 </head>
 <body>
     <div class="form-group">
@@ -12,6 +13,10 @@
                 <option value="${sport.getName()}">${sport.getName()}</option>
             </jstl:forEach>
         </select>
+        <select id="tournamentSelect" style="display: none" title=<ut:locale_tag key="admin-page.tournamentselect.title"/>>
+
+        </select>
+        <small id="noTournamentsInfo" class="text-info"></small>
     </div>
 </body>
 </html>

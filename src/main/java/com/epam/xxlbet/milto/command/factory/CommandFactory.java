@@ -22,6 +22,7 @@ public interface CommandFactory {
     String GET_ALL_USER_BETS = "all_user_bets";
     String GET_WIN_USER_BETS = "win_user_bets";
     String GET_DEFEAT_USER_BETS = "defeat_user_bets";
+    String GET_TOURNAMENTS_BY_SPORT = "get_tournaments_by_sport";
     String POST_LOGOUT = "logout";
     String GET_ADMIN_PAGE = "admin_page";
     String GET_BOOKMAKER_PAGE = "bookmaker_page";
