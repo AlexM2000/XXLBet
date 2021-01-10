@@ -41,8 +41,9 @@ public class LocaleLanguageTag extends TagSupport {
 
             String message = PropertyLoader.getInstance().getStringProperty("messages_" + language + ".properties", key)
                     .orElseThrow(() -> {
-                        LOG.error("No message for locale found! key - {}", key);
-                        throw new PropertyNotFoundException("No message for  locale found! key - " + key);
+                        PropertyNotFoundException e = new PropertyNotFoundException("No message for locale found! key - " + key);
+                        LOG.error("No message for locale found! key - " + key, e);
+                        throw e;
                     });
 
             try {

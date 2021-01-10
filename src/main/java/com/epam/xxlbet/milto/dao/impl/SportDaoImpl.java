@@ -17,8 +17,18 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_SPORT_BY_NAME;
  * @author Aliaksei Milto
  */
 public class SportDaoImpl extends AbstractDaoImpl<Sport> implements SportDao {
-    protected SportDaoImpl() {
+    private static SportDaoImpl instance;
+
+    private SportDaoImpl() {
         super(FILE_WITH_QUERIES_FOR_TABLE_SPORTS, ResultSetToSportPopulator.getInstance());
+    }
+
+    public static SportDaoImpl getInstance() {
+        if (instance == null) {
+            instance = new SportDaoImpl();
+        }
+
+        return instance;
     }
 
     @Override

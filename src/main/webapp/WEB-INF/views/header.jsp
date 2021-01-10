@@ -29,6 +29,9 @@
                         </jstl:if>
                         <jstl:if test="${sessionScope.role.getName() == 'bookmaker'}">
                             <li class="nav-item active">
+                                <a class="nav-link" href="/xxlbet?command=admin_page"><ut:locale_tag key="header.admin"/></a>
+                            </li>
+                            <li class="nav-item active">
                                 <a class="nav-link" href="/xxlbet?command=bookmaker_page"><ut:locale_tag key="bookmaker-page.title"/></a>
                             </li>
                         </jstl:if>

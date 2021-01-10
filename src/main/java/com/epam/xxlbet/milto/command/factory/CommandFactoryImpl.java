@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.command.factory;
 
 import com.epam.xxlbet.milto.command.Command;
+import com.epam.xxlbet.milto.command.impl.GetAdminPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetBookmakerPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
@@ -20,6 +21,7 @@ import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
+import com.epam.xxlbet.milto.service.impl.SportServiceImpl;
 import com.epam.xxlbet.milto.service.impl.StatusServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserInfoServiceImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
@@ -84,6 +86,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_DEFEAT_USER_BETS:
                 command = new GetDefeatUserBetsCommand(BetsServiceImpl.getInstance());
+                break;
+            case GET_ADMIN_PAGE:
+                command = new GetAdminPageCommand(SportServiceImpl.getInstance());
                 break;
             case GET_BOOKMAKER_PAGE:
                 command = new GetBookmakerPageCommand(UserInfoServiceImpl.getInstance());
