@@ -48,7 +48,7 @@ function registration() {
             data: JSON.stringify(data),
             success: function (dataFromServer) {
                 if(dataFromServer.status === 'verified'){
-                    window.location.href = '/xxlbet?command=confirm_page';
+                    window.location.href = '/confirm';
                 } else if (dataFromServer.status === 'failed') {
                     $('#registration').find('small').text('');
 
@@ -142,7 +142,7 @@ function out() {
         url: '/xxlbet?command=logout',
         type: 'POST',
         success: function() {
-            window.location.href = '/xxlbet?command=home';
+            window.location.href = '/home';
         }
     })
 }

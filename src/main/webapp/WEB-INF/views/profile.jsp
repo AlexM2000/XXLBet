@@ -5,7 +5,7 @@
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@include file="/views/header.jsp"%>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <head>
     <title><ut:locale_tag key="profile.title"/></title>
     <script src="${pageContext.request.contextPath}/js/profile.js"></script>

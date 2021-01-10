@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-<%@include file="header.jsp"%>
 <html>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <head>
     <title><ut:locale_tag key="bookmaker-page.title"/></title>
     <script src="${pageContext.request.contextPath}/js/bookmaker_page.js"></script>
@@ -25,7 +25,7 @@
                     <td>${user.getRole()}</td>
                     <td>${user.getStatus()}</td>
                 </tr>
-                <form id="userRolesEditForm" class="form-group">
+                <div class="form-group">
                     <select id="InputRole" title=<ut:locale_tag key="bookmaker-page.role"/>>
                         <option selected value="client"><ut:locale_tag key="bookmaker-page.role.client"/></option>
                         <option value="admin"><ut:locale_tag key="bookmaker-page.role.admin"/></option>
@@ -34,8 +34,8 @@
                         <option selected value="active"><ut:locale_tag key="bookmaker-page.status.active"/></option>
                         <option value="banned"><ut:locale_tag key="bookmaker-page.status.banned"/></option>
                     </select>
-                    <button id="changeDataButton" onclick="changeUserRoleAndStatus(${user.getEmail()})"><ut:locale_tag key="bookmaker-page.rolestatusbuttion"/></button>
-                </form>
+                    <button id="changeDataButton" onclick=changeUserRoleAndStatus("${user.getEmail()}")><ut:locale_tag key="bookmaker-page.rolestatusbuttion"/></button>
+                </div>
             </jstl:forEach>
         </tbody>
         </table>

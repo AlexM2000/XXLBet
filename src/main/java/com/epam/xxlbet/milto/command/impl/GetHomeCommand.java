@@ -16,7 +16,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  * @author Aliaksei Milto
  */
 public class GetHomeCommand extends AbstractCommand {
-    private static final String HOME_PAGE = "/views/index.jsp";
+    private static final String HOME_PAGE = "/home";
     private MatchesService matchesService;
 
     public GetHomeCommand(MatchesService matchesService) {

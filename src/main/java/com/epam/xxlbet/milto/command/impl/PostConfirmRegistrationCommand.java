@@ -14,6 +14,9 @@ import static com.epam.xxlbet.milto.command.CommandResult.createRedirectCommandR
  * @author Aliaksei Milto
  */
 public class PostConfirmRegistrationCommand extends AbstractCommand {
+    private static final String INVALID = "/invalid";
+    private static final String EXPIRED = "/expired";
+    private static final String SUCCESS = "/success";
     private UserService userService;
 
     public PostConfirmRegistrationCommand(final UserService userService) {
@@ -27,13 +30,13 @@ public class PostConfirmRegistrationCommand extends AbstractCommand {
 
         switch (userService.confirmRegistration(token)) {
             case INVALID:
-                commandResult = createRedirectCommandResult("views/invalid.jsp");
+                commandResult = createRedirectCommandResult(INVALID);
                 break;
             case EXPIRED:
-                commandResult = createRedirectCommandResult("views/expired.jsp");
+                commandResult = createRedirectCommandResult(EXPIRED);
                 break;
             case SUCCESS:
-                commandResult = createRedirectCommandResult("views/success.jsp");
+                commandResult = createRedirectCommandResult(SUCCESS);
                 break;
             default:
                 throw new ServiceException("Something went wrong during registration confirmation...");

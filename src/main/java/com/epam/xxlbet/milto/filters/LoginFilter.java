@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LOGIN_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 
 @WebFilter(urlPatterns = "/xxlbet", filterName = "LoginFilter")
 public class LoginFilter implements Filter {
+    private static final String LOGIN_PAGE = "/login";
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,11 +28,13 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (GET_PROFILE_PAGE.equals(servletRequest.getParameter(COMMAND))) {
-            if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
-                response.sendRedirect("/xxlbet?command="+GET_LOGIN_PAGE);
-                return;
-            }
+        switch (servletRequest.getParameter(COMMAND)) {
+            case GET_PROFILE_PAGE:
+            case GET_BOOKMAKER_PAGE:
+                if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
+                    response.sendRedirect(LOGIN_PAGE);
+                    return;
+                }
         }
 
         filterChain.doFilter(servletRequest, servletResponse);

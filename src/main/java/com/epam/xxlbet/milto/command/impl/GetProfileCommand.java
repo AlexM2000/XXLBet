@@ -16,7 +16,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  * @author Aliaksei Milto
  */
 public class GetProfileCommand extends AbstractCommand {
-    private static final String PROFILE_PAGE = "/views/profile.jsp";
+    private static final String PROFILE_PAGE = "/profile";
     private UserInfoService userInfoService;
     private BetsService betsService;
 

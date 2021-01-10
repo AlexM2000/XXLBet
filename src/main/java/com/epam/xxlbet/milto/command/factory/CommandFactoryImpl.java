@@ -15,7 +15,8 @@ import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
-import com.epam.xxlbet.milto.command.impl.PutChangeUserRoleAndStatusCommand;
+import com.epam.xxlbet.milto.command.impl.PostChangeUserRoleAndStatusCommand;
+import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
@@ -87,15 +88,15 @@ public class CommandFactoryImpl implements CommandFactory {
             case GET_BOOKMAKER_PAGE:
                 command = new GetBookmakerPageCommand(UserInfoServiceImpl.getInstance());
                 break;
-            case PUT_CHANGE_USER_ROLE_AND_STATUS:
-                command = new PutChangeUserRoleAndStatusCommand(
+            case POST_CHANGE_USER_ROLE_AND_STATUS:
+                command = new PostChangeUserRoleAndStatusCommand(
                         UserInfoServiceImpl.getInstance(),
                         RoleServiceImpl.getInstance(),
                         StatusServiceImpl.getInstance()
                 );
                 break;
             default:
-                throw new IllegalArgumentException("Unknown command " + commandName);
+                throw new UnknownCommandException("Unknown command " + commandName);
         }
 
         return command;

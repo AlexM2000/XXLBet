@@ -12,10 +12,10 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="/views/header.jsp"%>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <div class="info">
     <div class="text-center">
-        <ut:locale_tag key="expired.token"/>
+        <ut:locale_tag key="confirmation.success"/>
     </div>
 </div>
 </body>

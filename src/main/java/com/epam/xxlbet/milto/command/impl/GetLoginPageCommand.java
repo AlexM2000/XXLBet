@@ -13,7 +13,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  * @author Aliaksei Milto
  */
 public class GetLoginPageCommand extends AbstractCommand {
-    private static final String LOGIN_PAGE = "/views/login.jsp";
+    private static final String LOGIN_PAGE = "/login";
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {

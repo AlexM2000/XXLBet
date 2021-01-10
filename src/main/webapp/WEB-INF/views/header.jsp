@@ -4,9 +4,9 @@
 
 <html>
 <head>
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/AJAXScripts.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/AJAXScripts.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
 </head>
 <body>
 <div class="header" name="headerName" id="headerId">

@@ -41,7 +41,7 @@ public class AuthorityFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             LOG.debug("User has no permission to execute command " + request.getParameter(COMMAND));
-            response.sendRedirect("/views/no-authority.jsp");
+            response.sendRedirect("/no-authority");
         }
     }
 

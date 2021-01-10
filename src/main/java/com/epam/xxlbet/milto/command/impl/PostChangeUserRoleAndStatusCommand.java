@@ -12,13 +12,13 @@ import com.epam.xxlbet.milto.service.UserInfoService;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createRedirectCommandResult;
 
-public class PutChangeUserRoleAndStatusCommand extends AbstractCommand {
-    private static final String BOOKMAKER_PAGE = "/views/bookmaker-page.jsp";
+public class PostChangeUserRoleAndStatusCommand extends AbstractCommand {
+    private static final String BOOKMAKER_PAGE = "/bookmaker";
     private UserInfoService userInfoService;
     private RoleService roleService;
     private StatusService statusService;
 
-    public PutChangeUserRoleAndStatusCommand(
+    public PostChangeUserRoleAndStatusCommand(
             final UserInfoService userInfoService, final RoleService roleService, final StatusService statusService
     ) {
         this.userInfoService = userInfoService;

@@ -19,7 +19,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.PUT_CHANGE_USER_ROLE_AND_STATUS;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
@@ -69,11 +69,13 @@ public final class AuthenticatorImpl implements Authenticator {
                         && !BANNED_STATUS.equals(httpSession.getAttribute("status"));
 
             case GET_ADMIN_PAGE:
-                return asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
+                return httpSession.getAttribute("role") != null
+                        && asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 
             case GET_BOOKMAKER_PAGE:
-            case PUT_CHANGE_USER_ROLE_AND_STATUS:
-                return BOOKMAKER_ROLE.equals(((Role) httpSession.getAttribute("role")).getName());
+            case POST_CHANGE_USER_ROLE_AND_STATUS:
+                return httpSession.getAttribute("role") != null
+                        && BOOKMAKER_ROLE.equals(((Role) httpSession.getAttribute("role")).getName());
         }
     }
 }

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<%@include file="/views/header.jsp"%>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <div class='container my-3'>
     <form class='my-5' id="authentication">
         <div class='form-group h-75'>

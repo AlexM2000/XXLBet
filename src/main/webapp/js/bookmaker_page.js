@@ -19,12 +19,15 @@ function changeUserRoleAndStatus(email) {
     };
 
     $.ajax({
-        url: '/xxlbet?command=change',
+        url: "/xxlbet?command=change_user_role_and_status",
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         success: function () {
             window.location.reload();
+        },
+        error: function (e) {
+            alert(e);
         }
     });
 }

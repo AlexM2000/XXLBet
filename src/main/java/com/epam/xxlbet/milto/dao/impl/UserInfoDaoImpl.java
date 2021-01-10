@@ -61,7 +61,8 @@ public class UserInfoDaoImpl extends AbstractDao<UserInfo> implements UserInfoDa
                 userInfo.getBalance(),
                 userInfo.getStatusId(),
                 userInfo.getProfileImgPath(),
-                userInfo.getRoleId()
+                userInfo.getRoleId(),
+                userInfo.getEmail()
         );
 
         return getUserInfoByEmail(userInfo.getEmail());

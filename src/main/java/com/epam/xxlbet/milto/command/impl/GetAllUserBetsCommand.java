@@ -16,7 +16,6 @@ import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToR
  * @author Aliaksei Milto
  */
 public class GetAllUserBetsCommand extends AbstractCommand {
-    private static final String PROFILE_PAGE = "/views/profile.jsp";
     private BetsService betsService;
 
     public GetAllUserBetsCommand(BetsService betsService) {

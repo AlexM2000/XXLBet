@@ -13,7 +13,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  * @author Aliaksei Milto
  */
 public class GetConfirmPageCommand extends AbstractCommand {
-    private static final String CONFIRM_PAGE = "/views/confirm.jsp";
+    private static final String CONFIRM_PAGE = "/confirm";
 
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {

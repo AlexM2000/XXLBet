@@ -12,7 +12,7 @@
     <title><ut:locale_tag key="confirm.title"/></title>
 </head>
 <body>
-<%@include file="/views/header.jsp"%>
+<%@include file="/WEB-INF/views/header.jsp"%>
     <div class="info">
         <div class="text-center">
             <ut:locale_tag key="confirm.registration"/>

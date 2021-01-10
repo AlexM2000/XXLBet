@@ -13,7 +13,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  * @author Aliaksei Milto
  */
 public class GetRegistrationPageCommand extends AbstractCommand {
-    private static final String REGISTRATION_PAGE = "/views/registration.jsp";
+    private static final String REGISTRATION_PAGE = "/registration";
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {

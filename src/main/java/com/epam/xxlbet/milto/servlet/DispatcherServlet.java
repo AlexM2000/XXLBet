@@ -35,11 +35,6 @@ public class DispatcherServlet extends HttpServlet {
         process(req, resp);
     }
 
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        process(req, resp);
-    }
-
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             RequestContext requestContext = new HttpServletRequestContext(request);

@@ -9,7 +9,7 @@ import com.epam.xxlbet.milto.service.UserInfoService;
 import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
 
 public class GetBookmakerPageCommand extends AbstractCommand {
-    private static final String ADMIN_PAGE = "/views/bookmaker-page.jsp";
+    private static final String BOOKMAKER_PAGE = "/bookmaker";
     private UserInfoService userInfoService;
 
     public GetBookmakerPageCommand(final UserInfoService userInfoService) {
@@ -20,6 +20,6 @@ public class GetBookmakerPageCommand extends AbstractCommand {
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
 
         request.setAttribute("users", userInfoService.getAllUserInfoForAdminPage());
-        return createForwardCommandResult(ADMIN_PAGE);
+        return createForwardCommandResult(BOOKMAKER_PAGE);
     }
 }
