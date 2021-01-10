@@ -49,7 +49,19 @@ public final class ConnectionPool {
 
         allConnections = new ArrayList<>(poolSize);
         availableConnections = new ArrayBlockingQueue<>(poolSize);
-        LOG.debug("Initialized collections...");
+        LOG.debug("Created connection collections...");
+
+        try {
+            LOG.debug("Trying to register database driver...");
+            Class.forName(propertyLoader.getDatabaseDriverName().orElseGet(() -> {
+                LOG.debug("Can't find mysql database driver! Defaulting to com.mysql.cj.jdbc.Driver");
+                return "com.mysql.cj.jdbc.Driver";
+            }));
+            LOG.debug("Successfully registered database driver...");
+        } catch (ClassNotFoundException e) {
+            LOG.error("Could not register database driver! Exiting...", e);
+            System.exit(1);
+        }
 
         for (int i = 0; i < poolSize; i++) {
             try {
@@ -62,6 +74,8 @@ public final class ConnectionPool {
                 System.exit(1);
             }
         }
+
+        LOG.debug("Initialized connection collections...");
 
         semaphore = new Semaphore(poolSize, true);
 

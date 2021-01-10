@@ -39,9 +39,6 @@ public final class DBConnectionUtil {
 
         LOG.debug("Initialized properties...");
 
-        Class.forName(properties.getDatabaseDriverName()
-                        .orElseThrow(() -> new PropertyNotFoundException("Can't find database driver")));
-
         String url = properties.getDatabaseUrl()
                 .orElseThrow(() -> new PropertyNotFoundException("Can't find database url"));
         String userName = properties.getDatabaseUsername()
