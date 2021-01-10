@@ -12,6 +12,7 @@ import java.util.List;
 public interface OpponentsDao {
     Opponent getOpponentById(long id);
     List<Opponent> getOpponentsByMatchId(long matchId);
+    public List<Opponent> getOpponentsByTournament(String tournamentName);
     Opponent createOpponent(long id, String name);
     Opponent adjustOpponentToMatch(long matchId, long coefficient);
     void delete(long id);

@@ -17,6 +17,10 @@
 
         </select>
         <small id="noTournamentsInfo" class="text-info"></small>
+        <select id="team1" style="display: none" title=<ut:locale_tag key="admin-page.teamselector1.title"/>></select>
+        <select id="team2" style="display: none" title=<ut:locale_tag key="admin-page.teamselector2.title"/>></select>
+        <small id="noTeamsInfo" class="text-info"></small>
+        <button>Submit</button>
     </div>
 </body>
 </html>

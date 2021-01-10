@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface TournamentService {
     List<Tournament> getTournamentsBySportName(String sportName);
+    void deleteAllFinishedTournaments();
 }

@@ -22,6 +22,7 @@ public class GetLanguageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         try {
             String locale = request.getParameter("lang") != null ? request.getParameter("lang") : "en";
             response.addCookie(new Cookie("language", locale));

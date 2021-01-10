@@ -58,6 +58,7 @@ public class PostRegistrationCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         RegistrationRequest body = getRequestBody(request, RegistrationRequest.class);
         validate(body.getEmail(), getCurrentLocale(request), emailValidator);
         validate(body.getPassword(), getCurrentLocale(request), passwordValidator);

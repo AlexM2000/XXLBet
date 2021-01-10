@@ -11,6 +11,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_P
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_HOME_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LOGIN_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_OPPONENTS_BY_TOURNAMENT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_REGISTRATION_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMENTS_BY_SPORT;
@@ -60,6 +61,7 @@ public final class AuthenticatorImpl implements Authenticator {
             case POST_CONFIRM_COMMAND:
             case POST_LOGOUT:
             case GET_TOURNAMENTS_BY_SPORT:
+            case GET_OPPONENTS_BY_TOURNAMENT:
                 return true;
 
             case GET_PROFILE_PAGE:

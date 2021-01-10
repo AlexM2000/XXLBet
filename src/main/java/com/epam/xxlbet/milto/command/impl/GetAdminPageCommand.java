@@ -23,6 +23,7 @@ public class GetAdminPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         request.setAttribute("sports", sportService.getAllSports());
         return createForwardCommandResult(ADMIN_PAGE);
     }

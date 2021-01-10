@@ -17,6 +17,7 @@ public class GetConfirmPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         return createForwardCommandResult(CONFIRM_PAGE);
     }
 }

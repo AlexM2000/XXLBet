@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.service.OpponentsService;
 
 import java.util.List;
 
+/**
+ * OpponentsServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class OpponentsServiceImpl implements OpponentsService {
     private static OpponentsServiceImpl instance;
     private OpponentsDao opponentsDao;
@@ -26,6 +31,11 @@ public class OpponentsServiceImpl implements OpponentsService {
     @Override
     public List<Opponent> getOpponentsByMatchId(Long matchId) {
         return opponentsDao.getOpponentsByMatchId(matchId);
+    }
+
+    @Override
+    public List<Opponent> getOpponentsByTournament(String tournamentName) {
+        return opponentsDao.getOpponentsByTournament(tournamentName);
     }
 
     @Override

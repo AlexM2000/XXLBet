@@ -26,6 +26,7 @@ public class GetHomeCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         request.setAttribute("matches", matchesService.getIncompleteMatches());
         request.setAttribute("today", LocalDateTime.now());
         return createForwardCommandResult(HOME_PAGE);

@@ -25,6 +25,7 @@ public class PostConfirmRegistrationCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         String token = request.getParameter("token");
         CommandResult commandResult = null;
 

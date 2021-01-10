@@ -24,6 +24,7 @@ public class GetTournamentsBySportCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         try {
             response.writeJSONValue(tournamentService.getTournamentsBySportName(request.getParameter("sport")));
         } catch (IOException e) {

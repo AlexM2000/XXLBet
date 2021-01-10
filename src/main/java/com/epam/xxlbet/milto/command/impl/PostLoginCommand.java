@@ -41,6 +41,7 @@ public class PostLoginCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         LoginRequest loginRequest = getRequestBody(request, LoginRequest.class);
         validate(loginRequest.getLogin(), getCurrentLocale(request), userNotExistsValidator);
         validate(loginRequest.getLogin(), getCurrentLocale(request), confirmationValidator);

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class ResultSetToOpponentPopulator implements ResultSetPopulator<ResultSet, Opponent> {
     private static final String ID = "id";
     private static final String MATCH_ID = "match_id";
+    private static final String TOURNAMENT_ID = "tournament_id";
     private static final String NAME = "name";
     private static final String COEFFICIENT = "coefficient";
     private static ResultSetToOpponentPopulator instance;
@@ -30,6 +31,7 @@ public class ResultSetToOpponentPopulator implements ResultSetPopulator<ResultSe
         opponent.setMatchId(source.getLong(MATCH_ID));
         opponent.setName(source.getString(NAME));
         opponent.setCoefficient(source.getBigDecimal(COEFFICIENT));
+        opponent.setTournamentId(source.getLong(TOURNAMENT_ID));
         return opponent;
     }
 }

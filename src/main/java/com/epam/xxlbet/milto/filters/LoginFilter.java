@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 
@@ -31,6 +32,7 @@ public class LoginFilter implements Filter {
         switch (servletRequest.getParameter(COMMAND)) {
             case GET_PROFILE_PAGE:
             case GET_BOOKMAKER_PAGE:
+            case GET_ADMIN_PAGE:
                 if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
                     response.sendRedirect(LOGIN_PAGE);
                     return;

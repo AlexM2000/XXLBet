@@ -25,6 +25,7 @@ public class GetAllUserBetsCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         try {
             response.writeJSONValue(betsService.getBetsHistoryByUser((String) request.getSessionAttribute("login")));
         } catch (IOException e) {

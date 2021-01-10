@@ -27,6 +27,7 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
     private EmailSender emailSender;
 
     private DeleteUnconfirmedUsersJob() {
+        LOG.debug("Creating " + DeleteUnconfirmedUsersJob.class);
         userService = UserServiceImpl.getInstance();
         emailSender = EmailSenderImpl.getInstance();
     }
@@ -41,6 +42,7 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
 
     @Override
     public void run() {
+        LOG.debug("Executing DeleteUnconfirmedUsersJob...");
         List<User> unconfirmedUsers = userService.getAllUnconfirmedUsers();
         userService.deleteAllUnconfirmedUsers();
         for (User user : unconfirmedUsers) {

@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface TournamentDao {
     List<Tournament> getTournamentsBySportName(String sportName);
+    void deleteAllFinishedTournaments();
 }

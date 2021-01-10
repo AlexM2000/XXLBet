@@ -32,4 +32,9 @@ public class TournamentServiceImpl implements TournamentService {
     public List<Tournament> getTournamentsBySportName(String sportName) {
         return tournamentDao.getTournamentsBySportName(sportName);
     }
+
+    @Override
+    public void deleteAllFinishedTournaments() {
+        tournamentDao.deleteAllFinishedTournaments();
+    }
 }

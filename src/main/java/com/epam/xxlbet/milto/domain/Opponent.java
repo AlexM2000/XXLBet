@@ -1,29 +1,15 @@
 package com.epam.xxlbet.milto.domain;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Opponent {
     private Long id;
     private Long matchId;
+    private Long tournamentId;
     private String name;
     private BigDecimal coefficient;
 
     public Opponent() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Opponent opponent = (Opponent) o;
-        return Objects.equals(name, opponent.name) &&
-                Objects.equals(coefficient, opponent.coefficient);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, coefficient);
     }
 
     public String getName() {
@@ -56,5 +42,13 @@ public class Opponent {
 
     public void setMatchId(Long matchId) {
         this.matchId = matchId;
+    }
+
+    public Long getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(Long tournamentId) {
+        this.tournamentId = tournamentId;
     }
 }

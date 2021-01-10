@@ -18,7 +18,7 @@ public class GetBookmakerPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
-
+        getLogger().debug("Executing " + this.getClass());
         request.setAttribute("users", userInfoService.getAllUserInfoForAdminPage());
         return createForwardCommandResult(BOOKMAKER_PAGE);
     }

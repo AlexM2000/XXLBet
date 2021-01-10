@@ -70,6 +70,7 @@ public final class XxlBetConstants {
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_TOURNAMENTS = "queries_tournaments.properties";
     public static final String SELECT_TOURNAMENTS_BY_SPORT_NAME = "select.tournaments.by.sport.name";
+    public static final String DELETE_ALL_FINISHED_TOURNAMENTS = "delete.all.finished.tournaments";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS = "queries_verification_tokens.properties";
     public static final String SELECT_TOKEN_BY_TOKEN_PROPERTY_ID = "select.token.by.token";
@@ -79,4 +80,5 @@ public final class XxlBetConstants {
     public static final String FILE_WITH_QUERIES_FOR_TABLE_OPPONENTS = "queries_opponents.properties";
     public static final String SELECT_OPPONENTS_BY_ID = "select.opponent.by.id";
     public static final String SELECT_OPPONENTS_FROM_MATCH = "select.opponents.from.match";
+    public static final String SELECT_OPPONENTS_BY_TOURNAMENT_NAME = "select.opponents.by.tournament.name";
 }

@@ -28,6 +28,7 @@ public class PostChangeUserRoleAndStatusCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         ChangeUserRoleAndStatusRequest body = getRequestBody(request, ChangeUserRoleAndStatusRequest.class);
 
         UserInfo userInfo = userInfoService.getUserInfoByEmail(body.getEmail());

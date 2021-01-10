@@ -9,6 +9,7 @@ import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
 import com.epam.xxlbet.milto.command.impl.GetLoginPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetOpponentsByTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
 import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
@@ -21,6 +22,7 @@ import com.epam.xxlbet.milto.command.impl.PostChangeUserRoleAndStatusCommand;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
+import com.epam.xxlbet.milto.service.impl.OpponentsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
 import com.epam.xxlbet.milto.service.impl.SportServiceImpl;
 import com.epam.xxlbet.milto.service.impl.StatusServiceImpl;
@@ -94,6 +96,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_TOURNAMENTS_BY_SPORT:
                 command = new GetTournamentsBySportCommand(TournamentServiceImpl.getInstance());
+                break;
+            case GET_OPPONENTS_BY_TOURNAMENT:
+                command = new GetOpponentsByTournamentCommand(OpponentsServiceImpl.getInstance());
                 break;
             case GET_BOOKMAKER_PAGE:
                 command = new GetBookmakerPageCommand(UserInfoServiceImpl.getInstance());

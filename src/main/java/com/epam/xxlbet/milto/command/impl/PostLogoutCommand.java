@@ -10,6 +10,7 @@ import java.io.IOException;
 public class PostLogoutCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         request.invalidateSession();
 
         try {

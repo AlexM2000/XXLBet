@@ -8,6 +8,7 @@ import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_OPPONENTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_BY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_BY_TOURNAMENT_NAME;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_FROM_MATCH;
 
 /**
@@ -38,6 +39,11 @@ public class OpponentsDaoImpl extends AbstractDaoImpl<Opponent> implements Oppon
     @Override
     public List<Opponent> getOpponentsByMatchId(long matchId) {
         return executeQuery(SELECT_OPPONENTS_FROM_MATCH, matchId);
+    }
+
+    @Override
+    public List<Opponent> getOpponentsByTournament(String tournamentName) {
+        return executeQuery(SELECT_OPPONENTS_BY_TOURNAMENT_NAME, tournamentName);
     }
 
     @Override

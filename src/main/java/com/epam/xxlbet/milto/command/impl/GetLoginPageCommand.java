@@ -17,6 +17,7 @@ public class GetLoginPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+        getLogger().debug("Executing " + this.getClass());
         return createForwardCommandResult(LOGIN_PAGE);
     }
 }
