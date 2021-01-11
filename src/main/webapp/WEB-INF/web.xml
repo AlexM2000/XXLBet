@@ -53,10 +53,18 @@
     <servlet-name>success</servlet-name>
     <jsp-file>/WEB-INF/views/success.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>ban</servlet-name>
+    <jsp-file>/WEB-INF/views/ban-page.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
     <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ban</servlet-name>
+    <url-pattern>/ban</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>bookmaker</servlet-name>
@@ -114,6 +122,10 @@
 
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>StatusFilter</filter-name>
     <url-pattern>/xxlbet</url-pattern>
   </filter-mapping>
   <filter-mapping>

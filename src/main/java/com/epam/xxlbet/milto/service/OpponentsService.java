@@ -2,6 +2,7 @@ package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.Opponent;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -14,5 +15,5 @@ public interface OpponentsService {
     List<Opponent> getOpponentsByMatchId(Long matchId);
     List<Opponent> getOpponentsByTournament(String tournamentName);
     Opponent getOpponentByName(String name);
-    Opponent adjustOpponentToMatch(Opponent opponent, Long matchId);
+    Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient);
 }

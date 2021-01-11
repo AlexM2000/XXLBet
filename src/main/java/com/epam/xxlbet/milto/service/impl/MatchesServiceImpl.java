@@ -46,7 +46,7 @@ public class MatchesServiceImpl implements MatchesService {
         Tournament tournament = tournamentService.getTournamentByTournamentName(match.getTournamentName());
         Long matchId = matchesDao.createMatch(tournament.getId(), match.getDrawCoefficient(), match.getDateStarted());
         for (Opponent opponent : match.getOpponents()) {
-            opponentsService.adjustOpponentToMatch(opponent, matchId);
+            opponentsService.adjustOpponentToMatch(opponent, matchId, opponent.getCoefficient());
         }
     }
 }

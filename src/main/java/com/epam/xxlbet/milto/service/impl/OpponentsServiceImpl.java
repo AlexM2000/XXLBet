@@ -5,6 +5,7 @@ import com.epam.xxlbet.milto.dao.impl.OpponentsDaoImpl;
 import com.epam.xxlbet.milto.domain.Opponent;
 import com.epam.xxlbet.milto.service.OpponentsService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -44,8 +45,8 @@ public class OpponentsServiceImpl implements OpponentsService {
     }
 
     @Override
-    public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId) {
-        return opponentsDao.adjustOpponentToMatch(opponent, matchId);
+    public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient) {
+        return opponentsDao.adjustOpponentToMatch(opponent, matchId, coefficient);
     }
 
     @Override

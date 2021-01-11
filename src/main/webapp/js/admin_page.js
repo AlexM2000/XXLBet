@@ -127,13 +127,17 @@ function createMatch() {
             team1_coefficient: document.getElementById("inputTeam1Coefficient").value,
             team2_coefficient: document.getElementById("inputTeam2Coefficient").value,
             date_started: document.getElementById("dateStarted").value
-        }
+        };
 
         $.ajax({
             url: "/xxlbet?command=create_match",
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
+            success: function () {
+                alert("Match was created successfully!");
+                window.location.reload();
+            },
             error: function (e) {
                 alert(e)
             }

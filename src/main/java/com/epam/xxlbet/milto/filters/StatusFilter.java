@@ -1,5 +1,7 @@
 package com.epam.xxlbet.milto.filters;
 
+import com.epam.xxlbet.milto.domain.Status;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,14 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 
-@WebFilter(urlPatterns = "/xxlbet", filterName = "LoginFilter")
-public class LoginFilter implements Filter {
-    private static final String LOGIN_PAGE = "/login";
+@WebFilter(filterName = "StatusFilter", urlPatterns = "/xxlbet")
+public class StatusFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -30,18 +30,16 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        switch (servletRequest.getParameter(COMMAND)) {
+        switch (request.getParameter(COMMAND)) {
             case GET_PROFILE_PAGE:
-            case GET_BOOKMAKER_PAGE:
-            case GET_ADMIN_PAGE:
             case GET_BET_CREATE_PAGE:
-                if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
-                    response.sendRedirect(LOGIN_PAGE);
+                if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {
+                    response.sendRedirect("/ban");
                     return;
                 }
         }
 
-        filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(request, response);
     }
 
     @Override

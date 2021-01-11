@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_BETS;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
@@ -69,6 +70,7 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_ALL_USER_BETS:
             case GET_WIN_USER_BETS:
             case GET_DEFEAT_USER_BETS:
+            case GET_BET_CREATE_PAGE:
                 return httpSession.getAttribute("login") != null
                         && httpSession.getAttribute("role") != null
                         && !BANNED_STATUS.equals(httpSession.getAttribute("status"));

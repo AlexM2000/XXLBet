@@ -32,14 +32,24 @@ public class PostCreateMatchCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         CreateMatchRequest matchRequest = getRequestBody(request, CreateMatchRequest.class);
+
         Match match = new Match();
         match.setTournamentName(matchRequest.getTournament());
         match.setDrawCoefficient(matchRequest.getDrawCoefficient());
         match.setDateStarted(matchRequest.getDateStarted());
+
         Set<Opponent> opponents = new HashSet<>();
-        opponents.add(opponentsService.getOpponentByName(matchRequest.getTeam1()));
-        opponents.add(opponentsService.getOpponentByName(matchRequest.getTeam2()));
+
+        Opponent team1 = opponentsService.getOpponentByName(matchRequest.getTeam1());
+        team1.setCoefficient(matchRequest.getTeam1Coefficient());
+
+        Opponent team2 = opponentsService.getOpponentByName(matchRequest.getTeam2());
+        team2.setCoefficient(matchRequest.getTeam2Coefficient());
+
+        opponents.add(team1);
+        opponents.add(team2);
         match.setOpponents(opponents);
+
         matchesService.createMatch(match);
         return createRedirectCommandResult("/admin");
     }

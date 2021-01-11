@@ -29,6 +29,7 @@ public interface CommandFactory {
     String GET_BOOKMAKER_PAGE = "bookmaker_page";
     String POST_CHANGE_USER_ROLE_AND_STATUS = "change_user_role_and_status";
     String POST_CREATE_MATCH = "create_match";
+    String GET_BET_CREATE_PAGE = "bet_create_page";
 
     Command createCommand(String commandName);
 

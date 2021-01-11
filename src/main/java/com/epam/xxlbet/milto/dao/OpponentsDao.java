@@ -2,6 +2,7 @@ package com.epam.xxlbet.milto.dao;
 
 import com.epam.xxlbet.milto.domain.Opponent;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -15,6 +16,6 @@ public interface OpponentsDao {
     public List<Opponent> getOpponentsByTournament(String tournamentName);
     Opponent getOpponentByName(String name);
     Opponent createOpponent(long id, String name);
-    Opponent adjustOpponentToMatch(Opponent opponent, Long matchId);
+    Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient);
     void delete(long id);
 }

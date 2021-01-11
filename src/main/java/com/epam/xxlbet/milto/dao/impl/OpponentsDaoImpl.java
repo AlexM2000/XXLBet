@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.dao.OpponentsDao;
 import com.epam.xxlbet.milto.domain.Opponent;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToOpponentPopulator;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADJUST_OPPONENT_TO_MATCH;
@@ -59,8 +60,8 @@ public class OpponentsDaoImpl extends AbstractDaoImpl<Opponent> implements Oppon
     }
 
     @Override
-    public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId) {
-        executeUpdate(ADJUST_OPPONENT_TO_MATCH, matchId, opponent.getId());
+    public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient) {
+        executeUpdate(ADJUST_OPPONENT_TO_MATCH, matchId, coefficient.doubleValue(), opponent.getId());
         return null;
     }
 

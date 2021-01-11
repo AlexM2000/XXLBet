@@ -95,7 +95,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
 
     @Override
     public long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted) {
-        executeUpdate(INSERT_INTO_MATCHES, tournamentId, drawCoefficient, dateStarted);
+        executeUpdate(INSERT_INTO_MATCHES, tournamentId, drawCoefficient.doubleValue(), dateStarted);
 
         Long lastId = 0L;
 
