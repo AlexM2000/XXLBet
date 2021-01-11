@@ -6,6 +6,7 @@ import com.epam.xxlbet.milto.domain.Bet;
 import com.epam.xxlbet.milto.domain.Match;
 import com.epam.xxlbet.milto.domain.Opponent;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,12 +18,19 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_MATCHES;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_MATCHES_PROPERTY_ID;
+
 /**
  * MatchesDaoImpl.
  *
  * @author Aliaksei Milto
  */
 public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao {
+    private static final String ID = "id";
+    private static final String TOURNAMENT_ID = "tournament_id";
+    private static final String DRAW_COEFFICIENT = "draw_coefficient";
+    private static final String DATE_STARTED = "date_started";
     private static MatchesDaoImpl instance;
 
     private MatchesDaoImpl() {
@@ -42,7 +50,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
         List<Match> matches = new ArrayList<>();
 
         try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(XxlBetConstants.SELECT_INCOMPLETE_MATCHES_PROPERTY_ID));
+            final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_INCOMPLETE_MATCHES_PROPERTY_ID));
 
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
 
@@ -86,8 +94,26 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
     }
 
     @Override
-    public Match createMatch(Match match) {
-        return null;
+    public long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted) {
+        executeUpdate(INSERT_INTO_MATCHES, tournamentId, drawCoefficient, dateStarted);
+
+        Long lastId = 0L;
+
+        try(final Connection connection = getConnectionPool().getConnection()) {
+            final PreparedStatement statement = connection.prepareStatement(getSqlById("select.last.match"));
+
+            ResultSet resultSet = statement.executeQuery();
+
+
+            while (resultSet.next()) {
+                lastId = resultSet.getLong(1);
+            }
+
+        } catch (InterruptedException | SQLException e) {
+            getLogger().error(getErrorMsgBegin() + " in createMatch ", e);
+        }
+
+        return lastId;
     }
 
     @Override

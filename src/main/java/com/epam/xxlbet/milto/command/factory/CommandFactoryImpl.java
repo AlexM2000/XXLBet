@@ -15,6 +15,7 @@ import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
@@ -99,6 +100,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_OPPONENTS_BY_TOURNAMENT:
                 command = new GetOpponentsByTournamentCommand(OpponentsServiceImpl.getInstance());
+                break;
+            case POST_CREATE_MATCH:
+                command = new PostCreateMatchCommand(OpponentsServiceImpl.getInstance(), MatchesServiceImpl.getInstance());
                 break;
             case GET_BOOKMAKER_PAGE:
                 command = new GetBookmakerPageCommand(UserInfoServiceImpl.getInstance());

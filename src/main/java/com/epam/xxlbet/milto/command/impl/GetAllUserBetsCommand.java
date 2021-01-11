@@ -22,7 +22,6 @@ public class GetAllUserBetsCommand extends AbstractCommand {
         this.betsService = betsService;
     }
 
-
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());

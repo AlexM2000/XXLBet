@@ -13,19 +13,19 @@ import java.util.Date;
 public class RegistrationRequest {
     @JsonProperty("email")
     private String email;
-    @JsonProperty("phoneNumber")
+    @JsonProperty("phone_number")
     private String phoneNumber;
     @JsonProperty("surname")
     private String surname;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("secondName")
+    @JsonProperty("second_name")
     private String secondName;
     @JsonProperty("password")
     private String password;
-    @JsonProperty("repeatPassword")
+    @JsonProperty("repeat_password")
     private String repeatPassword;
-    @JsonProperty("birthDate")
+    @JsonProperty("birth_date")
     @JsonFormat(pattern = "YYYY-mm-dd")
     private Date birthDate;
 

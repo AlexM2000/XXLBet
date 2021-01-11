@@ -2,42 +2,49 @@ function registration() {
     var email = document.getElementById("InputEmail").value;
     var phoneNumber = document.getElementById("InputPhoneNumber").value;
     var password = document.getElementById("InputPassword").value;
-    var emailRegex = RegExp("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/");
-    var phoneNumberRegex = RegExp("^(80|375)(25|29|33|44)(\\\\d{7})$");
-    var passwordRegexp = RegExp("^((?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\W_\\\\d])).{7,20}$");
-    var errorCount = 0;
+    var email_regex = RegExp("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/");
+    var phone_number_regex = RegExp("^(80|375)(25|29|33|44)(\\\\d{7})$");
+    var password_regexp = RegExp("^((?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\W_\\\\d])).{7,20}$");
+    var error_count = 0;
+    $('#emailErrorInformer').text('');
+    $('#phoneErrorInformer').text('');
+    $('#passwordErrorInformer').text('');
+    $('#surnameInformer').text('');
+    $('#nameInformer').text('');
+    $('#secondNameInformer').text('');
+    $('#birthDateInformer').text('');
 
-    if (!passwordRegexp.test(password)) {
+    if (!password_regexp.test(password)) {
         $('#passwordErrorInformer').text("Password should contain at least one small letter, one big letter, one number, one special character, minimum 7 maximum 20 symbols");
-        errorCount++;
+        error_count++;
     }
     if (document.getElementById("InputSurName").value.length === 0) {
         $('#surnameInformer').text("This field must not be empty");
-        errorCount++;
+        error_count++;
     }
     if (document.getElementById("InputName").value.length === 0) {
         $('#nameInformer').text("This field must not be empty");
-        errorCount++;
+        error_count++;
     }
     if (document.getElementById("InputSecondName").value.length === 0) {
         $('#secondNameInformer').text("This field must not be empty");
-        errorCount++;
+        error_count++;
     }
     if (document.getElementById("InputBirthDate").value === "" || new Date(document.getElementById("InputBirthDate").value).getTime() > new Date().getTime()) {
         $('#birthDateInformer').text("Wrong date");
-        errorCount++;
+        error_count++;
     }
 
-    if (errorCount === 0) {
+    if (error_count === 0) {
         var data = {
             "email": email,
-            "phoneNumber": phoneNumber,
+            "phone_number": phoneNumber,
             "surname": document.getElementById("InputSurName").value,
             "name": document.getElementById("InputName").value,
-            "secondName": document.getElementById("InputSecondName").value,
+            "second_name": document.getElementById("InputSecondName").value,
             "password": document.getElementById("InputPassword").value,
-            "repeatPassword": document.getElementById("InputRPassword").value,
-            "birthDate": document.getElementById("InputBirthDate").value
+            "repeat_password": document.getElementById("InputRPassword").value,
+            "birth_date": document.getElementById("InputBirthDate").value
         };
 
         $.ajax({

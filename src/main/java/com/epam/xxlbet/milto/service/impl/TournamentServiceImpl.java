@@ -34,6 +34,11 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
+    public Tournament getTournamentByTournamentName(String tournamentName) {
+        return tournamentDao.getTournamentByTournamentName(tournamentName);
+    }
+
+    @Override
     public void deleteAllFinishedTournaments() {
         tournamentDao.deleteAllFinishedTournaments();
     }

@@ -1,7 +1,14 @@
 $(document).ready(function () {
+    var input = $("input");
+    var label = $("label");
+    var submitButton  = $('button');
+
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
-        var tournamentSelect = $("#tournamentSelect");
-        tournamentSelect.hide();
+        input.hide();
+        label.hide();
+        submitButton.prop("disabled", true);
+        $("#tournamentLabel").hide();
+        $("#tournamentSelect").hide();
         var sport = ev.target.value;
 
         $.ajax({
@@ -13,30 +20,36 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (dataFromServer) {
-                tournamentSelect.empty();
+                console.log(dataFromServer);
+                $("#tournamentSelect").empty();
                 $('#noTournamentsInfo').text('');
 
                 if (dataFromServer.length === 0) {
                     $('#noTournamentsInfo').text('No tournaments available');
                 } else {
+                    $("#tournamentLabel").show();
+
                     for (var i = 0; i < dataFromServer.length; i++) {
-                        tournamentSelect.append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
+                        $('#tournamentSelect').append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
                     }
 
-                    tournamentSelect.show();
+                    $("#tournamentSelect").show();
                 }
             },
             error: function (e) {
                 alert(e)
             }
         })
-    })
+    });
 
     document.getElementById("tournamentSelect").addEventListener("change", function (ev) {
-        var teamSelect1 = $('#team1');
-        teamSelect1.hide();
-        var teamSelect2 = $('#team2');
-        teamSelect2.hide();
+        input.hide();
+        label.hide();
+        submitButton.prop("disabled", true);
+        $('#team1').hide();
+        $('#team1Label').hide();
+        $('#team2').hide();
+        $('#team2Label').hide();
 
         var tournament = ev.target.value;
 
@@ -49,20 +62,23 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (dataFromServer) {
-                teamSelect1.empty();
-                teamSelect2.empty();
+                $('#team1').empty();
+                $('#team2').empty();
                 $('#noTeamsInfo').text('');
 
                 if (dataFromServer.length === 0) {
                     $('#noTeamsInfo').text('No teams available');
                 } else {
                     for (var i = 0; i < dataFromServer.length; i++) {
-                        teamSelect1.append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
-                        teamSelect2.append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
+                        $('#team1').append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
+                        $('#team2').append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
                     }
 
-                    teamSelect1.show();
-                    teamSelect2.show();
+                    $('#team1').show();
+                    $('#team2').show();
+                    input.show();
+                    label.show();
+                    submitButton.prop("disabled", false);
                 }
             },
             error: function (e) {
@@ -71,3 +87,56 @@ $(document).ready(function () {
         })
     });
 });
+
+function createMatch() {
+    var errorCount = 0;
+
+    $('#drawCoefficientInformer').text("");
+    $('#team1Informer').text("");
+    $('#team1CoefficientInformer').text("");
+    $('#team2CoefficientInformer').text("");
+    $('#dateStartedInformer').text("");
+
+    if (document.getElementById("inputDrawCoefficient").value === "" || document.getElementById("inputDrawCoefficient").value <= 0) {
+        $('#drawCoefficientInformer').text("Wrong value");
+        errorCount++;
+    }
+    if (document.getElementById("inputTeam1Coefficient").value === "" || document.getElementById("inputTeam1Coefficient").value <= 0) {
+        $('#team1CoefficientInformer').text("Wrong value");
+        errorCount++;
+    }
+    if (document.getElementById("inputTeam2Coefficient").value === "" || document.getElementById("inputTeam2Coefficient").value <= 0) {
+        $('#team2CoefficientInformer').text("Wrong value");
+        errorCount++;
+    }
+    if (document.getElementById("dateStarted").value === "" || new Date(document.getElementById("dateStarted").value).getTime() < new Date().getTime()) {
+        $('#dateStartedInformer').text("Wrong date");
+        errorCount++;
+    }
+    if ($('#team1').val() === $('#team2').val()) {
+        $('#team1Informer').text('Cannnot create match with equal opponents');
+        errorCount++;
+    }
+
+    if (errorCount === 0) {
+        var data = {
+            tournament: $("#tournamentSelect").val(),
+            team1: $('#team1').val(),
+            team2: $('#team2').val(),
+            draw_coefficient: document.getElementById("inputDrawCoefficient").value,
+            team1_coefficient: document.getElementById("inputTeam1Coefficient").value,
+            team2_coefficient: document.getElementById("inputTeam2Coefficient").value,
+            date_started: document.getElementById("dateStarted").value
+        }
+
+        $.ajax({
+            url: "/xxlbet?command=create_match",
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            error: function (e) {
+                alert(e)
+            }
+        })
+    }
+}

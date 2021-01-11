@@ -8,6 +8,7 @@ import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_FINISHED_TOURNAMENTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_TOURNAMENTS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOURNAMENTS_BY_NAME;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOURNAMENTS_BY_SPORT_NAME;
 
 /**
@@ -33,6 +34,11 @@ public class TournamentDaoImpl extends AbstractDaoImpl<Tournament> implements To
     @Override
     public List<Tournament> getTournamentsBySportName(String sportName) {
         return executeQuery(SELECT_TOURNAMENTS_BY_SPORT_NAME, sportName);
+    }
+
+    @Override
+    public Tournament getTournamentByTournamentName(String tournamentName) {
+        return executeForSingleResult(SELECT_TOURNAMENTS_BY_NAME, tournamentName);
     }
 
     @Override

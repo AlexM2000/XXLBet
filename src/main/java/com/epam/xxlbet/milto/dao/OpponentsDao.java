@@ -13,7 +13,8 @@ public interface OpponentsDao {
     Opponent getOpponentById(long id);
     List<Opponent> getOpponentsByMatchId(long matchId);
     public List<Opponent> getOpponentsByTournament(String tournamentName);
+    Opponent getOpponentByName(String name);
     Opponent createOpponent(long id, String name);
-    Opponent adjustOpponentToMatch(long matchId, long coefficient);
+    Opponent adjustOpponentToMatch(Opponent opponent, Long matchId);
     void delete(long id);
 }

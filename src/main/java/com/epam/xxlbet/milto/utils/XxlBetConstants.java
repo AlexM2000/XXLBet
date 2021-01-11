@@ -31,6 +31,7 @@ public final class XxlBetConstants {
     public static final String UPDATE_USER_INFO = "update.user-info";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCHES = "queries_matches.properties";
+    public static final String INSERT_INTO_MATCHES = "insert.into.matches";
     public static final String SELECT_INCOMPLETE_MATCHES_PROPERTY_ID = "select.all.incomplete.matches";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_BETS = "queries_bets.properties";
@@ -70,6 +71,7 @@ public final class XxlBetConstants {
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_TOURNAMENTS = "queries_tournaments.properties";
     public static final String SELECT_TOURNAMENTS_BY_SPORT_NAME = "select.tournaments.by.sport.name";
+    public static final String SELECT_TOURNAMENTS_BY_NAME = "select.tournaments.by.name";
     public static final String DELETE_ALL_FINISHED_TOURNAMENTS = "delete.all.finished.tournaments";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_VERIFICATION_TOKENS = "queries_verification_tokens.properties";
@@ -79,6 +81,8 @@ public final class XxlBetConstants {
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_OPPONENTS = "queries_opponents.properties";
     public static final String SELECT_OPPONENTS_BY_ID = "select.opponent.by.id";
+    public static final String SELECT_OPPONENT_BY_NAME = "select.opponent.by.name";
     public static final String SELECT_OPPONENTS_FROM_MATCH = "select.opponents.from.match";
     public static final String SELECT_OPPONENTS_BY_TOURNAMENT_NAME = "select.opponents.by.tournament.name";
+    public static final String ADJUST_OPPONENT_TO_MATCH = "adjust.opponent.to.match";
 }

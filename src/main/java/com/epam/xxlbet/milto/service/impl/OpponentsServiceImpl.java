@@ -39,6 +39,16 @@ public class OpponentsServiceImpl implements OpponentsService {
     }
 
     @Override
+    public Opponent getOpponentByName(String name) {
+        return opponentsDao.getOpponentByName(name);
+    }
+
+    @Override
+    public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId) {
+        return opponentsDao.adjustOpponentToMatch(opponent, matchId);
+    }
+
+    @Override
     public Opponent getOpponentById(Long id) {
         return opponentsDao.getOpponentById(id);
     }

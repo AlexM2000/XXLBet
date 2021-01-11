@@ -18,6 +18,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMEN
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_WIN_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
@@ -73,6 +74,7 @@ public final class AuthenticatorImpl implements Authenticator {
                         && !BANNED_STATUS.equals(httpSession.getAttribute("status"));
 
             case GET_ADMIN_PAGE:
+            case POST_CREATE_MATCH:
                 return httpSession.getAttribute("role") != null
                         && asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 

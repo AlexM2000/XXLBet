@@ -72,6 +72,12 @@ public class BetsServiceImpl implements BetsService {
         return betResponses;
     }
 
+    /**
+     * Transfers data from List<Bet> to List<BetResponse>
+     *
+     * @param bets List<Bets> with data
+     * @param betResponses List<BetResponse>
+     */
     private void populateBetResponses(List<Bet> bets, List<BetResponse> betResponses) {
         for (Bet bet : bets) {
             BetResponse betResponse = new BetResponse();
