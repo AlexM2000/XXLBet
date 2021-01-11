@@ -29,9 +29,15 @@
         <label style="display: none" id="matchLabel" for="matchSelect" class="text-info"><ut:locale_tag key="create-bet-page.matchselect.label"/></label>
         <select id="matchSelect" class="form-control" style="display: none" title=<ut:locale_tag key="create-bet-page.matchselect.title"/>></select>
         <small id="noMatchesInfo" class="text-danger"></small>
-        <small class="text-info"><ut:locale_tag key="create-bet-page.draw-coefficient-info"/></small><small id="drawCoefficientInfo" class="text-info"></small>
-        <small class="text-info"><ut:locale_tag key="create-bet-page.first-team-coefficient-info"/>: </small><small id="firstTeamCoefficientInfo" class="text-info"></small>
-        <small class="text-info"><ut:locale_tag key="create-bet-page.second-team-coefficient-info"/>: </small><small id="secondTeamCoefficientInfo" class="text-info"></small>
+        <div class="form-group">
+            <small style="display: none" id="drawDescription" class="text-info"><ut:locale_tag key="create-bet-page.draw-coefficient-info"/>: </small><small id="drawCoefficientInfo" class="text-info"></small>
+        </div>
+        <div class="form-group">
+            <small style="display: none" id="team1Description" class="text-info"><ut:locale_tag key="create-bet-page.first-team-coefficient-info"/>: </small><small id="firstTeamCoefficientInfo" class="text-info"></small>
+        </div>
+        <div class="form-group">
+            <small style="display: none" id="team2Description" class="text-info"><ut:locale_tag key="create-bet-page.second-team-coefficient-info"/>: </small><small id="secondTeamCoefficientInfo" class="text-info"></small>
+        </div>
     </div>
 
     <button type="button" class="btn btn-primary"onclick="createBet()" disabled><ut:locale_tag key="create-bet-page.button"/></button>

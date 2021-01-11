@@ -70,6 +70,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     match.setDateStarted(set.getTimestamp(1).toLocalDateTime());
                     match.setTournamentName(set.getString(6));
                     opponent = new Opponent();
+                    opponent.setMatchId(set.getLong(5));
                     opponent.setName(set.getString(3));
                     opponent.setCoefficient(set.getBigDecimal(4));
                     opponents.add(opponent);
@@ -77,6 +78,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     matches.add(match);
                 } else {
                     opponent = new Opponent();
+                    opponent.setMatchId(set.getLong(5));
                     opponent.setName(set.getString(3));
                     opponent.setCoefficient(set.getBigDecimal(4));
                     opponents.add(opponent);
@@ -113,6 +115,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     match.setDateStarted(resultSet.getTimestamp(1).toLocalDateTime());
                     match.setTournamentName(resultSet.getString(6));
                     opponent = new Opponent();
+                    opponent.setMatchId(resultSet.getLong(5));
                     opponent.setName(resultSet.getString(3));
                     opponent.setCoefficient(resultSet.getBigDecimal(4));
                     opponents.add(opponent);
@@ -120,6 +123,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     matches.add(match);
                 } else {
                     opponent = new Opponent();
+                    opponent.setMatchId(resultSet.getLong(5));
                     opponent.setName(resultSet.getString(3));
                     opponent.setCoefficient(resultSet.getBigDecimal(4));
                     opponents.add(opponent);

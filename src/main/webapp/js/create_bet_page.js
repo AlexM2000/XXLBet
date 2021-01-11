@@ -8,6 +8,9 @@ $(document).ready(function () {
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
         input.hide();
         label.hide();
+        $('#drawDescription').hide();
+        $('#team1Description').hide();
+        $('#team2Description').hide();
         submitButton.prop("disabled", true);
         $("#tournamentLabel").hide();
         $("#tournamentSelect").hide();
@@ -49,6 +52,10 @@ $(document).ready(function () {
     document.getElementById("tournamentSelect").addEventListener("change", function (ev) {
         $('#matchSelect').hide();
         $('#matchLabel').hide();
+        $('#drawDescription').hide();
+        $('#team1Description').hide();
+        $('#team2Description').hide();
+        $('#noMatchesInfo').text('');
         submitButton.prop("disabled", true);
         var tournament = ev.target.value;;
 
@@ -59,6 +66,7 @@ $(document).ready(function () {
                 tournament: tournament
             },
             success: function (dataFromServer) {
+                console.log(dataFromServer);
                 /**
                  * [
                  * {
@@ -102,21 +110,28 @@ $(document).ready(function () {
                  * ]
                  */
                 lastDataFromServer = dataFromServer;
+                $('#noMatchesInfo').text('');
                 $('#matchSelect').empty();
 
                 if (dataFromServer.length === 0) {
                     $('#noMatchesInfo').text('No matches available');
                 } else {
+                    $('#matchSelect').append("<option></option>");
                     for (var i = 0; i < dataFromServer.length; i++) {
-                        var option = '<option value="' + dataFromServer[0]['opponents'][0]['matchId'] +'">'
+                        var option = '<option value="' + dataFromServer[i]['opponents'][0]['matchId'] +'">'
                         for (var j = 0; j < dataFromServer[i]['opponents'].length; j++) {
-                            option += dataFromServer[i]['opponents'][j]['name']
+                            option += dataFromServer[i]['opponents'][j]['name'] + " - "
                         }
+                        option = option.slice(0, -2);
                         option += '</option>';
                         $('#matchSelect').append(option);
                     }
 
                     $('#matchSelect').show();
+                    $('#matchLabel').show();
+                    $('#drawDescription').show();
+                    $('#team1Description').show();
+                    $('#team2Description').show();
                     submitButton.prop("disabled", false);
                 }
 
@@ -130,7 +145,7 @@ $(document).ready(function () {
     document.getElementById("matchSelect").addEventListener("change", function (ev) {
         for (var i = 0; i < lastDataFromServer.length; i++) {
             // Assume that there always come 2 opponents
-            if (lastDataFromServer[i]['opponents'][0]['matchId'] === ev.target.value) {
+            if (lastDataFromServer[i]['opponents'][0]['matchId'].toString() === ev.target.value) {
                 $('#drawCoefficientInfo').text(lastDataFromServer[i]['drawCoefficient']);
                 $('#firstTeamCoefficientInfo').text(lastDataFromServer[i]['opponents'][0]['coefficient']);
                 $('#secondTeamCoefficientInfo').text(lastDataFromServer[i]['opponents'][1]['coefficient']);
