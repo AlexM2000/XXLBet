@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.utils;
+package com.epam.xxlbet.milto.utils.jackson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

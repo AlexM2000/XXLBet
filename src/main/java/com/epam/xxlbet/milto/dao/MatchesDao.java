@@ -13,9 +13,10 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface MatchesDao {
-    List<Match> getMatchesByTournament(long tournamentId);
+    List<Match> getMatchesByTournament(String tournamentName);
     List<Bet> getMatchesAfter(LocalDateTime time);
     long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted);
     void deleteMatch(long id);
+    void deleteAllFinishedMatches();
     List<Match> getIncompleteMatches();
 }

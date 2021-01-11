@@ -30,6 +30,7 @@ public interface CommandFactory {
     String POST_CHANGE_USER_ROLE_AND_STATUS = "change_user_role_and_status";
     String POST_CREATE_MATCH = "create_match";
     String GET_BET_CREATE_PAGE = "bet_create_page";
+    String GET_MATCHES_BY_TOURNAMENT = "get_matches_by_tournament";
 
     Command createCommand(String commandName);
 

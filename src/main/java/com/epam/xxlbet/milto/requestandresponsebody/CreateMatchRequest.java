@@ -1,6 +1,6 @@
 package com.epam.xxlbet.milto.requestandresponsebody;
 
-import com.epam.xxlbet.milto.utils.LocalDateTimeDeserializer;
+import com.epam.xxlbet.milto.utils.jackson.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

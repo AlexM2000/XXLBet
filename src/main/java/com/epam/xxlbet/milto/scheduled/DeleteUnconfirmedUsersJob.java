@@ -57,5 +57,6 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
                 LOG.error("Error occured while executing DeleteUnconfirmedUsersJob", e);
             }
         }
+        LOG.debug("Executed DeleteUnconfirmedUsersJob successfully");
     }
 }

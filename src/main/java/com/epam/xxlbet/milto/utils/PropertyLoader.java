@@ -71,6 +71,12 @@ public final class PropertyLoader {
         init(MAIL_PROPERTIES);
     }
 
+    // todo add temporary map
+    public void reInit(String path) throws IOException {
+        this.properties.remove(path);
+        init(path);
+    }
+
     /**
      *  Initializes properties map with .properties file located on given path.
      */
@@ -92,10 +98,7 @@ public final class PropertyLoader {
         } else {
             this.properties.put(path, propertiesFromFile);
         }
-
-        LOG.debug(this.properties.entrySet().toString());
     }
-
 
     public Optional<String> getDatabaseUrl() {
         return getStringProperty(PROJECT_PROPERTIES, DATABASE_URL_PROPERTY_ID);

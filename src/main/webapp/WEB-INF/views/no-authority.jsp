@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="ut" uri="/WEB-INF/mytags" %>
+<%@ include file="header.jsp"%>
 <html>
 <head>
     <title><ut:locale_tag key="no-authority.title"/></title>

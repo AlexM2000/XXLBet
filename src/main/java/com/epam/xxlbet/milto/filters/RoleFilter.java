@@ -20,8 +20,8 @@ import java.util.Arrays;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
 
 @WebFilter(urlPatterns = "/xxlbet", filterName = "AuthorityFilter")
-public class AuthorityFilter implements Filter {
-    private static final Logger LOG = LoggerFactory.getLogger(AuthorityFilter.class);
+public class RoleFilter implements Filter {
+    private static final Logger LOG = LoggerFactory.getLogger(RoleFilter.class);
     private Authenticator authenticator;
 
     @Override

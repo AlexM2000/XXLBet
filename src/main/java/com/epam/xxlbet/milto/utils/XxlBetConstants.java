@@ -1,7 +1,8 @@
 package com.epam.xxlbet.milto.utils;
 
 /**
- * All constants kept in one place for convenience.
+ * XxlBetConstants.
+ * Almost all constants kept in one place for convenience.
  *
  * @author Aliaksei Milto
  */
@@ -33,6 +34,8 @@ public final class XxlBetConstants {
     public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCHES = "queries_matches.properties";
     public static final String INSERT_INTO_MATCHES = "insert.into.matches";
     public static final String SELECT_INCOMPLETE_MATCHES_PROPERTY_ID = "select.all.incomplete.matches";
+    public static final String DELETE_ALL_FINISHED_MATCHES = "delete.all.finished.matches";
+    public static final String SELECT_MATCHES_BY_TOURNAMENT = "select.matches.by.tournament";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_BETS = "queries_bets.properties";
     public static final String SELECT_INCOMPLETE_BETS_BY_USER_ID = "select.incomplete.bets.by.user";

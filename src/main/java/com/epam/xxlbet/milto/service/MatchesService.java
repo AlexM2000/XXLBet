@@ -12,4 +12,6 @@ import java.util.List;
 public interface MatchesService {
     List<Match> getIncompleteMatches();
     void createMatch(Match match);
+    void deleteAllFinishedMatches();
+    List<Match> getMatchesByTournament(String tournamentName);
 }

@@ -18,6 +18,10 @@
     <jsp-file>/WEB-INF/views/bookmaker-page.jsp</jsp-file>
   </servlet>
   <servlet>
+    <servlet-name>create-bet-page</servlet-name>
+    <jsp-file>/WEB-INF/views/create-bet-page.jsp</jsp-file>
+  </servlet>
+  <servlet>
     <servlet-name>confirm</servlet-name>
     <jsp-file>/WEB-INF/views/confirm.jsp</jsp-file>
   </servlet>
@@ -69,6 +73,10 @@
   <servlet-mapping>
     <servlet-name>bookmaker</servlet-name>
     <url-pattern>/bookmaker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>create-bet-page</servlet-name>
+    <url-pattern>/create-bet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>confirm</servlet-name>

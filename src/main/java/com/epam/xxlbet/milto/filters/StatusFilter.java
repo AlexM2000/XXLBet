@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
@@ -33,6 +34,7 @@ public class StatusFilter implements Filter {
         switch (request.getParameter(COMMAND)) {
             case GET_PROFILE_PAGE:
             case GET_BET_CREATE_PAGE:
+            case GET_ADMIN_PAGE:
                 if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {
                     response.sendRedirect("/ban");
                     return;

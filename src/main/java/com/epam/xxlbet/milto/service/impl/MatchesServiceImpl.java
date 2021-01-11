@@ -49,4 +49,14 @@ public class MatchesServiceImpl implements MatchesService {
             opponentsService.adjustOpponentToMatch(opponent, matchId, opponent.getCoefficient());
         }
     }
+
+    @Override
+    public void deleteAllFinishedMatches() {
+        matchesDao.deleteAllFinishedMatches();
+    }
+
+    @Override
+    public List<Match> getMatchesByTournament(String tournamentName) {
+        return matchesDao.getMatchesByTournament(tournamentName);
+    }
 }

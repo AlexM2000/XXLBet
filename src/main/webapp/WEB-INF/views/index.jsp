@@ -36,7 +36,7 @@
                     </jstl:otherwise>
                 </jstl:choose>
                 <td> ${match.getDrawCoefficient()} </td>
-                <td><a class="alert-info" href="/bet"><mytags:locale_tag key="home.create.bet"/></a></td>
+                <td><a class="alert-info" href="/xxlbet?command=bet_create_page"><mytags:locale_tag key="home.create.bet"/></a></td>
             </tr>
         </jstl:forEach>
         </tbody>

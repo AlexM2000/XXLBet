@@ -30,5 +30,6 @@ public class DeleteFinishedTournamentsJob implements Runnable {
     public void run() {
         LOG.debug("Executing DeleteFinishedTournamentsJob...");
         tournamentService.deleteAllFinishedTournaments();
+        LOG.debug("Executed DeleteFinishedTournamentsJob successfully");
     }
 }
