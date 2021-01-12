@@ -17,6 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -61,6 +62,15 @@ public class WebApplicationListener implements ServletContextListener {
             pool.closeAllConnections();
         } catch (SQLException e) {
             LOG.error("Could not close connections!", e);
+        }
+
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(800, MILLISECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executorService.shutdownNow();
         }
 
         LOG.debug("Connections are closed successfully!");
