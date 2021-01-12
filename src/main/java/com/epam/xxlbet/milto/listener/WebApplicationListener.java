@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.connection.ConnectionPool;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedMatchesJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedTournamentsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
+import com.epam.xxlbet.milto.scheduled.RefreshPropertyFilesJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * WebApplicationListener.
@@ -42,7 +44,7 @@ public class WebApplicationListener implements ServletContextListener {
         // Every 8 hours delete finished matches
         executorService.scheduleAtFixedRate(DeleteFinishedMatchesJob.getInstance(), 0, 8, HOURS);
         // Every 30 seconds refresh content of .properties files to server
-        // executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
+        executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
 
         LOG.debug("Created scheduled jobs...");
         LOG.debug("Initialized ApplicationContext...");

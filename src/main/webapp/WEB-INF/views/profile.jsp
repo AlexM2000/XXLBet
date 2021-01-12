@@ -15,15 +15,15 @@
     <div class="row m-5">
         <div class="col-3 bg-light">
             <jstl:choose>
-            <jstl:when test="${not empty userInfo.getProfileImgPath()}">
-                <img src="${userInfo.getProfileImgPath()}" class="w-50 float-left m-2">
+            <jstl:when test="${not empty requestScope.userInfo.getProfileImgPath()}">
+                <img src="${requestScope.userInfo.getProfileImgPath()}" class="w-50 float-left m-2">
                 <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image()"><ut:locale_tag key="profile.delete.image"/></button>
             </jstl:when>
             <c:otherwise>
                 <img id="profImg" src="/images/img_311846.png" class="w-50 float-left m-2">
             </c:otherwise>
             </jstl:choose>
-            <p id="ProfileImageDiv" class="float-right mt-5">${userInfo.getSurname()} ${userInfo.getName()} ${userInfo.getSecondName()}</p>
+            <p id="ProfileImageDiv" class="float-right mt-5">${requestScope.userInfo.getSurname()} ${requestScope.userInfo.getName()} ${userInfo.getSecondName()}</p>
             <form id="ProfileImageForm" action="/profileimage" style="display: none" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" id="file" class="btn-sm btn-info" value="Choose image"/>
                 <button type="submit" id="UploadProfileImage" style="display: none" class="btn-sm btn-info">Upload</button>

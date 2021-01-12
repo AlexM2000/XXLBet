@@ -8,12 +8,13 @@
 </head>
 <body>
 <div class="container my-4 py-4">
+    <input hidden id="login" value="${sessionScope.login}"/>
     <h3 class="text-info"><ut:locale_tag key="create-bet-page.form"/></h3>
     <div class="form-group">
         <label for="sportSelect" class="text-info"><ut:locale_tag key="admin-page.sportselect.label"/></label>
         <select id="sportSelect" class="form-control" title=<ut:locale_tag key="admin-page.sportselect.title"/>>
             <option></option>
-            <jstl:forEach var="sport" items="${sports}">
+            <jstl:forEach var="sport" items="${requestScope.sports}">
                 <option value="${sport.getName()}">${sport.getName()}</option>
             </jstl:forEach>
         </select>
@@ -37,6 +38,21 @@
         </div>
         <div class="form-group">
             <small style="display: none" id="team2Description" class="text-info"><ut:locale_tag key="create-bet-page.second-team-coefficient-info"/>: </small><small id="secondTeamCoefficientInfo" class="text-info"></small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="moneyInfo" style="display: none" for="money"><ut:locale_tag key="create-bet-page.enter-balance"/></label>
+        <input id="moneyInput" style="display: none" type="number" step="0.1" id="money" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label style="display: none" id="teamsLabel" for="teamsSelect" class="text-info"><ut:locale_tag key="create-bet-page.teamselect.label"/></label>
+        <select id="teamsSelect" class="form-control" style="display: none" title=<ut:locale_tag key="create-bet-page.teamselect.title"/>>
+            <option></option>
+        </select>
+        <div class="form-group">
+            <small style="display: none" id="canWinInfo" class="text-info"><ut:locale_tag key="create-bet-page.can-win-info"/>: <small id="canWinDescription" class="text-info"></small></small>
         </div>
     </div>
 

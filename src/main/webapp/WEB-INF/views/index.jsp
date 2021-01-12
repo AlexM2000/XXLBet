@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <jstl:forEach var="match" items="${matches}">
+        <jstl:forEach var="match" items="${requestScope.matches}">
             <tr>
                 <td> ${match.getTournamentName()} </td>
                 <td>
@@ -28,7 +28,7 @@
                 </jstl:forEach>
                 </td>
                 <jstl:choose>
-                    <jstl:when test="${today.isBefore(match.getDateStarted())}">
+                    <jstl:when test="${requestScope.today.isBefore(match.getDateStarted())}">
                         <td> ${mytags:formatLocalDateTime(match.getDateStarted(), 'dd.MM.yyyy HH:mm:ss')} </td>
                     </jstl:when>
                     <jstl:otherwise>

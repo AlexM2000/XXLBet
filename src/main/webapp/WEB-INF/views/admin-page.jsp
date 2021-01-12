@@ -13,7 +13,7 @@
             <label for="sportSelect" class="text-info"><ut:locale_tag key="admin-page.sportselect.label"/></label>
             <select id="sportSelect" class="form-control" title=<ut:locale_tag key="admin-page.sportselect.title"/>>
                 <option></option>
-                <jstl:forEach var="sport" items="${sports}">
+                <jstl:forEach var="sport" items="${requestScope.sports}">
                     <option value="${sport.getName()}">${sport.getName()}</option>
                 </jstl:forEach>
             </select>
