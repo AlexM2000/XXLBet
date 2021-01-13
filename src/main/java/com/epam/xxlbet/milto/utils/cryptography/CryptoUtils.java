@@ -37,7 +37,7 @@ public class CryptoUtils {
             secretKey = new SecretKeySpec(key, "AES");
         }
         catch (NoSuchAlgorithmException e) {
-            LOG.error("Something went wrong while executing CryptoUtils.setKey()");
+            LOG.error("Something went wrong while executing CryptoUtils.setKey()", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class CryptoUtils {
         }
         catch (Exception e)
         {
-            System.out.println("Error while encrypting: " + e.toString());
+            LOG.error("Error while encrypting at CryptoUtils.encrypt: ", e);
         }
         return null;
     }
@@ -68,7 +68,7 @@ public class CryptoUtils {
         }
         catch (Exception e)
         {
-            System.out.println("Error while decrypting: " + e.toString());
+            LOG.error("Error while decrypting CryptoUtils.decrypt:", e);
         }
         return null;
     }
