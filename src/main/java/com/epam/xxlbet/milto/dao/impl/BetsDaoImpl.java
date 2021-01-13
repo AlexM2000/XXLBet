@@ -55,7 +55,14 @@ public class BetsDaoImpl extends AbstractDaoImpl<Bet> implements BetsDao {
 
     @Override
     public Bet createBet(Bet bet) {
-        execute(INSERT_INTO_BETS, bet.getMatchId(), bet.getSum(), bet.getResultId(), bet.getUserId());
+        executeUpdate(
+                INSERT_INTO_BETS,
+                bet.getMatchId(),
+                bet.getDateCreated(),
+                bet.getSum(),
+                bet.getExpectedWinnerId(),
+                bet.getUserId()
+        );
         return getBetByUserId(bet.getUserId());
     }
 

@@ -2,6 +2,11 @@ package com.epam.xxlbet.milto.requestandresponsebody;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * ChangeUserRoleAndStatusRequest.
+ *
+ * @author Alisksei Milto
+ */
 public class ChangeUserRoleAndStatusRequest {
     @JsonProperty("email")
     private String email;

@@ -31,6 +31,7 @@ public interface CommandFactory {
     String POST_CREATE_MATCH = "create_match";
     String GET_BET_CREATE_PAGE = "bet_create_page";
     String GET_MATCHES_BY_TOURNAMENT = "get_matches_by_tournament";
+    String POST_CREATE_BET = "create_bet";
 
     Command createCommand(String commandName);
 

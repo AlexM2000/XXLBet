@@ -8,7 +8,6 @@
 </head>
 <body>
 <div class="container my-4 py-4">
-    <input hidden id="login" value="${sessionScope.login}"/>
     <h3 class="text-info"><ut:locale_tag key="create-bet-page.form"/></h3>
     <div class="form-group">
         <label for="sportSelect" class="text-info"><ut:locale_tag key="admin-page.sportselect.label"/></label>
@@ -44,6 +43,7 @@
     <div class="form-group">
         <label id="moneyInfo" style="display: none" for="money"><ut:locale_tag key="create-bet-page.enter-balance"/></label>
         <input id="moneyInput" style="display: none" type="number" step="0.1" id="money" class="form-control"/>
+        <small id="moneyError" class="text-danger"></small>
     </div>
 
     <div class="form-group">
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary"onclick="createBet()" disabled><ut:locale_tag key="create-bet-page.button"/></button>
+    <button type="button" class="btn btn-primary"onclick="createBet('${sessionScope.login}')" disabled><ut:locale_tag key="create-bet-page.button"/></button>
 </div>
 </body>
 </html>

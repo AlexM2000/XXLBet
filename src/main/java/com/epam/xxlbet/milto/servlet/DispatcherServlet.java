@@ -9,6 +9,7 @@ import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.command.factory.CommandFactory;
 import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
+import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,7 @@ public class DispatcherServlet extends HttpServlet {
             Command command = commandFactory.createCommand(commandName);
             CommandResult commandResult = command.execute(requestContext, responseContext);
             dispatch(request, response, commandResult);
-        } catch (final ServiceException | IOException e) {
+        } catch (final ServiceException | UnknownCommandException | IOException e) {
             LOG.error("Something went wrong during processing request...", e);
         }
     }

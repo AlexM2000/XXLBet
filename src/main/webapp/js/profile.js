@@ -6,7 +6,6 @@ function getBets(command) {
             command: command
         },
         success: function (dataFromServer) {
-            dataFromServer = JSON.parse(dataFromServer);
             var table = $("#betsBody");
             $("#betsBody tr").remove();
             for (var i = 0; i < dataFromServer.length; i++) {

@@ -3,6 +3,11 @@ package com.epam.xxlbet.milto.requestandresponsebody;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * BetResponse.
+ *
+ * @author Aliaksei Milto
+ */
 public class BetResponse {
     private String match;
     private BigDecimal sum;

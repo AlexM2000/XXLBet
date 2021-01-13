@@ -115,6 +115,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     match.setDateStarted(resultSet.getTimestamp(1).toLocalDateTime());
                     match.setTournamentName(resultSet.getString(6));
                     opponent = new Opponent();
+                    opponent.setId(resultSet.getLong(7));
                     opponent.setMatchId(resultSet.getLong(5));
                     opponent.setName(resultSet.getString(3));
                     opponent.setCoefficient(resultSet.getBigDecimal(4));
@@ -123,6 +124,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     matches.add(match);
                 } else {
                     opponent = new Opponent();
+                    opponent.setId(resultSet.getLong(7));
                     opponent.setMatchId(resultSet.getLong(5));
                     opponent.setName(resultSet.getString(3));
                     opponent.setCoefficient(resultSet.getBigDecimal(4));

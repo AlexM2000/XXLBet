@@ -5,11 +5,14 @@ import com.epam.xxlbet.milto.dao.impl.BetsDaoImpl;
 import com.epam.xxlbet.milto.domain.Bet;
 import com.epam.xxlbet.milto.domain.Opponent;
 import com.epam.xxlbet.milto.requestandresponsebody.BetResponse;
+import com.epam.xxlbet.milto.requestandresponsebody.CreateBetRequest;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.OpponentsService;
+import com.epam.xxlbet.milto.service.UserService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,10 +25,12 @@ public class BetsServiceImpl implements BetsService {
     private static BetsServiceImpl instance;
     private BetsDao betsDao;
     private OpponentsService opponentsService;
+    private UserService userService;
 
     private BetsServiceImpl() {
         betsDao = BetsDaoImpl.getInstance();
         opponentsService = OpponentsServiceImpl.getInstance();
+        userService = UserServiceImpl.getInstance();
     }
 
     public static BetsServiceImpl getInstance() {
@@ -61,8 +66,14 @@ public class BetsServiceImpl implements BetsService {
     }
 
     @Override
-    public Bet createBet(long matchId, BigDecimal sum, long expectedWinnerId) {
-        return null;
+    public Bet createBet(CreateBetRequest createBetRequest) {
+        Bet bet = new Bet();
+        bet.setDateCreated(new Date());
+        bet.setExpectedWinnerId(createBetRequest.getExpectedWinnerId());
+        bet.setMatchId(createBetRequest.getMatchId());
+        bet.setSum(createBetRequest.getSum());
+        bet.setUserId(userService.getUserByEmail(createBetRequest.getEmail()).getId());
+        return betsDao.createBet(bet);
     }
 
     @Override

@@ -8,6 +8,7 @@ $(document).ready(function () {
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
         input.hide();
         label.hide();
+        $('#moneyError').empty();
         $('#drawDescription').hide();
         $('#team1Description').hide();
         $('#team2Description').hide();
@@ -56,6 +57,8 @@ $(document).ready(function () {
 
     document.getElementById("tournamentSelect").addEventListener("change", function (ev) {
         $('#matchSelect').hide();
+        $('#matchSelect').empty();
+        $('#moneyError').empty();
         $('#matchLabel').hide();
         $('#drawDescription').hide();
         $('#team1Description').hide();
@@ -160,6 +163,7 @@ $(document).ready(function () {
     document.getElementById("matchSelect").addEventListener("change", function (ev) {
         $('#canWinInfo').hide();
         $('#teamsSelect').hide();
+        $('#moneyError').empty();
         submitButton.prop("disabled", true);
         $('#teamsSelect').empty();
         $('#moneyInput').hide();
@@ -197,3 +201,43 @@ $(document).ready(function () {
         submitButton.prop("disabled", false);
     });
 });
+
+
+function createBet(email) {
+    var errorCount = 0;
+    $('#moneyError').empty();
+
+    if (document.getElementById('moneyInput').value === ""
+        || parseFloat(document.getElementById('moneyInput').value).toFixed(2) <= 0) {
+        errorCount++;
+        $('#moneyError').text('Invalid value')
+    }
+
+    if (errorCount === 0) {
+
+        var data = {
+            email: email,
+            match_id: parseInt(document.getElementById('matchSelect').value),
+            sum: parseFloat(document.getElementById('moneyInput').value).toFixed(2),
+            expected_winner_id: parseInt(document.getElementById('teamsSelect').value)
+        };
+
+        $.ajax({
+            url: '/xxlbet?command=create_bet',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success: function (dataFromServer) {
+                if (dataFromServer === "ok") {
+                    alert('Your bet was created successfully');
+                    window.location.reload();
+                } else {
+                    $('#moneyError').text(dataFromServer['create-bet-page.bad-balance'])
+                }
+            },
+            error: function (e) {
+                alert(e)
+            }
+        });
+    }
+}

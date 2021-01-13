@@ -7,6 +7,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * CreateMatchRequest.
+ *
+ * @author Aliaksei Millto
+ */
 public class CreateMatchRequest {
     @JsonProperty("tournament")
     private String tournament;

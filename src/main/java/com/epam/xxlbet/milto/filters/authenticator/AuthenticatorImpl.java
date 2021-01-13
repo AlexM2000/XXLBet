@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.filters.authenticator;
 
 import com.epam.xxlbet.milto.domain.Role;
+import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMEN
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_WIN_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
@@ -53,7 +55,7 @@ public final class AuthenticatorImpl implements Authenticator {
     public boolean hasAuthority(HttpSession httpSession, String commandName) {
         switch (commandName) {
             default:
-                throw new IllegalArgumentException("Unknown command " + commandName);
+                throw new UnknownCommandException("Unknown command " + commandName);
             case GET_HOME_COMMAND:
             case LANGUAGE_COMMAND:
             case GET_LOGIN_PAGE:
@@ -73,6 +75,7 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_WIN_USER_BETS:
             case GET_DEFEAT_USER_BETS:
             case GET_BET_CREATE_PAGE:
+            case POST_CREATE_BET:
                 return httpSession.getAttribute("login") != null
                         && httpSession.getAttribute("role") != null
                         && !BANNED_STATUS.equals(httpSession.getAttribute("status"));
