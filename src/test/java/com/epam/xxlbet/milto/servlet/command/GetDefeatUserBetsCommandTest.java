@@ -4,18 +4,22 @@ import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static com.epam.xxlbet.milto.command.CommandResultType.WRITE_DIRECT_TO_RESPONSE;
 import static com.epam.xxlbet.milto.utils.DateUtils.convertToDateViaInstant;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -26,12 +30,18 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
     @InjectMocks
-    private Command command = new GetDefeatUserBetsCommand(getMockBetsService());
+    private Command command = new GetDefeatUserBetsCommand(getBetsService());
 
     @Before
     public void setUp() {
         // when
-        when(getMockBetsService().getDefeatBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
+        when(getBetsService().getDefeatBetsByUser(SOME_LOGIN)).thenReturn(betResponses);
+    }
+
+    @After
+    public void verifyCalls() throws IOException {
+        // verify
+        verify(getBetsService(), times(1)).getDefeatBetsByUser(SOME_LOGIN);
     }
 
     @Test

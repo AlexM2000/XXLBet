@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.filter.authenticator;
 
+import com.epam.xxlbet.milto.domain.Role;
 import com.epam.xxlbet.milto.filters.authenticator.Authenticator;
 import com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl;
 import org.junit.Before;
@@ -73,7 +74,7 @@ public class AuthenticatorTest {
     public void testAuthority_ShouldAuthorizeClientRequests() {
         // when
         when(httpSession.getAttribute("login")).thenReturn("SomeRandomAuthorizedUserLogin");
-        when(httpSession.getAttribute("role")).thenReturn("client");
+        when(httpSession.getAttribute("role")).thenReturn(Role.CLIENT);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_PROFILE_PAGE));
@@ -88,7 +89,7 @@ public class AuthenticatorTest {
     @Test
     public void testAuthority_ShouldAuthorizeAdminRequests() {
         // when
-        when(httpSession.getAttribute("role")).thenReturn("admin");
+        when(httpSession.getAttribute("role")).thenReturn(Role.ADMIN);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));
@@ -98,7 +99,7 @@ public class AuthenticatorTest {
     @Test
     public void testAuthority_ShouldAuthorizeBookmakerRequests() {
         // when
-        when(httpSession.getAttribute("role")).thenReturn("bookmaker");
+        when(httpSession.getAttribute("role")).thenReturn(Role.BOOKMAKER);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));

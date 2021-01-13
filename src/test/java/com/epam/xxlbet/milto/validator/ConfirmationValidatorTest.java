@@ -52,6 +52,7 @@ public class ConfirmationValidatorTest {
 
     @After
     public void verifyCalls() {
+        // verify
         verify(service, times(1)).getUserByEmail(TEST_MAIL);
     }
 

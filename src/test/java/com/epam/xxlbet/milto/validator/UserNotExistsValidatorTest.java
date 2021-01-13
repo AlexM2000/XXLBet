@@ -35,6 +35,7 @@ public class UserNotExistsValidatorTest {
 
     @After
     public void verifyCalls() {
+        // verify
         verify(userService, times(1)).getUserByEmail(SOME_MAIL);
     }
 

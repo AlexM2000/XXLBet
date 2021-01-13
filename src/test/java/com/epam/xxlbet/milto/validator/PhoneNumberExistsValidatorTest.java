@@ -43,6 +43,7 @@ public class PhoneNumberExistsValidatorTest {
 
     @After
     public void verifyCalls() {
+        // verify
         verify(userService, times(1)).isPhoneNumberExists(TEST_PHONE_NUMBER);
     }
 

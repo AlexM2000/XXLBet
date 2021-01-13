@@ -71,6 +71,7 @@ public class UserServiceImplTest {
         // then
         assertEquals(SOME_MAIL, user.getEmail());
 
+        // verify
         verify(userDao, times(1)).createUser(any(User.class));
         verify(registrationToUserPopulator, times(1)).populate(eq(registrationRequest), any(User.class));
         verify(registrationToUserInfoPopulator, times(1)).populate(eq(registrationRequest), any(UserInfo.class));

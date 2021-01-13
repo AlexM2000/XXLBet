@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.servlet.command;
 
+import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.context.HttpServletRequestContext;
 import com.epam.xxlbet.milto.context.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
@@ -34,6 +35,7 @@ public abstract class AbstractUserBetsCommandTest {
 
     private HttpServletResponse response = mock(HttpServletResponse.class);
 
+    protected CommandResult commandResult;
     protected RequestContext requestContext;
     protected ResponseContext responseContext;
     protected List<BetResponse> betResponses;
@@ -57,7 +59,7 @@ public abstract class AbstractUserBetsCommandTest {
         when(response.getWriter()).thenReturn(writer);
     }
 
-    protected BetsService getMockBetsService() {
+    protected BetsService getBetsService() {
         return betsService;
     }
 }
