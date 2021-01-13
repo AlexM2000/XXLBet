@@ -31,18 +31,19 @@ public class PostCreateBetCommand extends AbstractCommand {
 
         CreateBetRequest createBetRequest = getRequestBody(request, CreateBetRequest.class);
         UserInfo userInfo = userInfoService.getUserInfoByEmail(createBetRequest.getEmail());
+        Object responseBody;
 
         if (userInfo.getBalance().compareTo(createBetRequest.getSum()) < 0) {
             Errors errors = new Errors();
             errors.reject("create-bet-page.bad-balance", getCurrentLocale(request));
-
-            return createWriteDirectlyToResponseCommandResult(errors.getErrors());
+            responseBody = errors.getErrors();
         } else {
             userInfo.setBalance(userInfo.getBalance().subtract(createBetRequest.getSum()));
             userInfoService.updateUserInfo(userInfo);
             betsService.createBet(createBetRequest);
+            responseBody = "ok";
         }
 
-        return createWriteDirectlyToResponseCommandResult("ok");
+        return createWriteDirectlyToResponseCommandResult(responseBody);
     }
 }
