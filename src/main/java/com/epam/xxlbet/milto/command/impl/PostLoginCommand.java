@@ -13,8 +13,6 @@ import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.ConfirmationValidator;
 import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 
-import java.io.IOException;
-
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
 /**
@@ -42,6 +40,7 @@ public class PostLoginCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());
+
         LoginRequest loginRequest = getRequestBody(request, LoginRequest.class);
         validate(loginRequest.getLogin(), getCurrentLocale(request), userNotExistsValidator);
         validate(loginRequest.getLogin(), getCurrentLocale(request), confirmationValidator);
@@ -61,13 +60,6 @@ public class PostLoginCommand extends AbstractCommand {
             }
         }
 
-        try {
-            response.writeJSONValue(getErrors());
-            getErrors().clear();
-        } catch (final IOException e) {
-            getLogger().error("Something went wrong during writing response...", e);
-        }
-
-        return createWriteDirectlyToResponseCommandResult();
+        return createWriteDirectlyToResponseCommandResult(getErrors());
     }
 }

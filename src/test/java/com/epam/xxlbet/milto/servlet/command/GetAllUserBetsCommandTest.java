@@ -1,7 +1,6 @@
 package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
-import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import org.junit.After;
@@ -15,9 +14,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static com.epam.xxlbet.milto.command.CommandResultType.WRITE_DIRECT_TO_RESPONSE;
 import static com.epam.xxlbet.milto.utils.DateUtils.convertToDateViaInstant;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -53,19 +50,11 @@ public class GetAllUserBetsCommandTest extends AbstractUserBetsCommandTest {
         betResponse.setSum(new BigDecimal(300));
         betResponses.add(betResponse);
 
-        CommandResult commandResult = command.execute(requestContext, responseContext);
-
-        // then
-        assertEquals(commandResult.getCommandResultType(), WRITE_DIRECT_TO_RESPONSE);
-        assertEquals("[{\"match\":\"team1 - team2\",\"sum\":300,\"coefficient\":1,\"winningSum\":300,\"dateCreated\":1607720400000}]", stringWriter.toString());
+        commandResult = command.execute(requestContext, responseContext);
     }
 
     @Test
     public void shouldReturnEmptyResponse() throws ServiceException {
         commandResult = command.execute(requestContext, responseContext);
-
-        // then
-        assertEquals(commandResult.getCommandResultType(), WRITE_DIRECT_TO_RESPONSE);
-        assertEquals("[]", stringWriter.toString());
     }
 }

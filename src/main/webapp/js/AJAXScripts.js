@@ -15,7 +15,7 @@ function registration() {
     $('#birthDateInformer').text('');
 
     if (!password_regexp.test(password)) {
-        $('#passwordErrorInformer').text("Password should contain at least one small letter, one big letter, one number, one special character, minimum 7 maximum 20 symbols");
+        $('#passwordErrorInformer').text("Password should contain at least one small letter, one big letter, one special character, minimum 7 maximum 20 symbols");
         error_count++;
     }
     if (document.getElementById("InputSurName").value.length === 0) {

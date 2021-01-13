@@ -9,7 +9,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 /**
  * PhoneNumberValidator.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class PhoneNumberValidator implements Validator {
     private static final String PHONENUMBER_REGEXP_ID = "xxl.bet.milto.phonenumber.regexp";

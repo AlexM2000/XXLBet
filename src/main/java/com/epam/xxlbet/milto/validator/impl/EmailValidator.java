@@ -9,7 +9,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 /**
  * EmailValidator.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class EmailValidator implements Validator {
     private static final String EMAIL_PATTERN_ID = "xxl.bet.milto.email.regexp";

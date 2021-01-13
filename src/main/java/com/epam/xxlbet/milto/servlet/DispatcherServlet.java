@@ -10,6 +10,7 @@ import com.epam.xxlbet.milto.command.factory.CommandFactory;
 import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,7 @@ import java.io.IOException;
 public class DispatcherServlet extends HttpServlet {
     private static final String COMMAND_PARAMETER = "command";
     private static final Logger LOG = LoggerFactory.getLogger(DispatcherServlet.class);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,6 +38,12 @@ public class DispatcherServlet extends HttpServlet {
         process(req, resp);
     }
 
+    /**
+     * Process the request
+     *
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     */
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             RequestContext requestContext = new HttpServletRequestContext(request);
@@ -50,6 +58,15 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Decide what to do after command execution depending on given CommandResult.
+     *
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @param commandResult CommandResult
+     * @throws IOException if error while writing response occurred
+     * @throws ServletException if error while redirecting or forwarding occurred
+     */
     private void dispatch(HttpServletRequest request, HttpServletResponse response, CommandResult commandResult)
             throws ServletException, IOException {
         String page = commandResult.getPage();
@@ -63,10 +80,36 @@ public class DispatcherServlet extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case WRITE_DIRECT_TO_RESPONSE:
-                // do nothing, as in command answer already was written to response
+                if (commandResult.getResponseBody() instanceof String) {
+                    writeString(response, (String) commandResult.getResponseBody());
+                } else {
+                    writeJSON(response, commandResult.getResponseBody());
+                }
                 break;
             default:
-                throw new IllegalArgumentException("Unknown command: " + commandResult.getCommandResultType());
+                throw new IllegalArgumentException("Unknown command result: " + commandResult.getCommandResultType());
         }
+    }
+
+    /**
+     * Write string to response.
+     *
+     * @param response HttpServletResponse
+     * @param responseBody String that will be written to response
+     */
+    private void writeString(HttpServletResponse response, String responseBody) throws IOException {
+        response.setContentType("text/plain; charset=utf-8");
+        response.getWriter().print(responseBody);
+    }
+
+    /**
+     * Write JSON response body to response.
+     *
+     * @param response HttpServletResponse
+     * @param responseBody String that will be written to response
+     */
+    private void writeJSON(HttpServletResponse response, Object responseBody) throws IOException {
+        response.setContentType("application/json; charset=utf-8");
+        OBJECT_MAPPER.writeValue(response.getWriter(), responseBody);
     }
 }

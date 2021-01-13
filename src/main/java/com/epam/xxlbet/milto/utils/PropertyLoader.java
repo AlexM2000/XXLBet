@@ -57,7 +57,7 @@ public final class PropertyLoader {
     /**
      *  Initializes properties map with all .properties files from classpath.
      */
-    public void init() throws IOException, URISyntaxException {
+    private void init() throws IOException, URISyntaxException {
         LOG.debug("Initializing project.properties...");
 
         init(PROJECT_PROPERTIES);
@@ -71,7 +71,7 @@ public final class PropertyLoader {
         init(MAIL_PROPERTIES);
     }
 
-    // todo add temporary map
+    // todo add temporary map to prevent properties deleting
     public void reInit(String path) throws IOException {
         this.properties.remove(path);
         init(path);

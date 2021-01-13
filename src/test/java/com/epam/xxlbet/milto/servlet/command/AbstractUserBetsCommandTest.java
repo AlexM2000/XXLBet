@@ -7,17 +7,17 @@ import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.requestandresponsebody.BetResponse;
 import com.epam.xxlbet.milto.service.BetsService;
+import org.junit.After;
 import org.junit.Before;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.xxlbet.milto.command.CommandResultType.WRITE_DIRECT_TO_RESPONSE;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -40,23 +40,24 @@ public abstract class AbstractUserBetsCommandTest {
     protected ResponseContext responseContext;
     protected List<BetResponse> betResponses;
     protected BetResponse betResponse;
-    protected StringWriter stringWriter;
-    private PrintWriter writer;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() {
         requestContext = new HttpServletRequestContext(request);
         responseContext = new HttpServletResponseContext(response);
         betResponses = new ArrayList<>();
         betResponse = new BetResponse();
 
-        stringWriter = new StringWriter();
-        writer = new PrintWriter(stringWriter);
-
         // when
         when(request.getSession()).thenReturn(mock(HttpSession.class));
         when(request.getSession().getAttribute("login")).thenReturn(SOME_LOGIN);
-        when(response.getWriter()).thenReturn(writer);
+    }
+
+    @After
+    public void checkResults() {
+        // then
+        assertEquals(commandResult.getCommandResultType(), WRITE_DIRECT_TO_RESPONSE);
+        assertEquals(betResponses, commandResult.getResponseBody());
     }
 
     protected BetsService getBetsService() {

@@ -34,7 +34,7 @@
         <select id="betSelector" class="form-control form-control-lg" title=<ut:locale_tag key="profile.bets.title"/>>
             <option value="win_user_bets"><ut:locale_tag key="profile.bets.win"/></option>
             <option value="defeat_user_bets"><ut:locale_tag key="profile.bets.defeat"/></option>
-            <option value="all_user_bets"><ut:locale_tag key="profile.bets.all"/></option>
+            <option value="all_user_bets" selected><ut:locale_tag key="profile.bets.all"/></option>
         </select>
         <div class="col-9">
             <table id="betsTable" class="table table-striped">

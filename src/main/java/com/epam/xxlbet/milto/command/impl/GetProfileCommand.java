@@ -28,8 +28,8 @@ public class GetProfileCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());
-        UserInfo userInfo = userInfoService.getUserInfoByEmail((String) request.getSessionAttribute("login"));
 
+        UserInfo userInfo = userInfoService.getUserInfoByEmail((String) request.getSessionAttribute("login"));
         request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail()));
         request.setAttribute("userInfo", userInfo);
 

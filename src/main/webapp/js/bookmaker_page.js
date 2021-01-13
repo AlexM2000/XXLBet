@@ -24,6 +24,7 @@ function changeUserRoleAndStatus(email) {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         success: function () {
+            alert('User role and status were changed successfully!');
             window.location.reload();
         },
         error: function (e) {

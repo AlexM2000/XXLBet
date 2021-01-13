@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
-import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
@@ -23,14 +22,10 @@ public class GetLanguageCommand extends AbstractCommand {
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());
-        try {
-            String locale = request.getParameter("lang") != null ? request.getParameter("lang") : "en";
-            response.addCookie(new Cookie("language", locale));
-            response.writeValue("ok");
-        } catch (final IOException e) {
-            LOG.error("Something went wrong during changing language", e);
-        }
 
-        return createWriteDirectlyToResponseCommandResult();
+        String locale = request.getParameter("lang") != null ? request.getParameter("lang") : "en";
+        response.addCookie(new Cookie("language", locale));
+
+        return createWriteDirectlyToResponseCommandResult("ok");
     }
 }

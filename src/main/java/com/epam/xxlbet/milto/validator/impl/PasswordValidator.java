@@ -9,7 +9,7 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
 /**
  * PasswordValidator.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class PasswordValidator implements Validator {
     private static final String PASSWORD_PATTERN_ID = "xxl.bet.milto.password.regexp";

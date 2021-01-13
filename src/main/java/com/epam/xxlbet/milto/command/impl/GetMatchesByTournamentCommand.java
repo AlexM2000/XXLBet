@@ -6,8 +6,6 @@ import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.MatchesService;
 
-import java.io.IOException;
-
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
 /**
@@ -24,12 +22,10 @@ public class GetMatchesByTournamentCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
-        try {
-            response.writeJSONValue(matchesService.getMatchesByTournament(request.getParameter("tournament")));
-        } catch (IOException e) {
-            throw new ServiceException(e);
-        }
+        getLogger().debug("Executing " + this.getClass());
 
-        return createWriteDirectlyToResponseCommandResult();
+        return createWriteDirectlyToResponseCommandResult(
+                matchesService.getMatchesByTournament(request.getParameter("tournament"))
+        );
     }
 }

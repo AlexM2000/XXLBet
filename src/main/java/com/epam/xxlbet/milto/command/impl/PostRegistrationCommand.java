@@ -21,7 +21,6 @@ import com.epam.xxlbet.milto.validator.impl.PhoneNumberValidator;
 import com.epam.xxlbet.milto.validator.impl.UserExistsValidator;
 
 import javax.mail.MessagingException;
-import java.io.IOException;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_BE_PROPERTIES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES;
@@ -59,52 +58,74 @@ public class PostRegistrationCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());
-        RegistrationRequest body = getRequestBody(request, RegistrationRequest.class);
-        validate(body.getEmail(), getCurrentLocale(request), emailValidator);
-        validate(body.getPassword(), getCurrentLocale(request), passwordValidator);
-        validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);
-        validate(body.getPhoneNumber(), getCurrentLocale(request), phoneNumberExistsValidator);
-        validate(body.getEmail(), getCurrentLocale(request), userExistsValidater);
+        RegistrationRequest requestBody = getRequestBody(request, RegistrationRequest.class);
+        validate(requestBody.getEmail(), getCurrentLocale(request), emailValidator);
+        validate(requestBody.getPassword(), getCurrentLocale(request), passwordValidator);
+        validate(requestBody.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);
+        validate(requestBody.getPhoneNumber(), getCurrentLocale(request), phoneNumberExistsValidator);
+        validate(requestBody.getEmail(), getCurrentLocale(request), userExistsValidater);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
-            userService.createNewUser(body);
+            VerificationToken token = verificationTokenService.createToken(
+                    userService.createNewUser(requestBody).getId()
+            );
 
-            VerificationToken token = verificationTokenService.createToken(userService.getUserByEmail(body.getEmail()).getId());
+            String currentLocale = getCurrentLocale(request);
+            String msgFile = getNameOfLocaleFile(currentLocale);
 
-            String msgFile;
-            switch (getCurrentLocale(request)) {
-                default:
-                case "en":
-                    msgFile = MESSAGES_EN_PROPERTIES;
-                    break;
-                case "be":
-                    msgFile = MESSAGES_BE_PROPERTIES;
-                    break;
-                case "ru":
-                    msgFile = MESSAGES_RU_PROPERTIES;
-                    break;
-            }
-
-            try {
-                emailSender.sendEmail(
-                        body.getEmail(),
-                        format(PropertyLoader.getInstance().getStringProperty(msgFile, "email.confirmregistration.body")
-                                .orElseThrow(() -> new PropertyNotFoundException(format("Can't find email body for %s locale", getCurrentLocale(request)))), token.getToken(), token.getToken()),
-                        PropertyLoader.getInstance().getStringProperty(msgFile, "email.confirmregistration.subject")
-                                .orElseThrow(() -> new PropertyNotFoundException(format("Can't find email subject for %s locale", getCurrentLocale(request))))
-                );
-            } catch (MessagingException e) {
-                getLogger().error("Something went wrong during sending email...", e);
-            }
+            sendRegistrationEmail(requestBody.getEmail(), msgFile, currentLocale, token);
         }
 
+        return CommandResult.createWriteDirectlyToResponseCommandResult(getErrors());
+    }
+
+    /**
+     * Send email with link to confirm registration.
+     *
+     * @param email recipient email
+     * @param currentLocale current locale
+     * @param msgFile file with localized messages
+     * @param token token that will be attached to email
+     */
+    private void sendRegistrationEmail(String email, String msgFile, String currentLocale, VerificationToken token) {
         try {
-            response.writeJSONValue(getErrors());
-            getErrors().clear();
-        } catch (final IOException e) {
-            getLogger().error("Something went wrong during writing response...", e);
+            emailSender.sendEmail(
+                    email,
+                    getText(msgFile, currentLocale, "email.confirmregistration.body", token.getToken(), token.getToken()),
+                    getText(msgFile, currentLocale, "email.confirmregistration.subject")
+            );
+        } catch (MessagingException e) {
+            getLogger().error("Something went wrong during sending email...", e);
         }
+    }
 
-        return CommandResult.createWriteDirectlyToResponseCommandResult();
+    /**
+     * Get name of file with localized messages depending on given language.
+     *
+     * @param locale given language.
+     */
+    private String getNameOfLocaleFile(final String locale) {
+        switch (locale) {
+            default:
+            case "en":
+                return MESSAGES_EN_PROPERTIES;
+            case "be":
+                return MESSAGES_BE_PROPERTIES;
+            case "ru":
+                return MESSAGES_RU_PROPERTIES;
+        }
+    }
+
+    /**
+     * Return text from messages file with given locale and id.
+     *
+     * @param msgFile File which contains localized messages.
+     * @param locale Language on which message must be
+     * @param msgId id of the message
+     * @param args Arguments for message formatting
+     */
+    private String getText(String msgFile, String locale, String msgId, Object... args) {
+        return format(PropertyLoader.getInstance().getStringProperty(msgFile, msgId)
+                .orElseThrow(() -> new PropertyNotFoundException(format("Can't find text for %s locale", locale))), args);
     }
 }

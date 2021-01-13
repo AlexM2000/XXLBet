@@ -1,7 +1,6 @@
 package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.Command;
-import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import org.junit.After;
@@ -11,13 +10,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static com.epam.xxlbet.milto.command.CommandResultType.WRITE_DIRECT_TO_RESPONSE;
 import static com.epam.xxlbet.milto.utils.DateUtils.convertToDateViaInstant;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -39,7 +35,7 @@ public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
     }
 
     @After
-    public void verifyCalls() throws IOException {
+    public void verifyCalls() {
         // verify
         verify(getBetsService(), times(1)).getDefeatBetsByUser(SOME_LOGIN);
     }
@@ -53,19 +49,11 @@ public class GetDefeatUserBetsCommandTest extends AbstractUserBetsCommandTest {
         betResponse.setSum(new BigDecimal(300));
         betResponses.add(betResponse);
 
-        CommandResult commandResult = command.execute(requestContext, responseContext);
-
-        // then
-        assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
-        assertEquals("[{\"match\":\"team1 - team2\",\"sum\":300,\"coefficient\":1,\"winningSum\":300,\"dateCreated\":1607720400000}]", stringWriter.toString());
+        commandResult = command.execute(requestContext, responseContext);
     }
 
     @Test
     public void shouldReturnEmptyResponse() throws ServiceException {
-        CommandResult commandResult = command.execute(requestContext, responseContext);
-
-        // then
-        assertEquals(WRITE_DIRECT_TO_RESPONSE, commandResult.getCommandResultType());
-        assertEquals("[]", stringWriter.toString());
+        commandResult = command.execute(requestContext, responseContext);
     }
 }

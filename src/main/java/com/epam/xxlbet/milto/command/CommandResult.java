@@ -14,22 +14,24 @@ public class CommandResult {
 
     private final String page;
     private final CommandResultType commandResultType;
+    private final Object responseBody;
 
-    private CommandResult(final String page, final CommandResultType commandResultType) {
+    private CommandResult(final String page, final CommandResultType commandResultType, final Object responseBody) {
         this.page = page;
         this.commandResultType = commandResultType;
+        this.responseBody = responseBody;
     }
 
     public static CommandResult createRedirectCommandResult(String page) {
-        return new CommandResult(page, REDIRECT);
+        return new CommandResult(page, REDIRECT, null);
     }
 
     public static CommandResult createForwardCommandResult(String page) {
-        return new CommandResult(page, FORWARD);
+        return new CommandResult(page, FORWARD, null);
     }
 
-    public static CommandResult createWriteDirectlyToResponseCommandResult() {
-        return new CommandResult(EMPTY, WRITE_DIRECT_TO_RESPONSE);
+    public static CommandResult createWriteDirectlyToResponseCommandResult(final Object responseBody) {
+        return new CommandResult(EMPTY, WRITE_DIRECT_TO_RESPONSE, responseBody);
     }
 
     public String getPage() {
@@ -38,5 +40,9 @@ public class CommandResult {
 
     public CommandResultType getCommandResultType() {
         return commandResultType;
+    }
+
+    public Object getResponseBody() {
+        return responseBody;
     }
 }

@@ -26,23 +26,16 @@ public class PostConfirmRegistrationCommand extends AbstractCommand {
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
         getLogger().debug("Executing " + this.getClass());
-        String token = request.getParameter("token");
-        CommandResult commandResult = null;
 
-        switch (userService.confirmRegistration(token)) {
-            case INVALID:
-                commandResult = createRedirectCommandResult(INVALID);
-                break;
-            case EXPIRED:
-                commandResult = createRedirectCommandResult(EXPIRED);
-                break;
-            case SUCCESS:
-                commandResult = createRedirectCommandResult(SUCCESS);
-                break;
+        switch (userService.confirmRegistration(request.getParameter("token"))) {
             default:
                 throw new ServiceException("Something went wrong during registration confirmation...");
+            case INVALID:
+                return createRedirectCommandResult(INVALID);
+            case EXPIRED:
+                return createRedirectCommandResult(EXPIRED);
+            case SUCCESS:
+                return createRedirectCommandResult(SUCCESS);
         }
-
-        return commandResult;
     }
 }

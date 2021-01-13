@@ -8,7 +8,7 @@ import com.epam.xxlbet.milto.validator.Validator;
 /**
  * UserExistsValidator.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public final class UserExistsValidator implements Validator {
     private static UserExistsValidator instance;
