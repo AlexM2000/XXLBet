@@ -14,22 +14,15 @@
 <div class="container">
     <div class="row m-5">
         <div class="col-3 bg-light">
-            <jstl:choose>
-            <jstl:when test="${not empty requestScope.userInfo.getProfileImgPath()}">
-                <img src="${requestScope.userInfo.getProfileImgPath()}" class="w-50 float-left m-2">
-                <button id="DeleteImage" class="btn-sm btn-info" onclick="delete_image()"><ut:locale_tag key="profile.delete.image"/></button>
-            </jstl:when>
-            <c:otherwise>
-                <img id="profImg" src="/images/img_311846.png" class="w-50 float-left m-2">
-            </c:otherwise>
-            </jstl:choose>
-            <p id="ProfileImageDiv" class="float-right mt-5">${requestScope.userInfo.getSurname()} ${requestScope.userInfo.getName()} ${userInfo.getSecondName()}</p>
-            <form id="ProfileImageForm" action="/profileimage" style="display: none" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" id="file" class="btn-sm btn-info" value="Choose image"/>
-                <button type="submit" id="UploadProfileImage" style="display: none" class="btn-sm btn-info">Upload</button>
-            </form>
-            <button id="CancelUploadProfileImage" style="display: none" onclick="cancel_display_upload_image()" class="btn-sm btn-info">Cancel</button>
-            <button id="DisplayUploadImage" class="btn-sm btn-info" onclick="display_upload_image()">Change Image</button>
+                <img id="profImg" src="${pageContext.request.contextPath}/images/img_311846.png" class="w-50 float-left m-2">
+            <p id="ProfileImageDiv" class="float-right mt-5">${requestScope.userInfo.getSurname()} ${requestScope.userInfo.getName()} ${requestScope.userInfo.getSecondName()}</p>
+        </div>
+        <div class="col-5 float-right mt-4">
+            <p><ut:locale_tag key="profile.birthdate"/>: ${requestScope.userInfo.getBirthDate()}</p>
+            <p><ut:locale_tag key="profile.registration-date"/>: ${ut:formatLocalDateTime(requestScope.userInfo.getRegistrationDate(), 'dd.MM.yyyy HH:mm:ss')}</p>
+            <p><ut:locale_tag key="profile.balance"/>: ${requestScope.userInfo.getBalance()}</p>
+            <p><ut:locale_tag key="profile.role"/>: ${sessionScope.role.getName()}</p>
+            <p><ut:locale_tag key="profile.status"/>: ${sessionScope.status.getName()}</p>
         </div>
         <select id="betSelector" class="form-control form-control-lg" title=<ut:locale_tag key="profile.bets.title"/>>
             <option value="win_user_bets"><ut:locale_tag key="profile.bets.win"/></option>

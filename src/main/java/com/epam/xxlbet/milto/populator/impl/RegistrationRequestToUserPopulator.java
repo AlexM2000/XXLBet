@@ -25,7 +25,6 @@ public class RegistrationRequestToUserPopulator implements Populator<Registratio
     @Override
     public void populate(RegistrationRequest registrationRequest, User user) {
         user.setPhoneNumber(registrationRequest.getPhoneNumber());
-        System.out.println(registrationRequest.getEmail());
         user.setEmail(registrationRequest.getEmail());
     }
 }
