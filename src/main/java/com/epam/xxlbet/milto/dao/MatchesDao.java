@@ -18,5 +18,6 @@ public interface MatchesDao {
     long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted);
     void deleteMatch(long id);
     void deleteAllFinishedMatches();
-    List<Match> getIncompleteMatches();
+    List<Match> getFutureMatches();
+    List<Match> getAllOnlineAndIncompleteMatches();
 }

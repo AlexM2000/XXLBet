@@ -11,7 +11,7 @@ import static com.epam.xxlbet.milto.domain.Status.BANNED;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ACTIVE_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 
-public class ResultSetToStatusPopulator implements ResultSetPopulator<ResultSet, Status> {
+public class ResultSetToStatusPopulator implements ResultSetPopulator<Status> {
     private static ResultSetToStatusPopulator instance;
 
     private ResultSetToStatusPopulator() {

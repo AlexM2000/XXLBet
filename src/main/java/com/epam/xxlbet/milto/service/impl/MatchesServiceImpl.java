@@ -37,8 +37,8 @@ public class MatchesServiceImpl implements MatchesService {
     }
 
     @Override
-    public List<Match> getIncompleteMatches() {
-        return matchesDao.getIncompleteMatches();
+    public List<Match> getFutureMatches() {
+        return matchesDao.getFutureMatches();
     }
 
     @Override
@@ -58,5 +58,10 @@ public class MatchesServiceImpl implements MatchesService {
     @Override
     public List<Match> getMatchesByTournament(String tournamentName) {
         return matchesDao.getMatchesByTournament(tournamentName);
+    }
+
+    @Override
+    public List<Match> getAllOnlineAndIncompleteMatches() {
+        return matchesDao.getAllOnlineAndIncompleteMatches();
     }
 }

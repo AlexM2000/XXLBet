@@ -14,4 +14,5 @@ public interface UserInfoDao {
     UserInfo updateUserInfo(UserInfo userInfo);
     UserInfo getUserInfoByEmail(String email);
     List<UserInfo> getAllUsers();
+    void updateAllUsersBalanceAfterMatchComplete(Long matchId, Long matchResultId);
 }

@@ -10,8 +10,9 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface MatchesService {
-    List<Match> getIncompleteMatches();
+    List<Match> getFutureMatches();
     void createMatch(Match match);
     void deleteAllFinishedMatches();
     List<Match> getMatchesByTournament(String tournamentName);
+    List<Match> getAllOnlineAndIncompleteMatches();
 }

@@ -8,6 +8,6 @@ import java.sql.SQLException;
  *
  * @author Aliaksei Milto
  */
-public interface ResultSetPopulator<RESULT_SET extends ResultSet, TARGET> {
-    TARGET populate(RESULT_SET source) throws SQLException;
+public interface ResultSetPopulator<TARGET> {
+    TARGET populate(ResultSet source) throws SQLException;
 }

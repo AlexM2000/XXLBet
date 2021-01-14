@@ -30,12 +30,18 @@ public final class XxlBetConstants {
     public static final String INSERT_INTO_USER_INFO = "insert.into.user-info";
     public static final String SELECT_USER_INFO_BY_EMAIL = "select.from.user.info.by.email";
     public static final String UPDATE_USER_INFO = "update.user-info";
+    public static final String UPDATE_USER_BALANCE_AFTER_BET = "update.user.balance.after.bet";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCHES = "queries_matches.properties";
     public static final String INSERT_INTO_MATCHES = "insert.into.matches";
-    public static final String SELECT_INCOMPLETE_MATCHES_PROPERTY_ID = "select.all.incomplete.matches";
+    public static final String SELECT_FUTURE_MATCHES = "select.all.future.matches";
+    public static final String SELECT_ALL_ONLINE_AND_INCOMPLETE_MATCHES = "select.all.online.and.incomplete.matches";
     public static final String DELETE_ALL_FINISHED_MATCHES = "delete.all.finished.matches";
     public static final String SELECT_MATCHES_BY_TOURNAMENT = "select.matches.by.tournament";
+
+    public static final String FILE_WITH_QUERIES_FOR_TABLE_MATCH_RESULTS = "queries_match_results.properties";
+    public static final String CREATE_MATCH_RESULT = "create.match-result";
+    public static final String SELECT_MATCH_RESULT_BY_MATCH = "select.match-result.by.match";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_BETS = "queries_bets.properties";
     public static final String SELECT_INCOMPLETE_BETS_BY_USER_ID = "select.incomplete.bets.by.user";

@@ -6,7 +6,7 @@ import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ResultSetToSportPopulator implements ResultSetPopulator<ResultSet, Sport> {
+public class ResultSetToSportPopulator implements ResultSetPopulator<Sport> {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static ResultSetToSportPopulator instance;

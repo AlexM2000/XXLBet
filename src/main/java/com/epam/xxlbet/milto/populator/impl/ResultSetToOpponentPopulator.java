@@ -6,7 +6,7 @@ import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ResultSetToOpponentPopulator implements ResultSetPopulator<ResultSet, Opponent> {
+public class ResultSetToOpponentPopulator implements ResultSetPopulator<Opponent> {
     private static final String ID = "id";
     private static final String MATCH_ID = "match_id";
     private static final String TOURNAMENT_ID = "tournament_id";

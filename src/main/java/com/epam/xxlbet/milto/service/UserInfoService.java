@@ -15,4 +15,5 @@ public interface UserInfoService {
     UserInfo createNewUserInfo(UserInfo userInfo);
     UserInfo updateUserInfo(UserInfo userInfo);
     List<AdminPageUserResponse> getAllUserInfoForAdminPage();
+    void updateAllUsersBalanceAfterMatchComplete(Long matchId, Long matchResultId);
 }

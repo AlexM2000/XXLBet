@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.connection.ConnectionPool;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedMatchesJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedTournamentsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
+import com.epam.xxlbet.milto.scheduled.GenerateMatchResultJob;
 import com.epam.xxlbet.milto.scheduled.RefreshPropertyFilesJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -46,6 +48,8 @@ public class WebApplicationListener implements ServletContextListener {
         executorService.scheduleAtFixedRate(DeleteFinishedMatchesJob.getInstance(), 0, 8, HOURS);
         // Every 30 seconds refresh content of .properties files to server
         executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
+        // Generate random matches and update users balance that bet on complete match every 30 seconds
+        executorService.scheduleAtFixedRate(GenerateMatchResultJob.getInstance(), 0, 1, MINUTES);
 
         LOG.debug("Created scheduled jobs...");
         LOG.debug("Initialized ApplicationContext...");

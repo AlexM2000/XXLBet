@@ -27,9 +27,9 @@ abstract class AbstractDaoImpl<T> {
     private PropertyLoader loader;
     private ConnectionPool connectionPool;
     private String propertiesFileWithQueriesName;
-    private ResultSetPopulator<ResultSet, T> populator;
+    private ResultSetPopulator<T> populator;
 
-    protected AbstractDaoImpl(final String propertiesFileName, final ResultSetPopulator<ResultSet, T> populator) {
+    protected AbstractDaoImpl(final String propertiesFileName, final ResultSetPopulator<T> populator) {
         try {
             loader = PropertyLoader.getInstance();
             loader.init(propertiesFileName);

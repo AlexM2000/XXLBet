@@ -10,6 +10,7 @@ import java.util.List;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_USER_INFO;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_ALL_USER_INFO;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_USER_INFO_BY_EMAIL;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_BALANCE_AFTER_BET;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_INFO;
 
 /**
@@ -76,5 +77,10 @@ public class UserInfoDaoImpl extends AbstractDaoImpl<UserInfo> implements UserIn
     @Override
     public List<UserInfo> getAllUsers() {
         return executeQuery(SELECT_ALL_USER_INFO);
+    }
+
+    @Override
+    public void updateAllUsersBalanceAfterMatchComplete(Long matchId, Long matchResultId) {
+        executeUpdate(UPDATE_USER_BALANCE_AFTER_BET, matchId, matchResultId);
     }
 }

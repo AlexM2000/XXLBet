@@ -67,4 +67,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         return userResponses;
     }
+
+    @Override
+    public void updateAllUsersBalanceAfterMatchComplete(Long matchId, Long matchResultId) {
+        userInfoDao.updateAllUsersBalanceAfterMatchComplete(matchId, matchResultId);
+    }
 }

@@ -20,7 +20,8 @@ import java.util.Set;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_FINISHED_MATCHES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_MATCHES;
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_MATCHES_PROPERTY_ID;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_ALL_ONLINE_AND_INCOMPLETE_MATCHES;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_FUTURE_MATCHES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_MATCHES_BY_TOURNAMENT;
 
 /**
@@ -48,11 +49,11 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
     }
 
     @Override
-    public List<Match> getIncompleteMatches() {
+    public List<Match> getFutureMatches() {
         List<Match> matches = new ArrayList<>();
 
         try(final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_INCOMPLETE_MATCHES_PROPERTY_ID));
+            final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_FUTURE_MATCHES));
 
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
 
@@ -66,10 +67,12 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                 if (prevMatchId != set.getLong(5)) {
                     match = new Match();
                     opponents = new LinkedHashSet<>();
+                    match.setId(set.getLong(5));
                     match.setDrawCoefficient(set.getBigDecimal(2));
                     match.setDateStarted(set.getTimestamp(1).toLocalDateTime());
                     match.setTournamentName(set.getString(6));
                     opponent = new Opponent();
+                    opponent.setId(set.getLong(7));
                     opponent.setMatchId(set.getLong(5));
                     opponent.setName(set.getString(3));
                     opponent.setCoefficient(set.getBigDecimal(4));
@@ -78,6 +81,55 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                     matches.add(match);
                 } else {
                     opponent = new Opponent();
+                    opponent.setId(set.getLong(7));
+                    opponent.setMatchId(set.getLong(5));
+                    opponent.setName(set.getString(3));
+                    opponent.setCoefficient(set.getBigDecimal(4));
+                    opponents.add(opponent);
+                }
+                prevMatchId = set.getLong(5);
+            }
+        } catch (final InterruptedException | SQLException e) {
+            getLogger().error(getErrorMsgBegin() + " in getIncompleteMatches", e);
+        }
+
+        return matches;
+    }
+
+    @Override
+    public List<Match> getAllOnlineAndIncompleteMatches() {
+        List<Match> matches = new ArrayList<>();
+
+        try(final Connection connection = getConnectionPool().getConnection()) {
+            final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_ALL_ONLINE_AND_INCOMPLETE_MATCHES));
+
+            statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+
+            ResultSet set = statement.executeQuery();
+            long prevMatchId = 0;
+            Match match;
+            Set<Opponent> opponents = new LinkedHashSet<>();
+            Opponent opponent;
+
+            while (set.next()) {
+                if (prevMatchId != set.getLong(5)) {
+                    match = new Match();
+                    opponents = new LinkedHashSet<>();
+                    match.setId(set.getLong(5));
+                    match.setDrawCoefficient(set.getBigDecimal(2));
+                    match.setDateStarted(set.getTimestamp(1).toLocalDateTime());
+                    match.setTournamentName(set.getString(6));
+                    opponent = new Opponent();
+                    opponent.setId(set.getLong(7));
+                    opponent.setMatchId(set.getLong(5));
+                    opponent.setName(set.getString(3));
+                    opponent.setCoefficient(set.getBigDecimal(4));
+                    opponents.add(opponent);
+                    match.setOpponents(opponents);
+                    matches.add(match);
+                } else {
+                    opponent = new Opponent();
+                    opponent.setId(set.getLong(7));
                     opponent.setMatchId(set.getLong(5));
                     opponent.setName(set.getString(3));
                     opponent.setCoefficient(set.getBigDecimal(4));
@@ -111,6 +163,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
                 if (prevMatchId != resultSet.getLong(5)) {
                     match = new Match();
                     opponents = new LinkedHashSet<>();
+                    match.setId(resultSet.getLong(5));
                     match.setDrawCoefficient(resultSet.getBigDecimal(2));
                     match.setDateStarted(resultSet.getTimestamp(1).toLocalDateTime());
                     match.setTournamentName(resultSet.getString(6));

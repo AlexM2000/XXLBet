@@ -11,7 +11,7 @@ import java.sql.SQLException;
  *
  * @author Aliaksei Milto
  */
-public class ResultSetToUserPopulator implements ResultSetPopulator<ResultSet, User> {
+public class ResultSetToUserPopulator implements ResultSetPopulator<User> {
     private static final String ID_COLUMN_NAME = "id";
     private static final String EMAIL_COLUMN_NAME = "email";
     private static final String PASSWORD_COLUMN_NAME = "password";

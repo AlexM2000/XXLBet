@@ -11,7 +11,7 @@ import java.sql.SQLException;
  *
  * @author Aliaksei Milto
  */
-public class ResultSetToBetPopulator implements ResultSetPopulator<ResultSet, Bet> {
+public class ResultSetToBetPopulator implements ResultSetPopulator<Bet> {
     private static final String ID = "id";
     private static final String MATCH_ID = "match_id";
     private static final String RESULT_ID = "result_id";
