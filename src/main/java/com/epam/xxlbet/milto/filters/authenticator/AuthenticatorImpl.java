@@ -20,15 +20,14 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_REGISTRAT
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMENTS_BY_SPORT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_WIN_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
 import static java.util.Arrays.asList;
 
@@ -78,7 +77,7 @@ public final class AuthenticatorImpl implements Authenticator {
             case POST_CREATE_BET:
                 return httpSession.getAttribute("login") != null
                         && httpSession.getAttribute("role") != null
-                        && !BANNED_STATUS.equals(httpSession.getAttribute("status"));
+                        && httpSession.getAttribute("status") != null;
 
             case GET_ADMIN_PAGE:
             case POST_CREATE_MATCH:

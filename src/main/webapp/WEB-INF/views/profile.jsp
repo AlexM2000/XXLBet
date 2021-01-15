@@ -21,6 +21,14 @@
             <p><ut:locale_tag key="profile.birthdate"/>: ${requestScope.userInfo.getBirthDate()}</p>
             <p><ut:locale_tag key="profile.registration-date"/>: ${ut:formatLocalDateTime(requestScope.userInfo.getRegistrationDate(), 'dd.MM.yyyy HH:mm:ss')}</p>
             <p><ut:locale_tag key="profile.balance"/>: ${requestScope.userInfo.getBalance()}</p>
+            <div id="balanceForm" class="form-group">
+                <small style="display: none" id="moneyLabel"><ut:locale_tag key="profile.enter.sum"/></small>
+                <input style="display: none" id="money" type="number" class="mt-2" placeholder=<ut:locale_tag key="profile.enter.sum"/>/>
+                <small style="display: none" id="chooseCardLabel" for="chooseCard"><ut:locale_tag key="profile.choose.card"/></small>
+                <select style="display: none" id="chooseCard" class="form-control-sm m-md-0"></select>
+                <button style="display: none" id="payButton" class="btn-sm btn-info"><ut:locale_tag key="profile.pay.button"/></button>
+            </div>
+            <button id="showPay" onclick="showPayForm()" class="btn-sm btn-info"><ut:locale_tag key="profile.show.pay"/></button>
             <p><ut:locale_tag key="profile.role"/>: ${sessionScope.role.getName()}</p>
             <p><ut:locale_tag key="profile.status"/>: ${sessionScope.status.getName()}</p>
         </div>

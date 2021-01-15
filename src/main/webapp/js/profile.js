@@ -21,6 +21,14 @@ function getBets(command) {
     })
 }
 
+function showPayForm() {
+    $("#moneyLabel").show();
+    $("#money").show();
+    $("#chooseCard").show();
+    $("#chooseCardLabel").show();
+    $("#payButton").show();
+}
+
 $(document).ready(function() {
 
     document.getElementById("betSelector").addEventListener('change', function (ev) {
