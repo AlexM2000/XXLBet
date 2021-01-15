@@ -12,7 +12,6 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface BetsService {
-    List<Bet> getAllIncompleteBetsByUser(String email, String phoneNumber);
     List<Bet> getIncompleteBets(String email, String phoneNumber);
     List<BetResponse> getWinningBetsByUser(String email);
     List<BetResponse> getDefeatBetsByUser(String email);

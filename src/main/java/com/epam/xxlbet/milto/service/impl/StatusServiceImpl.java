@@ -23,7 +23,7 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status getStatusById(Long statusId) {
-        return statusDao.getUserStatusById(statusId);
+        return statusDao.getStatusById(statusId);
     }
 
     @Override
@@ -33,6 +33,6 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status getUserStatusByName(String name) {
-        return statusDao.getUserStatusByName(name);
+        return statusDao.getStatusByName(name);
     }
 }

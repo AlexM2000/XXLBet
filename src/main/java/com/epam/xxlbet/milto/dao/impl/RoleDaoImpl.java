@@ -35,7 +35,7 @@ public class RoleDaoImpl extends AbstractDaoImpl<Role> implements RoleDao {
     }
 
     @Override
-    public Role getUserRoleById(Long roleId) {
+    public Role getRoleById(Long roleId) {
         return executeForSingleResult(SELECT_USER_ROLE_BY_ID, roleId);
     }
 

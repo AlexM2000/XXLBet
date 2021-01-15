@@ -1,6 +1,5 @@
 package com.epam.xxlbet.milto.dao;
 
-import com.epam.xxlbet.milto.domain.Bet;
 import com.epam.xxlbet.milto.domain.Match;
 
 import java.math.BigDecimal;
@@ -13,11 +12,41 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface MatchesDao {
+
+    /**
+     * Find not yet started matches for given tournament.
+     *
+     * @param tournamentName name of the tournament
+     * @return List of matches
+     */
     List<Match> getMatchesByTournament(String tournamentName);
-    List<Bet> getMatchesAfter(LocalDateTime time);
+
+    /**
+     * Create match in database.
+     *
+     * @param tournamentId tournament id
+     * @param dateStarted date of match start
+     * @param drawCoefficient draw coefficient
+     * @return id of created {@link Match}
+     */
     long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted);
-    void deleteMatch(long id);
+
+    /**
+     * Delete all finished matches.
+     */
     void deleteAllFinishedMatches();
+
+    /**
+     * Find all not yet started matches.
+     *
+     * @return all not yet started matches
+     */
     List<Match> getFutureMatches();
+
+    /**
+     * Find all started matches.
+     *
+     * @return all started matches
+     */
     List<Match> getAllOnlineAndIncompleteMatches();
 }

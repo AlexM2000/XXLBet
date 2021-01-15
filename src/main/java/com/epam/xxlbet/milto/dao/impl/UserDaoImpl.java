@@ -13,7 +13,6 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_USER_PROPE
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_AND_PASSWORD_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_EMAIL_PROPERTY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_ID_PROPERTY_ID;
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_AND_PASSWORD_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BY_PHONENUMBER_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_UNCONFIRMED_USERS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.UPDATE_USER_PROPERTY_ID;
@@ -56,11 +55,6 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
     @Override
     public User getUserByEmailAndPassword(final String email, final String password) {
         return executeForSingleResult(SELECT_BY_EMAIL_AND_PASSWORD_ID, email, password);
-    }
-
-    @Override
-    public User getUserByPhoneNumberAndPassword(final String phoneNumber, final String password) {
-        return executeForSingleResult(SELECT_BY_PHONENUMBER_AND_PASSWORD_ID, phoneNumber, password);
     }
 
     @Override

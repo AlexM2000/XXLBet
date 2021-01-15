@@ -16,8 +16,9 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.MAIL_PROPERTIES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_BE_PROPERTIES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_RU_PROPERTIES;
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.unmodifiableMap;
 
 /**
  * Loads and keeps properties from .properties files
@@ -78,25 +79,27 @@ public final class PropertyLoader {
     }
 
     /**
-     *  Initializes properties map with .properties file located on given path.
+     * Initializes properties map with .properties file located on given path in classpath.
+     *
+     * @param name .properties file name
      */
-    public void init(final String path) throws IOException {
+    public void init(final String name) throws IOException {
         Properties properties = new Properties();
 
-        InputStream in = PropertyLoader.class.getResourceAsStream("/" + path);
+        InputStream in = PropertyLoader.class.getResourceAsStream("/" + name);
         if (in == null) {
-            throw new IOException("Can't find file /" + path);
+            throw new IOException("Can't find file /" + name);
         }
 
-        properties.load(new InputStreamReader(PropertyLoader.class.getResourceAsStream("/" + path), UTF_8));
+        properties.load(new InputStreamReader(PropertyLoader.class.getResourceAsStream("/" + name), UTF_8));
 
         Map<String, String> propertiesFromFile = new HashMap<>();
         properties.forEach((key, value) -> propertiesFromFile.put((String) key, (String) value));
 
-        if (this.properties.containsKey(path)) {
-            properties.replace(path, propertiesFromFile);
+        if (this.properties.containsKey(name)) {
+            properties.replace(name, unmodifiableMap(propertiesFromFile));
         } else {
-            this.properties.put(path, propertiesFromFile);
+            this.properties.put(name, unmodifiableMap(propertiesFromFile));
         }
     }
 

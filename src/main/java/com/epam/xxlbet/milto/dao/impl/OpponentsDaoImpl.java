@@ -55,7 +55,7 @@ public class OpponentsDaoImpl extends AbstractDaoImpl<Opponent> implements Oppon
     }
 
     @Override
-    public Opponent createOpponent(long id, String name) {
+    public Opponent createOpponent(Opponent opponent) {
         return null;
     }
 

@@ -2,8 +2,34 @@ package com.epam.xxlbet.milto.dao;
 
 import com.epam.xxlbet.milto.domain.Status;
 
+/**
+ * StatusDao.
+ *
+ * @author Aliaksei Milto
+ */
 public interface StatusDao {
+
+    /**
+     * Get status of given user.
+     *
+     * @param email user email
+     * @return user {@link Status}
+     */
     Status getUserStatusByEmail(String email);
-    Status getUserStatusById(Long statusId);
-    Status getUserStatusByName(String name);
+
+    /**
+     * Find status by status id.
+     *
+     * @param statusId status id
+     * @return {@link Status}
+     */
+    Status getStatusById(Long statusId);
+
+    /**
+     * Find status by status name.
+     *
+     * @param name status name
+     * @return {@link Status}
+     */
+    Status getStatusByName(String name);
 }

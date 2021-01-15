@@ -35,12 +35,12 @@ public class StatusDaoImpl extends AbstractDaoImpl<Status> implements StatusDao 
     }
 
     @Override
-    public Status getUserStatusById(Long statusId) {
+    public Status getStatusById(Long statusId) {
         return executeForSingleResult(SELECT_USER_STATUS_BY_ID, statusId);
     }
 
     @Override
-    public Status getUserStatusByName(String name) {
+    public Status getStatusByName(String name) {
         return executeForSingleResult(SELECT_USER_STATUS_BY_NAME, name);
     }
 }

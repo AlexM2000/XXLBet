@@ -1,10 +1,9 @@
 package com.epam.xxlbet.milto.dao.impl;
 
-import com.epam.xxlbet.milto.utils.XxlBetConstants;
 import com.epam.xxlbet.milto.dao.MatchesDao;
-import com.epam.xxlbet.milto.domain.Bet;
 import com.epam.xxlbet.milto.domain.Match;
 import com.epam.xxlbet.milto.domain.Opponent;
+import com.epam.xxlbet.milto.utils.XxlBetConstants;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -194,11 +193,6 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
     }
 
     @Override
-    public List<Bet> getMatchesAfter(final LocalDateTime time) {
-        return null;
-    }
-
-    @Override
     public long createMatch(Long tournamentId, BigDecimal drawCoefficient, LocalDateTime dateStarted) {
         executeUpdate(INSERT_INTO_MATCHES, tournamentId, drawCoefficient.doubleValue(), dateStarted);
 
@@ -219,11 +213,6 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
         }
 
         return lastId;
-    }
-
-    @Override
-    public void deleteMatch(long id) {
-
     }
 
     @Override
