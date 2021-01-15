@@ -42,11 +42,6 @@ public class BetsServiceImpl implements BetsService {
     }
 
     @Override
-    public List<Bet> getIncompleteBets(String email, String phoneNumber) {
-        return null;
-    }
-
-    @Override
     public List<BetResponse> getWinningBetsByUser(String email) {
         List<BetResponse> betResponses = new ArrayList<>();
         populateBetResponses(betsDao.getWinningBetsByUser(email), betResponses);

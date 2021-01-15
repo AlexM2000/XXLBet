@@ -33,6 +33,12 @@ public interface CommandFactory {
     String GET_MATCHES_BY_TOURNAMENT = "get_matches_by_tournament";
     String POST_CREATE_BET = "create_bet";
 
+    /**
+     * Creates command depending on given command name.
+     *
+     * @param commandName command name
+     * @return {@link Command}
+     */
     Command createCommand(String commandName);
 
 

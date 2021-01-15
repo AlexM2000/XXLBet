@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.domain.MatchResult;
 public interface MatchResultDao {
 
     /**
-     * Create match in database.
+     * Create match result in database.
      *
      * @param matchResult {@link MatchResult}
      * @return Created {@link MatchResult} (taken from database)

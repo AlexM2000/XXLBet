@@ -48,7 +48,7 @@ public class WebApplicationListener implements ServletContextListener {
         executorService.scheduleAtFixedRate(DeleteFinishedMatchesJob.getInstance(), 0, 8, HOURS);
         // Every 30 seconds refresh content of .properties files to server
         executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
-        // Generate random matches and update users balance that bet on complete match every 30 seconds
+        // Generate random matches and update balance of users that bet on complete match every minute
         executorService.scheduleAtFixedRate(GenerateMatchResultJob.getInstance(), 0, 1, MINUTES);
 
         LOG.debug("Created scheduled jobs...");

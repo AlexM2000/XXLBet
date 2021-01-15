@@ -22,14 +22,29 @@ public class CommandResult {
         this.responseBody = responseBody;
     }
 
+    /**
+     * Create redirect command result.
+     *
+     * @param page Page to which redirect
+     */
     public static CommandResult createRedirectCommandResult(String page) {
         return new CommandResult(page, REDIRECT, null);
     }
 
+    /**
+     * Create forward command result.
+     *
+     * @param page Page to which forward
+     */
     public static CommandResult createForwardCommandResult(String page) {
         return new CommandResult(page, FORWARD, null);
     }
 
+    /**
+     * Create command result of returning response body.
+     *
+     * @param responseBody response body to return
+     */
     public static CommandResult createWriteDirectlyToResponseCommandResult(final Object responseBody) {
         return new CommandResult(EMPTY, WRITE_DIRECT_TO_RESPONSE, responseBody);
     }

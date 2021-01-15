@@ -1,7 +1,6 @@
 package com.epam.xxlbet.milto.context;
 
 import javax.servlet.http.Cookie;
-import java.io.IOException;
 
 /**
  * ResponseContext.
@@ -9,7 +8,11 @@ import java.io.IOException;
  * @author Aliaksei Milto
  */
 public interface ResponseContext {
-    void writeValue(Object value) throws IOException;
-    void writeJSONValue(Object value) throws IOException;
-    void addCookie(Cookie language);
+
+    /**
+     * Add cookie to the response.
+     *
+     * @param cookie {@link Cookie}
+     */
+    void addCookie(Cookie cookie);
 }

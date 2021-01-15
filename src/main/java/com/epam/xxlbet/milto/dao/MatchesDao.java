@@ -14,7 +14,7 @@ import java.util.List;
 public interface MatchesDao {
 
     /**
-     * Find not yet started matches for given tournament.
+     * Find not started matches for given tournament.
      *
      * @param tournamentName name of the tournament
      * @return List of matches
@@ -37,14 +37,14 @@ public interface MatchesDao {
     void deleteAllFinishedMatches();
 
     /**
-     * Find all not yet started matches.
+     * Find all not started matches.
      *
      * @return all not yet started matches
      */
     List<Match> getFutureMatches();
 
     /**
-     * Find all started matches.
+     * Find all started and not finished matches.
      *
      * @return all started matches
      */

@@ -31,7 +31,7 @@ public interface OpponentsDao {
     /**
      * Find opponents by tournament.
      *
-     * @param tournamentName Name of the tounament
+     * @param tournamentName Name of the tournament
      * @return opponents in given tournament
      */
     List<Opponent> getOpponentsByTournament(String tournamentName);
