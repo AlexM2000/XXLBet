@@ -20,7 +20,6 @@ public class GetHomeCommand extends AbstractCommand {
     private MatchesService matchesService;
 
     public GetHomeCommand(MatchesService matchesService) {
-        getLogger().debug("Initializing HomeServlet...");
         this.matchesService = matchesService;
     }
 

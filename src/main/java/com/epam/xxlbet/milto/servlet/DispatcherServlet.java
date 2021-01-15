@@ -2,12 +2,12 @@ package com.epam.xxlbet.milto.servlet;
 
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.context.HttpServletRequestContext;
+import com.epam.xxlbet.milto.command.factory.CommandFactory;
+import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
 import com.epam.xxlbet.milto.context.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
-import com.epam.xxlbet.milto.command.factory.CommandFactory;
-import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
+import com.epam.xxlbet.milto.context.XSSHttpServletRequestContext;
 import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +46,7 @@ public class DispatcherServlet extends HttpServlet {
      */
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
-            RequestContext requestContext = new HttpServletRequestContext(request);
+            RequestContext requestContext = new XSSHttpServletRequestContext(request);
             ResponseContext responseContext = new HttpServletResponseContext(response);
             CommandFactory commandFactory = CommandFactoryImpl.getInstance();
             String commandName = request.getParameter(COMMAND_PARAMETER);
