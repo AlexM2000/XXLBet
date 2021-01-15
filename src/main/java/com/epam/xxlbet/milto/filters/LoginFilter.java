@@ -17,6 +17,13 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREAT
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 
+/**
+ * LoginFilter.
+ * If client executes specific commands, checks if client logged in.
+ * If not, redirects client to login page.
+ *
+ * @author Aliaksei Milto
+ */
 @WebFilter(urlPatterns = "/xxlbet", filterName = "LoginFilter")
 public class LoginFilter implements Filter {
     private static final String LOGIN_PAGE = "/login";

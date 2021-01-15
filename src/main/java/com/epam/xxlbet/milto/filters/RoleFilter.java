@@ -19,6 +19,15 @@ import java.util.Arrays;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
 
+/**
+ * RoleFilter.
+ * If client executes specific commands, checks if client has rights to perform it.
+ * Checks client role.
+ * If client has no rights to execute given command, redirects to no-authority page
+ * And command not executed.
+ *
+ * @author Aliaksei Milto
+ */
 @WebFilter(urlPatterns = "/xxlbet", filterName = "AuthorityFilter")
 public class RoleFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger(RoleFilter.class);

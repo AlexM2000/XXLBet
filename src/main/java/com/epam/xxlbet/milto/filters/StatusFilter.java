@@ -21,6 +21,14 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_B
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 
+/**
+ * StatusFilter.
+ * If client executes specific commands, checks if client has rights to perform it.
+ * Checks client status (is status ACTIVE or BANNED).
+ * If banned, redirects to ban page and command not executed.
+ *
+ * @author Aliaksei Milto
+ */
 @WebFilter(filterName = "StatusFilter", urlPatterns = "/xxlbet")
 public class StatusFilter implements Filter {
     @Override
