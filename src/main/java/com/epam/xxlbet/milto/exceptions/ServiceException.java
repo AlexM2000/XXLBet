@@ -5,7 +5,7 @@ package com.epam.xxlbet.milto.exceptions;
  *
  * @author alexm2000
  */
-public class ServiceException extends Exception {
+public class ServiceException extends RuntimeException {
     public ServiceException(String message) {
         super(message);
     }

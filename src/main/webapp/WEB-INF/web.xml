@@ -61,6 +61,10 @@
     <servlet-name>ban</servlet-name>
     <jsp-file>/WEB-INF/views/ban-page.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>create-sport</servlet-name>
+    <jsp-file>/WEB-INF/views/create-sport.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
@@ -113,6 +117,10 @@
   <servlet-mapping>
     <servlet-name>success</servlet-name>
     <url-pattern>/success</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>create-sport</servlet-name>
+    <url-pattern>/create-sport</url-pattern>
   </servlet-mapping>
 
   <error-page>

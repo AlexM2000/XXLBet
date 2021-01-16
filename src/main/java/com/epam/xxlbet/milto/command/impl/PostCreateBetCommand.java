@@ -4,7 +4,6 @@ import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.UserInfo;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.requestandresponsebody.CreateBetRequest;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.UserInfoService;
@@ -27,7 +26,7 @@ public class PostCreateBetCommand extends AbstractCommand {
     }
 
     @Override
-    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) {
 
         CreateBetRequest createBetRequest = getRequestBody(request, CreateBetRequest.class);
         UserInfo userInfo = userInfoService.getUserInfoByEmail(createBetRequest.getEmail());

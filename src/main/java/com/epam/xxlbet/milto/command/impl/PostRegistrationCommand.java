@@ -56,7 +56,7 @@ public class PostRegistrationCommand extends AbstractCommand {
 
 
     @Override
-    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
         RegistrationRequest requestBody = getRequestBody(request, RegistrationRequest.class);
         validate(requestBody.getEmail(), getCurrentLocale(request), emailValidator);
@@ -96,6 +96,7 @@ public class PostRegistrationCommand extends AbstractCommand {
             );
         } catch (MessagingException e) {
             getLogger().error("Something went wrong during sending email...", e);
+            throw new ServiceException("Something went wrong during sending email...", e);
         }
     }
 

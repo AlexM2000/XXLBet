@@ -30,11 +30,19 @@ public abstract class AbstractCommand implements Command {
     protected <T> T getRequestBody(final RequestContext request, final Class<T> clazz) {
         T entity = null;
 
-        try {
-            String body = request.getReader().lines().collect(Collectors.joining());
-            entity = getMapper().readValue(body, clazz);
-        } catch (IOException e) {
-            LOG.error("Something went wrong during reading " + clazz, e);
+        if (request.getContentType().equals("text/plain; charset=UTF-8") && clazz.equals(String.class)) {
+            try {
+                entity = (T) request.getReader().lines().collect(Collectors.joining());
+            } catch (IOException e) {
+                getLogger().error("Error while reading request body", e);
+            }
+        } else if (request.getContentType().equals("application/json; charset=UTF-8")) {
+            try {
+                String body = request.getReader().lines().collect(Collectors.joining());
+                entity = getMapper().readValue(body, clazz);
+            } catch (IOException e) {
+                LOG.error("Something went wrong during reading " + clazz, e);
+            }
         }
 
         return entity;

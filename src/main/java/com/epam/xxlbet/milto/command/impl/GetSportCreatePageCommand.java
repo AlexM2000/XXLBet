@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.command.impl;
 
+import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
@@ -7,17 +8,15 @@ import com.epam.xxlbet.milto.context.ResponseContext;
 import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
 
 /**
- * GetRegistrationPageCommand.
+ * GetSportCreatePageCommand.
  *
  * @author Aliaksei Milto
  */
-public class GetRegistrationPageCommand extends AbstractCommand {
-    private static final String REGISTRATION_PAGE = "/registration";
+public class GetSportCreatePageCommand implements Command {
+    private static final String PAGE = "/create-sport";
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
-        getLogger().debug("Executing " + this.getClass());
-
-        return createForwardCommandResult(REGISTRATION_PAGE);
+        return createForwardCommandResult(PAGE);
     }
 }

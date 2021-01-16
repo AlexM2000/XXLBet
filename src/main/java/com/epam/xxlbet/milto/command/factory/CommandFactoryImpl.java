@@ -14,11 +14,13 @@ import com.epam.xxlbet.milto.command.impl.GetMatchesByTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.GetOpponentsByTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
 import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetSportCreatePageCommand;
 import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateSportCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
@@ -125,6 +127,12 @@ public class CommandFactoryImpl implements CommandFactory {
                         RoleServiceImpl.getInstance(),
                         StatusServiceImpl.getInstance()
                 );
+                break;
+            case GET_SPORT_CREATE_PAGE:
+                command = new GetSportCreatePageCommand();
+                break;
+            case POST_CREATE_SPORT:
+                command = new PostCreateSportCommand(SportServiceImpl.getInstance());
                 break;
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);

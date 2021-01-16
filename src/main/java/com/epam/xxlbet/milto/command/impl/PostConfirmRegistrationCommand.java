@@ -24,7 +24,7 @@ public class PostConfirmRegistrationCommand extends AbstractCommand {
     }
 
     @Override
-    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
 
         switch (userService.confirmRegistration(request.getParameter("token"))) {

@@ -2,7 +2,6 @@ package com.epam.xxlbet.milto.command;
 
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 
 /**
  * Command.
@@ -18,6 +17,6 @@ public interface Command {
      * @param response {@link ResponseContext}
      * @return {@link CommandResult}
      */
-    CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException;
+    CommandResult execute(RequestContext request, ResponseContext response);
 
 }

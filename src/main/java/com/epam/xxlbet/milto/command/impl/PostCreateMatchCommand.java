@@ -5,7 +5,6 @@ import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.Match;
 import com.epam.xxlbet.milto.domain.Opponent;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.populator.Populator;
 import com.epam.xxlbet.milto.populator.impl.MatchRequestToMatchPopulator;
 import com.epam.xxlbet.milto.requestandresponsebody.CreateMatchRequest;
@@ -35,7 +34,7 @@ public class PostCreateMatchCommand extends AbstractCommand {
     }
 
     @Override
-    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
         CreateMatchRequest matchRequest = getRequestBody(request, CreateMatchRequest.class);
 

@@ -61,4 +61,11 @@ public interface RequestContext {
      * Invalidate session.
      */
     void invalidateSession();
+
+    /**
+     * Get content type of request body.
+     *
+     * @return content type
+     */
+    String getContentType();
 }

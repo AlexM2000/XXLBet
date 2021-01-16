@@ -32,6 +32,8 @@ public interface CommandFactory {
     String GET_BET_CREATE_PAGE = "bet_create_page";
     String GET_MATCHES_BY_TOURNAMENT = "get_matches_by_tournament";
     String POST_CREATE_BET = "create_bet";
+    String GET_SPORT_CREATE_PAGE = "create_sport_page";
+    String POST_CREATE_SPORT = "create_sport";
 
     /**
      * Creates command depending on given command name.

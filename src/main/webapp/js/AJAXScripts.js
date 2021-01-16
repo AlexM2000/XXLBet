@@ -133,7 +133,9 @@ function login() {
     });
 }
 
-function languageSelector(language){
+function languageSelector(){
+    const language = document.getElementById('lang').value;
+
     $.ajax({
         url: '/xxlbet',
         data: ({
@@ -142,6 +144,14 @@ function languageSelector(language){
         }),
         success: function (data) {
             document.location.reload();
+            const options = document.querySelectorAll('#lang option');
+
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === language) {
+                    options[i].selected = true;
+                    break;
+                }
+            }
         },
         error: function (e) {
             alert('ERROR_ERROR!!!');

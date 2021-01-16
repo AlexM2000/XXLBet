@@ -24,7 +24,7 @@
             <div id="balanceForm" class="form-group">
                 <small style="display: none" id="moneyLabel"><ut:locale_tag key="profile.enter.sum"/></small>
                 <input style="display: none" id="money" type="number" class="mt-2" placeholder=<ut:locale_tag key="profile.enter.sum"/>/>
-                <small style="display: none" id="chooseCardLabel" for="chooseCard"><ut:locale_tag key="profile.choose.card"/></small>
+                <small class="form-control-sm" style="display: none" id="chooseCardLabel" for="chooseCard"><ut:locale_tag key="profile.choose.card"/></small>
                 <select style="display: none" id="chooseCard" class="form-control-sm m-md-0"></select>
                 <button style="display: none" id="payButton" class="btn-sm btn-info"><ut:locale_tag key="profile.pay.button"/></button>
             </div>

@@ -4,7 +4,6 @@ import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.User;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.requestandresponsebody.LoginRequest;
 import com.epam.xxlbet.milto.service.RoleService;
 import com.epam.xxlbet.milto.service.StatusService;
@@ -38,7 +37,7 @@ public class PostLoginCommand extends AbstractCommand {
     }
 
     @Override
-    public CommandResult execute(RequestContext request, ResponseContext response) throws ServiceException {
+    public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
 
         LoginRequest loginRequest = getRequestBody(request, LoginRequest.class);

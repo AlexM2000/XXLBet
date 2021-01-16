@@ -48,6 +48,11 @@ public class HttpServletRequestContext implements RequestContext {
     }
 
     @Override
+    public String getContentType() {
+        return request.getContentType();
+    }
+
+    @Override
     public BufferedReader getReader() throws IOException {
         request.setCharacterEncoding("UTF-8");
         return request.getReader();

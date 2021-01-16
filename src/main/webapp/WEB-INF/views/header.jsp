@@ -61,9 +61,14 @@
             </a>
         </nav>
         </form>
-    <button class="my-3" type="button" onclick="languageSelector('ru')">RUS</button>
-    <button class="my-3" type="button" onclick="languageSelector('en')">ENG</button>
-            <button class="my-3" type="button" onclick="languageSelector('be')">BLR</button>
+        <label for="lang" class="text-info"><ut:locale_tag key="header.current.lang"/>: ${cookie.language.value}</label>
+        <div class="form-group">
+        <select onclick="languageSelector()" class="my-3" id="lang">
+            <option value="en">ENG</option>
+            <option value="ru">RUS</option>
+            <option value="be">BLR</option>
+        </select>
+        </div>
     </nav>
 </div>
 </body>
