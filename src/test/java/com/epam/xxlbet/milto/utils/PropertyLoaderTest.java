@@ -33,7 +33,7 @@ public class PropertyLoaderTest {
     }
 
     @Test(expected = IOException.class)
-    public void shouldFail_NoSuchFile() throws IOException {
+    public void shouldThrowException_NoSuchFile() throws IOException {
         propertyLoader.init("test2.properties");
     }
 }

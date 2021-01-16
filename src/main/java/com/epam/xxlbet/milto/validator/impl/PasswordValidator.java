@@ -28,11 +28,11 @@ public final class PasswordValidator implements Validator {
     }
 
     @Override
-    public void validate(final Object target, final Errors errors, final String locale) {
+    public void validate(final Object target, final Errors errors) {
         String password = (String) target;
 
         if (!password.matches(PATTERN)) {
-            errors.reject("password.not.matches.regexp", locale);
+            errors.reject("password.not.matches.regexp");
         }
     }
 }

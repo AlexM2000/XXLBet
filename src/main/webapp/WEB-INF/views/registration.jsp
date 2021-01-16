@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="InputRPassword"><ut:locale_tag key="registration.repeatpassword"/></label>
             <input type="password" name="repeatPassword" class="form-control" id="InputRPassword" placeholder=<ut:locale_tag key="registration.repeatpassword"/> />
-            <small class="text-danger password_field"></small>
+            <small class="text-danger password_field" id="rPasswordErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputBirthDate"><ut:locale_tag key="registration.birthdate"/></label>

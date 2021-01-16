@@ -21,20 +21,20 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.MAIL_PROPERTIES;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * EmailSenderImpl.
+ * JavaxEmailSenderImpl.
  *
  * @author Aliaksei Milto
  */
-public class EmailSenderImpl implements EmailSender {
-    private static final Logger LOG = LoggerFactory.getLogger(EmailSenderImpl.class);
-    private static EmailSenderImpl instance;
+public class JavaxEmailSenderImpl implements EmailSender {
+    private static final Logger LOG = LoggerFactory.getLogger(JavaxEmailSenderImpl.class);
+    private static JavaxEmailSenderImpl instance;
     private PropertyLoader loader;
     private String host;
     private String port;
     private String auth;
     private String startTlsEnable;
 
-    private EmailSenderImpl() {
+    private JavaxEmailSenderImpl() {
         loader = PropertyLoader.getInstance();
         host = loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.host").get();
         port = loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.port").get();
@@ -42,9 +42,9 @@ public class EmailSenderImpl implements EmailSender {
         startTlsEnable = loader.getStringProperty(MAIL_PROPERTIES, "mail.smtp.starttls.enable").get();
     }
 
-    public static EmailSenderImpl getInstance() {
+    public static JavaxEmailSenderImpl getInstance() {
         if (instance == null) {
-            instance = new EmailSenderImpl();
+            instance = new JavaxEmailSenderImpl();
         }
 
         return instance;

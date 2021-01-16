@@ -17,12 +17,13 @@ import static java.util.stream.Collectors.toMap;
  */
 public class Errors {
     private List<Error> errors;
+    private String locale;
 
     public Errors() {
         errors = new ArrayList<>();
     }
 
-    public void reject(final String msgId, final String locale, final Object... args) {
+    public void reject(final String msgId, final Object... args) {
         errors.add(new Error(msgId, locale, args));
     }
 
@@ -33,6 +34,10 @@ public class Errors {
 
     public boolean hasErrors() {
         return !errors.isEmpty();
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 
     /**

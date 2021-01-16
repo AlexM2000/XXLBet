@@ -4,7 +4,9 @@ import com.epam.xxlbet.milto.dao.CreditCartDao;
 import com.epam.xxlbet.milto.domain.CreditCard;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToCreditCardPopulator;
 
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_CREDIT_CARDS;
+import java.util.List;
+
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.*;
 
 /**
  * CreditCartDaoImpl.
@@ -27,7 +29,24 @@ public class CreditCartDaoImpl extends AbstractDaoImpl<CreditCard> implements Cr
     }
 
     @Override
-    public CreditCartDao createCreditCart(CreditCard creditCard) {
-        return null;
+    public CreditCard createCreditCart(CreditCard creditCard) {
+        executeUpdate(
+                CREATE_CREDIT_CARD,
+                creditCard.getNumber(),
+                creditCard.getThru(),
+                creditCard.getCvv(),
+                creditCard.getUserId()
+        );
+        return getCreditCardByNumber(creditCard.getNumber());
+    }
+
+    @Override
+    public CreditCard getCreditCardByNumber(String number) {
+        return executeForSingleResult(SELECT_CREDIT_CARD_BY_NUMBER, number);
+    }
+
+    @Override
+    public List<CreditCard> getCreditCardsByUserId(Long userId) {
+        return executeQuery(SELECT_CREDIT_CARD_BY_USER, userId);
     }
 }

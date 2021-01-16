@@ -1,5 +1,6 @@
 package com.epam.xxlbet.milto.dao.impl;
 
+import com.epam.xxlbet.milto.exceptions.DaoException;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
@@ -36,7 +37,7 @@ abstract class AbstractDaoImpl<T> {
             propertiesFileWithQueriesName = propertiesFileName;
             this.populator = populator;
         } catch (final IOException e) {
-            LOG.error("Could not load queries for database! Exiting...");
+            LOG.error("Could not load queries for database! Exiting...", e);
             System.exit(1);
         }
 
@@ -62,6 +63,7 @@ abstract class AbstractDaoImpl<T> {
             statement.close();
         } catch (InterruptedException | SQLException e) {
             getLogger().error(getErrorMsgBegin() + " executeQuery...", e);
+            throw new DaoException(getErrorMsgBegin() + " executeQuery...", e);
         }
 
         return entities;
@@ -79,6 +81,7 @@ abstract class AbstractDaoImpl<T> {
             statement.executeUpdate();
         } catch (SQLException | InterruptedException e) {
             getLogger().error(getErrorMsgBegin() + " executeUpdate...", e);
+            throw new DaoException(getErrorMsgBegin() + " executeUpdate...", e);
         }
     }
 
@@ -89,6 +92,7 @@ abstract class AbstractDaoImpl<T> {
             statement.execute();
         } catch (SQLException | InterruptedException e) {
             getLogger().error(getErrorMsgBegin() + " execute...", e);
+            throw new DaoException(getErrorMsgBegin() + " execute...", e);
         }
     }
 

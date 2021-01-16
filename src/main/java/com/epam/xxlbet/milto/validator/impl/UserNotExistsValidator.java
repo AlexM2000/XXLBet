@@ -27,11 +27,11 @@ public class UserNotExistsValidator implements Validator {
     }
 
     @Override
-    public void validate(Object target, Errors errors, String locale) {
+    public void validate(Object target, Errors errors) {
         String email = (String) target;
 
         if (service.getUserByEmail(email) == null) {
-            errors.reject("user.email.not.exists", locale, email);
+            errors.reject("user.email.not.exists", email);
         }
     }
 }

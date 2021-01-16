@@ -4,7 +4,7 @@ import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
-import com.epam.xxlbet.milto.service.impl.EmailSenderImpl;
+import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
     private DeleteUnconfirmedUsersJob() {
         LOG.debug("Creating " + DeleteUnconfirmedUsersJob.class);
         userService = UserServiceImpl.getInstance();
-        emailSender = EmailSenderImpl.getInstance();
+        emailSender = JavaxEmailSenderImpl.getInstance();
     }
 
     public static DeleteUnconfirmedUsersJob getInstance() {

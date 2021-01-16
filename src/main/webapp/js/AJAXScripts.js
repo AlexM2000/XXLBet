@@ -9,6 +9,7 @@ function registration() {
     $('#emailErrorInformer').text('');
     $('#phoneErrorInformer').text('');
     $('#passwordErrorInformer').text('');
+    $('#rPasswordErrorInformer').text('');
     $('#surnameInformer').text('');
     $('#nameInformer').text('');
     $('#secondNameInformer').text('');
@@ -30,13 +31,17 @@ function registration() {
         $('#secondNameInformer').text("This field must not be empty");
         error_count++;
     }
+    if (document.getElementById("InputPassword").value !== document.getElementById("InputRPassword").value) {
+        $('#rPasswordErrorInformer').text('Passwords does not match!');
+        error_count++;
+    }
     if (document.getElementById("InputBirthDate").value === "" || new Date(document.getElementById("InputBirthDate").value).getTime() > new Date().getTime()) {
         $('#birthDateInformer').text("Wrong date");
         error_count++;
     }
 
     if (error_count === 0) {
-        var data = {
+        const data = {
             "email": email,
             "phone_number": phoneNumber,
             "surname": document.getElementById("InputSurName").value,
@@ -80,7 +85,7 @@ function registration() {
 
                     $('#surnameInformer').text(dataFromServer['field.is.empty'])
                     $('#nameInformer').text(dataFromServer['field.is.empty'])
-                    $('#surnameInformer').text(dataFromServer['field.is.empty'])
+                    $('#secondNameInformer').text(dataFromServer['field.is.empty'])
                 } else{
                     alert(dataFromServer);
                 }
@@ -93,8 +98,8 @@ function registration() {
 }
 
 function login() {
-    var data = {
-        "login" : document.getElementById("InputLogin").value,
+    const data = {
+        "login": document.getElementById("InputLogin").value,
         "password": document.getElementById("InputPassword").value
     };
 

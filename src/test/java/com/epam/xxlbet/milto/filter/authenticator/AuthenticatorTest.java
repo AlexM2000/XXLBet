@@ -1,6 +1,5 @@
 package com.epam.xxlbet.milto.filter.authenticator;
 
-import com.epam.xxlbet.milto.domain.Role;
 import com.epam.xxlbet.milto.filters.authenticator.Authenticator;
 import com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl;
 import org.junit.Before;
@@ -25,6 +24,8 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
+import static com.epam.xxlbet.milto.domain.Role.*;
+import static com.epam.xxlbet.milto.domain.Status.ACTIVE;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -74,7 +75,8 @@ public class AuthenticatorTest {
     public void testAuthority_ShouldAuthorizeClientRequests() {
         // when
         when(httpSession.getAttribute("login")).thenReturn("SomeRandomAuthorizedUserLogin");
-        when(httpSession.getAttribute("role")).thenReturn(Role.CLIENT);
+        when(httpSession.getAttribute("role")).thenReturn(CLIENT);
+        when(httpSession.getAttribute("status")).thenReturn(ACTIVE);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_PROFILE_PAGE));
@@ -89,7 +91,7 @@ public class AuthenticatorTest {
     @Test
     public void testAuthority_ShouldAuthorizeAdminRequests() {
         // when
-        when(httpSession.getAttribute("role")).thenReturn(Role.ADMIN);
+        when(httpSession.getAttribute("role")).thenReturn(ADMIN);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));
@@ -99,7 +101,7 @@ public class AuthenticatorTest {
     @Test
     public void testAuthority_ShouldAuthorizeBookmakerRequests() {
         // when
-        when(httpSession.getAttribute("role")).thenReturn(Role.BOOKMAKER);
+        when(httpSession.getAttribute("role")).thenReturn(BOOKMAKER);
 
         // then
         assertTrue(authenticator.hasAuthority(httpSession, GET_ADMIN_PAGE));

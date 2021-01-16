@@ -28,13 +28,13 @@ public class ConfirmationValidator implements Validator {
     }
 
     @Override
-    public void validate(final Object target, final Errors errors, final String locale) {
+    public void validate(final Object target, final Errors errors) {
         String email = (String) target;
 
         User user = service.getUserByEmail(email);
 
         if (user != null && !user.isEnabled()) {
-            errors.reject("user.please.confirm.registration", locale);
+            errors.reject("user.please.confirm.registration");
         }
     }
 }

@@ -1,15 +1,15 @@
-package com.epam.xxlbet.milto.dao;
+package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.CreditCard;
 
 import java.util.List;
 
 /**
- * CreditCartsDao.
+ * CreditCardService.
  *
  * @author Aliaksei Milto
  */
-public interface CreditCartDao {
+public interface CreditCardService {
 
     /**
      * Create credit cart info in database.

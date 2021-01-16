@@ -5,6 +5,7 @@ import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.utils.Errors;
 import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,6 +34,14 @@ public class UserNotExistsValidatorTest {
     @Mock
     private UserService userService;
 
+    private Errors errors;
+
+    @Before
+    public void setup() {
+        errors = new Errors();
+        errors.setLocale("en");
+    }
+
     @After
     public void verifyCalls() {
         // verify
@@ -41,12 +50,10 @@ public class UserNotExistsValidatorTest {
 
     @Test
     public void shouldNotValidate_UserExist() {
-        Errors errors = new Errors();
-
         // when
         when(userService.getUserByEmail(SOME_MAIL)).thenReturn(null);
 
-        validator.validate(SOME_MAIL, errors, "en");
+        validator.validate(SOME_MAIL, errors);
 
         // then
         assertTrue(errors.hasErrors());
@@ -56,12 +63,11 @@ public class UserNotExistsValidatorTest {
     @Test
     public void shouldNotValidate_UserDoesNotExist() {
         User user = new User();
-        Errors errors = new Errors();
 
         // when
         when(userService.getUserByEmail("somemail")).thenReturn(user);
 
-        validator.validate("somemail", errors, "en");
+        validator.validate("somemail", errors);
 
         // then
         assertFalse(errors.hasErrors());

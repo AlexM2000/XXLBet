@@ -39,6 +39,7 @@ public class PhoneNumberExistsValidatorTest {
     @Before
     public void setup() {
         errors = new Errors();
+        errors.setLocale("ru");
     }
 
     @After
@@ -52,7 +53,7 @@ public class PhoneNumberExistsValidatorTest {
         //when
         when(userService.isPhoneNumberExists(TEST_PHONE_NUMBER)).thenReturn(false);
 
-        validator.validate(TEST_PHONE_NUMBER, errors, "ru");
+        validator.validate(TEST_PHONE_NUMBER, errors);
 
         // then
         assertFalse(errors.hasErrors());
@@ -63,7 +64,7 @@ public class PhoneNumberExistsValidatorTest {
         // when
         when(userService.isPhoneNumberExists(TEST_PHONE_NUMBER)).thenReturn(true);
 
-        validator.validate(TEST_PHONE_NUMBER, errors, "ru");
+        validator.validate(TEST_PHONE_NUMBER, errors);
 
         // then
         assertTrue(errors.hasErrors());

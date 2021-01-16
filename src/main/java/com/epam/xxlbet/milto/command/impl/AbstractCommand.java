@@ -43,8 +43,9 @@ public abstract class AbstractCommand implements Command {
     protected void validate(final Object object, final String locale, final Validator validator)
     {
         final Errors errors = new Errors();
+        errors.setLocale(locale);
 
-        validator.validate(object, errors, locale);
+        validator.validate(object, errors);
 
         if (errors.hasErrors()) {
             this.errors.putAll(errors.getErrors());

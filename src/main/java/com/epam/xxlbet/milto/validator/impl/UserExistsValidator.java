@@ -27,11 +27,11 @@ public final class UserExistsValidator implements Validator {
     }
 
     @Override
-    public void validate(final Object target, final Errors errors, final String locale) {
+    public void validate(final Object target, final Errors errors) {
         String email = (String) target;
 
         if (service.getUserByEmail(email) != null) {
-            errors.reject("user.email.already.exists", locale, email);
+            errors.reject("user.email.already.exists", email);
         }
     }
 }

@@ -35,35 +35,40 @@ public class PhoneNumberValidatorTest {
 
     @Test
     public void shouldValidate_ValidPhone_1() {
-        validator.validate(VALID_PHONE_1, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(VALID_PHONE_1, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidPhone_2() {
-        validator.validate(VALID_PHONE_2, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(VALID_PHONE_2, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidPhone_3() {
-        validator.validate(VALID_PHONE_3, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(VALID_PHONE_3, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidPhone_4() {
-        validator.validate(VALID_PHONE_4, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(VALID_PHONE_4, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldNotValidate_InvalidPhone_1() {
-        validator.validate(INVALID_PHONE_1, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(INVALID_PHONE_1, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("phonenumber.not.matches.regexp"));
@@ -72,7 +77,8 @@ public class PhoneNumberValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPhone_2() {
-        validator.validate(INVALID_PHONE_2, errors, "en");
+        errors.setLocale("en");
+        validator.validate(INVALID_PHONE_2, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("phonenumber.not.matches.regexp"));
@@ -81,7 +87,8 @@ public class PhoneNumberValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPhone_3() {
-        validator.validate(INVALID_PHONE_3, errors, "be");
+        errors.setLocale("be");
+        validator.validate(INVALID_PHONE_3, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("phonenumber.not.matches.regexp"));
@@ -90,7 +97,8 @@ public class PhoneNumberValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPhone_4() {
-        validator.validate(INVALID_PHONE_4, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(INVALID_PHONE_4, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("phonenumber.not.matches.regexp"));
@@ -99,7 +107,8 @@ public class PhoneNumberValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPhone_5() {
-        validator.validate(INVALID_PHONE_5, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(INVALID_PHONE_5, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("phonenumber.not.matches.regexp"));

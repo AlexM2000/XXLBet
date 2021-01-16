@@ -217,6 +217,6 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
 
     @Override
     public void deleteAllFinishedMatches() {
-        executeUpdate(DELETE_ALL_FINISHED_MATCHES);
+        executeUpdate(DELETE_ALL_FINISHED_MATCHES, LocalDateTime.now());
     }
 }

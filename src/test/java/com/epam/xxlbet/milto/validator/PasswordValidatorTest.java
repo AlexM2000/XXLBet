@@ -32,28 +32,32 @@ public class PasswordValidatorTest {
 
     @Test
     public void shouldValidate_ValidPassword1() {
-        passwordValidator.validate(VALID_PASSWORD_1, errors, "ru");
+        errors.setLocale("ru");
+        passwordValidator.validate(VALID_PASSWORD_1, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidPassword2() {
-        passwordValidator.validate(VALID_PASSWORD_2, errors, "ru");
+        errors.setLocale("ru");
+        passwordValidator.validate(VALID_PASSWORD_2, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidPassword3() {
-        passwordValidator.validate(VALID_PASSWORD_3, errors, "ru");
+        errors.setLocale("ru");
+        passwordValidator.validate(VALID_PASSWORD_3, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldNotValidate_InvalidPassword2() {
-        passwordValidator.validate(INVALID_PASSWORD_2, errors, "be");
+        errors.setLocale("be");
+        passwordValidator.validate(INVALID_PASSWORD_2, errors);
 
         assertTrue(errors.hasErrors());
         assertEquals("Пароль павінен утрымліваць па меншай меры адну маленькую літару, адну вялікую літару, адзін спецыяльны сімвал, мінімум 7 максімум 20 сімвалаў", errors.getErrors().get("password.not.matches.regexp"));
@@ -61,7 +65,8 @@ public class PasswordValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPassword3() {
-        passwordValidator.validate(INVALID_PASSWORD_3, errors, "en");
+        errors.setLocale("en");
+        passwordValidator.validate(INVALID_PASSWORD_3, errors);
 
         assertTrue(errors.hasErrors());
         assertEquals("Password should contain at least one small letter, one big letter, one special character, minimum 7 maximum 20 symbols", errors.getErrors().get("password.not.matches.regexp"));
@@ -69,7 +74,8 @@ public class PasswordValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPassword4() {
-        passwordValidator.validate(INVALID_PASSWORD_4, errors, "ru");
+        errors.setLocale("ru");
+        passwordValidator.validate(INVALID_PASSWORD_4, errors);
 
         assertTrue(errors.hasErrors());
         assertEquals("Пароль должен содержать хотя бы один маленький символ, один большой символ, один специальный символ, минимум 7 максимум 20 символов", errors.getErrors().get("password.not.matches.regexp"));
@@ -77,7 +83,8 @@ public class PasswordValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidPassword5() {
-        passwordValidator.validate(INVALID_PASSWORD_5, errors, "en");
+        errors.setLocale("en");
+        passwordValidator.validate(INVALID_PASSWORD_5, errors);
 
         assertTrue(errors.hasErrors());
         assertEquals("Password should contain at least one small letter, one big letter, one special character, minimum 7 maximum 20 symbols", errors.getErrors().get("password.not.matches.regexp"));

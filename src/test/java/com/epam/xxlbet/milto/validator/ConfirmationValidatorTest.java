@@ -45,6 +45,7 @@ public class ConfirmationValidatorTest {
         user = new User();
         user.setEmail(TEST_MAIL);
         errors = new Errors();
+        errors.setLocale("ru");
 
         // when
         when(service.getUserByEmail(TEST_MAIL)).thenReturn(user);
@@ -60,7 +61,7 @@ public class ConfirmationValidatorTest {
     public void shouldNotValidate_UserNotEnabled() {
         user.setEnabled(false);
 
-        confirmationValidator.validate(user.getEmail(), errors, "ru");
+        confirmationValidator.validate(user.getEmail(), errors);
 
         // then
         assertTrue(errors.hasErrors());
@@ -72,7 +73,7 @@ public class ConfirmationValidatorTest {
     public void shouldValidate_UserEnabled() {
         user.setEnabled(true);
 
-        confirmationValidator.validate(user.getEmail(), errors, "ru");
+        confirmationValidator.validate(user.getEmail(), errors);
 
         // then
         assertFalse(errors.hasErrors());

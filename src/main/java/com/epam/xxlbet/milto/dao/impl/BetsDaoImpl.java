@@ -34,11 +34,6 @@ public class BetsDaoImpl extends AbstractDaoImpl<Bet> implements BetsDao {
     }
 
     @Override
-    public List<Bet> getAllIncompleteBetsByUser(final String email, final String phoneNumber) {
-        return executeQuery(SELECT_INCOMPLETE_BETS_BY_USER_ID, email, phoneNumber);
-    }
-
-    @Override
     public List<Bet> getBetsHistoryByUser(final String email) {
         return executeQuery(SELECT_BETS_BY_USER_ID, email);
     }

@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.requestandresponsebody.RegistrationRequest;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.VerificationTokenService;
-import com.epam.xxlbet.milto.service.impl.EmailSenderImpl;
+import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
 import com.epam.xxlbet.milto.service.impl.VerificationTokenServiceImpl;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import com.epam.xxlbet.milto.validator.Validator;
@@ -51,7 +51,7 @@ public class PostRegistrationCommand extends AbstractCommand {
         this.userExistsValidater = UserExistsValidator.getInstance();
         this.phoneNumberExistsValidator = PhoneNumberExistsValidator.getInstance();
         this.verificationTokenService = VerificationTokenServiceImpl.getInstance();
-        this.emailSender = EmailSenderImpl.getInstance();
+        this.emailSender = JavaxEmailSenderImpl.getInstance();
     }
 
 

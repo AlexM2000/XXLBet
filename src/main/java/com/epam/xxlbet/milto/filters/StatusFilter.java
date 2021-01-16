@@ -13,12 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.*;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 
 /**
@@ -45,6 +40,8 @@ public class StatusFilter implements Filter {
             case GET_PROFILE_PAGE:
             case GET_BET_CREATE_PAGE:
             case GET_ADMIN_PAGE:
+            case GET_BOOKMAKER_PAGE:
+            case GET_ALL_USER_BETS:
             case POST_CREATE_BET:
             case POST_CREATE_MATCH:
                 if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {

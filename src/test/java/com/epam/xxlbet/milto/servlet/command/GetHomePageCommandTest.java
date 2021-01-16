@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.servlet.command;
 import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
-import com.epam.xxlbet.milto.context.SimpleHttpServletRequestContext;
+import com.epam.xxlbet.milto.context.HttpServletRequestContext;
 import com.epam.xxlbet.milto.context.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
@@ -44,7 +44,7 @@ public class GetHomePageCommandTest {
 
     @Before
     public void setup() {
-        requestContext = new SimpleHttpServletRequestContext(request);
+        requestContext = new HttpServletRequestContext(request);
         responseContext = new HttpServletResponseContext(response);
     }
 

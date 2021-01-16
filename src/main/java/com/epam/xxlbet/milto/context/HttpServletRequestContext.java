@@ -10,10 +10,10 @@ import java.io.IOException;
  *
  * @author Aliaksei Milto
  */
-public class SimpleHttpServletRequestContext implements RequestContext {
+public class HttpServletRequestContext implements RequestContext {
     private final HttpServletRequest request;
 
-    public SimpleHttpServletRequestContext(final HttpServletRequest request) {
+    public HttpServletRequestContext(final HttpServletRequest request) {
         this.request = request;
     }
 

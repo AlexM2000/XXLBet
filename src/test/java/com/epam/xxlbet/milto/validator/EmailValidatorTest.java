@@ -33,28 +33,29 @@ public class EmailValidatorTest {
 
     @Test
     public void shouldValidate_ValidEmail1() {
-        validator.validate(VALID_MAIL_1, errors, null);
+        validator.validate(VALID_MAIL_1, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidEmail2() {
-        validator.validate(VALID_MAIL_2, errors, null);
+        validator.validate(VALID_MAIL_2, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldValidate_ValidEmail3() {
-        validator.validate(VALID_MAIL_3, errors, null);
+        validator.validate(VALID_MAIL_3, errors);
 
         assertFalse(errors.hasErrors());
     }
 
     @Test
     public void shouldNotValidate_InvalidEmail1() {
-        validator.validate(INVALID_MAIL_1, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(INVALID_MAIL_1, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("email.not.matches.regexp"));
@@ -63,7 +64,8 @@ public class EmailValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidEmail2() {
-        validator.validate(INVALID_MAIL_2, errors, "ru");
+        errors.setLocale("ru");
+        validator.validate(INVALID_MAIL_2, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("email.not.matches.regexp"));
@@ -72,7 +74,8 @@ public class EmailValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidEmail3() {
-        validator.validate(INVALID_MAIL_3, errors, "be");
+        errors.setLocale("be");
+        validator.validate(INVALID_MAIL_3, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("email.not.matches.regexp"));
@@ -82,7 +85,8 @@ public class EmailValidatorTest {
 
     @Test
     public void shouldNotValidate_InvalidEmail4() {
-        validator.validate(INVALID_MAIL_4, errors, "en");
+        errors.setLocale("en");
+        validator.validate(INVALID_MAIL_4, errors);
 
         assertTrue(errors.hasErrors());
         assertNotNull(errors.getErrors().get("email.not.matches.regexp"));

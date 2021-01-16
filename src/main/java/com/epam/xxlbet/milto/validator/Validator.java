@@ -8,5 +8,13 @@ import com.epam.xxlbet.milto.utils.Errors;
  * @author Aliaksei Milto
  */
 public interface Validator {
-    void validate(Object target, Errors errors, final String locale);
+
+    /**
+     * Validate the supplied target object.
+     * The supplied {@link Errors} instance can be used to report any resulting validation errors.
+     *
+     * @param target the object that is to be validated
+     * @param errors contextual state about the validation process
+     */
+    void validate(Object target, Errors errors);
 }

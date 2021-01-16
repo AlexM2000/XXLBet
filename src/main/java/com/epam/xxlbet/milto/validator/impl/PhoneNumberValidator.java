@@ -29,11 +29,11 @@ public final class PhoneNumberValidator implements Validator {
     }
 
     @Override
-    public void validate(final Object target, final Errors errors, final String locale) {
+    public void validate(final Object target, final Errors errors) {
         String phoneNumber = (String) target;
 
         if (!phoneNumber.matches(PATTERN)) {
-            errors.reject(ERROR_MSG_ID, locale);
+            errors.reject(ERROR_MSG_ID);
         }
     }
 }

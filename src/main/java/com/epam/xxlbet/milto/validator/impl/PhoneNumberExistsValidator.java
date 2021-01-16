@@ -27,11 +27,11 @@ public class PhoneNumberExistsValidator implements Validator {
     }
 
     @Override
-    public void validate(Object target, Errors errors, String locale) {
+    public void validate(Object target, Errors errors) {
         String phoneNumber = (String) target;
 
         if (userService.isPhoneNumberExists(phoneNumber)) {
-            errors.reject("user.with.phonenumber.exists", locale, phoneNumber);
+            errors.reject("user.with.phonenumber.exists", phoneNumber);
         }
     }
 }

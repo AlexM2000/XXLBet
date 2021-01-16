@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.dao.UserDao;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToUserPopulator;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_UNCONFIRMED_USERS;
@@ -76,11 +77,11 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
     @Override
     public void deleteAllUnconfirmedUsers() {
-        executeUpdate(DELETE_ALL_UNCONFIRMED_USERS);
+        executeUpdate(DELETE_ALL_UNCONFIRMED_USERS, LocalDateTime.now());
     }
 
     @Override
     public List<User> getAllUnconfirmedUsers() {
-        return executeQuery(SELECT_UNCONFIRMED_USERS);
+        return executeQuery(SELECT_UNCONFIRMED_USERS, LocalDateTime.now());
     }
 }

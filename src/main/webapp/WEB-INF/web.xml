@@ -129,6 +129,10 @@
   </error-page>
 
   <filter-mapping>
+    <filter-name>XSSFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/xxlbet</url-pattern>
   </filter-mapping>

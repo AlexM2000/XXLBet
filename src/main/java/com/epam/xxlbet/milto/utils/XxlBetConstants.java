@@ -96,4 +96,7 @@ public final class XxlBetConstants {
     public static final String ADJUST_OPPONENT_TO_MATCH = "adjust.opponent.to.match";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_CREDIT_CARDS = "queries_credit_cards.properties";
+    public static final String CREATE_CREDIT_CARD = "create.credit.card";
+    public static final String SELECT_CREDIT_CARD_BY_NUMBER = "select.credit.card.by.number";
+    public static final String SELECT_CREDIT_CARD_BY_USER = "select.credit.card.by.user";
 }
