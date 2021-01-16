@@ -21,7 +21,9 @@
 
         <div class="form-group">
             <label style="display: none" id="tournamentLabel" for="tournamentSelect" class="text-info"><ut:locale_tag key="admin-page.tournamentselect.label"/></label>
-            <select id="tournamentSelect" class="form-control" style="display: none" title=<ut:locale_tag key="admin-page.tournamentselect.title"/>></select>
+            <select id="tournamentSelect" class="form-control" style="display: none" title=<ut:locale_tag key="admin-page.tournamentselect.title"/>>
+                <option></option>
+            </select>
             <small id="noTournamentsInfo" class="text-danger"></small>
         </div>
 

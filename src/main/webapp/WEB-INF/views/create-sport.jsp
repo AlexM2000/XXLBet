@@ -7,7 +7,7 @@
     <script src="${pageContext.request.contextPath}/js/create-sport.js"></script>
 </head>
 <body>
-    <div class="form-group">
+    <div class="form-group my-4 py-4">
         <label for="sportName"><ut:locale_tag key="create.sport.enter.sport.name"/></label>
         <input id="sportName" class="form-control">
         <small id="sportNameInformer" class="text-danger"></small>

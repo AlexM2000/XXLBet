@@ -29,7 +29,8 @@ $(document).ready(function () {
                 } else {
                     $("#tournamentLabel").show();
 
-                    for (var i = 0; i < dataFromServer.length; i++) {
+                    $('#tournamentSelect').append("<option></option>");
+                    for (let i = 0; i < dataFromServer.length; i++) {
                         $('#tournamentSelect').append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
                     }
 

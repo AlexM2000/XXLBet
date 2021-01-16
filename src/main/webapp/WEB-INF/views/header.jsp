@@ -7,6 +7,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/AJAXScripts.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dropdown.css">
 </head>
 <body>
 <div class="header" name="headerName" id="headerId">
@@ -24,12 +25,22 @@
                         </li>
                         <jstl:if test="${sessionScope.role.getName() == 'admin'}">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/xxlbet?command=admin_page"><ut:locale_tag key="header.admin"/></a>
+                                <a onclick="myFunction()" class="dropbtn nav-link"><ut:locale_tag key="header.admin"/>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=admin_page"><ut:locale_tag key="header.create.match"/></a>
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=create_sport_page"><ut:locale_tag key="header.create.sport"/></a>
+                                    </div>
+                                </a>
                             </li>
                         </jstl:if>
                         <jstl:if test="${sessionScope.role.getName() == 'bookmaker'}">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/xxlbet?command=admin_page"><ut:locale_tag key="header.admin"/></a>
+                                <a onclick="myFunction()" class="dropbtn nav-link"><ut:locale_tag key="header.admin"/>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=admin_page"><ut:locale_tag key="header.create.match"/></a>
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=create_sport_page"><ut:locale_tag key="header.create.sport"/></a>
+                                    </div>
+                                </a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="/xxlbet?command=bookmaker_page"><ut:locale_tag key="bookmaker-page.title"/></a>
