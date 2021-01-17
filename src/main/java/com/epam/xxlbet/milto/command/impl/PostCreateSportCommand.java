@@ -31,7 +31,7 @@ public class PostCreateSportCommand extends AbstractCommand {
         String sportName = getRequestBody(request, String.class);
         validate(sportName, getCurrentLocale(request), sportExistsValidator);
 
-        if (getErrors().isEmpty()) {
+        if (getErrors().get(STATUS).equals(VERIFIED)) {
             sportService.createSport(sportName);
         }
 
