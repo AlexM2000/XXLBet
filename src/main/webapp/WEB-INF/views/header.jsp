@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@taglib prefix="ut" uri="/WEB-INF/mytags" %>
-
 <html>
 <head>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dropdown.css">
 </head>
 <body>
-<div class="header" name="headerName" id="headerId">
+<div class="header" id="headerId">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent my-1">
         <a class="navbar-brand" href="home"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,6 +39,7 @@
                                         <a href="${pageContext.request.contextPath}/xxlbet?command=admin_page"><ut:locale_tag key="header.create.match"/></a>
                                         <a href="${pageContext.request.contextPath}/xxlbet?command=create_sport_page"><ut:locale_tag key="header.create.sport"/></a>
                                         <a href="${pageContext.request.contextPath}/xxlbet?command=create_tournament_page"><ut:locale_tag key="header.create.tournament"/></a>
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=create_team_page"><ut:locale_tag key="header.create.team"/></a>
                                     </div>
                                 </a>
                             </li>

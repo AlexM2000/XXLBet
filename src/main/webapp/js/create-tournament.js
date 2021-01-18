@@ -1,12 +1,12 @@
 $(document).ready(function (){
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
         if (ev.target.value === "") {
-            $("#tournamentNameLabel").hide();
-            $('#tournamentName').hide();
+            $("#tournamentLabel").hide();
+            $('#tournamentSelect').hide();
             $('#tournamentName').text('');
             $('#tournamentNameInformer').text('');
         } else {
-            $("#tournamentNameLabel").show();
+            $("#tournamentLabel").show();
             $('#tournamentName').show();
         }
     });

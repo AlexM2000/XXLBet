@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    var input = $("input");
-    var label = $("label");
-    var submitButton  = $('button');
+    const input = $("input");
+    const label = $("label");
+    const submitButton = $('button');
 
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
         input.hide();
@@ -9,7 +9,8 @@ $(document).ready(function () {
         submitButton.prop("disabled", true);
         $("#tournamentLabel").hide();
         $("#tournamentSelect").hide();
-        var sport = ev.target.value;
+
+        const sport = ev.target.value;
 
         $.ajax({
             url: '/xxlbet',
@@ -41,7 +42,7 @@ $(document).ready(function () {
                 alert(e)
             }
         })
-    });
+    })
 
     document.getElementById("tournamentSelect").addEventListener("change", function (ev) {
         input.hide();
@@ -52,7 +53,7 @@ $(document).ready(function () {
         $('#team2').hide();
         $('#team2Label').hide();
 
-        var tournament = ev.target.value;
+        const tournament = ev.target.value;
 
         $.ajax({
             url: '/xxlbet',
@@ -90,7 +91,7 @@ $(document).ready(function () {
 });
 
 function createMatch() {
-    var errorCount = 0;
+    let errorCount = 0;
 
     $('#drawCoefficientInformer').text("");
     $('#team1Informer').text("");

@@ -69,6 +69,10 @@
     <servlet-name>create-tournament</servlet-name>
     <jsp-file>/WEB-INF/views/create-tournament.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>create-team</servlet-name>
+    <jsp-file>/WEB-INF/views/create-team.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
@@ -129,6 +133,10 @@
   <servlet-mapping>
     <servlet-name>create-tournament</servlet-name>
     <url-pattern>/create-tournament</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>create-team</servlet-name>
+    <url-pattern>/create-team</url-pattern>
   </servlet-mapping>
 
   <error-page>

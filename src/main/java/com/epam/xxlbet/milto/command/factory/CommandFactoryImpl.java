@@ -6,6 +6,7 @@ import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetBookmakerPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateBetPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetCreateTeamPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTournamentPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
@@ -22,6 +23,7 @@ import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateSportCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateTeamCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
@@ -141,6 +143,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case POST_CREATE_TOURNAMENT:
                 command = new PostCreateTournamentCommand(TournamentServiceImpl.getInstance());
+                break;
+            case GET_CREATE_TEAM_PAGE:
+                command = new GetCreateTeamPageCommand(SportServiceImpl.getInstance());
+                break;
+            case POST_CREATE_TEAM:
+                command = new PostCreateTeamCommand(OpponentsServiceImpl.getInstance());
                 break;
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);

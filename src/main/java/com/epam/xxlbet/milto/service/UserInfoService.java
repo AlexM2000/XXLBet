@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.UserInfo;
-import com.epam.xxlbet.milto.requestandresponsebody.AdminPageUserResponse;
+import com.epam.xxlbet.milto.requestandresponsebody.BookmakerPageUserResponse;
 
 import java.util.List;
 
@@ -34,9 +34,9 @@ public interface UserInfoService {
     /**
      * Find all user info.
      *
-     * @return List of {@link AdminPageUserResponse} java representation of json response body
+     * @return List of {@link BookmakerPageUserResponse} java representation of json response body
      */
-    List<AdminPageUserResponse> getAllUserInfoForAdminPage();
+    List<BookmakerPageUserResponse> getAllUserInfoForAdminPage();
 
     /**
      * Update balance of all users that created bet on given match depending on result of the match.

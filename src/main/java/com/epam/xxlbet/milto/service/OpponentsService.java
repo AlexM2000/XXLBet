@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.Opponent;
+import com.epam.xxlbet.milto.requestandresponsebody.CreateTeamRequest;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -52,4 +53,13 @@ public interface OpponentsService {
      * @param coefficient coefficient
      */
     Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient);
+
+    /**
+     * Create opponent in database.
+     *
+     *
+     * @param request {@link CreateTeamRequest} request body
+     * @return Created {@link Opponent} (taken from database)
+     */
+    Opponent createOpponent(CreateTeamRequest request);
 }

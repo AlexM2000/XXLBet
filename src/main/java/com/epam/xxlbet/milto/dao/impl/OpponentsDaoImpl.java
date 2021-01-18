@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADJUST_OPPONENT_TO_MATCH;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_OPPONENTS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_OPPONENTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_BY_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_BY_TOURNAMENT_NAME;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_OPPONENTS_FROM_MATCH;
@@ -56,13 +57,18 @@ public class OpponentsDaoImpl extends AbstractDaoImpl<Opponent> implements Oppon
 
     @Override
     public Opponent createOpponent(Opponent opponent) {
-        return null;
+        executeUpdate(
+                INSERT_INTO_OPPONENTS,
+                opponent.getName(),
+                opponent.getTournamentId()
+        );
+        return getOpponentByName(opponent.getName());
     }
 
     @Override
     public Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient) {
         executeUpdate(ADJUST_OPPONENT_TO_MATCH, matchId, coefficient.doubleValue(), opponent.getId());
-        return null;
+        return getOpponentById(opponent.getId());
     }
 
     @Override

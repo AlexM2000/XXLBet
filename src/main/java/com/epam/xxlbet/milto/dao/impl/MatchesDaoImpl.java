@@ -102,9 +102,8 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
         try(final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_ALL_ONLINE_AND_INCOMPLETE_MATCHES));
 
-            statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-
             ResultSet set = statement.executeQuery();
+
             long prevMatchId = 0;
             Match match;
             Set<Opponent> opponents = new LinkedHashSet<>();

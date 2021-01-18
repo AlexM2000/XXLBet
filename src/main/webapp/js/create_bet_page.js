@@ -42,6 +42,7 @@ $(document).ready(function () {
                 } else {
                     $("#tournamentLabel").show();
 
+                    $('#tournamentSelect').append("<option></option>");
                     for (var i = 0; i < dataFromServer.length; i++) {
                         $('#tournamentSelect').append("<option value='" + dataFromServer[i]['name'] + "'>" + dataFromServer[i]['name'] + "</option>");
                     }

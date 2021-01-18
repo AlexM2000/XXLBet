@@ -21,10 +21,11 @@
         </div>
 
         <div class="form-group">
-            <label style="display: none" id="tournamentNameLabel" for="tournamentName" class="text-info"><ut:locale_tag key="create.tournament.enter.tournament.name"/></label>
+            <label style="display: none" id="tournamentLabel" for="tournamentName" class="text-info"><ut:locale_tag key="create.tournament.enter.tournament.name"/></label>
             <input style="display: none" id="tournamentName" class="form-control">
-            <small id="tournamentNameInformer" class="text-danger"></small>
+            <small id="teamNameInformer" class="text-danger"></small>
         </div>
+
         <button onclick="createTournament()" class="btn btn-info"><ut:locale_tag key="create.tournament.submit"/></button>
     </div>
 </body>

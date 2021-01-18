@@ -5,7 +5,7 @@ package com.epam.xxlbet.milto.requestandresponsebody;
  *
  * @author Aliaksei Milto
  */
-public class AdminPageUserResponse {
+public class BookmakerPageUserResponse {
     private String email;
     private String phoneNumber;
     private String role;

@@ -36,6 +36,8 @@ public interface CommandFactory {
     String POST_CREATE_SPORT = "create_sport";
     String GET_CREATE_TOURNAMENT_PAGE = "create_tournament_page";
     String POST_CREATE_TOURNAMENT = "create_tournament";
+    String GET_CREATE_TEAM_PAGE = "create_team_page";
+    String POST_CREATE_TEAM = "create_team";
 
     /**
      * Creates command depending on given command name.

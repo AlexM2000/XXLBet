@@ -10,6 +10,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TOURNAMENT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_HOME_COMMAND;
@@ -27,6 +28,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_SPORT;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TEAM;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TOURNAMENT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
@@ -89,6 +91,8 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_CREATE_SPORT_PAGE:
             case GET_CREATE_TOURNAMENT_PAGE:
             case POST_CREATE_TOURNAMENT:
+            case GET_CREATE_TEAM_PAGE:
+            case POST_CREATE_TEAM:
                 return httpSession.getAttribute("role") != null
                         && asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 

@@ -34,7 +34,8 @@ public class PostCreateBetCommand extends AbstractCommand {
 
         if (userInfo.getBalance().compareTo(createBetRequest.getSum()) < 0) {
             Errors errors = new Errors();
-            errors.reject("create-bet-page.bad-balance", getCurrentLocale(request));
+            errors.setLocale(getCurrentLocale(request));
+            errors.reject("create-bet-page.bad-balance");
             responseBody = errors.getErrors();
         } else {
             userInfo.setBalance(userInfo.getBalance().subtract(createBetRequest.getSum()));

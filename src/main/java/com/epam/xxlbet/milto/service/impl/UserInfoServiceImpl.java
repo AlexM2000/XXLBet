@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.service.impl;
 import com.epam.xxlbet.milto.dao.UserInfoDao;
 import com.epam.xxlbet.milto.dao.impl.UserInfoDaoImpl;
 import com.epam.xxlbet.milto.domain.UserInfo;
-import com.epam.xxlbet.milto.requestandresponsebody.AdminPageUserResponse;
+import com.epam.xxlbet.milto.requestandresponsebody.BookmakerPageUserResponse;
 import com.epam.xxlbet.milto.service.RoleService;
 import com.epam.xxlbet.milto.service.StatusService;
 import com.epam.xxlbet.milto.service.UserInfoService;
@@ -52,12 +52,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public List<AdminPageUserResponse> getAllUserInfoForAdminPage() {
+    public List<BookmakerPageUserResponse> getAllUserInfoForAdminPage() {
         List<UserInfo> userInfoList = userInfoDao.getAllUsers();
-        List<AdminPageUserResponse> userResponses = new ArrayList<>();
+        List<BookmakerPageUserResponse> userResponses = new ArrayList<>();
 
         for (UserInfo userInfo : userInfoList) {
-            AdminPageUserResponse userResponse = new AdminPageUserResponse();
+            BookmakerPageUserResponse userResponse = new BookmakerPageUserResponse();
             userResponse.setEmail(userInfo.getEmail());
             userResponse.setPhoneNumber(userInfo.getPhoneNumber());
             userResponse.setRole(roleService.getRoleById((long) userInfo.getRoleId()).getName());

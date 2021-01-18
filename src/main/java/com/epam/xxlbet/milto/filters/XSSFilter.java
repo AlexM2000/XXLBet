@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * XSSFilter.
  * Wraps original HttpServletRequest with wrapper
- * That removes all related javascript from request parameters.
+ * that removes all strings related to javascript from request parameters.
  *
  * @author Aliaksei Milto
  */
