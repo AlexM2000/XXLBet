@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.Tournament;
+import com.epam.xxlbet.milto.requestandresponsebody.CreateTournamentRequest;
 
 import java.util.List;
 
@@ -10,6 +11,14 @@ import java.util.List;
  * @author Aliaksei Milto
  */
 public interface TournamentService {
+
+    /**
+     * Create tournament in database.
+     *
+     * @param request {@link CreateTournamentRequest} request body with tournament info
+     * @return Created {@link Tournament} (taken from database)
+     */
+    Tournament createTournament(CreateTournamentRequest request);
 
     /**
      * Find tournaments of given kind of sport.

@@ -32,7 +32,9 @@ public class ResultSetToTournamentPopulator implements ResultSetPopulator<Tourna
         tournament.setSportId(source.getLong(SPORT_ID));
         tournament.setName(source.getString(NAME));
         tournament.setDateStarted(source.getTimestamp(DATE_STARTED).toLocalDateTime());
-        tournament.setDateEnded(source.getTimestamp(DATE_ENDED).toLocalDateTime());
+        if (source.getTimestamp(DATE_ENDED) != null) {
+            tournament.setDateEnded(source.getTimestamp(DATE_ENDED).toLocalDateTime());
+        }
         return tournament;
     }
 }

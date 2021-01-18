@@ -47,6 +47,7 @@ public class StatusFilter implements Filter {
             case POST_CREATE_SPORT:
             case GET_CREATE_SPORT_PAGE:
             case GET_CREATE_TOURNAMENT_PAGE:
+            case POST_CREATE_TOURNAMENT:
                 if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {
                     response.sendRedirect("/ban");
                     return;

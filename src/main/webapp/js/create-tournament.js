@@ -30,18 +30,23 @@ function createTournament() {
     }
 
     if (error_count === 0) {
+        const data = {
+            sport_id: document.getElementById("sportSelect").value,
+            name: document.getElementById("tournamentName").value
+        }
+
         $.ajax({
             url: "/xxlbet?command=create_tournament",
             type: 'POST',
-            contentType: 'text/plain; charset=utf-8',
-            data: sport,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
             success: function(dataFromServer) {
-                if (!dataFromServer['sport.already.exists']) {
-                    alert('Sport was created successfully')
+                if (!dataFromServer['tournament.already.exists']) {
+                    alert('Tournament was created successfully')
                     window.location.reload();
                 } else {
-                    $('#sportNameInformer').text('');
-                    $('#sportNameInformer').text(dataFromServer['sport.already.exists']);
+                    $('#tournamentNameInformer').text('');
+                    $('#tournamentNameInformer').text(dataFromServer['tournament.already.exists']);
                 }
             },
             error: function (e){

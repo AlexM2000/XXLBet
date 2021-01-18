@@ -22,6 +22,7 @@ import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateSportCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
@@ -137,6 +138,9 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case GET_CREATE_TOURNAMENT_PAGE:
                 command = new GetCreateTournamentPageCommand(SportServiceImpl.getInstance());
+                break;
+            case POST_CREATE_TOURNAMENT:
+                command = new PostCreateTournamentCommand(TournamentServiceImpl.getInstance());
                 break;
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);

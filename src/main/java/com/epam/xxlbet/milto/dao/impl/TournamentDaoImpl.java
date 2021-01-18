@@ -4,10 +4,12 @@ import com.epam.xxlbet.milto.dao.TournamentDao;
 import com.epam.xxlbet.milto.domain.Tournament;
 import com.epam.xxlbet.milto.populator.impl.ResultSetToTournamentPopulator;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_FINISHED_TOURNAMENTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_TOURNAMENTS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_TOURNAMENT;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOURNAMENTS_BY_NAME;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_TOURNAMENTS_BY_SPORT_NAME;
 
@@ -29,6 +31,18 @@ public class TournamentDaoImpl extends AbstractDaoImpl<Tournament> implements To
         }
 
         return instance;
+    }
+
+    @Override
+    public Tournament createTournament(Tournament tournament) {
+        executeUpdate(
+                INSERT_INTO_TOURNAMENT,
+                tournament.getSportId(),
+                tournament.getName(),
+                LocalDateTime.now()
+        );
+
+        return getTournamentByTournamentName(tournament.getName());
     }
 
     @Override

@@ -24,8 +24,8 @@ public abstract class AbstractCommand implements Command {
     protected static final String STATUS = "status";
     protected static final String FAILED = "failed";
     protected static final String VERIFIED = "verified";
-    private ObjectMapper mapper = new ObjectMapper();
-    private Map<String, String> errors = new HashMap<>();
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final Map<String, String> errors = new HashMap<>();
 
     protected <T> T getRequestBody(final RequestContext request, final Class<T> clazz) {
         T entity = null;

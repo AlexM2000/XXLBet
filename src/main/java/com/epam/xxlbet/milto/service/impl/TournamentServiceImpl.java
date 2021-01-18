@@ -3,6 +3,7 @@ package com.epam.xxlbet.milto.service.impl;
 import com.epam.xxlbet.milto.dao.TournamentDao;
 import com.epam.xxlbet.milto.dao.impl.TournamentDaoImpl;
 import com.epam.xxlbet.milto.domain.Tournament;
+import com.epam.xxlbet.milto.requestandresponsebody.CreateTournamentRequest;
 import com.epam.xxlbet.milto.service.TournamentService;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public class TournamentServiceImpl implements TournamentService {
         }
 
         return instance;
+    }
+
+    @Override
+    public Tournament createTournament(CreateTournamentRequest request) {
+        Tournament tournament = new Tournament();
+        tournament.setSportId(request.getSportId());
+        tournament.setName(request.getTournamentName());
+        return tournamentDao.createTournament(tournament);
     }
 
     @Override

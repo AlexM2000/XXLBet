@@ -12,6 +12,14 @@ import java.util.List;
 public interface TournamentDao {
 
     /**
+     * Create tournament in database.
+     *
+     * @param tournament tournament
+     * @return Created {@link Tournament} (taken from database)
+     */
+    Tournament createTournament(Tournament tournament);
+
+    /**
      * Find tournaments of given kind of sport.
      *
      * @param sportName sport name
