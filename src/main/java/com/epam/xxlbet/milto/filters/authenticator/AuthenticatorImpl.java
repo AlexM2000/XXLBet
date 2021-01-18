@@ -10,6 +10,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TOURNAMENT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_HOME_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LOGIN_PAGE;
@@ -17,7 +18,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_MATCHES_B
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_OPPONENTS_BY_TOURNAMENT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_REGISTRATION_PAGE;
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_SPORT_CREATE_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_SPORT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMENTS_BY_SPORT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_WIN_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMMAND;
@@ -84,7 +85,8 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_ADMIN_PAGE:
             case POST_CREATE_MATCH:
             case POST_CREATE_SPORT:
-            case GET_SPORT_CREATE_PAGE:
+            case GET_CREATE_SPORT_PAGE:
+            case GET_CREATE_TOURNAMENT_PAGE:
                 return httpSession.getAttribute("role") != null
                         && asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 

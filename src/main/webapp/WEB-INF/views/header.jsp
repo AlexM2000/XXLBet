@@ -39,6 +39,7 @@
                                     <div id="myDropdown" class="dropdown-content">
                                         <a href="${pageContext.request.contextPath}/xxlbet?command=admin_page"><ut:locale_tag key="header.create.match"/></a>
                                         <a href="${pageContext.request.contextPath}/xxlbet?command=create_sport_page"><ut:locale_tag key="header.create.sport"/></a>
+                                        <a href="${pageContext.request.contextPath}/xxlbet?command=create_tournament_page"><ut:locale_tag key="header.create.tournament"/></a>
                                     </div>
                                 </a>
                             </li>
