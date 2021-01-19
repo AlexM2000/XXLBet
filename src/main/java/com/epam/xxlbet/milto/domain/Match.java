@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * Model of match, on which bet is created.
+ *
+ * @author Aliaksei Milto
+ */
 public class Match {
     private Long id;
     private BigDecimal drawCoefficient;

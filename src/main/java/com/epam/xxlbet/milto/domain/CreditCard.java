@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.domain;
 
 /**
- * Credit cart
+ * Credit cart.
  *
  * @author Aliaksei Milto
  */

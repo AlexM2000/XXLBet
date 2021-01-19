@@ -27,7 +27,7 @@ public class PostCreateBetCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
-
+        getLogger().debug("Executing " + this.getClass());
         CreateBetRequest createBetRequest = getRequestBody(request, CreateBetRequest.class);
         UserInfo userInfo = userInfoService.getUserInfoByEmail(createBetRequest.getEmail());
         Object responseBody;

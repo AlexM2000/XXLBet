@@ -1,5 +1,10 @@
 package com.epam.xxlbet.milto.domain;
 
+/**
+ * Sport model.
+ *
+ * @author Aliaksei Milto
+ */
 public class Sport {
     private Long id;
     private String name;

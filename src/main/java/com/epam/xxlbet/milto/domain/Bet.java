@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Model of match bet.
+ *
+ * @author Aliaksei Milto
+ */
 public class Bet {
     private Long id;
     private Long matchId;

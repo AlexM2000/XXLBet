@@ -10,6 +10,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_CREDIT_CARD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TOURNAMENT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
@@ -26,6 +27,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMM
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_CREDIT_CARD;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_SPORT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TEAM;
@@ -35,6 +37,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.CREATE_CREDIT_CARD;
 import static java.util.Arrays.asList;
 
 /**
@@ -81,6 +84,8 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_DEFEAT_USER_BETS:
             case GET_BET_CREATE_PAGE:
             case POST_CREATE_BET:
+            case GET_CREATE_CREDIT_CARD_PAGE:
+            case POST_CREATE_CREDIT_CARD:
                 return httpSession.getAttribute("login") != null
                         && httpSession.getAttribute("role") != null
                         && httpSession.getAttribute("status") != null;

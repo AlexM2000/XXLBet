@@ -15,6 +15,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_CREDIT_CARD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TEAM;
@@ -46,6 +47,7 @@ public class LoginFilter implements Filter {
             case GET_BET_CREATE_PAGE:
             case GET_CREATE_TEAM_PAGE:
             case POST_CREATE_TEAM:
+            case GET_CREATE_CREDIT_CARD_PAGE:
                 if (request.getSession().getAttribute("login") == null || request.getSession().getAttribute("role") == null) {
                     response.sendRedirect(LOGIN_PAGE);
                     return;

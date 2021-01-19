@@ -73,6 +73,10 @@
     <servlet-name>create-team</servlet-name>
     <jsp-file>/WEB-INF/views/create-team.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>create-credit-card</servlet-name>
+    <jsp-file>/WEB-INF/views/create-credit-card.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
@@ -138,6 +142,10 @@
     <servlet-name>create-team</servlet-name>
     <url-pattern>/create-team</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>create-credit-card</servlet-name>
+    <url-pattern>/create-credit-card</url-pattern>
+  </servlet-mapping>
 
   <error-page>
     <error-code>404</error-code>
@@ -154,6 +162,10 @@
 
   <filter-mapping>
     <filter-name>XSSFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
     <url-pattern>/xxlbet</url-pattern>
   </filter-mapping>
   <filter-mapping>

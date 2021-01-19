@@ -2,6 +2,11 @@ package com.epam.xxlbet.milto.domain;
 
 import java.math.BigDecimal;
 
+/**
+ * Opponent.
+ *
+ * @author Aliaksei Milto
+ */
 public class Opponent {
     private Long id;
     private Long matchId;

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,16 +20,32 @@
             <p><ut:locale_tag key="profile.birthdate"/>: ${requestScope.userInfo.getBirthDate()}</p>
             <p><ut:locale_tag key="profile.registration-date"/>: ${ut:formatLocalDateTime(requestScope.userInfo.getRegistrationDate(), 'dd.MM.yyyy HH:mm:ss')}</p>
             <p><ut:locale_tag key="profile.balance"/>: ${requestScope.userInfo.getBalance()}</p>
+            <jstl:if test="${cards.size() > 0}">
             <div id="balanceForm" class="form-group">
                 <small style="display: none" id="moneyLabel"><ut:locale_tag key="profile.enter.sum"/></small>
                 <input style="display: none" id="money" type="number" class="mt-2" placeholder=<ut:locale_tag key="profile.enter.sum"/>/>
-                <small class="form-control-sm" style="display: none" id="chooseCardLabel" for="chooseCard"><ut:locale_tag key="profile.choose.card"/></small>
-                <select style="display: none" id="chooseCard" class="form-control-sm m-md-0"></select>
-                <button style="display: none" id="payButton" class="btn-sm btn-info"><ut:locale_tag key="profile.pay.button"/></button>
+                <small class="form-control-sm" style="display: none" id="chooseCardLabel"><ut:locale_tag key="profile.choose.card"/></small>
+                    <select style="display: none" id="chooseCard" class="form-control-sm">
+                        <jstl:forEach var="card" items="${cards}">
+                            <option value="${card.getNumber()}">${card.getNumber()} - ${card.getThru()}</option>
+                        </jstl:forEach>
+                    </select>
+                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=create_credit_card_page"><ut:locale_tag key="profile.add.more.credit.cards"/></a>
+                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=remove_credit_card_page"><ut:locale_tag key="profile.remove.credit.card"/></a>
+                    <button style="display: none" id="payButton" class="btn-sm btn-info"><ut:locale_tag key="profile.pay.button"/></button>
+                <button id="showPay" onclick="showPayForm()" class="btn-sm btn-info"><ut:locale_tag key="profile.show.pay"/></button>
+                </jstl:if>
+                <jstl:if test="${cards.size() == 0}">
+                    <div>
+                        <h6 id="noCreditCards" class="text-info"><ut:locale_tag key="profile.no.credit.cards"/></h6>
+                    </div>
+                    <div>
+                        <a class="text-info" href="${pageContext.request.contextPath}/xxlbet?command=create_credit_card_page"><ut:locale_tag key="profile.add.credit.card"/></a>
+                    </div>
+                </jstl:if>
+                <p><ut:locale_tag key="profile.role"/>: ${sessionScope.role.getName()}</p>
+                <p><ut:locale_tag key="profile.status"/>: ${sessionScope.status.getName()}</p>
             </div>
-            <button id="showPay" onclick="showPayForm()" class="btn-sm btn-info"><ut:locale_tag key="profile.show.pay"/></button>
-            <p><ut:locale_tag key="profile.role"/>: ${sessionScope.role.getName()}</p>
-            <p><ut:locale_tag key="profile.status"/>: ${sessionScope.status.getName()}</p>
         </div>
         <select id="betSelector" class="form-control form-control-lg" title=<ut:locale_tag key="profile.bets.title"/>>
             <option value="win_user_bets"><ut:locale_tag key="profile.bets.win"/></option>

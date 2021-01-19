@@ -55,6 +55,7 @@ public class DispatcherServlet extends HttpServlet {
             dispatch(request, response, commandResult);
         } catch (final ServiceException | UnknownCommandException | IOException e) {
             LOG.error("Something went wrong during processing request...", e);
+            throw new ServletException(e);
         }
     }
 

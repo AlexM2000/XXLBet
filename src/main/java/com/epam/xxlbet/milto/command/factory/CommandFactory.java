@@ -38,6 +38,8 @@ public interface CommandFactory {
     String POST_CREATE_TOURNAMENT = "create_tournament";
     String GET_CREATE_TEAM_PAGE = "create_team_page";
     String POST_CREATE_TEAM = "create_team";
+    String GET_CREATE_CREDIT_CARD_PAGE = "create_credit_card_page";
+    String POST_CREATE_CREDIT_CARD = "create_credit_card";
 
     /**
      * Creates command depending on given command name.

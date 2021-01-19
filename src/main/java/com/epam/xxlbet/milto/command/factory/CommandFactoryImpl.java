@@ -6,6 +6,7 @@ import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetBookmakerPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateBetPageCommand;
+import com.epam.xxlbet.milto.command.impl.GetCreateCreditCardPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTeamPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTournamentPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
@@ -21,6 +22,7 @@ import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateCreditCardCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateSportCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateTeamCommand;
@@ -31,6 +33,7 @@ import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostChangeUserRoleAndStatusCommand;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
+import com.epam.xxlbet.milto.service.impl.CreditCardServiceImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.OpponentsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
@@ -96,7 +99,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new PostConfirmRegistrationCommand(UserServiceImpl.getInstance());
                 break;
             case GET_PROFILE_PAGE:
-                command = new GetProfileCommand(UserInfoServiceImpl.getInstance(), BetsServiceImpl.getInstance());
+                command = new GetProfileCommand(
+                        UserInfoServiceImpl.getInstance(),
+                        BetsServiceImpl.getInstance(),
+                        CreditCardServiceImpl.getInstance(),
+                        UserServiceImpl.getInstance()
+                );
                 break;
             case GET_ALL_USER_BETS:
                 command = new GetAllUserBetsCommand(BetsServiceImpl.getInstance());
@@ -149,6 +157,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case POST_CREATE_TEAM:
                 command = new PostCreateTeamCommand(OpponentsServiceImpl.getInstance());
+                break;
+            case GET_CREATE_CREDIT_CARD_PAGE:
+                command = new GetCreateCreditCardPageCommand();
+                break;
+            case POST_CREATE_CREDIT_CARD:
+                command = new PostCreateCreditCardCommand(CreditCardServiceImpl.getInstance());
                 break;
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);

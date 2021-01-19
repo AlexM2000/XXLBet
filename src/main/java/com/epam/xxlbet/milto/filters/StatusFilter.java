@@ -50,6 +50,7 @@ public class StatusFilter implements Filter {
             case POST_CREATE_TOURNAMENT:
             case GET_CREATE_TEAM_PAGE:
             case POST_CREATE_TEAM:
+            case GET_CREATE_CREDIT_CARD_PAGE:
                 if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {
                     response.sendRedirect("/ban");
                     return;
