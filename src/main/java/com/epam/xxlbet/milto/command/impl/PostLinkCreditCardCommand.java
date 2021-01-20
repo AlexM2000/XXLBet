@@ -13,17 +13,17 @@ import com.epam.xxlbet.milto.validator.impl.CreditCartNumberValidator;
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
 /**
- * PostCreateCreditCardCommand.
+ * PostLinkCreditCardCommand.
  *
  * @author Aliaksei Milto
  */
-public class PostCreateCreditCardCommand extends AbstractCommand {
+public class PostLinkCreditCardCommand extends AbstractCommand {
     private CreditCardService creditCardService;
     private Validator numberValidator;
     private Validator cvvValidator;
     private Validator thruValidator;
 
-    public PostCreateCreditCardCommand(final CreditCardService creditCardService) {
+    public PostLinkCreditCardCommand(final CreditCardService creditCardService) {
         this.creditCardService = creditCardService;
         this.numberValidator = CreditCartNumberValidator.getInstance();
         this.cvvValidator = CreditCardCvvValidator.getInstance();
@@ -41,7 +41,7 @@ public class PostCreateCreditCardCommand extends AbstractCommand {
         validate(creditCard.getThru(), locale, thruValidator);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
-            creditCardService.createCreditCart(creditCard);
+            creditCardService.linkCreditCart(creditCard);
         }
 
         return createWriteDirectlyToResponseCommandResult(getErrors());

@@ -12,12 +12,12 @@ import java.util.List;
 public interface CreditCartDao {
 
     /**
-     * Create credit cart info in database.
+     * Create credit card info in database.
      *
      * @param creditCard CreditCard
      * @return Created {@link CreditCard} (taken from database)
      */
-    CreditCard createCreditCart(CreditCard creditCard);
+    CreditCard createCreditCard(CreditCard creditCard);
 
     /**
      * Find credit card by number.
@@ -34,4 +34,11 @@ public interface CreditCartDao {
      * @return List of user cards.
      */
     List<CreditCard> getCreditCardsByUserId(Long userId);
+
+    /**
+     * Removes credit card from database.
+     *
+     * @param creditCard {@link CreditCard}
+     */
+    void removeCreditCard(CreditCard creditCard);
 }

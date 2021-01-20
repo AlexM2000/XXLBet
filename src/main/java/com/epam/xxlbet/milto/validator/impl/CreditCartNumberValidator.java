@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.validator.Validator;
  */
 public class CreditCartNumberValidator implements Validator {
     private static CreditCartNumberValidator instance;
-    private static final String PATTERN = "\\d{16}";
+    private static final String PATTERN = "^\\d{16}$";
 
     private CreditCartNumberValidator() { }
 

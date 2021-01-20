@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.*;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.UNLINK_CREDIT_CARD;
 
 /**
  * StatusFilter.
@@ -50,7 +51,9 @@ public class StatusFilter implements Filter {
             case POST_CREATE_TOURNAMENT:
             case GET_CREATE_TEAM_PAGE:
             case POST_CREATE_TEAM:
-            case GET_CREATE_CREDIT_CARD_PAGE:
+            case GET_LINK_CREDIT_CARD_PAGE:
+            case GET_UNLINK_CREDIT_CARD_PAGE:
+            case UNLINK_CREDIT_CARD:
                 if (BANNED_STATUS.equals(((Status) request.getSession().getAttribute("status")).getName())) {
                     response.sendRedirect("/ban");
                     return;

@@ -98,7 +98,8 @@ public final class XxlBetConstants {
     public static final String INSERT_INTO_OPPONENTS = "insert.into.opponents";
 
     public static final String FILE_WITH_QUERIES_FOR_TABLE_CREDIT_CARDS = "queries_credit_cards.properties";
-    public static final String CREATE_CREDIT_CARD = "create.credit.card";
+    public static final String LINK_CREDIT_CARD = "link.credit.card";
     public static final String SELECT_CREDIT_CARD_BY_NUMBER = "select.credit.card.by.number";
     public static final String SELECT_CREDIT_CARD_BY_USER = "select.credit.cards.by.user";
+    public static final String UNLINK_CREDIT_CARD = "unlink.credit.card";
 }

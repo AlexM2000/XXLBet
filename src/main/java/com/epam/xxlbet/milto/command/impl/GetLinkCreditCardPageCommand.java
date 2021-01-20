@@ -8,12 +8,12 @@ import com.epam.xxlbet.milto.context.ResponseContext;
 import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
 
 /**
- * GetCreateCreditCardPageCommand.
+ * GetLinkCreditCardPageCommand.
  *
  * @author Aliaksei Milto
  */
-public class GetCreateCreditCardPageCommand implements Command {
-    private static final String PAGE = "/create-credit-card";
+public class GetLinkCreditCardPageCommand implements Command {
+    private static final String PAGE = "/link-credit-card";
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {

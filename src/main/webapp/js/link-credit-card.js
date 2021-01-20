@@ -1,7 +1,7 @@
-function create_credit_card() {
-    const cvvRegex = new RegExp('\\d{3}');
+function link_credit_card() {
+    const cvvRegex = new RegExp('^\\d{3}$');
     const thruRegex = new RegExp('(0[1-9]|1[0-2])/\\d{2}');
-    const numberRegex = new RegExp('\\d{16}');
+    const numberRegex = new RegExp('^\\d{16}$');
     $('#numberInformer').text('');
     $('#cvvInformer').text('');
     $('#thruInformer').text('');
@@ -35,7 +35,7 @@ function create_credit_card() {
         };
 
         $.ajax({
-            url: "/xxlbet?command=create_credit_card",
+            url: "/xxlbet?command=link_credit_card",
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),

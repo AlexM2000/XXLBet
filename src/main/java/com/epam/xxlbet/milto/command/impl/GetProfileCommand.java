@@ -19,17 +19,14 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
 public class GetProfileCommand extends AbstractCommand {
     private static final String PROFILE_PAGE = "/profile";
     private UserInfoService userInfoService;
-    private UserService userService;
     private BetsService betsService;
     private CreditCardService creditCardService;
 
     public GetProfileCommand(
             final UserInfoService userInfoService,
             final BetsService betsService,
-            final CreditCardService creditCardService,
-            final UserService userService
+            final CreditCardService creditCardService
     ) {
-        this.userService = userService;
         this.userInfoService = userInfoService;
         this.betsService = betsService;
         this.creditCardService = creditCardService;
@@ -42,7 +39,7 @@ public class GetProfileCommand extends AbstractCommand {
         UserInfo userInfo = userInfoService.getUserInfoByEmail((String) request.getSessionAttribute("login"));
         request.setAttribute("bets", betsService.getBetsHistoryByUser(userInfo.getEmail()));
         request.setAttribute("cards",
-                creditCardService.getCreditCardsByUserId(userService.getUserByEmail(userInfo.getEmail()).getId())
+                creditCardService.getCreditCardsByUserId((Long) request.getSessionAttribute("user_id"))
         );
         request.setAttribute("userInfo", userInfo);
 

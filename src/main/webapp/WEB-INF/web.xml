@@ -74,8 +74,12 @@
     <jsp-file>/WEB-INF/views/create-team.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>create-credit-card</servlet-name>
-    <jsp-file>/WEB-INF/views/create-credit-card.jsp</jsp-file>
+    <servlet-name>link-credit-card</servlet-name>
+    <jsp-file>/WEB-INF/views/link-credit-card.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>unlink-credit-card</servlet-name>
+    <jsp-file>/WEB-INF/views/unlink-credit-card.jsp</jsp-file>
   </servlet>
   
   <servlet-mapping>
@@ -143,8 +147,12 @@
     <url-pattern>/create-team</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>create-credit-card</servlet-name>
-    <url-pattern>/create-credit-card</url-pattern>
+    <servlet-name>link-credit-card</servlet-name>
+    <url-pattern>/link-credit-card</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>unlink-credit-card</servlet-name>
+    <url-pattern>/unlink-credit-card</url-pattern>
   </servlet-mapping>
 
   <error-page>

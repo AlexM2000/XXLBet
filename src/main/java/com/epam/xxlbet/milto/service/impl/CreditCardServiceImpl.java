@@ -3,6 +3,7 @@ package com.epam.xxlbet.milto.service.impl;
 import com.epam.xxlbet.milto.dao.CreditCartDao;
 import com.epam.xxlbet.milto.dao.impl.CreditCartDaoImpl;
 import com.epam.xxlbet.milto.domain.CreditCard;
+import com.epam.xxlbet.milto.requestandresponsebody.UnlinkCreditCardRequest;
 import com.epam.xxlbet.milto.service.CreditCardService;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class CreditCardServiceImpl implements CreditCardService {
     }
 
     @Override
-    public CreditCard createCreditCart(CreditCard creditCard) {
-        return creditCartDao.createCreditCart(creditCard);
+    public CreditCard linkCreditCart(CreditCard creditCard) {
+        return creditCartDao.createCreditCard(creditCard);
     }
 
     @Override
@@ -41,5 +42,13 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Override
     public List<CreditCard> getCreditCardsByUserId(Long userId) {
         return creditCartDao.getCreditCardsByUserId(userId);
+    }
+
+    @Override
+    public void unlinkCreditCard(UnlinkCreditCardRequest request) {
+        CreditCard creditCard = new CreditCard();
+        creditCard.setNumber(request.getNumber());
+        creditCard.setUserId(request.getUserId());
+        creditCartDao.removeCreditCard(creditCard);
     }
 }

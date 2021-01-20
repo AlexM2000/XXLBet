@@ -30,8 +30,8 @@
                             <option value="${card.getNumber()}">${card.getNumber()} - ${card.getThru()}</option>
                         </jstl:forEach>
                     </select>
-                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=create_credit_card_page"><ut:locale_tag key="profile.add.more.credit.cards"/></a>
-                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=remove_credit_card_page"><ut:locale_tag key="profile.remove.credit.card"/></a>
+                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=link_credit_card_page"><ut:locale_tag key="profile.add.more.credit.cards"/></a>
+                    <a class="form-control text-info" href="${pageContext.request.contextPath}/xxlbet?command=unlink_credit_card_page"><ut:locale_tag key="profile.remove.credit.card"/></a>
                     <button style="display: none" id="payButton" class="btn-sm btn-info"><ut:locale_tag key="profile.pay.button"/></button>
                 <button id="showPay" onclick="showPayForm()" class="btn-sm btn-info"><ut:locale_tag key="profile.show.pay"/></button>
                 </jstl:if>

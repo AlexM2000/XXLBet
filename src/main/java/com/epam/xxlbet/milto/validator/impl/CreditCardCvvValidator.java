@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.validator.Validator;
  */
 public class CreditCardCvvValidator implements Validator {
     private static CreditCardCvvValidator instance;
-    private static final String PATTERN = "\\d{3}";
+    private static final String PATTERN = "^\\d{3}$";
 
     private CreditCardCvvValidator() { }
 

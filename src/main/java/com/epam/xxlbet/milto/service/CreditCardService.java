@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.service;
 
 import com.epam.xxlbet.milto.domain.CreditCard;
+import com.epam.xxlbet.milto.requestandresponsebody.UnlinkCreditCardRequest;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 public interface CreditCardService {
 
     /**
-     * Create credit cart info in database.
+     * Link credit card to user.
      *
      * @param creditCard CreditCard
-     * @return Created {@link CreditCard} (taken from database)
+     * @return Linked {@link CreditCard} (taken from database)
      */
-    CreditCard createCreditCart(CreditCard creditCard);
+    CreditCard linkCreditCart(CreditCard creditCard);
 
     /**
      * Find credit card by number.
@@ -34,4 +35,11 @@ public interface CreditCardService {
      * @return List of user cards.
      */
     List<CreditCard> getCreditCardsByUserId(Long userId);
+
+    /**
+     * Unlink credit card from user.
+     *
+     * @param request {@link UnlinkCreditCardRequest}
+     */
+    void unlinkCreditCard(UnlinkCreditCardRequest request);
 }

@@ -29,9 +29,9 @@ public class CreditCartDaoImpl extends AbstractDaoImpl<CreditCard> implements Cr
     }
 
     @Override
-    public CreditCard createCreditCart(CreditCard creditCard) {
+    public CreditCard createCreditCard(CreditCard creditCard) {
         executeUpdate(
-                CREATE_CREDIT_CARD,
+                LINK_CREDIT_CARD,
                 creditCard.getNumber(),
                 creditCard.getThru(),
                 creditCard.getCvv(),
@@ -48,5 +48,14 @@ public class CreditCartDaoImpl extends AbstractDaoImpl<CreditCard> implements Cr
     @Override
     public List<CreditCard> getCreditCardsByUserId(Long userId) {
         return executeQuery(SELECT_CREDIT_CARD_BY_USER, userId);
+    }
+
+    @Override
+    public void removeCreditCard(CreditCard creditCard) {
+        executeUpdate(
+                UNLINK_CREDIT_CARD,
+                creditCard.getUserId(),
+                creditCard.getNumber()
+        );
     }
 }
