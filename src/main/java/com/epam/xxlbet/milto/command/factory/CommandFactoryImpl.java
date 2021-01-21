@@ -8,6 +8,7 @@ import com.epam.xxlbet.milto.command.impl.GetCreateBetPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTeamPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTournamentPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
+import com.epam.xxlbet.milto.command.impl.GetDoChangePasswordPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
 import com.epam.xxlbet.milto.command.impl.GetMatchesByTournamentCommand;
@@ -16,6 +17,7 @@ import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
 import com.epam.xxlbet.milto.command.impl.GetUnlinkCreditCardPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
+import com.epam.xxlbet.milto.command.impl.PostChangePasswordCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateChangePasswordRequestCommand;
@@ -181,6 +183,15 @@ public class CommandFactoryImpl implements CommandFactory {
                         JavaxEmailSenderImpl.getInstance()
                 );
                 break;
+            case GET_DO_CHANGE_PASSWORD_PAGE:
+                command = new GetDoChangePasswordPageCommand(
+                        PasswordChangeRequestServiceImpl.getInstance()
+                );
+                break;
+            case POST_CHANGE_PASSWORD:
+                command = new PostChangePasswordCommand(
+                        PasswordChangeRequestServiceImpl.getInstance()
+                );
         }
 
         return command;

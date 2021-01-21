@@ -6,6 +6,7 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToPasswordChangeRequestPopu
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_ALL_EXPIRED_PASSWORD_CHANGE_REQUESTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_PASSWORD_CHANGE_REQUEST_BY_TOKEN;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.DELETE_PASSWORD_CHANGE_REQUEST_BY_USER;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_PASSWORD_CHANGE_REQUESTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_PASSWORD_CHANGE_REQUESTS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_PASSWORD_CHANGE_REQUEST_BY_TOKEN;
@@ -63,6 +64,11 @@ public class PasswordChangeRequestDaoImpl
                 DELETE_PASSWORD_CHANGE_REQUEST_BY_TOKEN,
                 token
         );
+    }
+
+    @Override
+    public void deletePasswordChangeRequest(Long userId) {
+        executeUpdate(DELETE_PASSWORD_CHANGE_REQUEST_BY_USER, userId);
     }
 
     @Override

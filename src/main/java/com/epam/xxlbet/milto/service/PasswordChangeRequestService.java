@@ -1,6 +1,9 @@
 package com.epam.xxlbet.milto.service;
 
+import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.PasswordChangeRequest;
+import com.epam.xxlbet.milto.domain.User;
+import com.epam.xxlbet.milto.requestandresponsebody.ChangePasswordRequest;
 
 /**
  * PasswordChangeRequestService.
@@ -36,4 +39,11 @@ public interface PasswordChangeRequestService {
      * Delete all expired password change requests.
      */
     void deleteAllExpiredPasswordChangeRequests();
+
+    /**
+     * Change user password.
+     *
+     * @param passwordRequest change password request
+     */
+     void changePassword(ChangePasswordRequest passwordRequest);
 }

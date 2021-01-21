@@ -2,12 +2,21 @@ package com.epam.xxlbet.milto.service.impl;
 
 import com.epam.xxlbet.milto.dao.PasswordChangeRequestDao;
 import com.epam.xxlbet.milto.dao.impl.PasswordChangeRequestDaoImpl;
+import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.PasswordChangeRequest;
+import com.epam.xxlbet.milto.domain.User;
+import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
+import com.epam.xxlbet.milto.requestandresponsebody.ChangePasswordRequest;
 import com.epam.xxlbet.milto.service.PasswordChangeRequestService;
 import com.epam.xxlbet.milto.service.UserService;
+import com.epam.xxlbet.milto.utils.PropertyLoader;
+import com.epam.xxlbet.milto.utils.XxlBetConstants;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
+import static com.epam.xxlbet.milto.utils.cryptography.CryptoUtils.encrypt;
 
 /**
  * PasswordChangeRequestServiceImpl.
@@ -57,5 +66,23 @@ public class PasswordChangeRequestServiceImpl implements PasswordChangeRequestSe
     @Override
     public void deleteAllExpiredPasswordChangeRequests() {
         passwordChangeRequestDao.deleteAllExpiredPasswordChangeRequests();
+    }
+
+    @Override
+    public void changePassword(ChangePasswordRequest passwordRequest) {
+        User user = userService.getUserById(passwordRequest.getUserId());
+
+        user.setPassword(getEncryptedPassword(passwordRequest.getPassword()));
+
+        userService.updateUser(user);
+
+        passwordChangeRequestDao.deletePasswordChangeRequest(passwordRequest.getUserId());
+    }
+
+    private String getEncryptedPassword(String password) {
+        return encrypt(password,
+                PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)
+                        .orElseThrow(() -> new PropertyNotFoundException("Can't find secret key property!"))
+        );
     }
 }

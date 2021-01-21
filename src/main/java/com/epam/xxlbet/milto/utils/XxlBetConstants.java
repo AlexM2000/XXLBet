@@ -108,5 +108,6 @@ public final class XxlBetConstants {
     public static final String INSERT_INTO_PASSWORD_CHANGE_REQUESTS = "insert.into.password.change.requests";
     public static final String SELECT_PASSWORD_CHANGE_REQUEST_BY_TOKEN = "select.password.change.request.by.token";
     public static final String DELETE_PASSWORD_CHANGE_REQUEST_BY_TOKEN = "delete.password.change.request.by.token";
+    public static final String DELETE_PASSWORD_CHANGE_REQUEST_BY_USER = "delete.password.change.request.by.user";
     public static final String DELETE_ALL_EXPIRED_PASSWORD_CHANGE_REQUESTS = "delete.all.expired.password.change.requests";
 }

@@ -16,6 +16,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_SP
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TOURNAMENT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DEFEAT_USER_BETS;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_DO_CHANGE_PASSWORD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_HOME_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LINK_CREDIT_CARD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LOGIN_PAGE;
@@ -27,6 +28,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_TOURNAMEN
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_UNLINK_CREDIT_CARD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_WIN_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.LANGUAGE_COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_PASSWORD;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CHANGE_USER_ROLE_AND_STATUS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
@@ -82,6 +84,8 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_MATCHES_BY_TOURNAMENT:
             case GET_CHANGE_PASSWORD_PAGE:
             case CREATE_CHANGE_PASSWORD_REQUEST:
+            case GET_DO_CHANGE_PASSWORD_PAGE:
+            case POST_CHANGE_PASSWORD:
                 return true;
 
             case GET_PROFILE_PAGE:

@@ -1,4 +1,5 @@
 function change_password() {
+    $('#passwordInformer').text('');
     let error_count = 0;
 
     if (document.getElementById("password").value !== document.getElementById("repeatPassword").value) {
@@ -17,6 +18,7 @@ function change_password() {
             url: '/xxlbet?command=change_password',
             type: 'POST',
             contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(data),
             success: function () {
                 alert('Password was changed successfully!');
                 window.location.href = "/login";

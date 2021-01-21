@@ -74,4 +74,11 @@ public interface UserService {
      */
     void deleteAllUnconfirmedUsers();
 
+    /**
+     * Update user.
+     *
+     * @param user User with updated data.
+     * @return Updated user from database.
+     */
+    User updateUser(User user);
 }

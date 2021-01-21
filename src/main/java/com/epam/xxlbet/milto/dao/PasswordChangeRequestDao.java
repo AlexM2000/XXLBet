@@ -33,6 +33,13 @@ public interface PasswordChangeRequestDao {
     void deletePasswordChangeRequest(String token);
 
     /**
+     * Delete password change request by user.
+     *
+     * @param userId user id.
+     */
+    void deletePasswordChangeRequest(Long userId);
+
+    /**
      * Delete all expired password change requests.
      */
     void deleteAllExpiredPasswordChangeRequests();
