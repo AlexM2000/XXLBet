@@ -39,6 +39,7 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_T
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LINK_CREDIT_CARD;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_PAY_BALANCE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_UNLINK_CREDIT_CARD;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
@@ -98,6 +99,7 @@ public final class AuthenticatorImpl implements Authenticator {
             case POST_LINK_CREDIT_CARD:
             case GET_UNLINK_CREDIT_CARD_PAGE:
             case POST_UNLINK_CREDIT_CARD:
+            case POST_PAY_BALANCE:
                 return httpSession.getAttribute("login") != null
                         && httpSession.getAttribute("role") != null
                         && httpSession.getAttribute("status") != null;

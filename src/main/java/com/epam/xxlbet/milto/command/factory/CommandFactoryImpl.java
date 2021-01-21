@@ -28,6 +28,7 @@ import com.epam.xxlbet.milto.command.impl.PostCreateTeamCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.PostLoginCommand;
 import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
+import com.epam.xxlbet.milto.command.impl.PostPayBalanceCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostChangeUserRoleAndStatusCommand;
 import com.epam.xxlbet.milto.command.impl.PostUnlinkCreditCardCommand;
@@ -191,6 +192,12 @@ public class CommandFactoryImpl implements CommandFactory {
             case POST_CHANGE_PASSWORD:
                 command = new PostChangePasswordCommand(
                         PasswordChangeRequestServiceImpl.getInstance()
+                );
+                break;
+            case POST_PAY_BALANCE:
+                command = new PostPayBalanceCommand(
+                        UserServiceImpl.getInstance(),
+                        UserInfoServiceImpl.getInstance()
                 );
         }
 

@@ -38,3 +38,26 @@ $(document).ready(function() {
 
     getBets("all_user_bets");
 });
+
+function updateBalance(userId) {
+    // should be actual payment process
+
+    const data = {
+        user_id: userId,
+        money: document.getElementById("money").value
+    };
+
+    $.ajax({
+        url: '/xxlbet?command=pay_balance',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(data),
+        success: function() {
+            alert('Transaction completed successfully!');
+            window.location.reload();
+        },
+        error: function (e) {
+            alert(e);
+        }
+    })
+}

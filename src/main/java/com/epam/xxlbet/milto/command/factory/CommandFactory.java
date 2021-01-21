@@ -46,6 +46,7 @@ public interface CommandFactory {
     String CREATE_CHANGE_PASSWORD_REQUEST = "create_change_password_request";
     String GET_DO_CHANGE_PASSWORD_PAGE = "do_change_password_page";
     String POST_CHANGE_PASSWORD = "change_password";
+    String POST_PAY_BALANCE = "pay_balance";
 
     /**
      * Creates command depending on given command name.
