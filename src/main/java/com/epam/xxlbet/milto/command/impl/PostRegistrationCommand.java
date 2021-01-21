@@ -71,9 +71,8 @@ public class PostRegistrationCommand extends AbstractCommand {
             );
 
             String currentLocale = getCurrentLocale(request);
-            String msgFile = getNameOfLocaleFile(currentLocale);
 
-            sendRegistrationEmail(requestBody.getEmail(), msgFile, currentLocale, token);
+            sendRegistrationEmail(requestBody.getEmail(), currentLocale, token);
         }
 
         return CommandResult.createWriteDirectlyToResponseCommandResult(getErrors());
@@ -84,10 +83,11 @@ public class PostRegistrationCommand extends AbstractCommand {
      *
      * @param email recipient email
      * @param currentLocale current locale
-     * @param msgFile file with localized messages
      * @param token token that will be attached to email
      */
-    private void sendRegistrationEmail(String email, String msgFile, String currentLocale, VerificationToken token) {
+    private void sendRegistrationEmail(String email, String currentLocale, VerificationToken token) {
+        String msgFile = getNameOfLocaleFile(currentLocale);
+
         try {
             emailSender.sendEmail(
                     email,

@@ -21,7 +21,7 @@
             <label for='InputPassword'><ut:locale_tag key="login.password"/></label>
             <input type='password' class='form-control' id='InputPassword' name='password' placeholder=<ut:locale_tag key="login.password"/>>
             <small class="text-danger" id="passError"></small>
-            <small class="text-info"><a href="${pageContext.request.contextPath}/forgot"><ut:locale_tag key="login.forgotpassword"/></a></small>
+            <small class="text-info"><a href="${pageContext.request.contextPath}/xxlbet?command=get_change_password_page"><ut:locale_tag key="login.forgotpassword"/></a></small>
         </div>
     </form>
     <button type='button' class='btn btn-primary' onclick="login()"><ut:locale_tag key="login.submit"/></button>

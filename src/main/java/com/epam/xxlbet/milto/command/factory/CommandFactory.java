@@ -42,6 +42,9 @@ public interface CommandFactory {
     String POST_LINK_CREDIT_CARD = "link_credit_card";
     String GET_UNLINK_CREDIT_CARD_PAGE = "unlink_credit_card_page";
     String POST_UNLINK_CREDIT_CARD = "unlink_credit_card";
+    String GET_CHANGE_PASSWORD_PAGE = "get_change_password_page";
+    String CREATE_CHANGE_PASSWORD_REQUEST = "create_change_password_request";
+    String GET_DO_CHANGE_PASSWORD_PAGE = "do_change_password_page";
 
     /**
      * Creates command depending on given command name.

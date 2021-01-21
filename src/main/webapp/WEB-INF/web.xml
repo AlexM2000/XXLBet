@@ -81,6 +81,10 @@
     <servlet-name>unlink-credit-card</servlet-name>
     <jsp-file>/WEB-INF/views/unlink-credit-card.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>change-password</servlet-name>
+    <jsp-file>/WEB-INF/views/change-password.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
@@ -154,6 +158,10 @@
     <servlet-name>unlink-credit-card</servlet-name>
     <url-pattern>/unlink-credit-card</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>change-password</servlet-name>
+    <url-pattern>/change-password</url-pattern>
+  </servlet-mapping>
 
   <error-page>
     <error-code>404</error-code>
@@ -168,6 +176,10 @@
     <location>/WEB-INF/views/500.jsp</location>
   </error-page>
 
+  <filter-mapping>
+    <filter-name>LoggingFilter</filter-name>
+    <url-pattern>/xxlbet</url-pattern>
+  </filter-mapping>
   <filter-mapping>
     <filter-name>XSSFilter</filter-name>
     <url-pattern>/xxlbet</url-pattern>

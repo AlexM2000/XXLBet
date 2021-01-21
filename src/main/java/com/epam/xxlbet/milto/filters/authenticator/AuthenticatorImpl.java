@@ -5,10 +5,12 @@ import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 
 import javax.servlet.http.HttpSession;
 
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.CREATE_CHANGE_PASSWORD_REQUEST;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_BETS;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CHANGE_PASSWORD_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CONFIRM_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_SPORT_PAGE;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
@@ -65,6 +67,7 @@ public final class AuthenticatorImpl implements Authenticator {
         switch (commandName) {
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);
+
             case GET_HOME_COMMAND:
             case LANGUAGE_COMMAND:
             case GET_LOGIN_PAGE:
@@ -77,6 +80,8 @@ public final class AuthenticatorImpl implements Authenticator {
             case GET_TOURNAMENTS_BY_SPORT:
             case GET_OPPONENTS_BY_TOURNAMENT:
             case GET_MATCHES_BY_TOURNAMENT:
+            case GET_CHANGE_PASSWORD_PAGE:
+            case CREATE_CHANGE_PASSWORD_REQUEST:
                 return true;
 
             case GET_PROFILE_PAGE:

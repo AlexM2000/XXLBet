@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.listener;
 
 import com.epam.xxlbet.milto.connection.ConnectionPool;
+import com.epam.xxlbet.milto.scheduled.DeleteExpiredPasswordRequestsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedMatchesJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedTournamentsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
@@ -50,6 +51,8 @@ public class WebApplicationListener implements ServletContextListener {
         executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
         // Generate random matches and update balance of users that bet on complete match every minute
         executorService.scheduleAtFixedRate(GenerateMatchResultJob.getInstance(), 0, 1, MINUTES);
+        // Delete expired password change requests every 24 hours
+        executorService.scheduleAtFixedRate(DeleteExpiredPasswordRequestsJob.getInstance(), 1, 24, HOURS);
 
         LOG.debug("Created scheduled jobs...");
         LOG.debug("Initialized ApplicationContext...");

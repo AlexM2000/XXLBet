@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_BETS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_MATCHES;
@@ -30,6 +32,7 @@ import static java.util.Arrays.asList;
  */
 public class RefreshPropertyFilesJob implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(RefreshPropertyFilesJob.class);
+    private static final Lock LOCK = new ReentrantLock();
     private static RefreshPropertyFilesJob instance;
     private PropertyLoader propertyLoader;
     private List<String> files = asList(
@@ -59,9 +62,12 @@ public class RefreshPropertyFilesJob implements Runnable {
 
         for (String file : files){
             try {
+                LOCK.lock();
                 propertyLoader.reInit(file);
             } catch (IOException e) {
                 LOG.error("Error while executing RefreshPropertyFilesJob...", e);
+            } finally {
+                LOCK.unlock();
             }
         }
 

@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -98,6 +101,7 @@ public final class ConnectionPool {
         for (Connection used : allConnections) {
             used.close();
         }
+        deregisterDrivers();
     }
 
     public Connection getConnection() throws InterruptedException {
@@ -119,5 +123,17 @@ public final class ConnectionPool {
         }
         availableConnections.add(connection);
         semaphore.release();
+    }
+
+    private void deregisterDrivers() {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver driver = drivers.nextElement();
+            try {
+                DriverManager.deregisterDriver(driver);
+            } catch (SQLException exp) {
+                LOG.error("Error while deregistering drivers...", exp);
+            }
+        }
     }
 }

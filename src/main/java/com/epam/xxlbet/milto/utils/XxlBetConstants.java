@@ -102,4 +102,11 @@ public final class XxlBetConstants {
     public static final String SELECT_CREDIT_CARD_BY_NUMBER = "select.credit.card.by.number";
     public static final String SELECT_CREDIT_CARD_BY_USER = "select.credit.cards.by.user";
     public static final String UNLINK_CREDIT_CARD = "unlink.credit.card";
+
+    public static final String
+            FILE_WITH_QUERIES_FOR_TABLE_PASSWORD_CHANGE_REQUESTS = "queries_password_change_requests.properties";
+    public static final String INSERT_INTO_PASSWORD_CHANGE_REQUESTS = "insert.into.password.change.requests";
+    public static final String SELECT_PASSWORD_CHANGE_REQUEST_BY_TOKEN = "select.password.change.request.by.token";
+    public static final String DELETE_PASSWORD_CHANGE_REQUEST_BY_TOKEN = "delete.password.change.request.by.token";
+    public static final String DELETE_ALL_EXPIRED_PASSWORD_CHANGE_REQUESTS = "delete.all.expired.password.change.requests";
 }

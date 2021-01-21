@@ -7,44 +7,44 @@
     <div class="form-group">
         <div class="form-group">
             <label for="InputEmail"><ut:locale_tag key="registration.email"/></label>
-            <input type="text" name="email" class="form-control" id="InputEmail" placeholder=<ut:locale_tag key="registration.email"/> />
+            <input type="text" class="form-control" id="InputEmail"/>
             <small class="text-danger" id="emailErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputPhoneNumber"><ut:locale_tag key="registration.phonenumber"/></label>
-            <input type="text" name="phoneNumber" class="form-control" id="InputPhoneNumber" placeholder=<ut:locale_tag key="registration.phonenumber"/> />
+            <input type="text" class="form-control" id="InputPhoneNumber"/>
             <small class="text-info"><ut:locale_tag key="registration.phonenumber.format"/></small>
             <small class="text-danger" id="phoneErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputSurName"><ut:locale_tag key="registration.surname"/></label>
-            <input type="text" name="surname" id="InputSurName" placeholder=<ut:locale_tag key="registration.surname"/> />
+            <input type="text" class="form-control" id="InputSurName"/>
             <small class="text-danger" id="surnameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputName"><ut:locale_tag key="registration.name"/></label>
-            <input type="text" name="name" id="InputName" placeholder=<ut:locale_tag key="registration.name"/> />
+            <input type="text" class="form-control" id="InputName"/>
             <small class="text-danger" id="nameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputSecondName"><ut:locale_tag key="registration.secondname"/></label>
-            <input type="text" name="secondName" id="InputSecondName" placeholder=<ut:locale_tag key="registration.secondname"/> />
+            <input type="text" class="form-control" id="InputSecondName"/>
             <small class="text-danger" id="secondNameInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputPassword"><ut:locale_tag key="registration.password"/></label>
-            <input type="password" name="password" class="form-control" id="InputPassword" placeholder=<ut:locale_tag key="registration.password"/> />
+            <input type="password" class="form-control" id="InputPassword"/>
             <small class="text-info" id="passwordFormatInformer"><ut:locale_tag key="registration.password.format"/></small>
             <small class="text-danger password_field" id="passwordErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputRPassword"><ut:locale_tag key="registration.repeatpassword"/></label>
-            <input type="password" name="repeatPassword" class="form-control" id="InputRPassword" placeholder=<ut:locale_tag key="registration.repeatpassword"/> />
+            <input type="password" class="form-control" id="InputRPassword"/>
             <small class="text-danger password_field" id="rPasswordErrorInformer"></small>
         </div>
         <div class="form-group">
             <label for="InputBirthDate"><ut:locale_tag key="registration.birthdate"/></label>
-            <input type="date" name="birthDate" id="InputBirthDate"/>
+            <input type="date" class="form-control" id="InputBirthDate"/>
             <small class="text-danger" id="birthDateInformer"></small>
         </div>
     </div>

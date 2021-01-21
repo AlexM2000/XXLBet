@@ -4,25 +4,21 @@ import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.impl.GetAdminPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetAllUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetBookmakerPageCommand;
-import com.epam.xxlbet.milto.command.impl.GetConfirmPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateBetPageCommand;
-import com.epam.xxlbet.milto.command.impl.GetLinkCreditCardPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTeamPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetCreateTournamentPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetDefeatUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.GetHomeCommand;
 import com.epam.xxlbet.milto.command.impl.GetLanguageCommand;
-import com.epam.xxlbet.milto.command.impl.GetLoginPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetMatchesByTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.GetOpponentsByTournamentCommand;
 import com.epam.xxlbet.milto.command.impl.GetProfileCommand;
-import com.epam.xxlbet.milto.command.impl.GetRegistrationPageCommand;
-import com.epam.xxlbet.milto.command.impl.GetCreateSportPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetUnlinkCreditCardPageCommand;
 import com.epam.xxlbet.milto.command.impl.GetTournamentsBySportCommand;
 import com.epam.xxlbet.milto.command.impl.GetWinUserBetsCommand;
 import com.epam.xxlbet.milto.command.impl.PostConfirmRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateBetCommand;
+import com.epam.xxlbet.milto.command.impl.PostCreateChangePasswordRequestCommand;
 import com.epam.xxlbet.milto.command.impl.PostLinkCreditCardCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateMatchCommand;
 import com.epam.xxlbet.milto.command.impl.PostCreateSportCommand;
@@ -33,11 +29,14 @@ import com.epam.xxlbet.milto.command.impl.PostLogoutCommand;
 import com.epam.xxlbet.milto.command.impl.PostRegistrationCommand;
 import com.epam.xxlbet.milto.command.impl.PostChangeUserRoleAndStatusCommand;
 import com.epam.xxlbet.milto.command.impl.PostUnlinkCreditCardCommand;
+import com.epam.xxlbet.milto.command.impl.GetPageCommand;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.CreditCardServiceImpl;
+import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.OpponentsServiceImpl;
+import com.epam.xxlbet.milto.service.impl.PasswordChangeRequestServiceImpl;
 import com.epam.xxlbet.milto.service.impl.RoleServiceImpl;
 import com.epam.xxlbet.milto.service.impl.SportServiceImpl;
 import com.epam.xxlbet.milto.service.impl.StatusServiceImpl;
@@ -67,11 +66,13 @@ public class CommandFactoryImpl implements CommandFactory {
     public Command createCommand(final String commandName) {
         Command command;
         switch (commandName) {
+            default:
+                throw new UnknownCommandException("Unknown command " + commandName);
             case GET_HOME_COMMAND:
                 command = new GetHomeCommand(MatchesServiceImpl.getInstance());
                 break;
             case GET_LOGIN_PAGE:
-                command = new GetLoginPageCommand();
+                command = new GetPageCommand("/login");
                 break;
             case POST_LOGIN:
                 command = new PostLoginCommand(UserServiceImpl.getInstance(), StatusServiceImpl.getInstance(), RoleServiceImpl.getInstance());
@@ -89,10 +90,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new PostCreateBetCommand(UserInfoServiceImpl.getInstance(), BetsServiceImpl.getInstance());
                 break;
             case GET_REGISTRATION_PAGE:
-                command = new GetRegistrationPageCommand();
+                command = new GetPageCommand("/registration");
                 break;
             case GET_CONFIRM_PAGE:
-                command = new GetConfirmPageCommand();
+                command = new GetPageCommand("/confirm");
                 break;
             case POST_REGISTRATION_COMMAND:
                 command = new PostRegistrationCommand(UserServiceImpl.getInstance());
@@ -142,7 +143,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 );
                 break;
             case GET_CREATE_SPORT_PAGE:
-                command = new GetCreateSportPageCommand();
+                command = new GetPageCommand("/create-sport");
                 break;
             case POST_CREATE_SPORT:
                 command = new PostCreateSportCommand(SportServiceImpl.getInstance());
@@ -160,7 +161,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 command = new PostCreateTeamCommand(OpponentsServiceImpl.getInstance());
                 break;
             case GET_LINK_CREDIT_CARD_PAGE:
-                command = new GetLinkCreditCardPageCommand();
+                command = new GetPageCommand("/link-credit-card");
                 break;
             case POST_LINK_CREDIT_CARD:
                 command = new PostLinkCreditCardCommand(CreditCardServiceImpl.getInstance());
@@ -171,8 +172,15 @@ public class CommandFactoryImpl implements CommandFactory {
             case POST_UNLINK_CREDIT_CARD:
                 command = new PostUnlinkCreditCardCommand(CreditCardServiceImpl.getInstance());
                 break;
-            default:
-                throw new UnknownCommandException("Unknown command " + commandName);
+            case GET_CHANGE_PASSWORD_PAGE:
+                command = new GetPageCommand("/change-password");
+                break;
+            case CREATE_CHANGE_PASSWORD_REQUEST:
+                command = new PostCreateChangePasswordRequestCommand(
+                        PasswordChangeRequestServiceImpl.getInstance(),
+                        JavaxEmailSenderImpl.getInstance()
+                );
+                break;
         }
 
         return command;
