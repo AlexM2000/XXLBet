@@ -40,7 +40,7 @@
                         <h6 id="noCreditCards" class="text-info"><ut:locale_tag key="profile.no.credit.cards"/></h6>
                     </div>
                     <div>
-                        <a class="text-info" href="${pageContext.request.contextPath}/xxlbet?command=create_credit_card_page"><ut:locale_tag key="profile.add.credit.card"/></a>
+                        <a class="text-info" href="${pageContext.request.contextPath}/xxlbet?command=link_credit_card_page"><ut:locale_tag key="profile.add.credit.card"/></a>
                     </div>
                 </jstl:if>
                 <p><ut:locale_tag key="profile.role"/>: ${sessionScope.role.getName()}</p>

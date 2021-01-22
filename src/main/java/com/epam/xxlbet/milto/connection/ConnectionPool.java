@@ -9,17 +9,14 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Enumeration;
-import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static java.lang.String.format;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * ConnectionPool.
@@ -31,63 +28,15 @@ public final class ConnectionPool {
     private static final int DEFAULT_CONNECTION_POOL = 5;
     private static final int DEFAULT_CONNECTION_TIMEOUT = 5;
     private static ConnectionPool instance;
-    private static final Lock LOCK = new ReentrantLock();
 
     private PropertyLoader propertyLoader;
-    private List<Connection> allConnections;
-    private BlockingQueue<Connection> availableConnections;
-    private Semaphore semaphore;
+    private BlockingQueue<Connection> freeConnections;
+    private Queue<Connection> busyConnections;
     private int poolSize;
     private int timeout;
 
     private ConnectionPool() {
-        propertyLoader = PropertyLoader.getInstance();
-
-        poolSize = propertyLoader.getDatabaseConnectionPool()
-                .orElseGet(() -> {
-                    LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
-                    return DEFAULT_CONNECTION_POOL;
-                });
-        LOG.debug("Initialized connection pool size...");
-
-        allConnections = new ArrayList<>(poolSize);
-        availableConnections = new ArrayBlockingQueue<>(poolSize);
-        LOG.debug("Created connection collections...");
-
-        try {
-            LOG.debug("Trying to register database driver...");
-            Class.forName(propertyLoader.getDatabaseDriverName().orElseGet(() -> {
-                LOG.debug("Can't find mysql database driver! Defaulting to com.mysql.cj.jdbc.Driver");
-                return "com.mysql.cj.jdbc.Driver";
-            }));
-            LOG.debug("Successfully registered database driver...");
-        } catch (ClassNotFoundException e) {
-            LOG.error("Could not register database driver! Exiting...", e);
-            System.exit(1);
-        }
-
-        for (int i = 0; i < poolSize; i++) {
-            try {
-                Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
-                allConnections.add(connection);
-                availableConnections.add(connection);
-                LOG.debug("Initialized connection {}...", i + 1);
-            } catch (final SQLException | ClassNotFoundException e) {
-                LOG.error("Can't create connection to database! Exiting...", e);
-                System.exit(1);
-            }
-        }
-
-        LOG.debug("Initialized connection collections...");
-
-        semaphore = new Semaphore(poolSize, true);
-
-        timeout = propertyLoader.getDatabaseConnectionTimeout()
-                .orElseGet(() -> {
-                    LOG.debug(format("Available connection timeout is not specified! Defaulting to %d seconds.", DEFAULT_CONNECTION_TIMEOUT));
-                    return DEFAULT_CONNECTION_TIMEOUT;
-                });
-        LOG.debug("Initialized connection timeout...");
+        init();
     }
 
     public static ConnectionPool getInstance() {
@@ -98,41 +47,149 @@ public final class ConnectionPool {
     }
 
     public void closeAllConnections() throws SQLException {
-        for (Connection used : allConnections) {
-            used.close();
+        for (Connection connection : busyConnections) {
+            connection.commit();
+            connection.close();
         }
+
+        for (Connection connection : freeConnections) {
+            // todo fix govnokod to not be dependent on ProxyConnection
+            if (connection instanceof ProxyConnection) {
+                ((ProxyConnection) connection).terminate();
+            } else {
+                connection.close();
+            }
+        }
+
         deregisterDrivers();
     }
 
     public Connection getConnection() throws InterruptedException {
+        Connection connection = freeConnections.poll(timeout, MILLISECONDS);
+        if (null == connection) {
+            throw new ConnectionPoolException("Waiting for free connection too long");
+        }
+
+        if (!busyConnections.offer(connection)) {
+            throw new ConnectionPoolException("Could not add connection to busy connections");
+        }
+
+        return connection;
+    }
+
+    public void releaseConnection(final Connection connection) throws InterruptedException {
+        if (!(connection instanceof ProxyConnection)) {
+            throw new ConnectionPoolException("Unknown connection " + connection.getClass());
+        }
+
+        if (!busyConnections.remove(connection)) {
+            throw new ConnectionPoolException("busyConnections is already empty " + freeConnections.toString());
+        }
+
+        freeConnections.put(connection);
+    }
+
+    /**
+     * Initialize connection pool.
+     */
+    private void init() {
+        propertyLoader = PropertyLoader.getInstance();
+
+        poolSize = getDatabaseConnectionPool();
+        LOG.debug("Initialized connection pool size...");
+
+        freeConnections = new ArrayBlockingQueue<>(poolSize);
+        busyConnections = new ArrayDeque<>(poolSize);
+        LOG.debug("Created connection collections...");
+
+        registerDriver();
+        LOG.debug("Registered driver...");
+
+        createConnections();
+        LOG.debug("Initialized connection collection...");
+
+        timeout = getConnectionTimeout();
+        LOG.debug("Initialized connection timeout...");
+    }
+
+    /**
+     * Get database connection pool from project properties.
+     * If project properties doesn't have defined connection pool
+     * returns default value.
+     */
+    private int getDatabaseConnectionPool() {
+        return propertyLoader.getDatabaseConnectionPool()
+                .orElseGet(() -> {
+                    LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
+                    return DEFAULT_CONNECTION_POOL;
+                });
+    }
+
+    /**
+     * Register driver.
+     * Shut down whole application immediately, if can't find driver.
+     */
+    private void registerDriver() {
         try {
-            if (semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS)) {
-                LOCK.lock();
-                return availableConnections.poll();
-            } else {
-                throw new ConnectionPoolException("Connection waiting timed out");
+            LOG.debug("Trying to register database driver...");
+
+            Class.forName(
+                    propertyLoader.getDatabaseDriverName()
+                            .orElseGet(() -> {
+                                LOG.debug("Can't find mysql database driver! Defaulting to com.mysql.cj.jdbc.Driver");
+                                return "com.mysql.cj.jdbc.Driver";
+                            })
+            );
+
+        } catch (ClassNotFoundException e) {
+            LOG.error("Could not register database driver! Exiting...", e);
+            System.exit(1);
+        }
+    }
+
+    /**
+     * Create ProxyConnection instances and put them to freeConnections.
+     * If exception occurred while creating or adding connection
+     * shut down application immediately.
+     */
+    private void createConnections() {
+        for (int i = 0; i < poolSize; i++) {
+            try {
+                Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
+                freeConnections.add(connection);
+                LOG.debug("Initialized connection {}...", i + 1);
+            } catch (final SQLException | IllegalStateException e) {
+                LOG.error("Can't create connection to database! Exiting...", e);
+                System.exit(1);
             }
-        } finally {
-            LOCK.unlock();
         }
     }
 
-    public void releaseConnection(final Connection connection) {
-        if (!allConnections.contains(connection)) {
-            throw new ConnectionPoolException("Unknown connection");
-        }
-        availableConnections.add(connection);
-        semaphore.release();
+    /**
+     * Get database connection timeout from project properties.
+     * If project properties doesn't have defined connection pool
+     * returns default value.
+     */
+    private int getConnectionTimeout() {
+        return propertyLoader.getDatabaseConnectionTimeout()
+                .orElseGet(() -> {
+                    LOG.debug(format("Available connection timeout is not specified! Defaulting to %d seconds.", DEFAULT_CONNECTION_TIMEOUT));
+                    return DEFAULT_CONNECTION_TIMEOUT;
+                });
     }
 
+    /**
+     * Deregister all drivers.
+     * Part of the shutdown application flow
+     */
     private void deregisterDrivers() {
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
             try {
                 DriverManager.deregisterDriver(driver);
-            } catch (SQLException exp) {
-                LOG.error("Error while deregistering drivers...", exp);
+            } catch (SQLException e) {
+                LOG.error("Error while deregistering drivers...", e);
             }
         }
     }

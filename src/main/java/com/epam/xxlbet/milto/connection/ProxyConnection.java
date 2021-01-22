@@ -37,7 +37,7 @@ class ProxyConnection implements Connection {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
             connectionPool.releaseConnection(this);
-        } catch (RuntimeException e) {
+        } catch (RuntimeException | InterruptedException e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }

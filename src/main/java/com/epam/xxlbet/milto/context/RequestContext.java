@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * RequsetContext.
+ * RequestContext.
  *
  * @author alexm2000
  */

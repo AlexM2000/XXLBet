@@ -36,7 +36,6 @@ public class WebApplicationListener implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         LOG.debug("Initializing ApplicationContext...");
-        ConnectionPool.getInstance();
 
         LOG.debug("Creating scheduled jobs...");
         executorService = Executors.newSingleThreadScheduledExecutor();
@@ -63,10 +62,8 @@ public class WebApplicationListener implements ServletContextListener {
         LOG.debug("Destroying ApplicationContext...");
         LOG.debug("Closing connections...");
 
-        ConnectionPool pool = ConnectionPool.getInstance();
-
         try {
-            pool.closeAllConnections();
+            ConnectionPool.getInstance().closeAllConnections();
         } catch (SQLException e) {
             LOG.error("Could not close connections!", e);
         }
