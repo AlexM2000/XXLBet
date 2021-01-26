@@ -18,6 +18,7 @@ import com.epam.xxlbet.milto.validator.impl.EmailValidator;
 import com.epam.xxlbet.milto.validator.impl.PasswordValidator;
 import com.epam.xxlbet.milto.validator.impl.PhoneNumberExistsValidator;
 import com.epam.xxlbet.milto.validator.impl.PhoneNumberValidator;
+import com.epam.xxlbet.milto.validator.impl.RepeatPasswordValidator;
 import com.epam.xxlbet.milto.validator.impl.UserExistsValidator;
 
 import javax.mail.MessagingException;
@@ -38,10 +39,10 @@ public class PostRegistrationCommand extends AbstractCommand {
     private Validator passwordValidator;
     private Validator phoneNumberValidator;
     private Validator emailValidator;
+    private Validator repeatPasswordValidator;
     private UserService userService;
     private VerificationTokenService verificationTokenService;
     private EmailSender emailSender;
-
 
     public PostRegistrationCommand(final UserService userService) {
         this.userService = userService;
@@ -50,6 +51,7 @@ public class PostRegistrationCommand extends AbstractCommand {
         this.phoneNumberValidator = PhoneNumberValidator.getInstance();
         this.userExistsValidater = UserExistsValidator.getInstance();
         this.phoneNumberExistsValidator = PhoneNumberExistsValidator.getInstance();
+        this.repeatPasswordValidator = RepeatPasswordValidator.getInstance();
         this.verificationTokenService = VerificationTokenServiceImpl.getInstance();
         this.emailSender = JavaxEmailSenderImpl.getInstance();
     }
@@ -59,20 +61,20 @@ public class PostRegistrationCommand extends AbstractCommand {
     public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
         RegistrationRequest requestBody = getRequestBody(request, RegistrationRequest.class);
-        validate(requestBody.getEmail(), getCurrentLocale(request), emailValidator);
-        validate(requestBody.getPassword(), getCurrentLocale(request), passwordValidator);
-        validate(requestBody.getPhoneNumber(), getCurrentLocale(request), phoneNumberValidator);
-        validate(requestBody.getPhoneNumber(), getCurrentLocale(request), phoneNumberExistsValidator);
-        validate(requestBody.getEmail(), getCurrentLocale(request), userExistsValidater);
+        String locale = getCurrentLocale(request);
+        validate(requestBody.getEmail(), locale, emailValidator);
+        validate(requestBody.getPassword(), locale, passwordValidator);
+        validate(requestBody.getPhoneNumber(), locale, phoneNumberValidator);
+        validate(requestBody.getPhoneNumber(), locale, phoneNumberExistsValidator);
+        validate(requestBody.getEmail(), locale, userExistsValidater);
+        validate(requestBody, locale, repeatPasswordValidator);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
             VerificationToken token = verificationTokenService.createToken(
                     userService.createNewUser(requestBody).getId()
             );
 
-            String currentLocale = getCurrentLocale(request);
-
-            sendRegistrationEmail(requestBody.getEmail(), currentLocale, token);
+            sendRegistrationEmail(requestBody.getEmail(), locale, token);
         }
 
         return CommandResult.createWriteDirectlyToResponseCommandResult(getErrors());
@@ -81,9 +83,9 @@ public class PostRegistrationCommand extends AbstractCommand {
     /**
      * Send email with link to confirm registration.
      *
-     * @param email recipient email
+     * @param email         recipient email
      * @param currentLocale current locale
-     * @param token token that will be attached to email
+     * @param token         token that will be attached to email
      */
     private void sendRegistrationEmail(String email, String currentLocale, VerificationToken token) {
         String msgFile = getNameOfLocaleFile(currentLocale);
@@ -121,9 +123,9 @@ public class PostRegistrationCommand extends AbstractCommand {
      * Return text from messages file with given locale and id.
      *
      * @param msgFile File which contains localized messages.
-     * @param locale Language on which message must be
-     * @param msgId id of the message
-     * @param args Arguments for message formatting
+     * @param locale  Language on which message must be
+     * @param msgId   id of the message
+     * @param args    Arguments for message formatting
      */
     private String getText(String msgFile, String locale, String msgId, Object... args) {
         return format(PropertyLoader.getInstance().getStringProperty(msgFile, msgId)

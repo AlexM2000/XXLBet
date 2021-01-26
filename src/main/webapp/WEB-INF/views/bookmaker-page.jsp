@@ -25,12 +25,12 @@
                     <div class="div-table-col">${user.getStatus()}</div>
                 </div>
                 <div class="form-group">
-                    <select id="InputRole" title=<ut:locale_tag key="bookmaker-page.role"/>>
+                    <select id="InputRole-${user.getEmail()}" title=<ut:locale_tag key="bookmaker-page.role"/>>
                         <option selected value="client"><ut:locale_tag key="bookmaker-page.role.client"/></option>
                         <option value="admin"><ut:locale_tag key="bookmaker-page.role.admin"/></option>
                         <option value="bookmaker"><ut:locale_tag key="bookmaker-page.role.bookmaker"/></option>
                     </select>
-                    <select id="InputStatus" title=<ut:locale_tag key="bookmaker-page.status"/>>
+                    <select id="InputStatus-${user.getEmail()}" title=<ut:locale_tag key="bookmaker-page.status"/>>
                         <option selected value="active"><ut:locale_tag key="bookmaker-page.status.active"/></option>
                         <option value="banned"><ut:locale_tag key="bookmaker-page.status.banned"/></option>
                     </select>

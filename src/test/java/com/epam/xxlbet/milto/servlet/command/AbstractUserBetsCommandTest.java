@@ -1,8 +1,8 @@
 package com.epam.xxlbet.milto.servlet.command;
 
 import com.epam.xxlbet.milto.command.CommandResult;
-import com.epam.xxlbet.milto.context.HttpServletRequestContext;
-import com.epam.xxlbet.milto.context.HttpServletResponseContext;
+import com.epam.xxlbet.milto.context.impl.HttpServletRequestContext;
+import com.epam.xxlbet.milto.context.impl.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.requestandresponsebody.BetResponse;

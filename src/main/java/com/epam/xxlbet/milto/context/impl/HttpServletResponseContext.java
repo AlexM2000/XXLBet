@@ -1,4 +1,6 @@
-package com.epam.xxlbet.milto.context;
+package com.epam.xxlbet.milto.context.impl;
+
+import com.epam.xxlbet.milto.context.ResponseContext;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;

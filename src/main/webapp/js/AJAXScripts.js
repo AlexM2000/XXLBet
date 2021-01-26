@@ -95,6 +95,9 @@ function registration() {
                     if (dataFromServer['email.not.matches.regexp'] != null) {
                         $('#emailErrorInformer').text(dataFromServer['email.not.matches.regexp']);
                     }
+                    if (dataFromServer['passwords.not.match'] != null) {
+                        $('#rPasswordErrorInformer').text(dataFromServer['passwords.not.match']);
+                    }
                     if (dataFromServer['phonenumber.not.matches.regexp'] != null) {
                         $('#phoneErrorInformer').text();
                     }

@@ -12,10 +12,10 @@ function toggleForm() {
 }
 
 function changeUserRoleAndStatus(email) {
-    var data = {
+    const data = {
         email: email,
-        role: document.getElementById("InputRole").value,
-        status: document.getElementById("InputStatus").value
+        role: document.getElementById("InputRole-" + email).value,
+        status: document.getElementById("InputStatus-" + email).value
     };
 
     $.ajax({
