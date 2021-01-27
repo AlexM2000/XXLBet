@@ -10,6 +10,11 @@ import com.epam.xxlbet.milto.validator.impl.OpponentExistsValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
+/**
+ * PostCreateTeamCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostCreateTeamCommand extends AbstractCommand {
     private OpponentsService opponentsService;
     private Validator opponentValidator;
@@ -21,6 +26,7 @@ public class PostCreateTeamCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
+        getLogger().debug("Executing " + this.getClass() + " " + request.getContentType());
         CreateTeamRequest teamRequest = getRequestBody(request, CreateTeamRequest.class);
         validate(teamRequest.getOpponentName(), getCurrentLocale(request), opponentValidator);
 

@@ -37,8 +37,7 @@ abstract class AbstractDaoImpl<T> {
             propertiesFileWithQueriesName = propertiesFileName;
             this.populator = populator;
         } catch (final IOException e) {
-            LOG.error("Could not load queries for database! Exiting...", e);
-            System.exit(1);
+            throw new DaoException("Could not load queries for database!", e);
         }
 
         connectionPool = ConnectionPool.getInstance();
@@ -62,7 +61,6 @@ abstract class AbstractDaoImpl<T> {
 
             statement.close();
         } catch (InterruptedException | SQLException e) {
-            getLogger().error(getErrorMsgBegin() + " executeQuery...", e);
             throw new DaoException(getErrorMsgBegin() + " executeQuery...", e);
         }
 
@@ -80,7 +78,6 @@ abstract class AbstractDaoImpl<T> {
             setParameters(statement, params);
             statement.executeUpdate();
         } catch (SQLException | InterruptedException e) {
-            getLogger().error(getErrorMsgBegin() + " executeUpdate...", e);
             throw new DaoException(getErrorMsgBegin() + " executeUpdate...", e);
         }
     }
@@ -91,12 +88,11 @@ abstract class AbstractDaoImpl<T> {
             setParameters(statement, params);
             statement.execute();
         } catch (SQLException | InterruptedException e) {
-            getLogger().error(getErrorMsgBegin() + " execute...", e);
             throw new DaoException(getErrorMsgBegin() + " execute...", e);
         }
     }
 
-    private void setParameters(PreparedStatement statement, Object... parameters) throws SQLException{
+    private void setParameters(PreparedStatement statement, Object... parameters) throws SQLException {
         for (int i = 0; i < parameters.length; i++) {
             int parameterIndex = i + 1;
             if (parameters[i] != null) {

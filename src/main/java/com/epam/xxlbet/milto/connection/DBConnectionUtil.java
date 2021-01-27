@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Aliaksei Milto
  */
-public final class DBConnectionUtil {
+final class DBConnectionUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(DBConnectionUtil.class);
 

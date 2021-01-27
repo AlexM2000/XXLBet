@@ -23,8 +23,8 @@ function change_password() {
                 alert('Password was changed successfully!');
                 window.location.href = "/login";
             },
-            error: function (e) {
-                alert(e);
+            error: function () {
+                window.location.href = '/500';
             }
         })
     }

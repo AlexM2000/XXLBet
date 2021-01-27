@@ -41,11 +41,11 @@ public class WebApplicationListener implements ServletContextListener {
         executorService = Executors.newSingleThreadScheduledExecutor();
 
         // Every 12 hours delete users that did not confirm registration
-        executorService.scheduleAtFixedRate(DeleteUnconfirmedUsersJob.getInstance(), 0, 12, HOURS);
+        executorService.scheduleAtFixedRate(DeleteUnconfirmedUsersJob.getInstance(), 1, 12, HOURS);
         // Every 2 days delete finished tournaments
-        executorService.scheduleAtFixedRate(DeleteFinishedTournamentsJob.getInstance(), 0, 2, DAYS);
+        executorService.scheduleAtFixedRate(DeleteFinishedTournamentsJob.getInstance(), 1, 2, DAYS);
         // Every 8 hours delete finished matches
-        executorService.scheduleAtFixedRate(DeleteFinishedMatchesJob.getInstance(), 0, 8, HOURS);
+        executorService.scheduleAtFixedRate(DeleteFinishedMatchesJob.getInstance(), 1, 8, HOURS);
         // Every 30 seconds refresh content of .properties files to server
         executorService.scheduleAtFixedRate(RefreshPropertyFilesJob.getInstance(), 1, 30, SECONDS);
         // Generate random matches and update balance of users that bet on complete match every minute

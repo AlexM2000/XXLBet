@@ -53,7 +53,6 @@ public final class ConnectionPool {
         }
 
         for (Connection connection : freeConnections) {
-            // todo fix govnokod to not be dependent on ProxyConnection
             if (connection instanceof ProxyConnection) {
                 ((ProxyConnection) connection).terminate();
             } else {
@@ -142,8 +141,7 @@ public final class ConnectionPool {
             );
 
         } catch (ClassNotFoundException e) {
-            LOG.error("Could not register database driver! Exiting...", e);
-            System.exit(1);
+            throw new ConnectionPoolException("Could not register database driver!", e);
         }
     }
 
@@ -159,8 +157,7 @@ public final class ConnectionPool {
                 freeConnections.add(connection);
                 LOG.debug("Initialized connection {}...", i + 1);
             } catch (final SQLException | IllegalStateException e) {
-                LOG.error("Can't create connection to database! Exiting...", e);
-                System.exit(1);
+                throw new ConnectionPoolException("Can't create connection to database!", e);
             }
         }
     }

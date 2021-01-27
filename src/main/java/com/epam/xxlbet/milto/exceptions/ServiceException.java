@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.exceptions;
 /**
  * ServiceException.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public class ServiceException extends RuntimeException {
     public ServiceException(String message) {

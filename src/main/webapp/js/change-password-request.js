@@ -16,6 +16,9 @@ function create_change_password_request() {
                 alert('Link for changing password was sent to your email!\nIt will expire in 24 hours');
                 window.location.reload();
             }
+        },
+        error: function () {
+            window.location.href = '/500';
         }
     })
 }

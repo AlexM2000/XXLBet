@@ -29,7 +29,7 @@ create table tournaments
     sport_id     bigint                             not null,
     name         varchar(30)                        not null,
     date_started datetime default CURRENT_TIMESTAMP null,
-    date_ended   datetime                           not null,
+    date_ended   datetime                           null,
     constraint tournaments_sports_id_fk
         foreign key (sport_id) references sports (id)
             on update cascade
@@ -56,7 +56,7 @@ create table opponents
     match_id      bigint        null,
     name          varchar(30)   not null,
     coefficient   decimal(2, 1) null,
-    tournament_id bigint        null,
+    tournament_id bigint        not null,
     constraint opponents_name_uindex
         unique (name),
     constraint opponents_matches_id_fk
@@ -130,11 +130,11 @@ create index bets_match_id_result_id_expected_winner_id_user_id_index
 
 create table credit_cards
 (
-    number  varchar(16) not null,
+    number  varchar(16) not null
+        primary key,
     thru    varchar(5)  not null,
     cvv     varchar(3)  not null,
     user_id bigint      not null,
-    primary key (number),
     constraint credit_cards_users_id_fk
         foreign key (user_id) references users (id)
             on update cascade on delete cascade
@@ -142,6 +142,18 @@ create table credit_cards
 
 create index credit_cards_user_id_index
     on credit_cards (user_id);
+
+create table password_change_requests
+(
+    id         bigint auto_increment
+        primary key,
+    token      varchar(50) not null,
+    expires_at datetime    not null,
+    user_id    bigint      not null,
+    constraint password_change_requests_users_id_fk
+        foreign key (user_id) references users (id)
+            on update cascade on delete cascade
+);
 
 create table user_info
 (
@@ -191,4 +203,10 @@ create table verification_tokens
 )
     charset = utf8;
 
+insert into roles (id, name) values (0, 'client');
+insert into roles (id, name) values (1, 'admin');
+insert into roles (id, name) values (2, 'bookmaker');
+
+insert into statuses (id, name) values (0, 'active');
+insert into statuses (id, name) values (1, 'banned');
 

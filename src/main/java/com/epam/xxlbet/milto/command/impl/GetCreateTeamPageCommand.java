@@ -13,7 +13,7 @@ import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandRe
  *
  * @author Aliaksei Milto
  */
-public class GetCreateTeamPageCommand implements Command {
+public class GetCreateTeamPageCommand extends AbstractCommand {
     private static final String PAGE = "/create-team";
     private SportService sportService;
 
@@ -23,6 +23,7 @@ public class GetCreateTeamPageCommand implements Command {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
+        getLogger().debug("Executing " + this.getClass());
         request.setAttribute("sports", sportService.getAllSports());
         return createForwardCommandResult(PAGE);
     }

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * Model of match, on which bet is created.
+ * Model of match.
  *
  * @author Aliaksei Milto
  */

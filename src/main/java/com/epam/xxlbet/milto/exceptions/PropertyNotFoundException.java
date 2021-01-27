@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.exceptions;
 /**
  * PropertyNotFoundException.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public class PropertyNotFoundException extends RuntimeException {
     public PropertyNotFoundException(final String message) {

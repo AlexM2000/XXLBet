@@ -23,6 +23,7 @@ public class GetDoChangePasswordPageCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
+        getLogger().debug("Executing " + this.getClass());
         PasswordChangeRequest passwordRequest = service.findPasswordChangeRequestByToken(request.getParameter("token"));
 
         if (passwordRequest != null) {

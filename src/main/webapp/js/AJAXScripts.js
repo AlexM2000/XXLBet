@@ -115,8 +115,8 @@ function registration() {
                     alert(dataFromServer);
                 }
             },
-            error: function (e) {
-                alert(e);
+            error: function () {
+                window.location.href = '/500';
             }
         });
     }
@@ -152,8 +152,8 @@ function login() {
                 alert('Stop doing this!!!');
             }
         },
-        error: function (e) {
-            alert(e);
+        error: function () {
+            window.location.href = '/500';
         }
     });
 }
@@ -178,8 +178,8 @@ function languageSelector(){
                 }
             }
         },
-        error: function (e) {
-            alert('ERROR_ERROR!!!');
+        error: function () {
+            window.location.href = '/500';
         }
     });
 }

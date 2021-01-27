@@ -42,6 +42,8 @@ public interface PasswordChangeRequestService {
 
     /**
      * Change user password.
+     * All implementations must encrypt password with {@link com.epam.xxlbet.milto.utils.cryptography.CryptoUtils}
+     * before adding to database.
      *
      * @param passwordRequest change password request
      */

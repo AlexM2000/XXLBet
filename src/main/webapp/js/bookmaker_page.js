@@ -27,8 +27,8 @@ function changeUserRoleAndStatus(email) {
             alert('User role and status were changed successfully!');
             window.location.reload();
         },
-        error: function (e) {
-            alert(e);
+        error: function () {
+            window.location.href = '/500';
         }
     });
 }

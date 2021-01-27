@@ -13,7 +13,6 @@ import java.io.IOException;
 
 /**
  * RedirectFilter.
- * I don't know what does it do here, but still...
  *
  * @author Aliaksei Milto
  */

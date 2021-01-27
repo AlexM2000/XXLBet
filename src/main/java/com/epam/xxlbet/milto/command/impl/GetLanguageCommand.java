@@ -16,8 +16,6 @@ import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToR
  * @author Aliaksei Milto
  */
 public class GetLanguageCommand extends AbstractCommand {
-    private static final Logger LOG = LoggerFactory.getLogger(GetLanguageCommand.class);
-
     @Override
     public CommandResult execute(final RequestContext request, final ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());

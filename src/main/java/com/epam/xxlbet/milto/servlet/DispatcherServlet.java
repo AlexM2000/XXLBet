@@ -53,9 +53,8 @@ public class DispatcherServlet extends HttpServlet {
             Command command = commandFactory.createCommand(commandName);
             CommandResult commandResult = command.execute(requestContext, responseContext);
             dispatch(request, response, commandResult);
-        } catch (final ServiceException | UnknownCommandException | IOException e) {
-            LOG.error("Something went wrong during processing request...", e);
-            throw new ServletException(e);
+        } catch (final IOException e) {
+            throw new ServletException("Something went wrong during processing request...", e);
         }
     }
 
@@ -97,6 +96,7 @@ public class DispatcherServlet extends HttpServlet {
      *
      * @param response HttpServletResponse
      * @param responseBody String that will be written to response
+     * @throws IOException if error occurred while writing response
      */
     private void writeString(HttpServletResponse response, String responseBody) throws IOException {
         response.setContentType("text/plain; charset=utf-8");
@@ -108,6 +108,7 @@ public class DispatcherServlet extends HttpServlet {
      *
      * @param response HttpServletResponse
      * @param responseBody String that will be written to response
+     * @throws IOException if error occurred while writing response
      */
     private void writeJSON(HttpServletResponse response, Object responseBody) throws IOException {
         response.setContentType("application/json; charset=utf-8");

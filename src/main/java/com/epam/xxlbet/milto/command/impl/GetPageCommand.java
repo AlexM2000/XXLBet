@@ -6,7 +6,7 @@ import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 
 /**
- * ShowPageCommand.
+ * GetPageCommand.
  *
  * @author Aliaksei Milto
  */

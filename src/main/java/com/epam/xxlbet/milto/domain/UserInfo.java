@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * UserInfo.
+ *
+ * @author Aliaksei Milto
+ */
 public class UserInfo {
     private String email;
     private String phoneNumber;

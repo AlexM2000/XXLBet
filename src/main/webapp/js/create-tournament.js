@@ -49,8 +49,8 @@ function createTournament() {
                     $('#tournamentNameInformer').text(dataFromServer['tournament.already.exists']);
                 }
             },
-            error: function (e){
-                alert(e)
+            error: function () {
+                window.location.href = '/500';
             }
         })
     }

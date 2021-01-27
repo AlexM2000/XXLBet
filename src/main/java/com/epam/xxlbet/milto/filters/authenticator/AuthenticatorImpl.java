@@ -71,6 +71,7 @@ public final class AuthenticatorImpl implements Authenticator {
             default:
                 throw new UnknownCommandException("Unknown command " + commandName);
 
+            // anonymous user commands
             case GET_HOME_COMMAND:
             case LANGUAGE_COMMAND:
             case GET_LOGIN_PAGE:
@@ -80,15 +81,13 @@ public final class AuthenticatorImpl implements Authenticator {
             case POST_REGISTRATION_COMMAND:
             case POST_CONFIRM_COMMAND:
             case POST_LOGOUT:
-            case GET_TOURNAMENTS_BY_SPORT:
-            case GET_OPPONENTS_BY_TOURNAMENT:
-            case GET_MATCHES_BY_TOURNAMENT:
             case GET_CHANGE_PASSWORD_PAGE:
             case CREATE_CHANGE_PASSWORD_REQUEST:
             case GET_DO_CHANGE_PASSWORD_PAGE:
             case POST_CHANGE_PASSWORD:
                 return true;
 
+            // logged in user commands
             case GET_PROFILE_PAGE:
             case GET_ALL_USER_BETS:
             case GET_WIN_USER_BETS:
@@ -104,17 +103,22 @@ public final class AuthenticatorImpl implements Authenticator {
                         && httpSession.getAttribute("role") != null
                         && httpSession.getAttribute("status") != null;
 
+            // admin user commands
             case GET_ADMIN_PAGE:
             case POST_CREATE_MATCH:
             case POST_CREATE_SPORT:
             case GET_CREATE_SPORT_PAGE:
             case GET_CREATE_TOURNAMENT_PAGE:
+            case GET_TOURNAMENTS_BY_SPORT:
+            case GET_OPPONENTS_BY_TOURNAMENT:
+            case GET_MATCHES_BY_TOURNAMENT:
             case POST_CREATE_TOURNAMENT:
             case GET_CREATE_TEAM_PAGE:
             case POST_CREATE_TEAM:
                 return httpSession.getAttribute("role") != null
                         && asList(ADMIN_ROLE, BOOKMAKER_ROLE).contains(((Role) httpSession.getAttribute("role")).getName());
 
+            // bookmaker user commands
             case GET_BOOKMAKER_PAGE:
             case POST_CHANGE_USER_ROLE_AND_STATUS:
                 return httpSession.getAttribute("role") != null

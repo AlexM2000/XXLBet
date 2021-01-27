@@ -1,9 +1,9 @@
 var lastDataFromServer;
 
 $(document).ready(function () {
-    var input = $("input");
-    var label = $("label");
-    var submitButton = $('button');
+    const input = $("input");
+    const label = $("label");
+    const submitButton = $('button');
 
     document.getElementById("sportSelect").addEventListener("change", function (ev) {
         input.hide();
@@ -83,48 +83,6 @@ $(document).ready(function () {
             },
             success: function (dataFromServer) {
                 console.log(dataFromServer);
-                /**
-                 * [
-                 * {
-                 *      drawCoefficient: 3,
-                 *      tournamentName: League 1,
-                 *      opponents: [
-                 *      {
-                 *          id: 1
-                 *          matchId: 1
-                 *          tournamentId: 1
-                 *          name: Team 1
-                 *          coefficient: 3.0
-                 *      },
-                 *      {
-                 *          id: 2
-                 *          matchId: 1
-                 *          tournamentId: 1
-                 *          name: Team 2
-                 *          coefficient: 0.5
-                 *      }]
-                 * },
-                 *{
-                 *      drawCoefficient: 2.2,
-                 *      tournamentName: League 1,
-                 *      opponents: [
-                 *      {
-                 *          id: 1
-                 *          matchId: 2
-                 *          tournamentId: 1
-                 *          name: Team 3
-                 *          coefficient: 1.5
-                 *      },
-                 *      {
-                 *          id: 2
-                 *          matchId: 2
-                 *          tournamentId: 1
-                 *          name: Team 4
-                 *          coefficient: 0.9
-                 *      }]
-                 * }
-                 * ]
-                 */
                 lastDataFromServer = dataFromServer;
                 $('#noMatchesInfo').text('');
                 $('#matchSelect').empty();
@@ -236,8 +194,8 @@ function createBet(email) {
                     $('#moneyError').text(dataFromServer['create-bet-page.bad-balance'])
                 }
             },
-            error: function (e) {
-                alert(e)
+            error: function () {
+                window.location.href = '/500';
             }
         });
     }

@@ -2,6 +2,11 @@ package com.epam.xxlbet.milto.domain;
 
 import java.util.Date;
 
+/**
+ * VerificationToken.
+ *
+ * @author Aliaksei Milto
+ */
 public class VerificationToken {
     private long id;
     private String token;

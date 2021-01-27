@@ -10,7 +10,11 @@ import com.epam.xxlbet.milto.validator.impl.TournamentExistsValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
-
+/**
+ * PostCreateTournamentCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostCreateTournamentCommand extends AbstractCommand {
     private TournamentService tournamentService;
     private Validator tournamentValidator;
@@ -22,7 +26,7 @@ public class PostCreateTournamentCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
-        getLogger().debug("");
+        getLogger().debug("Executing " + this.getClass());
         CreateTournamentRequest tournamentRequest = getRequestBody(request, CreateTournamentRequest.class);
         validate(tournamentRequest.getTournamentName(), getCurrentLocale(request), tournamentValidator);
 

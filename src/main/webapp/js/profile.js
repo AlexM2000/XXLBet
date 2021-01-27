@@ -17,6 +17,9 @@ function getBets(command) {
                     "</tr>"
                 );
             }
+        },
+        error: function () {
+            window.location.href = '/500';
         }
     })
 }

@@ -11,6 +11,11 @@ import com.epam.xxlbet.milto.service.UserInfoService;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createRedirectCommandResult;
 
+/**
+ * PostChangeUserRoleAndStatusCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class PostChangeUserRoleAndStatusCommand extends AbstractCommand {
     private static final String BOOKMAKER_PAGE = "/bookmaker";
     private UserInfoService userInfoService;

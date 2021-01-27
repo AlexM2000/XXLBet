@@ -9,4 +9,7 @@ public class ConnectionPoolException extends RuntimeException {
     public ConnectionPoolException(String message) {
         super(message);
     }
+
+    public ConnectionPoolException(String s, Exception e) {
+    }
 }

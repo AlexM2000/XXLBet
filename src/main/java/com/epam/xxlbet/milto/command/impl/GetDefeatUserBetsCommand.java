@@ -7,6 +7,11 @@ import com.epam.xxlbet.milto.service.BetsService;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 
+/**
+ * GetDefeatUserBetsCommand.
+ *
+ * @author Aliaksei Milto
+ */
 public class GetDefeatUserBetsCommand extends AbstractCommand {
     private BetsService betsService;
 

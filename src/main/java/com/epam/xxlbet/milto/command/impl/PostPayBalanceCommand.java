@@ -26,6 +26,7 @@ public class PostPayBalanceCommand extends AbstractCommand {
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
+        getLogger().debug("Executing " + this.getClass());
         PayBalanceRequest payBalanceRequest = getRequestBody(request, PayBalanceRequest.class);
 
         UserInfo userInfo = userInfoService.getUserInfoByEmail(

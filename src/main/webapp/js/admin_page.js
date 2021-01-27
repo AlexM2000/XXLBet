@@ -38,8 +38,8 @@ $(document).ready(function () {
                     $("#tournamentSelect").show();
                 }
             },
-            error: function (e) {
-                alert(e)
+            error: function () {
+                window.location.href = '/500';
             }
         })
     })

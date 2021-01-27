@@ -89,6 +89,10 @@
     <servlet-name>do-change-password</servlet-name>
     <jsp-file>/WEB-INF/views/do-change-password.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>500</servlet-name>
+    <jsp-file>/WEB-INF/views/500.jsp</jsp-file>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
@@ -170,6 +174,10 @@
     <servlet-name>do-change-password</servlet-name>
     <url-pattern>/do-change-password</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>500</servlet-name>
+    <url-pattern>/500</url-pattern>
+  </servlet-mapping>
 
   <error-page>
     <error-code>404</error-code>
@@ -181,6 +189,10 @@
   </error-page>
   <error-page>
     <error-code>500</error-code>
+    <location>/WEB-INF/views/500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.RuntimeException</exception-type>
     <location>/WEB-INF/views/500.jsp</location>
   </error-page>
 

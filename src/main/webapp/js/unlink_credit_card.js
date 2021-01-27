@@ -13,8 +13,8 @@ function unlink_credit_card() {
             alert('Credit card was unlinked successfully!');
             window.location.reload();
         },
-        error: function (e) {
-            alert(e)
+        error: function () {
+            window.location.href = '/500';
         }
     })
 }

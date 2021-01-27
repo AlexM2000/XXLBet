@@ -2,6 +2,11 @@ package com.epam.xxlbet.milto.domain;
 
 import java.time.LocalDateTime;
 
+/**
+ * Tournament.
+ *
+ * @author Aliaksei Milto
+ */
 public class Tournament {
     private Long id;
     private Long sportId;

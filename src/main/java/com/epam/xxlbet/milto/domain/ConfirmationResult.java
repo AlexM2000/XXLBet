@@ -2,9 +2,9 @@ package com.epam.xxlbet.milto.domain;
 
 /**
  * Result of email registration confirmation:
- * success, if successfully confirmed registration
- * expired, if did not confirm registration because verification token expired
- * invalid, if did not confirm registration because verification token is invalidю
+ * {@link #SUCCESS}, if successfully confirmed registration
+ * {@link #EXPIRED}, if did not confirm registration because verification token expired
+ * {@link #INVALID}, if did not confirm registration because verification token is invalidю
  *
  * @author Aliaksei Milto
  */

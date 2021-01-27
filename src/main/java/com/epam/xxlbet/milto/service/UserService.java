@@ -23,6 +23,8 @@ public interface UserService {
 
     /**
      * Create user in database from {@link RegistrationRequest}.
+     * User password should be encrypted with {@link com.epam.xxlbet.milto.utils.cryptography.CryptoUtils}
+     * before adding to database.
      *
      * @param registrationRequest {@link RegistrationRequest}
      * @return Created {@link User} (taken from database)
@@ -46,7 +48,10 @@ public interface UserService {
     User getUserByEmail(String email);
 
     /**
-     * Find user by phone number.
+     * Find user by email.
+     * Implementations must encrypt password with {@link com.epam.xxlbet.milto.utils.cryptography.CryptoUtils}
+     * and take secret key property from project.properties
+     * to be able to find password in database.
      *
      * @param email user email
      * @param password user password

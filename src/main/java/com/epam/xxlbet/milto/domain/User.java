@@ -1,5 +1,10 @@
 package com.epam.xxlbet.milto.domain;
 
+/**
+ * User.
+ *
+ * @author Aliaksei Milto
+ */
 public class User {
     private long id;
     private String email;

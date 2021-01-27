@@ -48,6 +48,9 @@ function link_credit_card() {
                     alert('Credit card was connected successfully');
                     window.location.reload();
                 }
+            },
+            error: function () {
+                window.location.href = '/500';
             }
         })
     }

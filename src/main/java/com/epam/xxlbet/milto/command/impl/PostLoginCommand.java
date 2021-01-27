@@ -10,6 +10,7 @@ import com.epam.xxlbet.milto.service.StatusService;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.ConfirmationValidator;
+import com.epam.xxlbet.milto.validator.impl.CorrectPasswordValidator;
 import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
@@ -25,6 +26,7 @@ public class PostLoginCommand extends AbstractCommand {
     private StatusService statusService;
     private Validator userNotExistsValidator;
     private Validator confirmationValidator;
+    private Validator correctPasswordValidator;
 
     public PostLoginCommand(
             final UserService userService, final StatusService statusService, final RoleService roleService
@@ -34,29 +36,27 @@ public class PostLoginCommand extends AbstractCommand {
         this.roleService = roleService;
         this.userNotExistsValidator = UserNotExistsValidator.getInstance();
         this.confirmationValidator = ConfirmationValidator.getInstance();
+        this.correctPasswordValidator = CorrectPasswordValidator.getInstance();
     }
 
     @Override
     public CommandResult execute(RequestContext request, ResponseContext response) {
         getLogger().debug("Executing " + this.getClass());
-
         LoginRequest loginRequest = getRequestBody(request, LoginRequest.class);
-        validate(loginRequest.getLogin(), getCurrentLocale(request), userNotExistsValidator);
-        validate(loginRequest.getLogin(), getCurrentLocale(request), confirmationValidator);
+        String locale = getCurrentLocale(request);
+        validate(loginRequest.getLogin(), locale, userNotExistsValidator);
+        validate(loginRequest.getLogin(), locale, confirmationValidator);
+        validate(loginRequest, locale, correctPasswordValidator);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
-            User user = userService.getUserByEmailAndPassword(loginRequest.getLogin(), loginRequest.getPassword());
+            User user = userService.getUserByEmailAndPassword(
+                    loginRequest.getLogin(), loginRequest.getPassword()
+            );
 
-            if (user != null) {
-                request.setSessionAttribute("login", user.getEmail());
-                request.setSessionAttribute("user_id", user.getId());
-                request.setSessionAttribute("role", roleService.getUserRoleByEmail(user.getEmail()));
-                request.setSessionAttribute("status", statusService.getUserStatusByEmail(user.getEmail()));
-            } else {
-                getErrors().remove(STATUS);
-                getErrors().put(STATUS, FAILED);
-                getErrors().put("wrong.password", "Wrong password");
-            }
+            request.setSessionAttribute("login", user.getEmail());
+            request.setSessionAttribute("user_id", user.getId());
+            request.setSessionAttribute("role", roleService.getUserRoleByEmail(user.getEmail()));
+            request.setSessionAttribute("status", statusService.getUserStatusByEmail(user.getEmail()));
         }
 
         return createWriteDirectlyToResponseCommandResult(getErrors());

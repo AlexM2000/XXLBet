@@ -1,7 +1,7 @@
 package com.epam.xxlbet.milto.requestandresponsebody;
 
 /**
- * AdminPageUserResponse.
+ * BookmakerPageUserResponse.
  *
  * @author Aliaksei Milto
  */
