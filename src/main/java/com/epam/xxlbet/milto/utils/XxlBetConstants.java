@@ -2,7 +2,7 @@ package com.epam.xxlbet.milto.utils;
 
 /**
  * XxlBetConstants.
- * Almost all constants kept in one place for convenience.
+ * All project constants.
  *
  * @author Aliaksei Milto
  */

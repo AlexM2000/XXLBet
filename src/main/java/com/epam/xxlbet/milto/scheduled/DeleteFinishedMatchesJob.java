@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * DeleteFinishedMatchesJob.
+ * Delete finished matches.
  *
  * @author Aliaksei Milto
  */

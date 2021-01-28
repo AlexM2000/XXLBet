@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AbstractDao.
+ * AbstractDaoImpl.
  *
  * @author Aliaksei Milto
  */
@@ -43,6 +43,15 @@ abstract class AbstractDaoImpl<T> {
         connectionPool = ConnectionPool.getInstance();
     }
 
+    /**
+     * Executes query with given .properties query id and parameters
+     * and returns list of data acquired from result set.
+     *
+     * @param queryId query id
+     * @param params query parameters
+     * @return List of data from database
+     * @throws DaoException if something went wrong when getting connection or executing statement
+     */
     protected List<T> executeQuery(final String queryId, Object... params) {
         List<T> entities = new ArrayList<>();
 
@@ -67,14 +76,30 @@ abstract class AbstractDaoImpl<T> {
         return entities;
     }
 
+    /**
+     * Execute query with given .properties query id and parameters
+     * and expectation to acquire only one result in result set.
+     * If result is not equal to one, return null.
+     *
+     * @param queryId query id
+     * @param params query parameters
+     */
     protected T executeForSingleResult(String queryId, Object... params) {
         List<T> items = executeQuery(queryId, params);
         return items.size() == 1 ? items.get(0) : null;
     }
 
-    protected void executeUpdate(String queryId, Object... params) {
+    /**
+     * Executes SQL statement with given .properties statement id and parameters.
+     * It may be an INSERT, UPDATE, or DELETE statement
+     * or an SQL statement that returns nothing, such as an SQL DDL statement.
+     *
+     * @param statementId statement id
+     * @param params statement parameters
+     */
+    protected void executeUpdate(String statementId, Object... params) {
         try (final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(queryId));
+            final PreparedStatement statement = connection.prepareStatement(getSqlById(statementId));
             setParameters(statement, params);
             statement.executeUpdate();
         } catch (SQLException | InterruptedException e) {
@@ -82,16 +107,12 @@ abstract class AbstractDaoImpl<T> {
         }
     }
 
-    protected void execute(String queryId, Object... params) {
-        try (final Connection connection = getConnectionPool().getConnection()) {
-            final PreparedStatement statement = connection.prepareStatement(getSqlById(queryId));
-            setParameters(statement, params);
-            statement.execute();
-        } catch (SQLException | InterruptedException e) {
-            throw new DaoException(getErrorMsgBegin() + " execute...", e);
-        }
-    }
-
+    /**
+     * Set parameters to sql statement.
+     *
+     * @param statement {@link PreparedStatement}
+     * @param parameters statement parameters
+     */
     private void setParameters(PreparedStatement statement, Object... parameters) throws SQLException {
         for (int i = 0; i < parameters.length; i++) {
             int parameterIndex = i + 1;
@@ -119,6 +140,15 @@ abstract class AbstractDaoImpl<T> {
         return ERROR_MSG_BEGIN;
     }
 
+    /**
+     * Get SQL statement with given id
+     * from .properties file with name {@link #propertiesFileWithQueriesName}
+     *
+     * @param id statement id
+     * @return statement
+     * @throws PropertyNotFoundException if cannot with query with given id
+     * in .properties file with name {@link #propertiesFileWithQueriesName}
+     */
     protected String getSqlById(final String id) {
         return getPropertyLoader().getStringProperty(getPropertiesFileWithQueriesName(), id)
                 .orElseThrow(() -> new PropertyNotFoundException("Could not find query in properties!"));

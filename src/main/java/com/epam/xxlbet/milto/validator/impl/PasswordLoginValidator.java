@@ -12,17 +12,17 @@ import com.epam.xxlbet.milto.validator.Validator;
  *
  * @author Aliaksei Milto
  */
-public class CorrectPasswordValidator implements Validator {
-    private static CorrectPasswordValidator instance;
+public class PasswordLoginValidator implements Validator {
+    private static PasswordLoginValidator instance;
     private UserService userService;
 
-    private CorrectPasswordValidator() {
+    private PasswordLoginValidator() {
         this.userService = UserServiceImpl.getInstance();
     }
 
-    public static CorrectPasswordValidator getInstance() {
+    public static PasswordLoginValidator getInstance() {
         if (instance == null) {
-            instance = new CorrectPasswordValidator();
+            instance = new PasswordLoginValidator();
         }
 
         return instance;

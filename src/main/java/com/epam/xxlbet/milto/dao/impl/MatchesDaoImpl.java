@@ -29,10 +29,6 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_MATCHES_BY_TOUR
  * @author Aliaksei Milto
  */
 public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao {
-    private static final String ID = "id";
-    private static final String TOURNAMENT_ID = "tournament_id";
-    private static final String DRAW_COEFFICIENT = "draw_coefficient";
-    private static final String DATE_STARTED = "date_started";
     private static MatchesDaoImpl instance;
 
     private MatchesDaoImpl() {

@@ -11,17 +11,17 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
  *
  * @author Aliaksei Milto
  */
-public final class PasswordValidator implements Validator {
+public final class PasswordFormatValidator implements Validator {
     private static final String PASSWORD_PATTERN_ID = "xxl.bet.milto.password.regexp";
     private static final String PATTERN = PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, PASSWORD_PATTERN_ID)
             .orElse("^((?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\W_\\\\d])).{7,20}$");
-    private static PasswordValidator instance;
+    private static PasswordFormatValidator instance;
 
-    private PasswordValidator() { }
+    private PasswordFormatValidator() { }
 
-    public static PasswordValidator getInstance() {
+    public static PasswordFormatValidator getInstance() {
         if (instance == null) {
-            instance = new PasswordValidator();
+            instance = new PasswordFormatValidator();
         }
 
         return instance;

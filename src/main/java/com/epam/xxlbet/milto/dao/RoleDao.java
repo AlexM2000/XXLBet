@@ -18,7 +18,7 @@ public interface RoleDao {
     Role getUserRoleByEmail(String email);
 
     /**
-     * Find {@link Role} by id
+     * Find {@link Role} by id.
      *
      * @param roleId role id
      * @return {@link Role}
@@ -26,7 +26,7 @@ public interface RoleDao {
     Role getRoleById(Long roleId);
 
     /**
-     * Find {@link Role} by name
+     * Find {@link Role} by name.
      *
      * @param name role name
      * @return {@link Role}

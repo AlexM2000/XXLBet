@@ -136,12 +136,18 @@ function createMatch() {
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
-            success: function () {
-                alert("Match was created successfully!");
-                window.location.reload();
+            dataType: "json",
+            success: function (dataFromServer) {
+                if (dataFromServer['cannot.create.with.equal.opponents']) {
+                    $('#team1Informer').text(dataFromServer['cannot.create.with.equal.opponents']);
+                } else {
+                    alert("Match was created successfully!");
+                    window.location.reload();
+                }
+
             },
-            error: function (e) {
-                alert(e)
+            error: function () {
+                window.location.href = '/500';
             }
         })
     }

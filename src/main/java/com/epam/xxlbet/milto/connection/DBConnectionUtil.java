@@ -18,9 +18,6 @@ final class DBConnectionUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(DBConnectionUtil.class);
 
-    /**
-     * Private constructor.
-     */
     private DBConnectionUtil() { }
 
     /**

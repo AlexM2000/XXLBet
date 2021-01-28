@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 /**
  * AbstractCommand.
  * Parent of all {@link Command} implementations.
- * Contains useful methods, such as validating objects, reading request body and other.
+ * Contains useful methods, such as validating objects,
+ * reading request body and other.
  *
  * @author Aliaksei Milto
  */
@@ -64,7 +65,8 @@ public abstract class AbstractCommand implements Command {
      * If there were validation errors, appends to {@link #errors} map pair of key and value
      * where key is error message id and value is localized error message.
      * Additionally appends to map flag pair, where key is {@link #STATUS}
-     * and value depends on if validation errors are present
+     * and value depends on if validation errors are present.
+     *
      * {@link #FAILED} if present and {@link #VERIFIED} if there are no errors
      *
      * @param object Object to validate.

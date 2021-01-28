@@ -34,25 +34,6 @@ public class Bet {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bet bet = (Bet) o;
-        return Objects.equals(id, bet.id) &&
-                Objects.equals(matchId, bet.matchId) &&
-                Objects.equals(resultId, bet.resultId) &&
-                Objects.equals(dateCreated, bet.dateCreated) &&
-                Objects.equals(sum, bet.sum) &&
-                Objects.equals(expectedWinnerId, bet.expectedWinnerId) &&
-                Objects.equals(userId, bet.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, matchId, resultId, dateCreated, sum, expectedWinnerId, userId);
-    }
-
     public Long getId() {
         return id;
     }

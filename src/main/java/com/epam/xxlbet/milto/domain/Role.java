@@ -10,8 +10,8 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.CLIENT_ROLE;
  * {@link #ADMIN}- CLIENT + can create sports, tournaments, opponents, matches,
  * sets coefficients level for opponents.
  * {@link #BOOKMAKER} - ADMIN + can change user roles.
- * Check {@link com.epam.xxlbet.milto.filters.RoleFilter}
- * and {@link com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl}
+ * @see com.epam.xxlbet.milto.filters.RoleFilter
+ * @see com.epam.xxlbet.milto.filters.authenticator.AuthenticatorImpl
  *
  * @author Aliaksei Milto
  */

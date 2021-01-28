@@ -6,6 +6,11 @@ import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * ResultSetToCreditCardPopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ResultSetToCreditCardPopulator implements ResultSetPopulator<CreditCard> {
     private static final String NUMBER = "number";
     private static final String THRU = "thru";

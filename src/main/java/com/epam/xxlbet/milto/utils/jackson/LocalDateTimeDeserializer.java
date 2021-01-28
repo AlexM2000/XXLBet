@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * LocalDateTimeDeserializer.
+ * Used for json deserialization of start date of the match
+ * @see com.epam.xxlbet.milto.requestandresponsebody.CreateMatchRequest
  *
  * @author Aliaksei Milto
  */

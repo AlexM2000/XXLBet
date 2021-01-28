@@ -72,7 +72,6 @@ public final class PropertyLoader {
         init(MAIL_PROPERTIES);
     }
 
-    // todo add temporary map to prevent properties deleting
     public void reInit(String path) throws IOException {
         this.properties.remove(path);
         init(path);
@@ -143,7 +142,12 @@ public final class PropertyLoader {
                 : Optional.empty();
     }
 
-    /** Check if given string is integer */
+    /**
+     * Check if given string is integer.
+     *
+     * @param strNum string
+     * @return true if integer, false otherwise
+     */
     private boolean isInteger(String strNum) {
         if (strNum == null) {
             return false;

@@ -35,8 +35,6 @@ public class PostCreateSportCommand extends AbstractCommand {
             sportService.createSport(sportName);
         }
 
-        return getErrors().containsKey("sport.already.exists")
-                ? createWriteDirectlyToResponseCommandResult(getErrors())
-                : createWriteDirectlyToResponseCommandResult(singletonMap("result", "ok"));
+        return createWriteDirectlyToResponseCommandResult(getErrors());
     }
 }

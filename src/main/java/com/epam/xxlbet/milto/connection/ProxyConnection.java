@@ -45,7 +45,7 @@ class ProxyConnection implements Connection {
     /**
      * Closes the opened {@link Connection} to release the opened resource
      *
-     * @throws SQLException if connection closing failed
+     * @throws SQLException if something went wrong during closing connection
      */
     public void terminate() throws SQLException {
         if (connection != null) {

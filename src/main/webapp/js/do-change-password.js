@@ -19,9 +19,13 @@ function change_password() {
             type: 'POST',
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(data),
-            success: function () {
-                alert('Password was changed successfully!');
-                window.location.href = "/login";
+            success: function (dataFromServer) {
+                if (dataFromServer['password.not.matches.regexp']) {
+                    $('#passwordInformer').text(dataFromServer['password.not.matches.regexp']);
+                } else {
+                    alert('Password was changed successfully!');
+                    window.location.href = "/login";
+                }
             },
             error: function () {
                 window.location.href = '/500';

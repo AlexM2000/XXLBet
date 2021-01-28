@@ -11,6 +11,11 @@ import static com.epam.xxlbet.milto.domain.Status.BANNED;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.ACTIVE_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 
+/**
+ * ResultSetToStatusPopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ResultSetToStatusPopulator implements ResultSetPopulator<Status> {
     private static ResultSetToStatusPopulator instance;
 

@@ -15,7 +15,7 @@ import com.epam.xxlbet.milto.service.impl.VerificationTokenServiceImpl;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.EmailValidator;
-import com.epam.xxlbet.milto.validator.impl.PasswordValidator;
+import com.epam.xxlbet.milto.validator.impl.PasswordFormatValidator;
 import com.epam.xxlbet.milto.validator.impl.PhoneNumberExistsValidator;
 import com.epam.xxlbet.milto.validator.impl.PhoneNumberValidator;
 import com.epam.xxlbet.milto.validator.impl.RepeatPasswordValidator;
@@ -34,7 +34,7 @@ import static java.lang.String.format;
  * @author Aliaksei Milto
  */
 public class PostRegistrationCommand extends AbstractCommand {
-    private Validator userExistsValidater;
+    private Validator userExistsValidator;
     private Validator phoneNumberExistsValidator;
     private Validator passwordValidator;
     private Validator phoneNumberValidator;
@@ -47,9 +47,9 @@ public class PostRegistrationCommand extends AbstractCommand {
     public PostRegistrationCommand(final UserService userService) {
         this.userService = userService;
         this.emailValidator = EmailValidator.getInstance();
-        this.passwordValidator = PasswordValidator.getInstance();
+        this.passwordValidator = PasswordFormatValidator.getInstance();
         this.phoneNumberValidator = PhoneNumberValidator.getInstance();
-        this.userExistsValidater = UserExistsValidator.getInstance();
+        this.userExistsValidator = UserExistsValidator.getInstance();
         this.phoneNumberExistsValidator = PhoneNumberExistsValidator.getInstance();
         this.repeatPasswordValidator = RepeatPasswordValidator.getInstance();
         this.verificationTokenService = VerificationTokenServiceImpl.getInstance();
@@ -66,7 +66,7 @@ public class PostRegistrationCommand extends AbstractCommand {
         validate(requestBody.getPassword(), locale, passwordValidator);
         validate(requestBody.getPhoneNumber(), locale, phoneNumberValidator);
         validate(requestBody.getPhoneNumber(), locale, phoneNumberExistsValidator);
-        validate(requestBody.getEmail(), locale, userExistsValidater);
+        validate(requestBody.getEmail(), locale, userExistsValidator);
         validate(requestBody, locale, repeatPasswordValidator);
 
         if (getErrors().get(STATUS).equals(VERIFIED)) {
@@ -97,7 +97,6 @@ public class PostRegistrationCommand extends AbstractCommand {
                     getText(msgFile, currentLocale, "email.confirmregistration.subject")
             );
         } catch (MessagingException e) {
-            getLogger().error("Something went wrong during sending email...", e);
             throw new ServiceException("Something went wrong during sending email...", e);
         }
     }

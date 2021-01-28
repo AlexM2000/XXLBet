@@ -41,6 +41,15 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Encrypt given string using secret key.
+     * Secret key for decryption and encryption should be the same.
+     * If any exception occurred, return null as the result.
+     *
+     * @param strToEncrypt string to encrypt
+     * @param secret secret key
+     * @return Encrypted string
+     */
     public static String encrypt(String strToEncrypt, String secret)
     {
         try
@@ -57,6 +66,15 @@ public class CryptoUtils {
         return null;
     }
 
+    /**
+     * Decrypt given string using secret key.
+     * Secret key for decryption and encryption should be the same.
+     * If any exception occurred, return null as the result.
+     *
+     * @param strToDecrypt string to encrypt
+     * @param secret secret key
+     * @return Decrypted string
+     */
     public static String decrypt(String strToDecrypt, String secret)
     {
         try

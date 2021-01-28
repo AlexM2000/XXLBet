@@ -79,6 +79,12 @@ public class PasswordChangeRequestServiceImpl implements PasswordChangeRequestSe
         passwordChangeRequestDao.deletePasswordChangeRequest(passwordRequest.getUserId());
     }
 
+    /**
+     * Encrypt password using {@link com.epam.xxlbet.milto.utils.cryptography.CryptoUtils}
+     *
+     * @param password password
+     * @return encrypted password
+     */
     private String getEncryptedPassword(String password) {
         return encrypt(password,
                 PropertyLoader.getInstance().getStringProperty(PROJECT_PROPERTIES, XxlBetConstants.SECRET_KEY)

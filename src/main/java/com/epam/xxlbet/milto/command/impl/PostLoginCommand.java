@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.service.StatusService;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.ConfirmationValidator;
-import com.epam.xxlbet.milto.validator.impl.CorrectPasswordValidator;
+import com.epam.xxlbet.milto.validator.impl.PasswordLoginValidator;
 import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
@@ -36,7 +36,7 @@ public class PostLoginCommand extends AbstractCommand {
         this.roleService = roleService;
         this.userNotExistsValidator = UserNotExistsValidator.getInstance();
         this.confirmationValidator = ConfirmationValidator.getInstance();
-        this.correctPasswordValidator = CorrectPasswordValidator.getInstance();
+        this.correctPasswordValidator = PasswordLoginValidator.getInstance();
     }
 
     @Override

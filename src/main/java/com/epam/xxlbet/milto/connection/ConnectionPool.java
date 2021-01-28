@@ -46,6 +46,12 @@ public final class ConnectionPool {
         return instance;
     }
 
+    /**
+     * Close all free and busy connections.
+     * Part of shutdown application flow.
+     *
+     * @throws SQLException if something went wrong during closing connections.
+     */
     public void closeAllConnections() throws SQLException {
         for (Connection connection : busyConnections) {
             connection.commit();
@@ -63,6 +69,16 @@ public final class ConnectionPool {
         deregisterDrivers();
     }
 
+    /**
+     * Try to get connection from connection pool,
+     * waiting up for timeout, specified in project properties.
+     * Connection is established and ready for use.
+     *
+     * @throws ConnectionPoolException
+     * if timeout elapsed before free connection is available
+     * or there are too many busy connections.
+     * @throws InterruptedException if interrupted while waiting for connection.
+     */
     public Connection getConnection() throws InterruptedException {
         Connection connection = freeConnections.poll(timeout, MILLISECONDS);
         if (null == connection) {
@@ -76,13 +92,20 @@ public final class ConnectionPool {
         return connection;
     }
 
+    /**
+     * Release given connection and make it available for other clients.
+     *
+     * @throws ConnectionPoolException if connection type is unknown
+     * or if connection is not busy.
+     * @throws InterruptedException if interrupted while releasing connection
+     */
     public void releaseConnection(final Connection connection) throws InterruptedException {
         if (!(connection instanceof ProxyConnection)) {
-            throw new ConnectionPoolException("Unknown connection " + connection.getClass());
+            throw new ConnectionPoolException("Unknown connection");
         }
 
         if (!busyConnections.remove(connection)) {
-            throw new ConnectionPoolException("busyConnections is already empty " + freeConnections.toString());
+            throw new ConnectionPoolException("Connection is not busy");
         }
 
         freeConnections.put(connection);
@@ -114,7 +137,7 @@ public final class ConnectionPool {
     /**
      * Get database connection pool from project properties.
      * If project properties doesn't have defined connection pool
-     * returns default value.
+     * returns default value {@link #DEFAULT_CONNECTION_POOL}.
      */
     private int getDatabaseConnectionPool() {
         return propertyLoader.getDatabaseConnectionPool()
@@ -125,8 +148,12 @@ public final class ConnectionPool {
     }
 
     /**
-     * Register driver.
-     * Shut down whole application immediately, if can't find driver.
+     * Get name of database driver from project.properties file
+     * and register this driver.
+     * If can't find name of database driver,
+     * tries to register default "com.mysql.cj.jdbc.Driver".
+     *
+     * @throws ConnectionPoolException if can't find database driver class.
      */
     private void registerDriver() {
         try {
@@ -147,8 +174,8 @@ public final class ConnectionPool {
 
     /**
      * Create ProxyConnection instances and put them to freeConnections.
-     * If exception occurred while creating or adding connection
-     * shut down application immediately.
+     *
+     * @throws ConnectionPoolException if something went wrong when creating connection.
      */
     private void createConnections() {
         for (int i = 0; i < poolSize; i++) {
@@ -156,7 +183,7 @@ public final class ConnectionPool {
                 Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
                 freeConnections.add(connection);
                 LOG.debug("Initialized connection {}...", i + 1);
-            } catch (final SQLException | IllegalStateException e) {
+            } catch (final SQLException e) {
                 throw new ConnectionPoolException("Can't create connection to database!", e);
             }
         }
@@ -165,7 +192,7 @@ public final class ConnectionPool {
     /**
      * Get database connection timeout from project properties.
      * If project properties doesn't have defined connection pool
-     * returns default value.
+     * returns default value {@link #DEFAULT_CONNECTION_TIMEOUT}.
      */
     private int getConnectionTimeout() {
         return propertyLoader.getDatabaseConnectionTimeout()
@@ -177,7 +204,7 @@ public final class ConnectionPool {
 
     /**
      * Deregister all drivers.
-     * Part of the shutdown application flow
+     * Part of the shutdown application flow.
      */
     private void deregisterDrivers() {
         Enumeration<Driver> drivers = DriverManager.getDrivers();

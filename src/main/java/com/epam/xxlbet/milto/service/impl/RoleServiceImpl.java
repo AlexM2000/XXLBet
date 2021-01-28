@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.dao.impl.RoleDaoImpl;
 import com.epam.xxlbet.milto.domain.Role;
 import com.epam.xxlbet.milto.service.RoleService;
 
+/**
+ * RoleServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class RoleServiceImpl implements RoleService {
     private static RoleServiceImpl instance;
     private RoleDao roleDao;

@@ -27,12 +27,13 @@ import static java.util.Arrays.asList;
 
 /**
  * RefreshPropertyFilesJob.
+ * Refresh content of .properties files
+ * and upload changes to application.
  *
  * @author Aliaksei Milto
  */
 public class RefreshPropertyFilesJob implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(RefreshPropertyFilesJob.class);
-    private static final Lock LOCK = new ReentrantLock();
     private static RefreshPropertyFilesJob instance;
     private PropertyLoader propertyLoader;
     private List<String> files = asList(
@@ -62,12 +63,9 @@ public class RefreshPropertyFilesJob implements Runnable {
 
         for (String file : files){
             try {
-                LOCK.lock();
                 propertyLoader.reInit(file);
             } catch (IOException e) {
                 LOG.error("Error while executing RefreshPropertyFilesJob...", e);
-            } finally {
-                LOCK.unlock();
             }
         }
 

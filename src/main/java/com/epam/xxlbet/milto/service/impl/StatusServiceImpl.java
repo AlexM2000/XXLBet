@@ -5,6 +5,11 @@ import com.epam.xxlbet.milto.dao.impl.StatusDaoImpl;
 import com.epam.xxlbet.milto.domain.Status;
 import com.epam.xxlbet.milto.service.StatusService;
 
+/**
+ * StatusServiceImpl.
+ *
+ * @author Aliaksei Milto
+ */
 public class StatusServiceImpl implements StatusService {
     private static StatusServiceImpl instance;
     private StatusDao statusDao;

@@ -18,6 +18,8 @@ import java.util.Random;
 
 /**
  * GenerateMatchResultJob.
+ * Generate random match result of random match
+ * and update balance of users that bet on completed match.
  *
  * @author Aliaksei Milto
  */

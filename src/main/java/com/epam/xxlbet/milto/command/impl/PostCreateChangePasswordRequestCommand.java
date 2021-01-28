@@ -70,7 +70,6 @@ public class PostCreateChangePasswordRequestCommand extends AbstractCommand {
                     getText(msgFile, currentLocale, "email.change.password.subject")
             );
         } catch (MessagingException e) {
-            getLogger().error("Something went wrong during sending email...", e);
             throw new ServiceException("Something went wrong during sending email...", e);
         }
     }

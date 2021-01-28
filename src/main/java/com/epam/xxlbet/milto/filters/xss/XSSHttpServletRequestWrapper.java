@@ -62,6 +62,12 @@ public class XSSHttpServletRequestWrapper extends HttpServletRequestWrapper {
         return stripXSS(value);
     }
 
+    /**
+     * Delete all javascript-related content from string.
+     *
+     * @param value value
+     * @return String cleared from all javascript-related content.
+     */
     private String stripXSS(String value) {
         if (value != null) {
 

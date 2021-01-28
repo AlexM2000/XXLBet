@@ -5,6 +5,7 @@ import com.epam.xxlbet.milto.service.impl.PasswordChangeRequestServiceImpl;
 
 /**
  * DeleteExpiredPasswordRequestsJob.
+ * Delete expired change password requests.
  *
  * @author Aliaksei Milto
  */

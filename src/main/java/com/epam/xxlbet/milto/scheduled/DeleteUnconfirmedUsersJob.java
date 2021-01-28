@@ -2,6 +2,7 @@ package com.epam.xxlbet.milto.scheduled;
 
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
+import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
 import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
@@ -43,8 +44,10 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
     @Override
     public void run() {
         LOG.debug("Executing DeleteUnconfirmedUsersJob...");
+
         List<User> unconfirmedUsers = userService.getAllUnconfirmedUsers();
         userService.deleteAllUnconfirmedUsers();
+
         for (User user : unconfirmedUsers) {
             try {
                 emailSender.sendEmail(
@@ -54,9 +57,10 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
                         PropertyLoader.getInstance().getStringProperty(MESSAGES_EN_PROPERTIES, "email.notconfirmed.subject")
                                 .orElseThrow(() -> new PropertyNotFoundException("Couldn't find property for en language email.notconfirmed.subject")));
             } catch (MessagingException e) {
-                LOG.error("Error occured while executing DeleteUnconfirmedUsersJob", e);
+                throw new ServiceException("Error occured while executing DeleteUnconfirmedUsersJob", e);
             }
         }
+
         LOG.debug("Executed DeleteUnconfirmedUsersJob successfully");
     }
 }

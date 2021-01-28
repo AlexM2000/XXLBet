@@ -60,7 +60,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
     @Override
     public User createUser(final User user) {
-        execute(INSERT_INTO_USER_PROPERTY_ID, user.getEmail(), user.getPhoneNumber(), user.getPassword(), user.isEnabled());
+        executeUpdate(INSERT_INTO_USER_PROPERTY_ID, user.getEmail(), user.getPhoneNumber(), user.getPassword(), user.isEnabled());
         return getUserByEmail(user.getEmail());
     }
 

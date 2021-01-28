@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * DeleteFinishedTournamentsJob.
+ * Delete finished tournaments.
  *
  * @author Aliaksei Milto
  */

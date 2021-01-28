@@ -35,7 +35,6 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.PROJECT_PROPERTIES;
  * @author Aliaksei Milto
  */
 public class UserServiceImpl implements UserService {
-    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     private static UserServiceImpl instance;
     private VerificationTokenService verificationTokenService;
     private UserDao userDao;

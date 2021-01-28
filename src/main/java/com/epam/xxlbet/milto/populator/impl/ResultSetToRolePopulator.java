@@ -13,6 +13,11 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.ADMIN_ROLE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BOOKMAKER_ROLE;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.CLIENT_ROLE;
 
+/**
+ * ResultSetToRolePopulator.
+ *
+ * @author Aliaksei Milto
+ */
 public class ResultSetToRolePopulator implements ResultSetPopulator<Role> {
     private static ResultSetToRolePopulator instance;
 
