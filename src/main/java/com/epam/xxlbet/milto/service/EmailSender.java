@@ -1,7 +1,5 @@
 package com.epam.xxlbet.milto.service;
 
-import javax.mail.MessagingException;
-
 /**
  * EmailSender.
  *
@@ -16,5 +14,11 @@ public interface EmailSender {
      * @param htmlMessage email body in html
      * @param subject email subject
      */
-    void sendEmail(String emailTo, String htmlMessage, String subject) throws MessagingException;
+    void sendEmail(String emailTo, String htmlMessage, String subject);
+
+    /**
+     * Close any resources that used for email sending.
+     * Part of shutdown application flow.
+     */
+    void shutdown();
 }

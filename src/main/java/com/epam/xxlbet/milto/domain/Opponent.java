@@ -19,13 +19,19 @@ public class Opponent {
 
     @Override
     public String toString() {
-        return "Opponent{" +
-                "id=" + id +
-                ", matchId=" + matchId +
-                ", tournamentId=" + tournamentId +
-                ", name='" + name + '\'' +
-                ", coefficient=" + coefficient +
-                '}';
+        return "Opponent{"
+                + "id="
+                + id
+                + ", matchId="
+                + matchId
+                + ", tournamentId="
+                + tournamentId
+                + ", name='"
+                + name
+                + '\''
+                + ", coefficient="
+                + coefficient
+                + '}';
     }
 
     public String getName() {

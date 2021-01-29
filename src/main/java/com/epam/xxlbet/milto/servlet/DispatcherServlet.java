@@ -4,12 +4,10 @@ import com.epam.xxlbet.milto.command.Command;
 import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.command.factory.CommandFactory;
 import com.epam.xxlbet.milto.command.factory.CommandFactoryImpl;
-import com.epam.xxlbet.milto.context.impl.HttpServletRequestContext;
-import com.epam.xxlbet.milto.context.impl.HttpServletResponseContext;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
-import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
+import com.epam.xxlbet.milto.context.impl.HttpServletRequestContext;
+import com.epam.xxlbet.milto.context.impl.HttpServletResponseContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * DispatcherServlet.
+ *
+ * @author Aliaksei Milto
+ */
 @WebServlet(urlPatterns = "/xxlbet")
 public class DispatcherServlet extends HttpServlet {
     private static final String COMMAND_PARAMETER = "command";
@@ -66,6 +69,7 @@ public class DispatcherServlet extends HttpServlet {
      * @param commandResult CommandResult
      * @throws IOException if error while writing response occurred
      * @throws ServletException if error while redirecting or forwarding occurred
+     * @throws IllegalArgumentException if command result type is unknown (actually this never happens)
      */
     private void dispatch(HttpServletRequest request, HttpServletResponse response, CommandResult commandResult)
             throws ServletException, IOException {

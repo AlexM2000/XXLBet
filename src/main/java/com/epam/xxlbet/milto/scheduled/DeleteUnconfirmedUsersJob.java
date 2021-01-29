@@ -2,16 +2,15 @@ package com.epam.xxlbet.milto.scheduled;
 
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.UserService;
-import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
+import com.epam.xxlbet.milto.service.impl.mail.JavaxEmailSenderImpl;
 import com.epam.xxlbet.milto.service.impl.UserServiceImpl;
+import com.epam.xxlbet.milto.service.impl.mail.MailThread;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.mail.MessagingException;
 import java.util.List;
 
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_EN_PROPERTIES;
@@ -49,16 +48,14 @@ public final class DeleteUnconfirmedUsersJob implements Runnable {
         userService.deleteAllUnconfirmedUsers();
 
         for (User user : unconfirmedUsers) {
-            try {
-                emailSender.sendEmail(
-                        user.getEmail(),
-                        PropertyLoader.getInstance().getStringProperty(MESSAGES_EN_PROPERTIES, "email.notconfirmed.body")
-                                .orElseThrow(() -> new PropertyNotFoundException("Couldn't find property for en language email.notconfirmed.body")),
-                        PropertyLoader.getInstance().getStringProperty(MESSAGES_EN_PROPERTIES, "email.notconfirmed.subject")
-                                .orElseThrow(() -> new PropertyNotFoundException("Couldn't find property for en language email.notconfirmed.subject")));
-            } catch (MessagingException e) {
-                throw new ServiceException("Error occured while executing DeleteUnconfirmedUsersJob", e);
-            }
+            new MailThread(
+                    user.getEmail(),
+                    PropertyLoader.getInstance().getStringProperty(MESSAGES_EN_PROPERTIES, "email.notconfirmed.body")
+                            .orElseThrow(() -> new PropertyNotFoundException("Couldn't find property for en language email.notconfirmed.body")),
+                    PropertyLoader.getInstance().getStringProperty(MESSAGES_EN_PROPERTIES, "email.notconfirmed.subject")
+                            .orElseThrow(() -> new PropertyNotFoundException("Couldn't find property for en language email.notconfirmed.subject")),
+                    emailSender
+            ).start();
         }
 
         LOG.debug("Executed DeleteUnconfirmedUsersJob successfully");

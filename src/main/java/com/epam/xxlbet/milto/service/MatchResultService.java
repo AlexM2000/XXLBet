@@ -3,7 +3,7 @@ package com.epam.xxlbet.milto.service;
 import com.epam.xxlbet.milto.domain.MatchResult;
 
 /**
- * MatchResultService
+ * MatchResultService.
  *
  * @author Aliaksei Milto
  */

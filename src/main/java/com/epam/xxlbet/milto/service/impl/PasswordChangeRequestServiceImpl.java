@@ -2,7 +2,6 @@ package com.epam.xxlbet.milto.service.impl;
 
 import com.epam.xxlbet.milto.dao.PasswordChangeRequestDao;
 import com.epam.xxlbet.milto.dao.impl.PasswordChangeRequestDaoImpl;
-import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.PasswordChangeRequest;
 import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;

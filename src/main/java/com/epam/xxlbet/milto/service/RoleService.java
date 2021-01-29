@@ -10,7 +10,7 @@ import com.epam.xxlbet.milto.domain.Role;
 public interface RoleService {
 
     /**
-     * Find {@link Role} by id
+     * Find {@link Role} by id.
      *
      * @param roleId role id
      * @return {@link Role}
@@ -26,7 +26,7 @@ public interface RoleService {
     Role getUserRoleByEmail(String email);
 
     /**
-     * Find {@link Role} by name
+     * Find {@link Role} by name.
      *
      * @param name role name
      * @return {@link Role}

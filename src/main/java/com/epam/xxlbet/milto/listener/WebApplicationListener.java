@@ -7,6 +7,8 @@ import com.epam.xxlbet.milto.scheduled.DeleteFinishedTournamentsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteUnconfirmedUsersJob;
 import com.epam.xxlbet.milto.scheduled.GenerateMatchResultJob;
 import com.epam.xxlbet.milto.scheduled.RefreshPropertyFilesJob;
+import com.epam.xxlbet.milto.service.EmailSender;
+import com.epam.xxlbet.milto.service.impl.mail.JavaxEmailSenderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +34,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class WebApplicationListener implements ServletContextListener {
     private static final Logger LOG = LoggerFactory.getLogger(WebApplicationListener.class);
     private ScheduledExecutorService executorService;
+    private EmailSender emailSender;
 
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
@@ -76,6 +79,9 @@ public class WebApplicationListener implements ServletContextListener {
         } catch (InterruptedException e) {
             executorService.shutdownNow();
         }
+
+        emailSender = JavaxEmailSenderImpl.getInstance();
+        emailSender.shutdown();
 
         LOG.debug("Connections are closed successfully!");
         LOG.debug("ApplicationContext destroyed successfully!");

@@ -10,7 +10,6 @@ import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.INSERT_INTO_BETS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_BETS_BY_USER_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_DEFEAT_BETS_ID;
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_INCOMPLETE_BETS_BY_USER_ID;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_WINNING_BETS_ID;
 
 /**

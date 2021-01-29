@@ -68,21 +68,22 @@ public final class PropertyLoader {
         init(MESSAGES_RU_PROPERTIES);
         init(MESSAGES_BE_PROPERTIES);
 
-        //email sending
+        //email properties
         init(MAIL_PROPERTIES);
-    }
-
-    public void reInit(String path) throws IOException {
-        this.properties.remove(path);
-        init(path);
     }
 
     /**
      * Initializes properties map with .properties file located on given path in classpath.
+     * Each call of this method initializes reading classpath file directory
+     * and loading properties to app
+     * regardless of were this properties in app or not.
+     * It means if there were this properties,
+     * they will be deleted from app and loaded again.
      *
      * @param name .properties file name
      */
     public void init(final String name) throws IOException {
+        this.properties.remove(name);
         Properties properties = new Properties();
 
         InputStream in = PropertyLoader.class.getResourceAsStream("/" + name);

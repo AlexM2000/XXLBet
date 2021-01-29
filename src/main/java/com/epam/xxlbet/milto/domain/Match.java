@@ -21,13 +21,19 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", drawCoefficient=" + drawCoefficient +
-                ", tournamentName='" + tournamentName + '\'' +
-                ", opponents=" + opponents +
-                ", dateStarted=" + dateStarted +
-                '}';
+        return "Match{"
+                + "id="
+                + id
+                + ", drawCoefficient="
+                + drawCoefficient
+                + ", tournamentName='"
+                + tournamentName
+                + '\''
+                + ", opponents="
+                + opponents
+                + ", dateStarted="
+                + dateStarted
+                + '}';
     }
 
     public BigDecimal getDrawCoefficient() {

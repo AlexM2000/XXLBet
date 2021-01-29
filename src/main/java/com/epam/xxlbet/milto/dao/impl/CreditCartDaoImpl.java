@@ -6,7 +6,12 @@ import com.epam.xxlbet.milto.populator.impl.ResultSetToCreditCardPopulator;
 
 import java.util.List;
 
-import static com.epam.xxlbet.milto.utils.XxlBetConstants.*;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.FILE_WITH_QUERIES_FOR_TABLE_CREDIT_CARDS;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.LINK_CREDIT_CARD;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_CREDIT_CARD_BY_NUMBER;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.SELECT_CREDIT_CARD_BY_USER;
+import static com.epam.xxlbet.milto.utils.XxlBetConstants.UNLINK_CREDIT_CARD;
+
 
 /**
  * CreditCartDaoImpl.

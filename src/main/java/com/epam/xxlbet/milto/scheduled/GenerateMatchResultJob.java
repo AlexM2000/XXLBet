@@ -71,6 +71,7 @@ public class GenerateMatchResultJob implements Runnable {
     /**
      * Get random element from list.
      *
+     * @param list List
      * @return Match
      */
     private Object getRandomElement(List list) {

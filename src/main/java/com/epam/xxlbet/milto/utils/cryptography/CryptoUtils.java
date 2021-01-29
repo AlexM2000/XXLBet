@@ -26,8 +26,7 @@ public class CryptoUtils {
     /**
      * Sets secretKey for encryption and decryption.
      */
-    private static void setKey(String myKey)
-    {
+    private static void setKey(String myKey) {
         MessageDigest sha;
         try {
             key = myKey.getBytes(UTF_8);
@@ -35,8 +34,7 @@ public class CryptoUtils {
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
             secretKey = new SecretKeySpec(key, "AES");
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             LOG.error("Something went wrong while executing CryptoUtils.setKey()", e);
         }
     }
@@ -50,17 +48,13 @@ public class CryptoUtils {
      * @param secret secret key
      * @return Encrypted string
      */
-    public static String encrypt(String strToEncrypt, String secret)
-    {
-        try
-        {
+    public static String encrypt(String strToEncrypt, String secret) {
+        try {
             setKey(secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(UTF_8)));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             LOG.error("Error while encrypting at CryptoUtils.encrypt: ", e);
         }
         return null;
@@ -75,17 +69,14 @@ public class CryptoUtils {
      * @param secret secret key
      * @return Decrypted string
      */
-    public static String decrypt(String strToDecrypt, String secret)
-    {
-        try
-        {
+    public static String decrypt(String strToDecrypt, String secret) {
+        try {
             setKey(secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             LOG.error("Error while decrypting CryptoUtils.decrypt:", e);
         }
         return null;

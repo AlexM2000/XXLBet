@@ -13,7 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.epam.xxlbet.milto.command.factory.CommandFactory.*;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.COMMAND;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ADMIN_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_ALL_USER_BETS;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BET_CREATE_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_BOOKMAKER_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_SPORT_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TEAM_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_CREATE_TOURNAMENT_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_LINK_CREDIT_CARD_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_PROFILE_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.GET_UNLINK_CREDIT_CARD_PAGE;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_BET;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_MATCH;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_SPORT;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TEAM;
+import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CREATE_TOURNAMENT;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.BANNED_STATUS;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.UNLINK_CREDIT_CARD;
 

@@ -8,7 +8,6 @@ import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.SportExistsValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
-import static java.util.Collections.singletonMap;
 
 /**
  * PostCreateSportCommand.

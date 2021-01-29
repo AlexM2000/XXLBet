@@ -86,7 +86,7 @@ public class VerificationTokenDaoImpl extends AbstractDaoImpl implements Verific
 
     @Override
     public void deleteVerificationToken(Long userId) {
-        try(final Connection connection = getConnectionPool().getConnection()) {
+        try (final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(DELETE_USER_TOKEN_PROPERTY_ID));
 
             statement.setLong(1, userId);

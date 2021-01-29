@@ -47,7 +47,7 @@ public class MatchesDaoImpl extends AbstractDaoImpl<Match> implements MatchesDao
     public List<Match> getFutureMatches() {
         List<Match> matches = new ArrayList<>();
 
-        try(final Connection connection = getConnectionPool().getConnection()) {
+        try (final Connection connection = getConnectionPool().getConnection()) {
             final PreparedStatement statement = connection.prepareStatement(getSqlById(SELECT_FUTURE_MATCHES));
 
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));

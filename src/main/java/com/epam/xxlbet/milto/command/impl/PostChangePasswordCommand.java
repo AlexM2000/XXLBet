@@ -7,7 +7,6 @@ import com.epam.xxlbet.milto.requestandresponsebody.ChangePasswordRequest;
 import com.epam.xxlbet.milto.service.PasswordChangeRequestService;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.PasswordFormatValidator;
-import com.epam.xxlbet.milto.validator.impl.RepeatPasswordValidator;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 

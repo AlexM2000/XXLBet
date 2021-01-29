@@ -73,7 +73,7 @@ public class XSSHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
             value = value.replaceAll("\0", "");
 
-            for (Pattern scriptPattern : patterns){
+            for (Pattern scriptPattern : patterns) {
                 value = scriptPattern.matcher(value).replaceAll("");
             }
         }

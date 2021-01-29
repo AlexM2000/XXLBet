@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Aliaksei Milto
  */
 public final class DateUtils {
-    private DateUtils() {}
+    private DateUtils() { }
 
     public static String formatLocalDateTime(final LocalDateTime localDateTime, final String pattern) {
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));

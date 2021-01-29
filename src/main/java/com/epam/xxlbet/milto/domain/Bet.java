@@ -2,7 +2,6 @@ package com.epam.xxlbet.milto.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Model of match bet.
@@ -23,15 +22,22 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "id=" + id +
-                ", matchId=" + matchId +
-                ", resultId=" + resultId +
-                ", dateCreated=" + dateCreated +
-                ", sum=" + sum +
-                ", expectedWinnerId=" + expectedWinnerId +
-                ", userId=" + userId +
-                '}';
+        return "Bet{"
+                + "id="
+                + id
+                + ", matchId="
+                + matchId
+                + ", resultId="
+                + resultId
+                + ", dateCreated="
+                + dateCreated
+                + ", sum="
+                + sum
+                + ", expectedWinnerId="
+                + expectedWinnerId
+                + ", userId="
+                + userId
+                + '}';
     }
 
     public Long getId() {

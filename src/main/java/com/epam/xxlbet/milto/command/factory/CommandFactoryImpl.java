@@ -36,7 +36,7 @@ import com.epam.xxlbet.milto.command.impl.GetPageCommand;
 import com.epam.xxlbet.milto.exceptions.UnknownCommandException;
 import com.epam.xxlbet.milto.service.impl.BetsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.CreditCardServiceImpl;
-import com.epam.xxlbet.milto.service.impl.JavaxEmailSenderImpl;
+import com.epam.xxlbet.milto.service.impl.mail.JavaxEmailSenderImpl;
 import com.epam.xxlbet.milto.service.impl.MatchesServiceImpl;
 import com.epam.xxlbet.milto.service.impl.OpponentsServiceImpl;
 import com.epam.xxlbet.milto.service.impl.PasswordChangeRequestServiceImpl;

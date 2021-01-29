@@ -1,8 +1,6 @@
 package com.epam.xxlbet.milto.service;
 
-import com.epam.xxlbet.milto.domain.ConfirmationResult;
 import com.epam.xxlbet.milto.domain.PasswordChangeRequest;
-import com.epam.xxlbet.milto.domain.User;
 import com.epam.xxlbet.milto.requestandresponsebody.ChangePasswordRequest;
 
 /**
@@ -13,7 +11,7 @@ import com.epam.xxlbet.milto.requestandresponsebody.ChangePasswordRequest;
 public interface PasswordChangeRequestService {
 
     /**
-     * Create password change request and send email for changing password,
+     * Create password change request and send email for changing password.
      *
      * @param email user email
      * @return Created {@link PasswordChangeRequest} (taken from database)

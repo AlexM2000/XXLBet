@@ -26,6 +26,7 @@ public class CommandResult {
      * Create redirect command result.
      *
      * @param page Page to which redirect
+     * @return redirect command result
      */
     public static CommandResult createRedirectCommandResult(String page) {
         return new CommandResult(page, REDIRECT, null);
@@ -35,6 +36,7 @@ public class CommandResult {
      * Create forward command result.
      *
      * @param page Page to which forward
+     * @return forward command result
      */
     public static CommandResult createForwardCommandResult(String page) {
         return new CommandResult(page, FORWARD, null);
@@ -44,6 +46,7 @@ public class CommandResult {
      * Create command result of returning response body.
      *
      * @param responseBody response body to return
+     * @return write response body to response command result
      */
     public static CommandResult createWriteDirectlyToResponseCommandResult(final Object responseBody) {
         return new CommandResult(EMPTY, WRITE_DIRECT_TO_RESPONSE, responseBody);

@@ -7,7 +7,6 @@ import com.epam.xxlbet.milto.domain.UserInfo;
 import com.epam.xxlbet.milto.service.BetsService;
 import com.epam.xxlbet.milto.service.CreditCardService;
 import com.epam.xxlbet.milto.service.UserInfoService;
-import com.epam.xxlbet.milto.service.UserService;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createForwardCommandResult;
 

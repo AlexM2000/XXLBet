@@ -26,7 +26,7 @@ public interface VerificationTokenService {
     VerificationToken createToken(Long userId);
 
     /**
-     * Delete {@link VerificationToken} belonged to given user
+     * Delete {@link VerificationToken} belonged to given user.
      *
      * @param userId user id
      */

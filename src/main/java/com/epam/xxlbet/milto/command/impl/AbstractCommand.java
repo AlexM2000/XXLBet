@@ -36,7 +36,7 @@ public abstract class AbstractCommand implements Command {
      * Get request body from the request
      * and try to convert it to given {@link Class<T>} instance.
      * If conversion was successful, return {@link T} instance with data from request body.
-     * Otherwise throw {@link IOException}.
+     * Otherwise throw {@link ServiceException} and return null.
      *
      * @param request request context.
      * @param clazz Class, to which convert request body
@@ -73,8 +73,7 @@ public abstract class AbstractCommand implements Command {
      * @param locale Locale of error message.
      * @param validator {@link Validator} that performs validation of object.
      */
-    protected void validate(final Object object, final String locale, final Validator validator)
-    {
+    protected void validate(final Object object, final String locale, final Validator validator) {
         final Errors errors = new Errors();
         errors.setLocale(locale);
 

@@ -15,11 +15,14 @@ public class MatchResult {
 
     @Override
     public String toString() {
-        return "MatchResult{" +
-                "id=" + id +
-                ", matchId=" + matchId +
-                ", winnerId=" + winnerId +
-                '}';
+        return "MatchResult{"
+                + "id="
+                + id
+                + ", matchId="
+                + matchId
+                + ", winnerId="
+                + winnerId
+                + '}';
     }
 
     public Long getId() {

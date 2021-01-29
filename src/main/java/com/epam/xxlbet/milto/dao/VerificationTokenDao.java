@@ -26,7 +26,7 @@ public interface VerificationTokenDao {
     VerificationToken getVerificationTokenByToken(String token);
 
     /**
-     * Delete {@link VerificationToken} belonged to given user
+     * Delete {@link VerificationToken} belonged to given user.
      *
      * @param userId user id
      */

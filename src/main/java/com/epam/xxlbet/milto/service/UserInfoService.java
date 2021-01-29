@@ -12,7 +12,12 @@ import java.util.List;
  */
 public interface UserInfoService {
 
-
+    /**
+     * Find user info by user email
+     *
+     * @param email user email
+     * @return user info
+     */
     UserInfo getUserInfoByEmail(String email);
 
     /**

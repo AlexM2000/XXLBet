@@ -74,6 +74,7 @@ public final class ConnectionPool {
      * waiting up for timeout, specified in project properties.
      * Connection is established and ready for use.
      *
+     * @return connection
      * @throws ConnectionPoolException
      * if timeout elapsed before free connection is available
      * or there are too many busy connections.
@@ -95,6 +96,7 @@ public final class ConnectionPool {
     /**
      * Release given connection and make it available for other clients.
      *
+     * @param connection connection that is needed to release
      * @throws ConnectionPoolException if connection type is unknown
      * or if connection is not busy.
      * @throws InterruptedException if interrupted while releasing connection

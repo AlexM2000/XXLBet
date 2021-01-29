@@ -5,14 +5,12 @@ import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
 import com.epam.xxlbet.milto.domain.PasswordChangeRequest;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
-import com.epam.xxlbet.milto.exceptions.ServiceException;
 import com.epam.xxlbet.milto.service.EmailSender;
 import com.epam.xxlbet.milto.service.PasswordChangeRequestService;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
+import com.epam.xxlbet.milto.service.impl.mail.MailThread;
 import com.epam.xxlbet.milto.validator.Validator;
 import com.epam.xxlbet.milto.validator.impl.UserNotExistsValidator;
-
-import javax.mail.MessagingException;
 
 import static com.epam.xxlbet.milto.command.CommandResult.createWriteDirectlyToResponseCommandResult;
 import static com.epam.xxlbet.milto.utils.XxlBetConstants.MESSAGES_BE_PROPERTIES;
@@ -63,21 +61,19 @@ public class PostCreateChangePasswordRequestCommand extends AbstractCommand {
     private void sendPasswordChangeEmail(String email, String currentLocale, String token) {
         String msgFile = getNameOfLocaleFile(currentLocale);
 
-        try {
-            emailSender.sendEmail(
-                    email,
-                    getText(msgFile, currentLocale, "email.change.password.body", token, token),
-                    getText(msgFile, currentLocale, "email.change.password.subject")
-            );
-        } catch (MessagingException e) {
-            throw new ServiceException("Something went wrong during sending email...", e);
-        }
+        new MailThread(
+                email,
+                getText(msgFile, currentLocale, "email.change.password.body", token, token),
+                getText(msgFile, currentLocale, "email.change.password.subject"),
+                emailSender
+        ).start();
     }
 
     /**
      * Get name of file with localized messages depending on given language.
      *
      * @param locale given language.
+     * @return Name of file from which take messages
      */
     private String getNameOfLocaleFile(final String locale) {
         switch (locale) {
@@ -98,6 +94,7 @@ public class PostCreateChangePasswordRequestCommand extends AbstractCommand {
      * @param locale Language on which message must be
      * @param msgId id of the message
      * @param args Arguments for message formatting
+     * @return formatted localized text from messages file
      */
     private String getText(String msgFile, String locale, String msgId, Object... args) {
         return format(PropertyLoader.getInstance().getStringProperty(msgFile, msgId)

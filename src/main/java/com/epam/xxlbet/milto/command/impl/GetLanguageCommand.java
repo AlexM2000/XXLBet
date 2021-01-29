@@ -3,8 +3,6 @@ package com.epam.xxlbet.milto.command.impl;
 import com.epam.xxlbet.milto.command.CommandResult;
 import com.epam.xxlbet.milto.context.RequestContext;
 import com.epam.xxlbet.milto.context.ResponseContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
 

@@ -59,6 +59,7 @@ public interface OpponentsDao {
      * @param opponent {@link Opponent}
      * @param matchId match id
      * @param coefficient coefficient
+     * @return Updated opponent
      */
     Opponent adjustOpponentToMatch(Opponent opponent, Long matchId, BigDecimal coefficient);
 

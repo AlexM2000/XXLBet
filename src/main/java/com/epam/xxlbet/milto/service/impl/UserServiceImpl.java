@@ -17,8 +17,6 @@ import com.epam.xxlbet.milto.service.VerificationTokenService;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
 import com.epam.xxlbet.milto.utils.XxlBetConstants;
 import com.epam.xxlbet.milto.utils.cryptography.CryptoUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.Date;
