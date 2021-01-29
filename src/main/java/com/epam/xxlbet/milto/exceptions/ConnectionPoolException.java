@@ -11,5 +11,6 @@ public class ConnectionPoolException extends RuntimeException {
     }
 
     public ConnectionPoolException(String s, Exception e) {
+        super(s, e);
     }
 }

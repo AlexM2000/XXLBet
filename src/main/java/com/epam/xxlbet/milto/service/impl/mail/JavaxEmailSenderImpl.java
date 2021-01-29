@@ -60,7 +60,7 @@ public class JavaxEmailSenderImpl implements EmailSender {
 
             transport.sendMessage(msg, msg.getAllRecipients());
         } catch (MessagingException | UnsupportedEncodingException e) {
-            throw new ServiceException("Something wrong with address encoding...", e);
+            throw new ServiceException("Something wrong happened while sending email...", e);
         }
     }
 
@@ -69,7 +69,7 @@ public class JavaxEmailSenderImpl implements EmailSender {
         try {
             transport.close();
         } catch (MessagingException e) {
-            throw new ServiceException("Something wrong when closing connection...", e);
+            throw new ServiceException("Something wrong when closing connection with smtp", e);
         }
     }
 
