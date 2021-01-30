@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.connection;
+package com.epam.xxlbet.milto.connection.jdbc;
 
 import com.epam.xxlbet.milto.exceptions.ConnectionPoolException;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
@@ -20,57 +20,63 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * ConnectionPool.
+ * Pool of jdbc connections to database.
  *
  * @author Aliaksei Milto
  */
-public final class ConnectionPool {
-    private static final Logger LOG = LoggerFactory.getLogger(ConnectionPool.class);
+public final class JdbcConnectionPool {
+    private static final Logger LOG = LoggerFactory.getLogger(JdbcConnectionPool.class);
     private static final int DEFAULT_CONNECTION_POOL = 5;
     private static final int DEFAULT_CONNECTION_TIMEOUT = 5;
-    private static ConnectionPool instance;
+    private static JdbcConnectionPool instance;
 
     private PropertyLoader propertyLoader;
     private BlockingQueue<Connection> freeConnections;
     private Queue<Connection> busyConnections;
+
     private int poolSize;
     private int timeout;
 
-    private ConnectionPool() {
+    private JdbcConnectionPool() {
         init();
     }
 
-    public static ConnectionPool getInstance() {
+    public static JdbcConnectionPool getInstance() {
         if (instance == null) {
-            instance = new ConnectionPool();
+            instance = new JdbcConnectionPool();
         }
         return instance;
     }
 
     /**
-     * Close all free and busy connections.
+     * Close all free and busy jdbc connections.
      * Part of shutdown application flow.
      *
      * @throws SQLException if something went wrong during closing connections.
      */
     public void closeAllConnections() throws SQLException {
         for (Connection connection : busyConnections) {
+            LOG.debug("Closing busy jdbc connection...");
             connection.commit();
             connection.close();
         }
 
         for (Connection connection : freeConnections) {
-            if (connection instanceof ProxyConnection) {
-                ((ProxyConnection) connection).terminate();
+            LOG.debug("Closing free jdbc connection...");
+            if (connection instanceof JdbcConnectionProxy) {
+                ((JdbcConnectionProxy) connection).terminate();
             } else {
                 connection.close();
             }
         }
 
         deregisterDrivers();
+        busyConnections.clear();
+        freeConnections.clear();
     }
 
     /**
-     * Try to get connection from connection pool,
+     * Try to get jdbc connection from connection pool,
      * waiting up for timeout, specified in project properties.
      * Connection is established and ready for use.
      *
@@ -94,7 +100,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Release given connection and make it available for other clients.
+     * Release given jdbc connection and make it available for other clients.
      *
      * @param connection connection that is needed to release
      * @throws ConnectionPoolException if connection type is unknown
@@ -102,7 +108,7 @@ public final class ConnectionPool {
      * @throws InterruptedException if interrupted while releasing connection
      */
     public void releaseConnection(final Connection connection) throws InterruptedException {
-        if (!(connection instanceof ProxyConnection)) {
+        if (!(connection instanceof JdbcConnectionProxy)) {
             throw new ConnectionPoolException("Unknown connection");
         }
 
@@ -114,7 +120,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Initialize connection pool.
+     * Initialize jdbc connection pool.
      */
     private void init() {
         propertyLoader = PropertyLoader.getInstance();
@@ -137,7 +143,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Get database connection pool from project properties.
+     * Get jdbc connection pool from project properties.
      * If project properties doesn't have defined connection pool
      * returns default value {@link #DEFAULT_CONNECTION_POOL}.
      */
@@ -150,7 +156,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Get name of database driver from project.properties file
+     * Get name of jdbc driver from project.properties file
      * and register this driver.
      * If can't find name of database driver,
      * tries to register default "com.mysql.cj.jdbc.Driver".
@@ -175,16 +181,16 @@ public final class ConnectionPool {
     }
 
     /**
-     * Create ProxyConnection instances and put them to freeConnections.
+     * Create jdbc connection instances and put them to freeConnections.
      *
      * @throws ConnectionPoolException if something went wrong when creating connection.
      */
     private void createConnections() {
         for (int i = 0; i < poolSize; i++) {
             try {
-                Connection connection = new ProxyConnection(DBConnectionUtil.getConnection());
+                Connection connection = new JdbcConnectionProxy(DBConnectionUtil.getConnection());
                 freeConnections.add(connection);
-                LOG.debug("Initialized connection {}...", i + 1);
+                LOG.debug("Initialized connection {} of {}...", i + 1, poolSize);
             } catch (final SQLException e) {
                 throw new ConnectionPoolException("Can't create connection to database!", e);
             }
@@ -192,7 +198,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Get database connection timeout from project properties.
+     * Get jdbc connection timeout from project properties.
      * If project properties doesn't have defined connection pool
      * returns default value {@link #DEFAULT_CONNECTION_TIMEOUT}.
      */
@@ -205,7 +211,7 @@ public final class ConnectionPool {
     }
 
     /**
-     * Deregister all drivers.
+     * Deregister all jdbc drivers.
      * Part of the shutdown application flow.
      */
     private void deregisterDrivers() {

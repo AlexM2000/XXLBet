@@ -1,6 +1,7 @@
 package com.epam.xxlbet.milto.listener;
 
-import com.epam.xxlbet.milto.connection.ConnectionPool;
+import com.epam.xxlbet.milto.connection.jdbc.JdbcConnectionPool;
+import com.epam.xxlbet.milto.connection.mail.TransportConnectionPool;
 import com.epam.xxlbet.milto.scheduled.DeleteExpiredPasswordRequestsJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedMatchesJob;
 import com.epam.xxlbet.milto.scheduled.DeleteFinishedTournamentsJob;
@@ -40,6 +41,11 @@ public class WebApplicationListener implements ServletContextListener {
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         LOG.debug("Initializing ApplicationContext...");
 
+        // First call performs initialization of the pool
+        // including creating smtp connection, which might take
+        // some time
+        TransportConnectionPool.getInstance();
+
         LOG.debug("Creating scheduled jobs...");
         executorService = Executors.newSingleThreadScheduledExecutor();
 
@@ -66,7 +72,7 @@ public class WebApplicationListener implements ServletContextListener {
         LOG.debug("Closing connections...");
 
         try {
-            ConnectionPool.getInstance().closeAllConnections();
+            JdbcConnectionPool.getInstance().closeAllConnections();
         } catch (SQLException e) {
             LOG.error("Could not close connections!", e);
         }

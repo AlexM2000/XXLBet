@@ -4,6 +4,7 @@ import com.epam.xxlbet.milto.service.EmailSender;
 
 /**
  * MailThread.
+ * Runs email sending task in separated thread.
  *
  * @author Aliaksei Milto
  */

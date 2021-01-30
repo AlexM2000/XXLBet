@@ -4,7 +4,7 @@ import com.epam.xxlbet.milto.exceptions.DaoException;
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.populator.ResultSetPopulator;
 import com.epam.xxlbet.milto.utils.PropertyLoader;
-import com.epam.xxlbet.milto.connection.ConnectionPool;
+import com.epam.xxlbet.milto.connection.jdbc.JdbcConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ abstract class AbstractDaoImpl<T> {
     private static final String ERROR_MSG_BEGIN = "Something wrong happened while executing";
     private static final Logger LOG = LoggerFactory.getLogger(AbstractDaoImpl.class);
     private PropertyLoader loader;
-    private ConnectionPool connectionPool;
+    private JdbcConnectionPool connectionPool;
     private String propertiesFileWithQueriesName;
     private ResultSetPopulator<T> populator;
 
@@ -40,7 +40,7 @@ abstract class AbstractDaoImpl<T> {
             throw new DaoException("Could not load queries for database!", e);
         }
 
-        connectionPool = ConnectionPool.getInstance();
+        connectionPool = JdbcConnectionPool.getInstance();
     }
 
     /**
@@ -132,7 +132,7 @@ abstract class AbstractDaoImpl<T> {
         return loader;
     }
 
-    protected ConnectionPool getConnectionPool() {
+    protected JdbcConnectionPool getConnectionPool() {
         return connectionPool;
     }
 

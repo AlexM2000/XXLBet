@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.connection;
+package com.epam.xxlbet.milto.connection.jdbc;
 
 import com.epam.xxlbet.milto.exceptions.PropertyNotFoundException;
 import com.epam.xxlbet.milto.utils.PropertyLoader;

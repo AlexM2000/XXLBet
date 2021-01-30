@@ -1,4 +1,4 @@
-package com.epam.xxlbet.milto.connection;
+package com.epam.xxlbet.milto.connection.jdbc;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -24,17 +24,17 @@ import java.util.concurrent.Executor;
  *
  * @author Aliaksei Milto
  */
-class ProxyConnection implements Connection {
+class JdbcConnectionProxy implements Connection {
 
     private Connection connection;
 
-    ProxyConnection(Connection connection) {
+    JdbcConnectionProxy(Connection connection) {
         this.connection = connection;
     }
 
     @Override
     public void close() {
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        JdbcConnectionPool connectionPool = JdbcConnectionPool.getInstance();
         try {
             connectionPool.releaseConnection(this);
         } catch (RuntimeException | InterruptedException e) {
