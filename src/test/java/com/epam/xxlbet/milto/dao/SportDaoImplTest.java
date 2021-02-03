@@ -87,6 +87,7 @@ public class SportDaoImplTest {
 
         List<Sport> actual = sportDaoImpl.getAllSports();
 
+        // then
         assertEquals(expected, actual);
     }
 }
