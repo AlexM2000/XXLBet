@@ -23,6 +23,8 @@ public class CryptoUtils {
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
+    private CryptoUtils() { }
+
     /**
      * Sets secretKey for encryption and decryption.
      */

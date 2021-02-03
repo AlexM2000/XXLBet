@@ -49,7 +49,7 @@ public interface CommandFactory {
     String POST_PAY_BALANCE = "pay_balance";
 
     /**
-     * Creates command depending on given command name.
+     * Create command depending on given command name.
      *
      * @param commandName command name
      * @return {@link Command}

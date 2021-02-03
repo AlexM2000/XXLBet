@@ -37,7 +37,7 @@ public final class PropertyLoader {
     private static final
     String DATABASE_WAIT_AVAILABLE_CONNECTION_TIMEOUT_PROPERTY_ID = "xxl.bet.milto.jdbc.connection.wait-available.timeout";
 
-    private Map<String, Map<String, String>> properties = new HashMap<>();
+    private Map<String, Map<String, String>> applicationPropertiesMap = new HashMap<>();
 
     private PropertyLoader() {
         try {
@@ -83,7 +83,7 @@ public final class PropertyLoader {
      * @param name .properties file name
      */
     public void init(final String name) throws IOException {
-        this.properties.remove(name);
+        this.applicationPropertiesMap.remove(name);
         Properties properties = new Properties();
 
         InputStream in = PropertyLoader.class.getResourceAsStream("/" + name);
@@ -96,10 +96,10 @@ public final class PropertyLoader {
         Map<String, String> propertiesFromFile = new HashMap<>();
         properties.forEach((key, value) -> propertiesFromFile.put((String) key, (String) value));
 
-        if (this.properties.containsKey(name)) {
+        if (this.applicationPropertiesMap.containsKey(name)) {
             properties.replace(name, unmodifiableMap(propertiesFromFile));
         } else {
-            this.properties.put(name, unmodifiableMap(propertiesFromFile));
+            this.applicationPropertiesMap.put(name, unmodifiableMap(propertiesFromFile));
         }
     }
 
@@ -128,10 +128,10 @@ public final class PropertyLoader {
     }
 
     public Optional<String> getStringProperty(final String filename, final String id) {
-        LOG.debug("Property in {} file with {} id is {}", filename, id, properties.get(filename).get(id));
+        LOG.debug("Property in {} file with {} id is {}", filename, id, applicationPropertiesMap.get(filename).get(id));
 
-        return properties.containsKey(filename) && properties.get(filename).containsKey(id)
-                ? Optional.of(properties.get(filename).get(id))
+        return applicationPropertiesMap.containsKey(filename) && applicationPropertiesMap.get(filename).containsKey(id)
+                ? Optional.of(applicationPropertiesMap.get(filename).get(id))
                 : Optional.empty();
     }
 

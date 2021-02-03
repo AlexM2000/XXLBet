@@ -1,8 +1,14 @@
+create database xxlbet;
+use xxlbet;
+
 create table roles
 (
-    id   bigint auto_increment
-        primary key,
-    name varchar(10) not null
+    id   bigint not null,
+    name varchar(10) not null,
+    constraint roles_id_uindex
+        unique (id),
+    constraint roles_name_uindex
+        unique (name)
 )
     charset = utf8;
 
@@ -10,15 +16,20 @@ create table sports
 (
     id   bigint auto_increment
         primary key,
-    name varchar(30) not null
+    name varchar(30) not null,
+    constraint sports_name_uindex
+        unique (name)
 )
     charset = latin1;
 
 create table statuses
 (
-    id   bigint auto_increment
-        primary key,
-    name varchar(30) not null
+    id bigint not null,
+    name varchar(30) not null,
+    constraint statuses_id_uindex
+        unique (id),
+    constraint statuses_name_uindex
+        unique (name)
 )
     charset = utf8;
 
@@ -85,6 +96,9 @@ create table match_results
 )
     charset = utf8;
 
+create index tournaments_name_index
+    on tournaments (name);
+
 create table users
 (
     id           bigint auto_increment
@@ -140,6 +154,12 @@ create table credit_cards
             on update cascade on delete cascade
 );
 
+create index credit_cards_number_index
+    on credit_cards (number);
+
+create index credit_cards_number_user_id_index
+    on credit_cards (number, user_id);
+
 create index credit_cards_user_id_index
     on credit_cards (user_id);
 
@@ -154,6 +174,9 @@ create table password_change_requests
         foreign key (user_id) references users (id)
             on update cascade on delete cascade
 );
+
+create index password_change_requests_token_index
+    on password_change_requests (token);
 
 create table user_info
 (
@@ -190,6 +213,9 @@ create table user_info
 alter table user_info
     add primary key (email);
 
+create index users_email_password_index
+    on users (email, password);
+
 create table verification_tokens
 (
     id         bigint auto_increment
@@ -202,6 +228,9 @@ create table verification_tokens
             on update cascade on delete cascade
 )
     charset = utf8;
+
+create index verification_tokens_token_index
+    on verification_tokens (token);
 
 insert into roles (id, name) values (0, 'client');
 insert into roles (id, name) values (1, 'admin');

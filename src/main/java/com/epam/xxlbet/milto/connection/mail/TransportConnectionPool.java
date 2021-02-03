@@ -33,7 +33,7 @@ public class TransportConnectionPool {
     private static TransportConnectionPool instance;
 
     private final TransportConnectionFactory factory;
-    private final PropertyLoader propertyLoader;
+    private final PropertyLoader loader;
     private final Session session;
     private final int poolSize;
 
@@ -47,7 +47,7 @@ public class TransportConnectionPool {
      * which will create smtp connections from previously created session.
      */
     private TransportConnectionPool() {
-        PropertyLoader loader = PropertyLoader.getInstance();
+        this.loader = PropertyLoader.getInstance();
 
         Properties props = new Properties();
 
@@ -66,7 +66,6 @@ public class TransportConnectionPool {
         };
 
         this.session = Session.getInstance(props, authenticator);
-        this.propertyLoader = PropertyLoader.getInstance();
         this.poolSize = getTransportConnectionPool();
         this.factory = new TransportConnectionFactory(session);
         createConnections();
@@ -170,7 +169,7 @@ public class TransportConnectionPool {
      * returns default value {@link #DEFAULT_CONNECTION_POOL}.
      */
     private int getTransportConnectionPool() {
-        return propertyLoader.getIntProperty(MAIL_PROPERTIES, "xxl.bet.milto.transport.connection-pool")
+        return loader.getIntProperty(MAIL_PROPERTIES, "xxl.bet.milto.transport.connection-pool")
                 .orElseGet(() -> {
                     LOG.debug(format("Connection pool size is not specified! Defaulting to %d connections.", DEFAULT_CONNECTION_POOL));
                     return DEFAULT_CONNECTION_POOL;

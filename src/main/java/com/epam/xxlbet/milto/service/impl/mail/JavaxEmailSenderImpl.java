@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -82,8 +81,6 @@ public class JavaxEmailSenderImpl implements EmailSender {
 
     /**
      * Initialize service.
-     * Set "from" email, create session instance,
-     * transport instance and perform connection.
      */
     private void init() {
         PropertyLoader loader = PropertyLoader.getInstance();

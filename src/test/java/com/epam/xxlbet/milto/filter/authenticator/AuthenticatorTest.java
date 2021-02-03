@@ -24,10 +24,12 @@ import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_CONFIRM_
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGIN;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_LOGOUT;
 import static com.epam.xxlbet.milto.command.factory.CommandFactory.POST_REGISTRATION_COMMAND;
-import static com.epam.xxlbet.milto.domain.Role.*;
+import static com.epam.xxlbet.milto.domain.Role.ADMIN;
+import static com.epam.xxlbet.milto.domain.Role.BOOKMAKER;
+import static com.epam.xxlbet.milto.domain.Role.CLIENT;
 import static com.epam.xxlbet.milto.domain.Status.ACTIVE;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

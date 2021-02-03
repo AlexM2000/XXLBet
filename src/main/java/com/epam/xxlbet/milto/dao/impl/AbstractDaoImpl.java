@@ -55,7 +55,7 @@ abstract class AbstractDaoImpl<T> {
     protected List<T> executeQuery(final String queryId, Object... params) {
         List<T> entities = new ArrayList<>();
 
-        try (Connection connection = getConnectionPool().getConnection();) {
+        try (Connection connection = getConnectionPool().getConnection()) {
 
             final PreparedStatement statement = connection.prepareStatement(getSqlById(queryId));
 

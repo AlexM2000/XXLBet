@@ -1,5 +1,7 @@
 package com.epam.xxlbet.milto.domain;
 
+import java.util.Objects;
+
 /**
  * Sport model.
  *
@@ -10,6 +12,20 @@ public class Sport {
     private String name;
 
     public Sport() { }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sport sport = (Sport) o;
+        return id.equals(sport.id) &&
+                name.equals(sport.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 
     public Long getId() {
         return id;

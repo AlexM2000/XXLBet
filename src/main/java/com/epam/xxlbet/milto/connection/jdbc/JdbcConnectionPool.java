@@ -24,7 +24,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  *
  * @author Aliaksei Milto
  */
-public final class JdbcConnectionPool {
+public class JdbcConnectionPool {
     private static final Logger LOG = LoggerFactory.getLogger(JdbcConnectionPool.class);
     private static final int DEFAULT_CONNECTION_POOL = 5;
     private static final int DEFAULT_CONNECTION_TIMEOUT = 5;

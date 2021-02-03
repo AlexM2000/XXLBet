@@ -2,7 +2,7 @@ package com.epam.xxlbet.milto.exceptions;
 
 /**
  * DaoException.
- * Thrown when there are errors related to sql in dao.
+ * Thrown when there are errors in dao layer.
  *
  * @author Aliaksei Milto
  */

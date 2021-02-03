@@ -45,7 +45,7 @@ function createTeam() {
     let error_count = 0;
 
     if (team === "" || !regexp.test(team)) {
-        $('#tournamentNameInformer').text('Invalid value');
+        $('#teamNameInformer').text('Invalid value');
         error_count++;
     }
 

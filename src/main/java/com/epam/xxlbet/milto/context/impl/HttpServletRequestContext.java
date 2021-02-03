@@ -9,7 +9,6 @@ import java.io.IOException;
 
 /**
  * HttpServletRequestContext.
- * W
  *
  * @author Aliaksei Milto
  */
