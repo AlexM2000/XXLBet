@@ -55,11 +55,11 @@ public class JavaxEmailSenderImpl implements EmailSender {
             }
 
             MimeMessage msg = new MimeMessage(connectionPool.getSession());
-            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+            msg.addHeader("Content-type", "text/html; charset=UTF-8");
             msg.setFrom(new InternetAddress(from, "NoReply-XXLBet"));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo, false));
             msg.setSubject(subject, String.valueOf(UTF_8));
-            msg.setContent(htmlMessage, "text/html");
+            msg.setContent(htmlMessage, "text/html; charset=UTF-8");
             msg.setSentDate(new Date());
 
             transport.sendMessage(msg, msg.getAllRecipients());

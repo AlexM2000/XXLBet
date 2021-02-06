@@ -35,7 +35,6 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class WebApplicationListener implements ServletContextListener {
     private static final Logger LOG = LoggerFactory.getLogger(WebApplicationListener.class);
     private ScheduledExecutorService executorService;
-    private EmailSender emailSender;
 
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
@@ -86,7 +85,7 @@ public class WebApplicationListener implements ServletContextListener {
             executorService.shutdownNow();
         }
 
-        emailSender = JavaxEmailSenderImpl.getInstance();
+        EmailSender emailSender = JavaxEmailSenderImpl.getInstance();
         emailSender.shutdown();
 
         LOG.debug("Connections are closed successfully!");

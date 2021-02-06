@@ -99,7 +99,7 @@ function registration() {
                         $('#rPasswordErrorInformer').text(dataFromServer['passwords.not.match']);
                     }
                     if (dataFromServer['phonenumber.not.matches.regexp'] != null) {
-                        $('#phoneErrorInformer').text();
+                        $('#phoneErrorInformer').text(dataFromServer['phonenumber.not.matches.regexp']);
                     }
                     if (dataFromServer['user.with.phonenumber.exists'] != null) {
                         $('#phoneErrorInformer').text(dataFromServer['user.with.phonenumber.exists']);

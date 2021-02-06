@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * RequestContext.
  *
- * @author alexm2000
+ * @author Aliaksei Milto
  */
 public interface RequestContext {
 
